@@ -1,7 +1,0 @@
-c:\users\martndemus\documents\visual studio 2010\Projects\NHLStackOverflow\bin\NHLStackOverflow.dll
-c:\users\martndemus\documents\visual studio 2010\Projects\NHLStackOverflow\bin\NHLStackOverflow.pdb
-c:\users\martndemus\documents\visual studio 2010\Projects\NHLStackOverflow\bin\EntityFramework.dll
-c:\users\martndemus\documents\visual studio 2010\Projects\NHLStackOverflow\bin\EntityFramework.xml
-c:\users\martndemus\documents\visual studio 2010\Projects\NHLStackOverflow\obj\Debug\ResolveAssemblyReference.cache
-c:\users\martndemus\documents\visual studio 2010\Projects\NHLStackOverflow\obj\Debug\NHLStackOverflow.dll
-c:\users\martndemus\documents\visual studio 2010\Projects\NHLStackOverflow\obj\Debug\NHLStackOverflow.pdb
