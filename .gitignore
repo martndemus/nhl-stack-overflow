@@ -38,6 +38,9 @@ intermediate
 publish
 .idea
 
+# Visual studio junk
+*.suo
+
 # build script local files
 build/buildinfo.properties
 build/config/buildinfo.properties

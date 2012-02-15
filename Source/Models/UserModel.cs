@@ -10,7 +10,7 @@ namespace NHLStackOverflow.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(20, MinimumLength = 6, ErrorMessage = "Username moet tussen 6 en 20 karakters lang zijn."))]
+        [StringLength(20, MinimumLength = 6, ErrorMessage = "Username moet tussen 6 en 20 karakters lang zijn.")]
         [Display(Name = "User Nickname")]
         [RegularExpression(@"^\w[\w\d]+$", ErrorMessage = "Geen spaties, alleen letters en cijfers, moet beginnen met een letter.")]
         public string UserName { get; set; }
