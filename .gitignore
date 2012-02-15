@@ -40,6 +40,8 @@ publish
 
 # Visual studio junk
 *.suo
+Source/bin
+Source/obj
 
 # build script local files
 build/buildinfo.properties

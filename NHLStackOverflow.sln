@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Web Developer Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHLStackOverflow", "NHLStackOverflow\NHLStackOverflow.csproj", "{4F896A09-CB37-47EC-8745-E8205B15A5C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHLStackOverflow", "Source\NHLStackOverflow.csproj", "{4F896A09-CB37-47EC-8745-E8205B15A5C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
