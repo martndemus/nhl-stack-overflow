@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
@@ -7,7 +8,7 @@ namespace NHLStackOverflow.Models
     public class User
     {
         [Required]
-        [Key] // <- Unique key!
+        [Key]
         public int Id { get; set; }
 
         [Required]

@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using NHLStackOverflow.Models;
-using System;
 
 namespace NHLStackOverflow.Models
 {
