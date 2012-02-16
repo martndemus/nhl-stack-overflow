@@ -1,11 +1,11 @@
-﻿using System
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
 namespace NHLStackOverflow.Models
-{mbox;
+{
     public class Comment
-    {m
+    {
         [Required]
         [Key] // <- Unique key!
         public int Id { get; set; }
