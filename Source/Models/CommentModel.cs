@@ -12,10 +12,20 @@ namespace NHLStackOverflow.Models
 
         public Question Question { get; set; }
         public Answer Answer { get; set; }
+
+        [Required]
         public User User { get; set; }
+
+        [Required]
         public string Content { get; set; }
-        public string Created { get; set; }
-        public string
+
+        [Required]
+        [DataType(DataType.Date)]
+        public DateTime Created { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        public DateTime LastOnline { get; set; }
 
     }
 }

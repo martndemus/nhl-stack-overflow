@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
 namespace NHLStackOverflow.Models
@@ -28,11 +29,13 @@ namespace NHLStackOverflow.Models
 
         [Required]
         [Display(Name = "Date Account Created")]
-        public string Created { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime Created { get; set; }
 
         [Required]
         [Display(Name = "Date Last Online")]
-        public string LastOnline { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime LastOnline { get; set; }
 
         [Required]
         [Display(Name = "User Rank")]

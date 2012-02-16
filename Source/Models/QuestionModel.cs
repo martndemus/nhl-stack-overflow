@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using NHLStackOverflow.Models;
 
@@ -26,10 +27,11 @@ namespace NHLStackOverflow.Models
         public int Votes { get; set; }
 
         [Required]
-        public string Created { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime Created { get; set; }
 
-        [Required]
-        public string LastEdit { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime LastEdited { get; set; }
 
         [Required]
         public int Views { get; set; }

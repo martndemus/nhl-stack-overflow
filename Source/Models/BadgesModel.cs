@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
 namespace NHLStackOverflow.Models
 {
-    public class BadgesModel
+    public class Badges
     {
         [Required]
         [Key]

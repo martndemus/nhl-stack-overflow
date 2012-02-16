@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
 namespace NHLStackOverflow.Models
@@ -6,7 +7,7 @@ namespace NHLStackOverflow.Models
     /// <summary>
     /// Summary description for Message
     /// </summary>
-    public class MessageModel
+    public class Message
     {
         [Required]
         [Key]
@@ -25,7 +26,8 @@ namespace NHLStackOverflow.Models
         public string Title { get; set; }
 
         [Required]
-        public string Date { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime  Date { get; set; }
 
         [Required]
         public string Text { get; set; }

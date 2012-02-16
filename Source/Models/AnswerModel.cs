@@ -9,16 +9,16 @@ namespace NHLStackOverflow.Models
     {
         [Required]
         [Key]
+        public int Id { get; set; }
+
+        [Required]
+        [Key]
         public User User { get; set; }
 
         [Required]
         [Key]
         public Question Question { get; set; }
-
-        [Required]
-        [Key]
-        public int AsnwerID { get; set; }
-
+        
         [Required]
         public int Votes { get; set; }
 
