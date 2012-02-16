@@ -40,8 +40,12 @@ publish
 
 # Visual studio junk
 *.suo
-bin/*
-obj/*
+Source/NHLStackOverflow/bin/*
+Source/NHLStackOverflow/obj/*
+Source/NHLStackOverflow.Tests/bin/*
+Source/NHLStackOverflow.Tests/obj/*
+Source/NHLStackOverflow/App_Data/*
+Source/packages/*
 
 # build script local files
 build/buildinfo.properties
