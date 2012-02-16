@@ -1,0 +1,8 @@
+c:\users\martndemus\documents\visual studio 2010\Projects\NHLStackOverflow.Tests\obj\Debug\ResolveAssemblyReference.cache
+c:\users\martndemus\documents\visual studio 2010\Projects\NHLStackOverflow.Tests\bin\Debug\NHLStackOverflow.Tests.dll
+c:\users\martndemus\documents\visual studio 2010\Projects\NHLStackOverflow.Tests\bin\Debug\NHLStackOverflow.Tests.pdb
+c:\users\martndemus\documents\visual studio 2010\Projects\NHLStackOverflow.Tests\bin\Debug\NHLStackOverflow.dll
+c:\users\martndemus\documents\visual studio 2010\Projects\NHLStackOverflow.Tests\bin\Debug\xunit.dll
+c:\users\martndemus\documents\visual studio 2010\Projects\NHLStackOverflow.Tests\bin\Debug\NHLStackOverflow.pdb
+c:\users\martndemus\documents\visual studio 2010\Projects\NHLStackOverflow.Tests\obj\Debug\NHLStackOverflow.Tests.dll
+c:\users\martndemus\documents\visual studio 2010\Projects\NHLStackOverflow.Tests\obj\Debug\NHLStackOverflow.Tests.pdb

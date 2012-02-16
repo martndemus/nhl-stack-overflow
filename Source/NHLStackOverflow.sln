@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHLStackOverflow", "NHLStackOverflow.csproj", "{4F896A09-CB37-47EC-8745-E8205B15A5C0}"
+# Visual Web Developer Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHLStackOverflow", "NHLStackOverflow\NHLStackOverflow.csproj", "{D0A54808-A543-42FF-B63E-459F0F0C904F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHLStackOverflow.Tests", "NHLStackOverflow.Tests\NHLStackOverflow.Tests.csproj", "{99393C95-4BE9-47B4-BF9D-DCEA6683B306}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +11,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4F896A09-CB37-47EC-8745-E8205B15A5C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F896A09-CB37-47EC-8745-E8205B15A5C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F896A09-CB37-47EC-8745-E8205B15A5C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F896A09-CB37-47EC-8745-E8205B15A5C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0A54808-A543-42FF-B63E-459F0F0C904F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0A54808-A543-42FF-B63E-459F0F0C904F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0A54808-A543-42FF-B63E-459F0F0C904F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0A54808-A543-42FF-B63E-459F0F0C904F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99393C95-4BE9-47B4-BF9D-DCEA6683B306}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99393C95-4BE9-47B4-BF9D-DCEA6683B306}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99393C95-4BE9-47B4-BF9D-DCEA6683B306}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99393C95-4BE9-47B4-BF9D-DCEA6683B306}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
