@@ -2,8 +2,6 @@
 # Visual Web Developer Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHLStackOverflow", "NHLStackOverflow\NHLStackOverflow.csproj", "{D0A54808-A543-42FF-B63E-459F0F0C904F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHLStackOverflow.Tests", "NHLStackOverflow.Tests\NHLStackOverflow.Tests.csproj", "{99393C95-4BE9-47B4-BF9D-DCEA6683B306}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
