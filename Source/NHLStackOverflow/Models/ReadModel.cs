@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-using System.Web.Security;
-using System.Data.Entity;
 namespace NHLStackOverflow.Models
 {
-    public class Read
+    public class Read : IValidatableObject
     {
         // GUID
         public int ReadID { get; set; }
@@ -14,5 +11,10 @@ namespace NHLStackOverflow.Models
         // Relations
         public User User { get; set; }
         public Question Question { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

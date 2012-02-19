@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-using System.Web.Security;
-using System.Data.Entity;
 
 namespace NHLStackOverflow.Models
 {
-    public class Message
+    public class Message : IValidatableObject
     {
         // GUID
         public int MessageID { get; set; }
@@ -17,12 +14,17 @@ namespace NHLStackOverflow.Models
         public string Content { get; set; }
 
         // Timestamps
-        public DateTime Date { get; set; }
+        public DateTime Created_At { get; set; }
         public DateTime LastEdited { get; set; }
 
         // Relations
         public User Sender { get; set; }
         public User Receiver { get; set; }
         public Question Post { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

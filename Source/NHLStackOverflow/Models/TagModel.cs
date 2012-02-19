@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-using System.Web.Security;
-using System.Data.Entity;
 
 namespace NHLStackOverflow.Models
 {
-    public class Tag
+    public class Tag : IValidatableObject
     {
         // GUID
         public int TagID { get; set; }
@@ -17,5 +14,10 @@ namespace NHLStackOverflow.Models
 
         // Relations
         public ICollection<QuestionTag> Tags { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

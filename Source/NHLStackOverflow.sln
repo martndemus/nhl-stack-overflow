@@ -1,8 +1,21 @@
-﻿Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Web Developer Express 2010
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHLStackOverflow", "NHLStackOverflow\NHLStackOverflow.csproj", "{D0A54808-A543-42FF-B63E-459F0F0C904F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHLStackOverflow.tests", "NHLStackOverflow.tests\NHLStackOverflow.tests.csproj", "{13030A1F-C07B-4210-9A93-E7AB42BCC28D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3C401E4A-FAAF-46DC-8BDC-54891D6C085C}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		NHLStackOverflow.vsmdi = NHLStackOverflow.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = NHLStackOverflow.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -12,10 +25,10 @@ Global
 		{D0A54808-A543-42FF-B63E-459F0F0C904F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0A54808-A543-42FF-B63E-459F0F0C904F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0A54808-A543-42FF-B63E-459F0F0C904F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{99393C95-4BE9-47B4-BF9D-DCEA6683B306}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{99393C95-4BE9-47B4-BF9D-DCEA6683B306}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{99393C95-4BE9-47B4-BF9D-DCEA6683B306}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{99393C95-4BE9-47B4-BF9D-DCEA6683B306}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13030A1F-C07B-4210-9A93-E7AB42BCC28D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13030A1F-C07B-4210-9A93-E7AB42BCC28D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13030A1F-C07B-4210-9A93-E7AB42BCC28D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13030A1F-C07B-4210-9A93-E7AB42BCC28D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

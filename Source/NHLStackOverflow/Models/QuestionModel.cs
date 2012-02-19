@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-using System.Web.Security;
-using System.Data.Entity;
 
 namespace NHLStackOverflow.Models
 {
-    public class Question
+    public class Question : IValidatableObject
     {
         // GUID
         public int QuestionID { get; set; }
@@ -21,7 +18,7 @@ namespace NHLStackOverflow.Models
         public int Flag { get; set; }
 
         // Timestamps
-        public DateTime CreatedAt { get; set; }
+        public DateTime Created_At { get; set; }
         public DateTime LastEdited { get; set; }
 
         // Relations
@@ -29,5 +26,10 @@ namespace NHLStackOverflow.Models
         public ICollection<Answer> Answers { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<QuestionTag> Tags { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
