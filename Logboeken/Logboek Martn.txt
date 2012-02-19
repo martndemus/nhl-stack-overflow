@@ -1,0 +1,8 @@
+Logboek Marten Schilstra
+
+Datum:		Tijd:		Wat:								
+2/8/2012	1.5 uur		Besloten wat voor punten nodig zijn voor de site
+2/8/2012	1 uur		Niam Schema bedacht
+2/14/2012	2 uur		Code base opgezet
+2/16/2012	7 uur		Uitgewerkt hoe database/models Code First opgezet moet worden + models geschreven.
+2/16/2012	2 uur		Onderzoek gedaan naar unit test frameworks voor ASP.net
