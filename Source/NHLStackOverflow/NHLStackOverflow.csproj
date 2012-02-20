@@ -72,17 +72,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201202191936587_AnswerModel.cs" />
-    <Compile Include="Migrations\201202191936587_AnswerModel.Designer.cs">
-      <DependentUpon>201202191936587_AnswerModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201202192009486_Drop_All.cs" />
-    <Compile Include="Migrations\201202192009486_Drop_All.Designer.cs">
-      <DependentUpon>201202192009486_Drop_All.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201202192011224_Rebuild_DB.cs" />
-    <Compile Include="Migrations\201202192011224_Rebuild_DB.Designer.cs">
-      <DependentUpon>201202192011224_Rebuild_DB.cs</DependentUpon>
+    <Compile Include="Migrations\201202200919277_initial.cs" />
+    <Compile Include="Migrations\201202200919277_initial.Designer.cs">
+      <DependentUpon>201202200919277_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AnswerModel.cs" />

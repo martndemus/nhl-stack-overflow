@@ -13,7 +13,7 @@ namespace NHLStackOverflow.Models
         public string Name { get; set; }
 
         // TimeStamps
-        public DateTime Created_At { get; set; }
+        public string Created_At { get; set; }
 
         // Relations
         public User User { get; set; }

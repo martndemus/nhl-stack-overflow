@@ -21,8 +21,9 @@ namespace NHLStackOverflow.Models
         public string Languages { get; set; }
 
         // Timestamps
-        public DateTime Created_At { get; set; }
-        public DateTime LastOnline { get; set; }
+        [Required]
+        public string Created_At { get; set; }
+        public string LastEdited { get; set; }
 
         // Relations
         public ICollection<Answer> Answers { get; set; }

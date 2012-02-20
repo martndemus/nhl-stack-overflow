@@ -14,8 +14,9 @@ namespace NHLStackOverflow.Models
         public string Content { get; set; }
 
         // Timestamps
-        public DateTime Created_At { get; set; }
-        public DateTime LastEdited { get; set; }
+        [Required]
+        public string Created_At { get; set; }
+        public string LastEdited { get; set; }
 
         // Relations
         public User Sender { get; set; }

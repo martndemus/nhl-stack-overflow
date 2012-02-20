@@ -10,7 +10,7 @@ namespace NHLStackOverflow.Models
         public int FavoriteID { get; set; }
 
         // TimeStamp
-        public DateTime Created_At { get; set; }
+        public string Created_At { get; set; }
 
         // Relations
         public User User { get; set; }

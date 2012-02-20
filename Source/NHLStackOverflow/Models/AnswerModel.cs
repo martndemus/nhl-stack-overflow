@@ -19,11 +19,8 @@ namespace NHLStackOverflow.Models
 
         // TimeStamps
         [Required]
-        [DataType(DataType.DateTime)]
-        public DateTime Created_At { get; set; }
-
-        [DataType(DataType.DateTime)]
-        public DateTime LastEdited { get; set; }
+        public string Created_At { get; set; }
+        public string LastEdited { get; set; }
 
         // Relations
         public User User { get; set; }

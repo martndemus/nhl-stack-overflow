@@ -36,7 +36,7 @@ namespace NHLStackOverflow.tests.Models
         [Description("")]
         public void MinimumNewAnswer()
         {
-            db.Answers.Add(new Answer { Content = "Test", Created_At = DateTime.Now });
+            db.Answers.Add(new Answer { Content = "Test", Created_At = DateTime.Now.ToString() });
             db.SaveChanges();
         }
     }

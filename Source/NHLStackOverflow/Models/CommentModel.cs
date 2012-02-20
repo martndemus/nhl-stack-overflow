@@ -14,8 +14,8 @@ namespace NHLStackOverflow.Models
         public int Votes { get; set; }
 
         // TimeStamps
-        public DateTime Created_At { get; set; }
-        public DateTime LastEdited { get; set; }
+        public string Created_At { get; set; }
+        public string LastEdited { get; set; }
 
         // Relations
         public User User { get; set; }
