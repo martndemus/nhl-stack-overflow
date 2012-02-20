@@ -46,6 +46,7 @@ Source/NHLStackOverflow.Tests/bin/*
 Source/NHLStackOverflow.Tests/obj/*
 Source/NHLStackOverflow/App_Data/*
 Source/packages/*
+Source/TestResulsts/*
 
 # build script local files
 build/buildinfo.properties
