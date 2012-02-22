@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NHLStackOverflow.Models
 {
-    public class Tag : IValidatableObject
+    public class Tag
     {
         // GUID
         public int TagID { get; set; }

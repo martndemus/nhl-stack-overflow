@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 namespace NHLStackOverflow.Models
 {
-    public class Read : IValidatableObject
+    public class Read
     {
         // GUID
         public int ReadID { get; set; }

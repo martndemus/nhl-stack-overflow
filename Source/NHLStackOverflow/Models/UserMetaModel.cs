@@ -13,6 +13,9 @@ namespace NHLStackOverflow.Models
             AantalQuestions = 0;
             TotalVotes = 0;
         }
+
+        public int UserMetaID { get; set; }
+
         public int AantalQuestions { get; set; }
         public int AantalBestAnwsers { get; set; }
         public int TotalVotes { get; set; }
