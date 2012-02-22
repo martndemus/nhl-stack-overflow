@@ -16,5 +16,11 @@ namespace NHLStackOverflow.Models
         public DbSet<Tag> Tags { get; set; }
         public DbSet<UserMeta> UserMeta { get; set; }
         public DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserMeta>()
+                .HasKey(t => t.UserID);
+        }
     }
 }

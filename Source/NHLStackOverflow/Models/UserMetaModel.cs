@@ -8,18 +8,18 @@ namespace NHLStackOverflow.Models
     {
         public UserMeta()
         {
-            AantalAnwsers = 0;
-            AantalBestAnwsers = 0;
+            AantalAnswers = 0;
+            AantalBestAnswers = 0;
             AantalQuestions = 0;
             TotalVotes = 0;
         }
 
-        public int UserMetaID { get; set; }
+        public int UserID { get; set; }
 
         public int AantalQuestions { get; set; }
-        public int AantalBestAnwsers { get; set; }
+        public int AantalBestAnswers { get; set; }
         public int TotalVotes { get; set; }
-        public int AantalAnwsers { get; set; }
+        public int AantalAnswers { get; set; }
 
 
         // Relations
