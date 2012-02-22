@@ -91,10 +91,12 @@
     <Compile Include="Models\FavoriteModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\NHLdb.cs" />
+    <Compile Include="Models\OptionModel.cs" />
     <Compile Include="Models\QuestionModel.cs" />
     <Compile Include="Models\QuestionTagModel.cs" />
     <Compile Include="Models\ReadModel.cs" />
     <Compile Include="Models\TagModel.cs" />
+    <Compile Include="Models\UserMetaModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

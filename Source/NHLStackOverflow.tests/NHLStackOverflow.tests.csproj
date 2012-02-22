@@ -74,6 +74,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\AnswerModelValidationTest.cs" />
+    <Compile Include="Models\MessageModelValidationTest.cs" />
+    <Compile Include="Models\OptionModelValidationTest.cs" />
+    <Compile Include="Models\QuestionTagModelValidationTest.cs" />
+    <Compile Include="Models\ReadModelValidationTest.cs" />
+    <Compile Include="Models\UserMetaModelValidationTest.cs" />
     <Compile Include="Models\UserModelValidationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\NHLdb Test.cs" />

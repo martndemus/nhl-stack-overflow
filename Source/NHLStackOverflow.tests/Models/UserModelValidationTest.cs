@@ -26,7 +26,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving a void user should throw an DbEntityValidationException exception")]
         public void InvalidEmptyUser()
         {
-            db.Users.Add(new User());
+            db.Users.Add(new User { });
             db.SaveChanges();
         }
 
