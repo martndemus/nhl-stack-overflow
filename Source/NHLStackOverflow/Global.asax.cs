@@ -29,7 +29,7 @@ namespace NHLStackOverflow
 
         protected void Application_Start()
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<NHLdb>());
+            Database.SetInitializer(new DropCreateDatabaseAlways<NHLdb>());
 
             AreaRegistration.RegisterAllAreas();
 
