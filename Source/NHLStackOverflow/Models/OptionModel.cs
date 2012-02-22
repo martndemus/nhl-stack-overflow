@@ -2,7 +2,7 @@
 
 namespace NHLStackOverflow.Models
 {
-    public class OptionModel
+    public class Option
     {
         // GUID
         public int OptionID { get; set; }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NHLStackOverflow.Models
 {
-    public class Favorite : IValidatableObject
+    public class Favorite
     {
         public Favorite()
         {

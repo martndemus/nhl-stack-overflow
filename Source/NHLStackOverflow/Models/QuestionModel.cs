@@ -4,14 +4,21 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NHLStackOverflow.Models
 {
-    public class Question : IValidatableObject
+    public class Question
     {
         // GUID
         public int QuestionID { get; set; }
 
         // Data
+        [Required]
+        [MinLength(10)]
+        [MaxLength(140)]
         public string Title { get; set; }
+
+        [Required]
+        [MinLength(140)]
         public string Content { get; set; }
+
         public int Votes { get; set; }
         public int Views { get; set; }
         public int Answered { get; set; }
@@ -23,14 +30,10 @@ namespace NHLStackOverflow.Models
         public string LastEdited { get; set; }
 
         // Relations
+        [Required]
         public User User { get; set; }
         public ICollection<Answer> Answers { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<QuestionTag> Tags { get; set; }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

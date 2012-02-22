@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NHLStackOverflow.Models
 {
-    public class Badge : IValidatableObject
+    public class Badge
     {
         public Badge()
         {

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NHLStackOverflow.Models
 {
-    public class Message : IValidatableObject
+    public class Message
     {
         public Message()
         {
