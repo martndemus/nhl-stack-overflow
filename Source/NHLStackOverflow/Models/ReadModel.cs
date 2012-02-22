@@ -9,12 +9,9 @@ namespace NHLStackOverflow.Models
         public int ReadID { get; set; }
 
         // Relations
+        [Required]
         public User User { get; set; }
+        [Required]
         public Question Question { get; set; }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
