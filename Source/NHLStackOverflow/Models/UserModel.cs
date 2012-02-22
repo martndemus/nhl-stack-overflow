@@ -12,6 +12,7 @@ namespace NHLStackOverflow.Models
             this.Created_At = DateTime.Now.ToString();
             this.LastOnline = this.Created_At;
             this.Rank = 0;
+            this.UserMeta = new UserMeta();
         }
         // GUID
         public int UserID { get; set; }
