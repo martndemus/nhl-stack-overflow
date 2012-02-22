@@ -4,18 +4,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NHLStackOverflow.Models
 {
-    public class QuestionTag : IValidatableObject
+    public class QuestionTag
     {
         // GUID
         public int QuestionTagID { get; set; }
 
         // Relations
+        [Required]
         public Question Question { get; set; }
+        [Required]
         public Tag Tag { get; set; }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

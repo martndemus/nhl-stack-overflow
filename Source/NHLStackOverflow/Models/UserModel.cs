@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NHLStackOverflow.Models
 {
-    public class User : IValidatableObject
+    public class User
     {
         // Init default values
         public User()
@@ -18,20 +18,35 @@ namespace NHLStackOverflow.Models
 
         // Data
         [Required]
+        [MinLength(5)]
+        [RegularExpression(@"^[a-zA-Z][\w\d]+$")] // Must start with a letter, then any number of word chars (a-z + _) and digits
         public string UserName { get; set; }
+
         [Required]
-        [StringLength(28)]
-        [RegularExpression(@"^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/]{28}$")]
+        [MinLength(28)]
+        [MaxLength(28)]
+        [RegularExpression(@"^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=]{28}$")] // Must consist of Base64 characters
         public string Password { get; set; }
+
         [Required]
+        [RegularExpression(@"^[0-9A-Za-z._%+-]+@[0-9A-Za-z.-]+\.[A-Za-z]{2,64}$")]
         public string Email { get; set; }
+        
         [Required]
         public int Rank { get; set; }
 
+        [RegularExpression(@"^[A-Z][\sa-zA-Z]+[a-zA-Z]$")]
         public string Name { get; set; }
+
+        [Range(13,100)]
         public int Age { get; set; }
+
+        [RegularExpression(@"^[A-Z][\sa-zA-Z]+[a-zA-Z]$")]
         public string Location { get; set; }
+
+        [RegularExpression(@"^http(s)?:\/\/")]
         public string Website { get; set; }
+
         public string Languages { get; set; }
 
         // Timestamps
@@ -47,10 +62,5 @@ namespace NHLStackOverflow.Models
         public ICollection<Message> Messages { get; set; }
         public ICollection<Question> Questions { get; set; }
         public ICollection<Read> Read { get; set; }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
