@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NHLStackOverflow.Models
 {
-    public class Comment : IValidatableObject
+    public class Comment
     {
         public Comment()
         {
