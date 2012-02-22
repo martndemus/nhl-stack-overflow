@@ -18,7 +18,7 @@ namespace NHLStackOverflow.Models
         // still needs being sanitized
         [MinLength(2, ErrorMessage="The minimum lenght is 2 characters")]
         [MaxLength(500, ErrorMessage="The maximum lenght is 500 characters")]
-        public string Beschrijving { get; set; }
+        public string Description { get; set; }
 
         // Relations
         public ICollection<QuestionTag> Tags { get; set; }
