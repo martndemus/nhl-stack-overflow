@@ -20,7 +20,7 @@ namespace NHLStackOverflow.Models
 
 
         // Relations
-        public ICollection<User> User { get; set; }
+        public User User { get; set; }
         public ICollection<Tag> Tags { get; set; }
     }
 }

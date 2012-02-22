@@ -55,6 +55,7 @@ namespace NHLStackOverflow.Models
         public string LastOnline { get; set; }
 
         // Relations
+        public UserMeta UserMeta { get; set; }
         public ICollection<Answer> Answers { get; set; }
         public ICollection<Badge> Badges { get; set; }
         public ICollection<Comment> Comments { get; set; }
