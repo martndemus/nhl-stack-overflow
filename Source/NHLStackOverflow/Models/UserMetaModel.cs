@@ -16,11 +16,14 @@ namespace NHLStackOverflow.Models
 
         public int UserID { get; set; }
 
+        [Required]
         public int AantalQuestions { get; set; }
+        [Required]
         public int AantalBestAnswers { get; set; }
+        [Required]
         public int TotalVotes { get; set; }
+        [Required]
         public int AantalAnswers { get; set; }
-
 
         // Relations
         public User User { get; set; }
