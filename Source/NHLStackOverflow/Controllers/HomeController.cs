@@ -14,8 +14,7 @@ namespace NHLStackOverflow.Controllers
 
         public ViewResult Index()
         {
-            db.Users.Add(new User { });
-            return View(db.Users.ToList());
+            return View();
         }
 
         protected override void Dispose(bool disposing)

@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Collections.Generic;
 
 namespace NHLStackOverflow.Models
 {
@@ -21,6 +22,22 @@ namespace NHLStackOverflow.Models
         {
             modelBuilder.Entity<UserMeta>()
                 .HasKey(t => t.UserID);
+        }
+    }
+
+    public class NHLdbInitializer : DropCreateDatabaseIfModelChanges<NHLdb>
+    {
+        protected override void Seed(NHLdb context)
+        {
+            var users = new List<User>
+            {
+                new User { UserName = "Piet25", Password = "Azheghjk0wo3jskeSitngj3847sh", Email = "test@testmail.com", Rank = 0 },
+                new User { UserName = "Klaas538", Password = "Azheghjk0wo3jskeSitngj3847sh", Email = "test@testmail.com", Rank = 0 },
+                new User { UserName = "Kees1979", Password = "Azheghjk0wo3jskeSitngj3847sh", Email = "test@testmail.com", Rank = 0 }
+            };
+
+            users.ForEach(s => context.Users.Add(s));
+            context.SaveChanges();
         }
     }
 }
