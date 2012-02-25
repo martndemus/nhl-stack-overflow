@@ -32,8 +32,8 @@ namespace NHLStackOverflow.tests.Models
         {
             UserMeta testMeta = new UserMeta();
 
-            Assert.AreEqual<int>(0, testMeta.AantalAnwsers, "Aantal gegeven antwoorden hoort standaard op 0 te staan");
-            Assert.AreEqual<int>(0, testMeta.AantalBestAnwsers, "Aantal gegeven beste antwoorden hoort standaard op 0 te staan");
+            Assert.AreEqual<int>(0, testMeta.AantalAnswers, "Aantal gegeven antwoorden hoort standaard op 0 te staan");
+            Assert.AreEqual<int>(0, testMeta.AantalBestAnswers, "Aantal gegeven beste antwoorden hoort standaard op 0 te staan");
             Assert.AreEqual<int>(0, testMeta.AantalQuestions, "Aantal gestelde vragen hoort standaard op 0 te staan");
             Assert.AreEqual<int>(0, testMeta.TotalVotes, "Aantal votes hoort standaard op 0 te staan");
         }

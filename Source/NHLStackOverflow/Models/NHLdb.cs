@@ -25,7 +25,7 @@ namespace NHLStackOverflow.Models
         }
     }
 
-    public class NHLdbInitializer : DropCreateDatabaseIfModelChanges<NHLdb>
+    public class NHLdbInitializer : DropCreateDatabaseAlways<NHLdb>
     {
         protected override void Seed(NHLdb context)
         {

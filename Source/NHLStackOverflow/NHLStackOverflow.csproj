@@ -88,6 +88,10 @@
     <Compile Include="Migrations\201202221109345_Model-Update.Designer.cs">
       <DependentUpon>201202221109345_Model-Update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201202221152172_Minor0.1.cs" />
+    <Compile Include="Migrations\201202221152172_Minor0.1.Designer.cs">
+      <DependentUpon>201202221152172_Minor0.1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AnswerModel.cs" />
     <Compile Include="Models\BadgeModel.cs" />
