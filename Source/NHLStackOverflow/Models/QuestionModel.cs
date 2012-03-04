@@ -6,6 +6,11 @@ namespace NHLStackOverflow.Models
 {
     public class Question
     {
+        public Question()
+        {
+            this.Created_At = DateTime.Now.ToString();
+        }
+
         // GUID
         public int QuestionID { get; set; }
 

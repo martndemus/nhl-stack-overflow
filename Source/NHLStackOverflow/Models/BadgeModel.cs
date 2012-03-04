@@ -10,6 +10,7 @@ namespace NHLStackOverflow.Models
         {
             this.Created_At = DateTime.Now.ToString();
         }
+
         // GUID
         [Required]
         public int BadgeID { get; set; }

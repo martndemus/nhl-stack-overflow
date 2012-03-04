@@ -32,16 +32,5 @@ namespace NHLStackOverflow.tests.Models
             db.Tags.Add(new Tag {});
             db.SaveChanges();
         }
-
-        [TestMethod]
-        [Description("")]
-        public void DefaultsForNewTag()
-        {
-            Tag t = new Tag();
-
-            //Should not be null
-            Assert.IsNotNull(t.Name, "Name should not be null");
-            Assert.IsNotNull(t.Description, "Beschrijving is not null");
-        }
     }
 }
