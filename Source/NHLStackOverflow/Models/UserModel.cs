@@ -12,7 +12,6 @@ namespace NHLStackOverflow.Models
             this.Created_At = DateTime.Now.ToString();
             this.LastOnline = this.Created_At;
             this.Rank = 0;
-            this.UserMeta = new UserMeta();
         }
         // GUID
         public int UserID { get; set; }
@@ -24,8 +23,6 @@ namespace NHLStackOverflow.Models
         public string UserName { get; set; }
 
         [Required]
-        [MinLength(28)]
-        [MaxLength(28)]
         [RegularExpression(@"^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=]{28}$")] // Must consist of Base64 characters
         public string Password { get; set; }
 
@@ -39,7 +36,7 @@ namespace NHLStackOverflow.Models
         [RegularExpression(@"^[A-Z][\sa-zA-Z]+[a-zA-Z]$")]
         public string Name { get; set; }
 
-        [Range(13,100)]
+        [Range(0,100)]
         public int Age { get; set; }
 
         [RegularExpression(@"^[A-Z][\sa-zA-Z]+[a-zA-Z]$")]
@@ -54,16 +51,5 @@ namespace NHLStackOverflow.Models
         [Required]
         public string Created_At { get; set; }
         public string LastOnline { get; set; }
-
-        // Relations
-        [Required]
-        public UserMeta UserMeta { get; set; }
-        public ICollection<Answer> Answers { get; set; }
-        public ICollection<Badge> Badges { get; set; }
-        public ICollection<Comment> Comments { get; set; }
-        public ICollection<Favorite> Favorites { get; set; }
-        public ICollection<Message> Messages { get; set; }
-        public ICollection<Question> Questions { get; set; }
-        public ICollection<Read> Read { get; set; }
     }
 }

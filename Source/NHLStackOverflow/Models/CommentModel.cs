@@ -28,13 +28,18 @@ namespace NHLStackOverflow.Models
 
         // Relations
         [Required]
-        public User User { get; set; }
-        public Question Question { get; set; }
-        public Answer Answer { get; set; }
+        public int UserId { get; set; }
+        public int QuestionId { get; set; }
+        public int AnswerId { get; set; }
+
+        //[Required]
+        //public User User { get; set; }
+        //public Question Question { get; set; }
+        //public Answer Answer { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (Question != null && Answer != null || Question == null && Answer == null)
+            if (QuestionId != 0 && AnswerId != 0 || QuestionId == 0 && AnswerId == 0)
             {
                 yield return new ValidationResult("");
             }

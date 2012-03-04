@@ -11,8 +11,13 @@ namespace NHLStackOverflow.Models
 
         // Relations
         [Required]
-        public Question Question { get; set; }
+        public int QuestionId { get; set; }
         [Required]
-        public Tag Tag { get; set; }
+        public int TagId { get; set; }
+
+        //[Required]
+        //public Question Question { get; set; }
+        //[Required]
+        //public Tag Tag { get; set; }
     }
 }

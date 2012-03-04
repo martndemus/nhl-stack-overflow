@@ -17,12 +17,6 @@ namespace NHLStackOverflow.Models
         public DbSet<Tag> Tags { get; set; }
         public DbSet<UserMeta> UserMeta { get; set; }
         public DbSet<User> Users { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<UserMeta>()
-                .HasKey(t => t.UserID);
-        }
     }
 
     public class NHLdbInitializer : DropCreateDatabaseAlways<NHLdb>
@@ -31,9 +25,9 @@ namespace NHLStackOverflow.Models
         {
             var users = new List<User>
             {
-                new User { UserName = "Piet25", Password = "Azheghjk0wo3jskeSitngj3847sh", Email = "test@testmail.com", Rank = 0 },
-                new User { UserName = "Klaas538", Password = "Azheghjk0wo3jskeSitngj3847sh", Email = "test@testmail.com", Rank = 0 },
-                new User { UserName = "Kees1979", Password = "Azheghjk0wo3jskeSitngj3847sh", Email = "test@testmail.com", Rank = 0 }
+                new User { UserName = "Piet25", Password = "bbbbbbbbbbbbbbbbbbbbbbbbbbbb", Email = "test@testmail.com", Rank = 0 },
+                new User { UserName = "Klaas538", Password = "aaaaaaaaaaaaaaaaaaaaaaaaaaaa", Email = "test@testmail.com", Rank = 0 },
+                new User { UserName = "Kees1979", Password = "aaaaaaaaaaaaaaaaaaaaaaaaaaaa", Email = "test@testmail.com", Rank = 0 }
             };
 
             users.ForEach(s => context.Users.Add(s));

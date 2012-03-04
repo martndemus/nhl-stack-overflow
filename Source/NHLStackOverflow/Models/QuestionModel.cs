@@ -35,10 +35,10 @@ namespace NHLStackOverflow.Models
         public string LastEdited { get; set; }
 
         // Relations
-        [Required]
-        public User User { get; set; }
-        public ICollection<Answer> Answers { get; set; }
-        public ICollection<Comment> Comments { get; set; }
-        public ICollection<QuestionTag> Tags { get; set; }
+        //[Required]
+        //public User User { get; set; }
+        //public ICollection<Answer> Answers { get; set; }
+        //public ICollection<Comment> Comments { get; set; }
+        //public ICollection<QuestionTag> Tags { get; set; }
     }
 }

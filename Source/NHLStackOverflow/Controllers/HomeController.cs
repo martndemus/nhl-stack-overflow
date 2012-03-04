@@ -14,6 +14,7 @@ namespace NHLStackOverflow.Controllers
 
         public ViewResult Index()
         {
+            db.Database.Initialize(true);
             return View();
         }
 

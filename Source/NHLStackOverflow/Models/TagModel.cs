@@ -21,6 +21,6 @@ namespace NHLStackOverflow.Models
         public string Description { get; set; }
 
         // Relations
-        public ICollection<QuestionTag> Tags { get; set; }
+        //public ICollection<QuestionTag> Tags { get; set; }
     }
 }
