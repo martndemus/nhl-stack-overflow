@@ -15,6 +15,7 @@ namespace NHLStackOverflow.Models
             AantalTags = 0;
         }
 
+        // guid
         public int UserMetaID { get; set; }
 
         [Required]

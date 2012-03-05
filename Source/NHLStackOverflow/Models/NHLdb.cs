@@ -87,9 +87,9 @@ namespace NHLStackOverflow.Models
 
             var question = new List<Question>
             {
-                new Question { UserId = 1 },
-                new Question { UserId = 2 },
-                new Question { UserId = 3 }
+                new Question { UserId = 1, Title = "Hello world!1", Content = "1Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?" },
+                new Question { UserId = 2, Title = "Hello world!2", Content = "2Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?" },
+                new Question { UserId = 3, Title = "Hello world!3", Content = "3Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?" }
             };
 
             question.ForEach(s => context.Questions.Add(s));
@@ -107,9 +107,9 @@ namespace NHLStackOverflow.Models
 
             var message = new List<Message>
             {
-                new Message { SenderId = 1, ReceiverId = 1, QuestionId = 1},
-                new Message { SenderId = 2, ReceiverId = 2, QuestionId = 2},
-                new Message { SenderId = 3, ReceiverId = 3, QuestionId = 3}
+                new Message { SenderId = 1, ReceiverId = 1, Title = "1Hello world! Test title.", Content = "1Hello, Could you awnser this for me. Why do you keep generating in bugs? It would be a lot easier if you didn't :<. Bai."},
+                new Message { SenderId = 2, ReceiverId = 2, QuestionId = 2, Title = "2Hello world! Test title.", Content = "2Hello, Could you awnser this for me. Why do you keep generating in bugs? It would be a lot easier if you didn't :<. Bai."},
+                new Message { SenderId = 3, ReceiverId = 3, QuestionId = 3, Title = "3Hello world! Test title.", Content = "3Hello, Could you awnser this for me. Why do you keep generating in bugs? It would be a lot easier if you didn't :<. Bai."}
             };
 
             message.ForEach(s => context.Messages.Add(s));
@@ -127,9 +127,9 @@ namespace NHLStackOverflow.Models
 
             var comment = new List<Comment>
             {
-                new Comment { UserId = 1, QuestionId = 1, AnswerId = 1},
-                new Comment { UserId = 2, QuestionId = 2, AnswerId = 2},
-                new Comment { UserId = 3, QuestionId = 3, AnswerId = 3}
+                new Comment { UserId = 1, QuestionId = 1, AnswerId = 1, Content = "1Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D"},
+                new Comment { UserId = 2, QuestionId = 2, AnswerId = 2, Content = "2Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D"},
+                new Comment { UserId = 3, QuestionId = 3, AnswerId = 3, Content = "3Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D"}
             };
 
             comment.ForEach(s => context.Comments.Add(s));
@@ -137,9 +137,9 @@ namespace NHLStackOverflow.Models
 
             var badge = new List<Badge>
             {
-                new Badge { UserId = 1 },
-                new Badge { UserId = 2 },
-                new Badge { UserId = 3 }
+                new Badge { UserId = 1, Name = "test1" },
+                new Badge { UserId = 2, Name = "test2" },
+                new Badge { UserId = 3, Name = "test3" }
             };
 
             badge.ForEach(s => context.Badges.Add(s));
@@ -147,9 +147,9 @@ namespace NHLStackOverflow.Models
 
             var answer = new List<Answer>
             {
-                new Answer { UserId = 1, QuestionId = 1},
-                new Answer { UserId = 2, QuestionId = 2},
-                new Answer { UserId = 3, QuestionId = 3}
+                new Answer { UserId = 1, QuestionId = 1, Content = "Hello, Here is my fabilous awnser to your somewhat silly question. I've never had problems with this kind of things. I always do the thingy first and afterwards I do the other thingy. Result: Profit. Kthxbai."},
+                new Answer { UserId = 2, QuestionId = 2, Content = "Hello, Here is my fabilous awnser to your somewhat silly question. I've never had problems with this kind of things. I always do the thingy first and afterwards I do the other thingy. Result: Profit. Kthxbai."},
+                new Answer { UserId = 3, QuestionId = 3, Content = "Hello, Here is my fabilous awnser to your somewhat silly question. I've never had problems with this kind of things. I always do the thingy first and afterwards I do the other thingy. Result: Profit. Kthxbai."}
             };
 
             answer.ForEach(s => context.Answers.Add(s));
