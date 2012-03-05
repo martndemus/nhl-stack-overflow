@@ -49,7 +49,7 @@ namespace NHLStackOverflow.Models
                 new Tag { Name = "JavaScript", Description = "Teh Awsum" }
             };
 
-            tags.ForEach(s => context.UserMeta.Add(s));
+            tags.ForEach(s => context.Tags.Add(s) );
             context.SaveChanges();
 
         }

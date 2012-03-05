@@ -51,7 +51,8 @@ namespace NHLStackOverflow.tests.Models
             Assert.IsNull(u.Email, "Email should be initialized to null");
             Assert.AreEqual<int>(0, u.Rank, "Rank should be defaulted to 0");
             Assert.IsNull(u.Name, "Name should be initialized to null");
-            Assert.AreEqual<int>(0, u.Age, "Age should be defaulted to 0");
+            Assert.IsNull(u.Birthday, "Birthday should be initialized to null");
+            //Assert.AreEqual<int>(0, u.Age, "Age should be defaulted to 0"); // changed to birthday?
             Assert.IsNull(u.Location, "Location should be initialize to null");
             Assert.IsNull(u.Website, "Website should be initialize to null");
             Assert.IsNull(u.Languages, "Languages should be initialize to null");
