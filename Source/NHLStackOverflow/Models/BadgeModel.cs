@@ -10,6 +10,7 @@ namespace NHLStackOverflow.Models
         {
             this.Created_At = DateTime.Now.ToString();
         }
+
         // GUID
         [Required]
         public int BadgeID { get; set; }
@@ -24,6 +25,9 @@ namespace NHLStackOverflow.Models
 
         // Relations
         [Required]
-        public User User { get; set; }
+        public int UserId { get; set; }
+
+        //[Required]
+        //public User User { get; set; }
     }
 }

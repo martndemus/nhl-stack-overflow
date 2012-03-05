@@ -29,28 +29,29 @@ namespace NHLStackOverflow.tests.Models
             "Saving a void option should throw an exception")]
         public void DefaultForNewOption()
         {
-            Option newOption = new Option();
+            Option o = new Option();
+            db.Options.Add(o);
             db.SaveChanges();
 
         }
 
         [TestMethod]
-        [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException),
-    "Saving with only a key should throw an error, since there are more fields required")]
-        public void TestWithKeyOnly()
+        [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving with only a key should throw an error, since there are more fields required")]
+        public void TestOptionWithKeyOnly()
         {
-            Option newOption = new Option();
-            newOption.OptionID = 1;
+            Option o = new Option();
+            o.Name = "test";
+            db.Options.Add(o);
             db.SaveChanges();
         }
 
         [TestMethod]
-        [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException),
-    "Saving with only a key should throw an error, since there are more fields required")]
-        public void TestWithOnlyValue()
+        [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving with only a key should throw an error, since there are more fields required")]
+        public void TestOptionWithOnlyValue()
         {
-            Option newOption = new Option();
-            newOption.Value = "This is for a testing purpose.";
+            Option o = new Option();
+            o.Value = "This is for a testing purpose.";
+            db.Options.Add(o);
             db.SaveChanges();
         }
 

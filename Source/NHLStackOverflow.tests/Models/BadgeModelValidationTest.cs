@@ -40,7 +40,6 @@ namespace NHLStackOverflow.tests.Models
             Badge b = new Badge();
 
             //should not be null
-            Assert.IsNotNull(b.Name, "Name should not be null");
             Assert.IsNotNull(b.Created_At, "Created_At should not be null");
             
             //Expected Default values

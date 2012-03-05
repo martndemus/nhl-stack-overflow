@@ -45,7 +45,7 @@ namespace NHLStackOverflow.tests.Models
             
             //Expected Default Values
             Assert.AreEqual(0, c.Votes, "Votes should be initialized to 0");
-            Assert.IsTrue(a.Created_At == DateTime.Now.ToString(), "Created At should be initialized to DateTime.Now.ToString()");
+            Assert.IsTrue(c.Created_At == DateTime.Now.ToString(), "Created At should be initialized to DateTime.Now.ToString()");
         }
 
     }

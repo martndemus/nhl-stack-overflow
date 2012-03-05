@@ -20,8 +20,14 @@ namespace NHLStackOverflow.Models
 
         // Relations
         [Required]
-        public User User { get; set; }
+        public int UserId { get; set; }
         [Required]
-        public Question Post { get; set; }
+        public int QuestionId { get; set; }
+        
+
+        //[Required]
+        //public User User { get; set; }
+        //[Required]
+        //public Question Post { get; set; }
     }
 }

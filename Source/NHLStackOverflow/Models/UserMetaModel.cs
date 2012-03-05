@@ -12,9 +12,10 @@ namespace NHLStackOverflow.Models
             AantalBestAnswers = 0;
             AantalQuestions = 0;
             TotalVotes = 0;
+            AantalTags = 0;
         }
 
-        public int UserID { get; set; }
+        public int UserMetaID { get; set; }
 
         [Required]
         public int AantalQuestions { get; set; }
@@ -24,9 +25,11 @@ namespace NHLStackOverflow.Models
         public int TotalVotes { get; set; }
         [Required]
         public int AantalAnswers { get; set; }
+        [Required]
+        public int AantalTags { get; set; }
 
         // Relations
-        public User User { get; set; }
-        public ICollection<Tag> Tags { get; set; }
+        [Required]
+        public int UserId { get; set; }
     }
 }

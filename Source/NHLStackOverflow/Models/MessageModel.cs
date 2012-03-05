@@ -30,9 +30,15 @@ namespace NHLStackOverflow.Models
 
         // Relations
         [Required]
-        public User Sender { get; set; }
+        public int SenderId { get; set; }
         [Required]
-        public User Receiver { get; set; }
-        public Question Post { get; set; }
+        public int ReceiverId { get; set; }
+        public int QuestionId { get; set; }
+        
+        //[Required]
+        //public User Sender { get; set; }
+        //[Required]
+        //public User Receiver { get; set; }
+        //public Question Post { get; set; }
     }
 }

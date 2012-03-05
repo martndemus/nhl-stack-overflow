@@ -57,13 +57,13 @@ namespace NHLStackOverflow.tests.Models
             Assert.IsNull(u.Languages, "Languages should be initialize to null");
 
             // An default user should not have any relations yet.
-            Assert.IsNull(u.Answers, "Answers should be initialize to null");
-            Assert.IsNull(u.Badges, "Badges should be initialize to null");
-            Assert.IsNull(u.Comments, "Comments should be initialize to null");
-            Assert.IsNull(u.Favorites, "Favorites should be initialize to null");
-            Assert.IsNull(u.Messages, "Messages should be initialize to null");
-            Assert.IsNull(u.Questions, "Questions should be initialize to null");
-            Assert.IsNull(u.Read, "Read should be initialize to null");
+            //Assert.IsNull(u.Answers, "Answers should be initialize to null");
+            //Assert.IsNull(u.Badges, "Badges should be initialize to null");
+            //Assert.IsNull(u.Comments, "Comments should be initialize to null");
+            //Assert.IsNull(u.Favorites, "Favorites should be initialize to null");
+            //Assert.IsNull(u.Messages, "Messages should be initialize to null");
+            //Assert.IsNull(u.Questions, "Questions should be initialize to null");
+            //Assert.IsNull(u.Read, "Read should be initialize to null");
         }
 
         [TestMethod]
