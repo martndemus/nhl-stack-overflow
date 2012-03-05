@@ -27,11 +27,31 @@ namespace NHLStackOverflow.Models
             {
                 new User { UserName = "Piet25", Password = "bbbbbbbbbbbbbbbbbbbbbbbbbbbb", Email = "test@testmail.com", Rank = 0 },
                 new User { UserName = "Klaas538", Password = "aaaaaaaaaaaaaaaaaaaaaaaaaaaa", Email = "test@testmail.com", Rank = 0 },
-                new User { UserName = "Kees1979", Password = "aaaaaaaaaaaaaaaaaaaaaaaaaaaa", Email = "test@testmail.com", Rank = 0 }
+                new User { UserName = "Kees1979", Password = "cccccccccccccccccccccccccccc", Email = "test@testmail.com", Rank = 0 }
             };
 
             users.ForEach(s => context.Users.Add(s));
             context.SaveChanges();
+
+            var usermeta = new List<UserMeta>
+            {
+                new UserMeta { UserId = 1 },
+                new UserMeta { UserId = 2 },
+                new UserMeta { UserId = 3 }
+            };
+
+            usermeta.ForEach(s => context.UserMeta.Add(s));
+            context.SaveChanges();
+
+            var tags = new List<Tag>
+            {
+                new Tag { Name = "C#", Description = "KUTPROGRAMMMEEERRRTTAAALLL" },
+                new Tag { Name = "JavaScript", Description = "Teh Awsum" }
+            };
+
+            tags.ForEach(s => context.UserMeta.Add(s));
+            context.SaveChanges();
+
         }
     }
 }
