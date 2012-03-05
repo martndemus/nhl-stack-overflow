@@ -35,6 +35,9 @@ namespace NHLStackOverflow.Models
         public string LastEdited { get; set; }
 
         // Relations
+
+        [Required]
+        public int UserId { get; set; }
         //[Required]
         //public User User { get; set; }
         //public ICollection<Answer> Answers { get; set; }
