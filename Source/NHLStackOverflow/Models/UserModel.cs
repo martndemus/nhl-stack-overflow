@@ -36,8 +36,7 @@ namespace NHLStackOverflow.Models
         [RegularExpression(@"^[A-Z][\sa-zA-Z]+[a-zA-Z]$")]
         public string Name { get; set; }
 
-        [Range(0,100)]
-        public int Age { get; set; }
+        public string Birthday { get; set; }
 
         [RegularExpression(@"^[A-Z][\sa-zA-Z]+[a-zA-Z]$")]
         public string Location { get; set; }
