@@ -88,10 +88,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Styles\img\aplus.png" />
+    <Content Include="Styles\img\check.png" />
+    <Content Include="Styles\dot.png" />
+    <Content Include="Styles\logo.png" />
+    <Content Include="Styles\img\seen.png" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\modernizr.js" />
     <Content Include="Scripts\script.js" />
-    <Content Include="Styles\normalize.css" />
     <Content Include="Styles\style.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -102,7 +106,7 @@
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Layouts\_Main.cshtml" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +123,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_LogInPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Layouts\_Login.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

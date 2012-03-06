@@ -21,30 +21,28 @@ namespace NHLStackOverflow.Controllers
         // POST: /Account/LogIn
 
         [HttpPost]
-        public ActionResult LogIn(LogOnModel user, string returnUrl)
+        public ActionResult LogIn(User user, string returnUrl)
         {
-            if (ModelState.IsValid)
+            // Check if both Username and Password are present
+            if (user.Password != null && user.UserName != null)
             {
-                // fields are filled in correctly
+                // Find a user with the given username in the database
                 var userPass = from memberUser in db.Users
                                where memberUser.UserName == user.UserName
                                select memberUser.Password;
+
+                // If the user exists check if the password is correct
                 if (userPass.Count() == 1 && PasswordHasher.Hash(user.Password) == userPass.First())
                 {
-                    // submittings were correct.
-                    FormsAuthentication.SetAuthCookie(user.UserName, user.stayLoggenIn);
-                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
-                    {
-                        return Redirect(returnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    // User is logged in, set a cookie
+                    FormsAuthentication.SetAuthCookie(user.UserName, true);
+                    
+                    // Go to home page
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
+                    // Display an error
                     ModelState.AddModelError("", "The username or password didn't match. Please try again.");
                 }
             }

@@ -52,18 +52,18 @@ namespace NHLStackOverflow.Models
     }
 
     // Class which is used for the log in form
-    public class LogOnModel
-    {
-        [Required]
-        [Display(Name = "Username")]
-        public string UserName { get; set; }
+    //public class LogOnModel
+    //{
+    //    [Required]
+    //    [Display(Name = "Username")]
+    //    public string UserName { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
+    //    [Required]
+    //    [DataType(DataType.Password)]
+    //    [Display(Name = "Password")]
+    //    public string Password { get; set; }
 
-        [Display(Name = "Stay loggen in?")]
-        public bool stayLoggenIn { get; set; }
-    }
+    //    [Display(Name = "Stay loggen in?")]
+    //    public bool stayLoggenIn { get; set; }
+    //}
 }

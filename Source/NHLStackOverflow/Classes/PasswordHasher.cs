@@ -4,6 +4,9 @@ using System.Security.Cryptography;
 
 namespace NHLStackOverflow.Classes
 {
+    /// <summary>
+    /// Hashes your string, a thousand times over and then spits it out in Base64 awesomeness
+    /// </summary>
     public static class PasswordHasher
     {
         public static string Hash(string password)
