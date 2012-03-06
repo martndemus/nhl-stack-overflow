@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            TEST
+        </title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+    <body>
+        <div class="l-nav desktop">
+            <nav>
+                <ul>
+                    <li><a class="active" href="#">Home</a>
+                    <li><a href="#">Vraag</a>
+                    <li><a href="#">Tags</a>
+                </ul>
+
+                <ul class="right">
+                    <li><input id="search" placeholder="Zoek">
+                    <li><a href="#">Log In</a>  
+                </ul>
+            </nav>
+        </div>
+
+        <div class="l-nav mobile">
+            <nav>
+                <ul>
+                    <li><a class="active" href="#">Home</a>
+                    <li><a href="#">Vraag</a>
+                    <li><a href="#">Tags</a>
+                    <li><input id="search" placeholder="Zoek">
+                    <li><a href="#">Log In</a>  
+                </ul>
+            </nav>
+        </div>
+        
+
+        <header id="logo">
+            <h1>Question Jam</h1>
+        </header>
+        <div id="l-main">
+            <section id="l-content">
+                
+            </section>
+            <section id="l-sidebar">
+                <div class="widget user-widget">
+                    <h3>Hallo {{NickName}}</h3>
+                    <img class="avater">
+                    <ul class="stats right">
+                        <li><img src="check.png" alt="Stemmen">123
+                        <li><img src="aplus.png" alt="Antwoorden">18
+                        <li><img src="seen.png" alt="Bekeken">2
+                    </ul>
+                    <ul>
+                        <li>2 nieuwe berichten
+                        <li>8 nieuwe reacties
+                        <li>1 nieuw antwoord
+                    </ul>
+                </div>
+                <div class="widget">
+                    <h3>Populaire Tags</h3>
+                    <ul class="tags">
+                        <li><a href="#222">Ruby</a> x 23.123
+                        <li><a href="#222">JavaScript</a> x 16.165
+                        <li><a href="#222">C#</a> x 11.342
+                        <li><a href="#222">ASP.NET</a> x 9.345
+                        <li><a href="#222">Scala</a> x 3.673
+                        <li><a href="#222">Objective-C</a> x 3.176
+                        <li><a href="#222">Rust</a> x 2.835
+                        <li><a href="#222">OOP</a> x 938
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <footer id="l-footer">
+            &copy; 2012 Eddie Sprietsma, Marten Schilstra, Mathijs Jonker
+        </footer>
+    </body>
+</html>

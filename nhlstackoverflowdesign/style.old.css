@@ -1,0 +1,295 @@
+html {
+    background: hsl(200, 30%, 25%) url(dot.png); /*oranje: hsl(28,70%,56%), blauw/grijs hsl(200, 30%, 25%) */
+    font-family: 'Liberation Sans', helvetica, arial, sans-serif;
+}
+body {
+    color: hsl(200, 30%, 20%);
+    margin: 0;
+    padding: 0;
+    font-size: .8em;
+}
+
+#main-nav {
+    background: rgba(0,0,0,.5);
+    box-shadow: 0px 4px rgba(0,0,0,.2); 
+}
+
+#main-nav > div {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#main-nav ul {
+    font-weight: bold;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    list-style:none;
+    color: #fff;
+}
+
+#main-nav li {
+    float:left;
+    height: 40px;
+    padding: 0 12px;
+    line-height: 40px;
+    /*border-right: 1px solid rgba(255,255,255, .3);*/
+}
+
+#main-nav li:hover, #main-nav li:focus {
+    background: hsla(200, 30%, 25%, .3);
+    background: rgba(255,255,255, .3);
+}
+#main-nav li.active {
+    background: hsla(200, 30%, 25%, .6);
+    background: rgba(255,255,255, .6);
+}
+
+#main-nav li.inactive:hover, #main-nav li.inactive:focus {
+    background: inherit;
+}
+
+header {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+header h1 {
+    color: #fff;
+    font-size: 5em;
+    letter-spacing: -2px;
+    font-weight: normal;
+    word-spacing: -24px;
+    margin: 30px 0 -17px;
+    text-shadow: 1px 0px hsl(200, 30%, 20%);
+}
+
+header h1 b {
+    color: #40AABF;
+}
+
+#search {
+    border: 0;
+    padding: 4px 10px;
+}
+
+#main-col {
+    width: 100%;
+    max-width: 960px;
+    padding: 20px;
+    margin: 0 auto;
+    background: rgba(255,255,255, .7);
+}
+
+#main-col:after, #main-col {
+    clear:both;
+}
+
+#breadcrumbs {
+    clear: both;
+    height: 24px;
+}
+
+#breadcrumbs ul {
+    list-style:none;
+    margin: 0;
+    padding: 0;
+    
+}
+
+#breadcrumbs li {
+    color: #fff;
+    float: left;
+}
+
+#content-wrap {
+    float:left;
+    width: 75%;
+}
+
+#content {    
+    background: #fff;
+    padding-top: 20px;
+    border: 1px solid #bbb;
+    border-top: 1px solid hsl(200, 30%, 25%);
+}
+
+#content-title {
+    font-size: 1.6em;
+    padding: 0;
+    margin: 0 0 10px 10px;
+}
+
+.question {
+    width: 94%;
+    margin: 0 auto 10px;
+    line-height: 24px;
+    padding: 18px 12px 8px;
+    border-top: 1px solid hsl(200, 30%, 25%);
+}
+
+.q-meta {
+    font-weight: 600;
+}
+
+.q-stats {
+    width: 45px;
+    padding-right: 10px;
+    margin-right: 10px; 
+    border-right: 1px solid #444;
+    display: inline-block;
+    height: 16px;
+    line-height: 16px;
+}
+
+.q-stats > span {
+    float: right;
+}
+
+.q-block {
+    
+}
+
+.q-title {
+    color: hsl(200, 30%, 50%);
+    display: block;
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: 0 0 10px;
+}
+
+.q-excerpt {
+    margin: 5px 0 10px;
+    line-height: 1.3em;
+}
+
+.q-tags > span {
+    color: #fff;
+    background: hsl(200, 30%, 25%);
+    line-height: 16px;
+    padding: 3px 5px;
+}
+
+#sidebar {
+    width: 25%;
+    margin-left: 75%;
+}
+
+#b-question {
+    color: #fff;
+    margin: 24px 0 0 20px;
+    font-size: 1.6em;
+    text-align: center;
+    background: hsl(200, 30%, 20%);
+    line-height: 35px;
+}
+
+#b-question h3 {
+    margin: 0;
+}
+
+#userbar {
+    margin: 24px 0 0 20px;
+    background: #fff;
+    border: 1px solid #bbb;
+    border-top: 1px solid hsl(200, 30%, 25%);
+}
+
+#userbar > * {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#userbar .username {
+    font-size: 1.6em;
+    padding: 0 0 10px;
+    margin: 20px 10px 10px;
+    border-bottom: 1px solid #000;
+}
+
+#userbar .avater {
+    float: left;
+    display:block;
+    background: #ccc;
+    width:98px;
+    height: 98px;
+}
+
+#userbar ul {
+    list-style: none;
+    padding: 0;
+    line-height: 20px;
+    margin: 0 10px 10px;
+}
+
+#userbar .ratings {
+    margin-left: 118px; 
+    height: 98px;   
+}
+
+#userbar .stats {
+    margin-top: 10px;
+}
+
+.tablabel {
+    color: #fff;
+    font-weight: normal;
+    line-height: 27px;
+    padding: 0 10px;
+    margin: 0;
+    border-bottom: 24px solid hsl(200, 30%, 25%);    
+    border-right: 24px solid transparent;
+    height: 0;
+}
+
+.tablabel.faded {
+    border-bottom: 24px solid hsla(200, 30%, 25%,.6);
+}
+
+.tablabel.faded:hover {
+    border-bottom: 24px solid hsla(200, 30%, 25%,.8);
+}
+
+.clearfix {
+    height: 0;
+    clear:both;
+}
+
+.left {
+    float:left;
+}
+
+.right {
+    float: right;
+}
+
+.hidden {
+    display: none;
+}
+
+@media screen and (max-width: 1000px) {
+    #main-col {
+        width: 96%;
+        padding: 20px 2%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #content-wrap {
+        width: 100%;
+    }
+    
+    #sidebar {
+        width: 100%;
+        margin: 0;
+        padding: 20px 0 0;
+    }
+    
+    .block {
+        float: left;
+        width: 49%;
+        margin: 0 0 20px;
+    }
+}

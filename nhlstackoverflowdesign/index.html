@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            TEST
+        </title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+    <body>
+        <div class="l-nav desktop">
+            <nav>
+                <ul>
+                    <li><a class="active" href="#">Home</a>
+                    <li><a href="#">Vraag</a>
+                    <li><a href="#">Tags</a>
+                </ul>
+
+                <ul class="right">
+                    <li><input id="search" placeholder="Zoek">
+                    <li><a href="#">Log In</a>  
+                </ul>
+            </nav>
+        </div>
+
+        <div class="l-nav mobile">
+            <nav>
+                <ul>
+                    <li><a class="active" href="#">Home</a>
+                    <li><a href="#">Vraag</a>
+                    <li><a href="#">Tags</a>
+                    <li><input id="search" placeholder="Zoek">
+                    <li><a href="#">Log In</a>  
+                </ul>
+            </nav>
+        </div>
+        
+
+        <header id="logo">
+            <h1>Question Jam</h1>
+        </header>
+        <div id="l-main">
+            <section id="l-content">
+                <nav class="tabs">
+                    <ul>
+                        <li><a class="active" href="#">Nieuwste</a>
+                        <li><a href="#">Top</a>
+                        <li><a href="#">Onbeantwoord</a>
+                    </ul>
+                </nav>
+                <section class="content">
+                    <h2>
+                        Nieuwste Vragen
+                    </h2>
+                    <article class="question">
+                        <h3><a href="#222">Interpolate product attributes</a></h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. 
+                        <p class="stats">
+                            <span title="Stemmen">
+                                <img src="check.png" alt="Stemmen">23
+                            </span>
+                            <span title="Antwoorden">
+                                <img src="aplus.png" alt="Antwoorden">1
+                            </span>
+                            <span title="Bekeken">
+                                <img src="seen.png" alt="Bekeken">193
+                            </span>
+                            
+                            <time><b>54s</b> geleden</time> door <b><a href="#333">Eddie Sprietsma</a></b>
+                        <p class=tags>
+                            <a href="#222">C#</a>
+                            <a href="#222">Inheritance</a>
+                            <a href="#222">Polymorphism</a>
+                    </article>
+                    <article class="question">
+                        <h3><a href="#222">Use default authentication and separate cloaking/impersonation in DCOM call</a></h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. 
+                        <p class="stats">
+                            <span title="Stemmen">
+                                <img src="check.png" alt="Stemmen">23
+                            </span>
+                            <span title="Antwoorden">
+                                <img src="aplus.png" alt="Antwoorden">1
+                            </span>
+                            <span title="Bekeken">
+                                <img src="seen.png" alt="Bekeken">193
+                            </span>
+                            
+                            <time><b>54s</b> geleden</time> door <b><a href="#333">Hielke Hielkema</a></b>
+                        <p class=tags>
+                            <a href="#222">C#</a>
+                            <a href="#222">Inheritance</a>
+                            <a href="#222">Polymorphism</a>
+                    </article>
+                    <article class="question">
+                        <h3><a href="#222">How to add a new Class in a Scala Compiler Plugin?</a></h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. 
+                        <p class="stats">
+                            <span title="Stemmen">
+                                <img src="check.png" alt="Stemmen">23
+                            </span>
+                            <span title="Antwoorden">
+                                <img src="aplus.png" alt="Antwoorden">1
+                            </span>
+                            <span title="Bekeken">
+                                <img src="seen.png" alt="Bekeken">193
+                            </span>
+                            
+                            <time><b>54s</b> geleden</time> door <b><a href="#333">Mathijs Breidenbach</a></b>
+                        <p class=tags>
+                            <a href="#222">C#</a>
+                            <a href="#222">Inheritance</a>
+                            <a href="#222">Polymorphism</a>
+                    </article>
+                </section>
+            </section>
+            <section id="l-sidebar">
+                <div class="widget user-widget">
+                    <h3>Hallo {{NickName}}</h3>
+                    <img class="avater">
+                    <ul class="stats right">
+                        <li><img src="check.png" alt="Stemmen">123
+                        <li><img src="aplus.png" alt="Antwoorden">18
+                        <li><img src="seen.png" alt="Bekeken">2
+                    </ul>
+                    <ul>
+                        <li>2 nieuwe berichten
+                        <li>8 nieuwe reacties
+                        <li>1 nieuw antwoord
+                    </ul>
+                </div>
+                <div class="widget">
+                    <h3>Populaire Tags</h3>
+                    <ul class="tags">
+                        <li><a href="#222">Ruby</a> x 23.123
+                        <li><a href="#222">JavaScript</a> x 16.165
+                        <li><a href="#222">C#</a> x 11.342
+                        <li><a href="#222">ASP.NET</a> x 9.345
+                        <li><a href="#222">Scala</a> x 3.673
+                        <li><a href="#222">Objective-C</a> x 3.176
+                        <li><a href="#222">Rust</a> x 2.835
+                        <li><a href="#222">OOP</a> x 938
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <footer id="l-footer">
+            &copy; 2012 Eddie Sprietsma, Marten Schilstra, Mathijs Jonker
+        </footer>
+    </body>
+</html>

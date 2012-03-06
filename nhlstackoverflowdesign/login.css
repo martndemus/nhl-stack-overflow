@@ -1,0 +1,117 @@
+html {
+    background: hsl(200, 30%, 25%) url(dot.png); /*oranje: hsl(28,70%,56%), blauw/grijs hsl(200, 30%, 25%) */
+    font-family: helvetica, arial, sans-serif;
+}
+body {
+    color: hsl(200, 30%, 20%);
+    margin: 0;
+    padding: 0;
+    font-size: .8em;
+}
+
+#main-nav {
+    background: rgba(0,0,0,.5);
+    box-shadow: 0px 4px rgba(0,0,0,.2); 
+    height: 40px;
+}
+
+#main-nav > div {
+    font-weight: bold;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    color: #fff;
+    
+    line-height: 40px;
+}
+
+header {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+header h1 {
+    color: #fff;
+    font-size: 5em;
+    letter-spacing: -2px;
+    font-weight: normal;
+    word-spacing: -24px;
+    margin: 30px 0 -17px;
+    text-shadow: 1px 0px hsl(200, 30%, 20%);
+}
+
+header h1 b {
+    color: #40AABF;
+}
+
+#main-col {
+    width: 100%;
+    max-width: 360px;
+    padding: 20px;
+    margin: 0 auto;
+    background: rgba(255,255,255, .7);
+}
+
+#loginform {
+    background: #fff;
+    padding-top: 20px;
+    border: 1px solid #bbb;
+    border-top: 1px solid hsl(200, 30%, 25%);
+}
+
+#logintitle {
+    font-size: 1.6em;
+    padding: 0 0 10px;
+    margin: 0px 10px 10px;
+    border-bottom: 1px solid #000;
+}
+
+
+form {
+    display: block;
+    width: 75%;
+    margin: 10px auto;
+}
+
+form > div {
+    border: 1px solid hsl(200, 30%, 20%);
+    border-top: 0;
+    height: 5px;
+    margin-bottom: 20px;
+}
+
+#username, #password {
+    display: block;
+    margin: 20px auto -5px;
+    width: 100%;
+    padding: 5px 0;
+    border:0;
+    text-indent: 5px;
+}
+
+#loginsubmit {
+    font-weigth: bold;
+    color: #fff;
+    background: hsl(200, 30%, 25%);
+    border: 0;
+    padding: 5px 10px;
+    margin: 0;
+}
+
+#register {
+    list-style: none;
+    margin: 0 0 10px;
+    padding: 0;
+}
+
+#register li {
+    width: 75%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#register li a {
+    color: #40AABF
+}

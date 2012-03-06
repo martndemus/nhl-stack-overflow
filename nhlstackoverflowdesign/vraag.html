@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            TEST
+        </title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+    <body>
+        <div class="l-nav desktop">
+            <nav>
+                <ul>
+                    <li><a class="active" href="#">Home</a>
+                    <li><a href="#">Vraag</a>
+                    <li><a href="#">Tags</a>
+                </ul>
+
+                <ul class="right">
+                    <li><input id="search" placeholder="Zoek">
+                    <li><a href="#">Log In</a>  
+                </ul>
+            </nav>
+        </div>
+
+        <div class="l-nav mobile">
+            <nav>
+                <ul>
+                    <li><a class="active" href="#">Home</a>
+                    <li><a href="#">Vraag</a>
+                    <li><a href="#">Tags</a>
+                    <li><input id="search" placeholder="Zoek">
+                    <li><a href="#">Log In</a>  
+                </ul>
+            </nav>
+        </div>
+        
+
+        <header id="logo">
+            <h1>Question Jam</h1>
+        </header>
+        <div id="l-main">
+            <section id="l-content">
+                <nav class="tabs">
+                    <ul>
+                        <li><a class="active" href="#">Nieuwste</a>
+                        <li><a href="#">Top</a>
+                        <li><a href="#">Onbeantwoord</a>
+                    </ul>
+                </nav>
+                <section class="content">
+                    <h2>Use default authentication and separate cloaking impersonation in DCOM call</h2>
+                    <article class="question">
+                        <p>I am using a tinyMce editor in our website. At the first pageload I set an onkeypress event handler like this:
+                        <pre>window.onload = function () {
+    tinyMCE.activeEditor.onKeyPress.add(function () { startCookieInterval() });
+}</pre>
+                        <p>This works fine in firefox and chrome, but in opera it throws this javascript error:
+                        <pre>Uncaught exception: TypeError: Cannot convert 'tinyMCE.activeEditor' to object</pre>
+                        <p>So I changed the window.onload to document.onload in case the tinyMce editor hasn't properly initialised by window.onload. This then works fine, up to the point where the event handler is called for the first time. Here I remove the event handler, because I only want to run it once:
+                        <pre>function startCookieInterval() {
+    tinyMCE.activeEditor.onKeyPress = null;
+    cookieIntervalTick();
+}</pre>
+                        <p>After this, on every keypress, the following javascript error occurs:
+                        <pre>[07/05/1983 08:35:36] JavaScript - http://localhost:10166/4_advice_only/editadviceitem.aspx?ADIID=13127831
+Event thread: keypress
+Uncaught exception: TypeError: Cannot convert 'v[x[t.fakeType || t.type]]' to object
+Error thrown at line 8641, column 20 in r(t, A) in http://localhost:10166/includes/tiny_mce_3_3_8/tiny_mce.js:
+    v[x[t.fakeType || t.type]].dispatch(v, t, A)
+called via Function.prototype.call() from line 3686, column 16 in <anonymous function: g>(n) in http://localhost:10166/includes/tiny_mce_3_3_8/tiny_mce.js:
+    return l.call(j, n)</pre>
+                        <p>None of this happens in any other browsers. Please share your thoughts. Thanks
+                        <aside class=q-meta>
+                            <p class="stats">
+                                <span title="Stemmen">
+                                    <img src="check.png" alt="Stemmen">23
+                                </span>
+                                <span title="Antwoorden">
+                                    <img src="aplus.png" alt="Antwoorden">1
+                                </span>
+                                <span title="Bekeken">
+                                    <img src="seen.png" alt="Bekeken">193
+                                </span>
+                                
+                                <time><b>54s</b> geleden</time> door <b><a href="#333">Eddie Sprietsma</a></b>
+                            <p class=tags>
+                                <a href="#222">C#</a>
+                                <a href="#222">Inheritance</a>
+                                <a href="#222">Polymorphism</a>
+                        </aside>
+                        <ul class=comments>
+                            <li>Darryl Hein, you should check Opera's error console to copy and paste the errors, specifically the JavaScript errors (assuming there are any). – XP1 Jul 22 '11 at 4:31
+                            <li>This is for a site I'm developing where they need the WYSIWYG and I'd like it work in Opera so I don't have to worry about switching to another browser all the time as Opera is also my primary browser. – Darryl Hein Nov 7 '08 at 19:19
+                            <li>Hi, thanks for your quick response. Could you point me in the direction of where I can verify this to justify it to a client, because the tinyMCE website seems to say that Opera is fully supported. tinymce.com/wiki.php/Browser_compatiblity – hofnarwillie 39 mins ago
+                            <li class=respond><a href="#$">Reageer</a>
+                        </ul>
+                    </article>
+
+                    <h2>Er zijn {{X}} antwoorden:</h2>
+                    
+                    <article class="question">
+                        <p>To get the HTML use something like this:
+                        <pre>var content = tinyMCE.getInstanceById(element_id).getBody().innerHTML;</pre>
+                        <p>briefnya is your <code>element_id</code>. Then you can post the contents of your textarea and it will contain your HTML from TinyMCE.
+                        <aside class=q-meta>
+                            <p class="stats">
+                                <span title="Stemmen">
+                                    <img src="check.png" alt="Stemmen">23
+                                </span>
+                                
+                                <time><b>54s</b> geleden</time> door <b><a href="#333">Eddie Sprietsma</a></b>
+                        </aside>
+                        <ul class=comments>
+                            <li>Darryl Hein, you should check Opera's error console to copy and paste the errors, specifically the JavaScript errors (assuming there are any). – XP1 Jul 22 '11 at 4:31
+                            <li>This is for a site I'm developing where they need the WYSIWYG and I'd like it work in Opera so I don't have to worry about switching to another browser all the time as Opera is also my primary browser. – Darryl Hein Nov 7 '08 at 19:19
+                            <li>Hi, thanks for your quick response. Could you point me in the direction of where I can verify this to justify it to a client, because the tinyMCE website seems to say that Opera is fully supported. tinymce.com/wiki.php/Browser_compatiblity – hofnarwillie 39 mins ago
+                            <li class=respond><a href="#$">Reageer</a>
+                        </ul>
+                    </article>
+                    <article class="question">
+                        <p>To get the HTML use something like this:
+                        <pre>var content = tinyMCE.getInstanceById(element_id).getBody().innerHTML;</pre>
+                        <p>briefnya is your <code>element_id</code>. Then you can post the contents of your textarea and it will contain your HTML from TinyMCE.
+                        <aside class=q-meta>
+                            <p class="stats">
+                                <span title="Stemmen">
+                                    <img src="check.png" alt="Stemmen">23
+                                </span>
+                                
+                                <time><b>54s</b> geleden</time> door <b><a href="#333">Eddie Sprietsma</a></b>
+                        </aside>
+                        <ul class=comments>
+                            <li>Darryl Hein, you should check Opera's error console to copy and paste the errors, specifically the JavaScript errors (assuming there are any). – XP1 Jul 22 '11 at 4:31
+                            <li>This is for a site I'm developing where they need the WYSIWYG and I'd like it work in Opera so I don't have to worry about switching to another browser all the time as Opera is also my primary browser. – Darryl Hein Nov 7 '08 at 19:19
+                            <li>Hi, thanks for your quick response. Could you point me in the direction of where I can verify this to justify it to a client, because the tinyMCE website seems to say that Opera is fully supported. tinymce.com/wiki.php/Browser_compatiblity – hofnarwillie 39 mins ago
+                            <li class=respond><a href="#$">Reageer</a>
+                        </ul>
+                    </article>
+                    <article class="question">
+                        <p>To get the HTML use something like this:
+                        <pre>var content = tinyMCE.getInstanceById(element_id).getBody().innerHTML;</pre>
+                        <p>briefnya is your <code>element_id</code>. Then you can post the contents of your textarea and it will contain your HTML from TinyMCE.
+                        <aside class=q-meta>
+                            <p class="stats">
+                                <span title="Stemmen">
+                                    <img src="check.png" alt="Stemmen">23
+                                </span>
+                                
+                                <time><b>54s</b> geleden</time> door <b><a href="#333">Eddie Sprietsma</a></b>
+                        </aside>
+                        <ul class=comments>
+                            <li>Darryl Hein, you should check Opera's error console to copy and paste the errors, specifically the JavaScript errors (assuming there are any). – XP1 Jul 22 '11 at 4:31
+                            <li>This is for a site I'm developing where they need the WYSIWYG and I'd like it work in Opera so I don't have to worry about switching to another browser all the time as Opera is also my primary browser. – Darryl Hein Nov 7 '08 at 19:19
+                            <li>Hi, thanks for your quick response. Could you point me in the direction of where I can verify this to justify it to a client, because the tinyMCE website seems to say that Opera is fully supported. tinymce.com/wiki.php/Browser_compatiblity – hofnarwillie 39 mins ago
+                            <li class=respond><a href="#$">Reageer</a>
+                        </ul>
+                    </article>
+                </section>
+            </section>
+            <section id="l-sidebar">
+                <div class="widget user-widget">
+                    <h3>Hallo {{NickName}}</h3>
+                    <img class="avater">
+                    <ul class="stats right">
+                        <li><img src="check.png" alt="Stemmen">123
+                        <li><img src="aplus.png" alt="Antwoorden">18
+                        <li><img src="seen.png" alt="Bekeken">2
+                    </ul>
+                    <ul>
+                        <li>2 nieuwe berichten
+                        <li>8 nieuwe reacties
+                        <li>1 nieuw antwoord
+                    </ul>
+                </div>
+                <div class="widget">
+                    <h3>Populaire Tags</h3>
+                    <ul class="tags">
+                        <li><a href="#222">Ruby</a> x 23.123
+                        <li><a href="#222">JavaScript</a> x 16.165
+                        <li><a href="#222">C#</a> x 11.342
+                        <li><a href="#222">ASP.NET</a> x 9.345
+                        <li><a href="#222">Scala</a> x 3.673
+                        <li><a href="#222">Objective-C</a> x 3.176
+                        <li><a href="#222">Rust</a> x 2.835
+                        <li><a href="#222">OOP</a> x 938
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <footer id="l-footer">
+            &copy; 2012 Eddie Sprietsma, Marten Schilstra, Mathijs Jonker
+        </footer>
+    </body>
+</html>
