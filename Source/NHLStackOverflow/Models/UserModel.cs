@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace NHLStackOverflow.Models
@@ -23,7 +22,7 @@ namespace NHLStackOverflow.Models
         public string UserName { get; set; }
 
         [Required]
-        [RegularExpression(@"^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=]{28}$")] // Must consist of Base64 characters
+        [RegularExpression(@"^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+\/=]+$")] // Must consist of Base64 characters
         public string Password { get; set; }
 
         [Required]
@@ -50,5 +49,21 @@ namespace NHLStackOverflow.Models
         [Required]
         public string Created_At { get; set; }
         public string LastOnline { get; set; }
+    }
+
+    // Class which is used for the log in form
+    public class LogOnModel
+    {
+        [Required]
+        [Display(Name = "Username")]
+        public string UserName { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [Display(Name = "Stay loggen in?")]
+        public bool stayLoggenIn { get; set; }
     }
 }

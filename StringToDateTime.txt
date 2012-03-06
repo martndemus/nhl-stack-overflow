@@ -1,0 +1,26 @@
+        /// <summary>
+        /// A method which does the invert of DateTime.ToString()
+        /// </summary>
+        /// <param name="invoer">Expects a string in the form: day-month-year hour:minutes:seconds
+        /// or simpely DateTime.Now</param>
+        /// <returns></returns>
+        public DateTime toDateTime(string invoer)
+        {
+            // the separators in our string
+            char[] separators = new char[] { ' ', '-', ':' };
+            string[] separated = new string[6]; // will contain the individual parts of the datum
+            separated = invoer.Split(separators);
+
+            int[] separatedTotaly = new int[6]; // will conatin the individual parts of the datum as an int
+            for(int i = 0; i < 6; i++) // for converting em
+            {
+                separatedTotaly[i] = Convert.ToInt32(separated[i]);
+            }
+
+            // create a new DateTime object of the given input string
+            DateTime datum = new DateTime(separatedTotaly[2], separatedTotaly[1], separatedTotaly[0], separatedTotaly[3],
+                separatedTotaly[4], separatedTotaly[5]);
+
+            return datum;
+        }
+    }

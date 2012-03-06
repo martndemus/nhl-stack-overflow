@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Collections.Generic;
+using NHLStackOverflow.Classes;
 
 namespace NHLStackOverflow.Models
 {
@@ -25,9 +26,9 @@ namespace NHLStackOverflow.Models
         {
             var users = new List<User>
             {
-                new User { UserName = "Piet25", Password = "bbbbbbbbbbbbbbbbbbbbbbbbbbbb", Email = "test@testmail.com", Rank = 0 },
-                new User { UserName = "Klaas538", Password = "aaaaaaaaaaaaaaaaaaaaaaaaaaaa", Email = "test@testmail.com", Rank = 0 },
-                new User { UserName = "Kees1979", Password = "cccccccccccccccccccccccccccc", Email = "test@testmail.com", Rank = 0 }
+                new User { UserName = "Piet25", Password = PasswordHasher.Hash("test"), Email = "test@testmail.com", Rank = 0 },
+                new User { UserName = "Klaas538", Password = PasswordHasher.Hash("admin"), Email = "test@testmail.com", Rank = 0 },
+                new User { UserName = "Kees1979", Password = PasswordHasher.Hash("abc"), Email = "test@testmail.com", Rank = 0 }
             };
 
             users.ForEach(s => context.Users.Add(s));
