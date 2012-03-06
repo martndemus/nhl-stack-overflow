@@ -1,8 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using System.Web.Security;
 using NHLStackOverflow.Models;
-using System.Linq;
-using System;
+using NHLStackOverflow.Classes;
 
 namespace NHLStackOverflow.Controllers
 {
@@ -29,7 +29,7 @@ namespace NHLStackOverflow.Controllers
                 var userPass = from memberUser in db.Users
                                where memberUser.UserName == user.UserName
                                select memberUser.Password;
-                if (userPass.Count() == 1 && user.Password == userPass.First())
+                if (userPass.Count() == 1 && PasswordHasher.Hash(user.Password) == userPass.First())
                 {
                     // submittings were correct.
                     FormsAuthentication.SetAuthCookie(user.UserName, user.stayLoggenIn);

@@ -22,7 +22,7 @@ namespace NHLStackOverflow.Models
         public string UserName { get; set; }
 
         [Required]
-        [RegularExpression(@"^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=]{28}$")] // Must consist of Base64 characters
+        [RegularExpression(@"^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+\/=]+$")] // Must consist of Base64 characters
         public string Password { get; set; }
 
         [Required]
