@@ -16,16 +16,16 @@ namespace NHLStackOverflow.Models
         public int UserID { get; set; }
 
         // Data
-        [Required]
+        [Required(ErrorMessage="De naam is verplicht.")]
         [MinLength(5)]
         [RegularExpression(@"^[a-zA-Z][\w\d]+$")] // Must start with a letter, then any number of word chars (a-z + _) and digits
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage="Een wachtwoord is verplicht.")]
         [RegularExpression(@"^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+\/=]+$")] // Must consist of Base64 characters
         public string Password { get; set; }
 
-        [Required]
+        [Required(ErrorMessage="Een e-mail is verplicht.")]
         [RegularExpression(@"^[0-9A-Za-z._%+-]+@[0-9A-Za-z.-]+\.[A-Za-z]{2,64}$")]
         public string Email { get; set; }
         
@@ -51,19 +51,4 @@ namespace NHLStackOverflow.Models
         public string LastOnline { get; set; }
     }
 
-    // Class which is used for the log in form
-    //public class LogOnModel
-    //{
-    //    [Required]
-    //    [Display(Name = "Username")]
-    //    public string UserName { get; set; }
-
-    //    [Required]
-    //    [DataType(DataType.Password)]
-    //    [Display(Name = "Password")]
-    //    public string Password { get; set; }
-
-    //    [Display(Name = "Stay loggen in?")]
-    //    public bool stayLoggenIn { get; set; }
-    //}
 }

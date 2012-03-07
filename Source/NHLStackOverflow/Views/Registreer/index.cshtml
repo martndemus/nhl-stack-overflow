@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "~/Views/Layouts/_Login.cshtml";
+    ViewBag.Title = "Registreer - Question Jam";
+}
+
+<h2>Registreer hier</h2>
+
+
+
+@using (Html.BeginForm())
+{
+   
+    <div class="form">
+            @Html.ValidationSummary()
+
+            @Html.TextBox("UserName", "", new { placeholder = "Gebruikersnaam" })
+            @Html.Password("Password", "", new { placeholder = "Wachtwoord" })
+            @Html.Password("PassWord2", "", new { placeholder = "Nogmaals wachtwoord" })
+            @Html.TextBox("Email", "", new { placeholder = "E-mail" })
+            @Html.CheckBox("ConditionsAccepted", false) <span>Ik accepteer de (htmlLinkPls)voorwaarden.</span>
+            <input type="submit" value="Registreer" id="submit">
+                
+            
+    </div>
+}
