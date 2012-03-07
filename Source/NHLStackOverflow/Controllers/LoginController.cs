@@ -54,23 +54,40 @@ namespace NHLStackOverflow.Controllers
             return View();
         }
 
+        //
+        // GET: /login/wachtwoordkwijt
+
         public ActionResult WachtwoordKwijt()
         {
             return View();
         }
 
+        //
+        // POST: /login/wachtwoordkwijt
+
         [HttpPost]
-        public ActionResult WachtwoordKwijt()
+        public ActionResult WachtwoordKwijt(User user)
         {
             // Todo wachtwoordkwijt mailer maken
 
             return View();
         }
 
+        //
+        // GET: /login/logout
+
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("index", "home");
+        }
+
+        //
+        // GET: /login/test
+
+        public ActionResult Test()
+        {
+            return View();
         }
     }
 }

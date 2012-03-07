@@ -8,3 +8,13 @@ Datum:		Tijd:		Wat:
 2/16/2012	2 uur		Onderzoek gedaan naar unit test frameworks voor ASP.net
 2/18/2012	5 uur		Proberen Unit test schrijven -> ASP.net 'feature' workarounds uitzoeken.
 2/19/2012	3 uur		Models validation + Unit tests schrijven
+
+...
+	ooops
+...
+
+2/26/2012	5 uur		Pjax schrijven
+2/27/2012	3 uur		Pjax verbeteren
+3/1/2012	1.5 uur		Models werkend maken.
+3/2/2012	5 uur		Design werk
+3/3/2012	6 uur		Design + JS werk

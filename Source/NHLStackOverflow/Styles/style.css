@@ -353,7 +353,13 @@ ul.tags  {
     padding: 0 12.5%;
 }
 
-.form input {
+.form input 
+{
+    margin: 20px 0 0;
+}
+
+.form input[type="text"], 
+.form input[type="password"] {
     display: block;
     margin: 20px auto 0;
     width: 100%;
@@ -363,7 +369,9 @@ ul.tags  {
     border-bottom: 1px solid #243842;
 }
 
-.form input:after 
+
+.form input[type="text"]:after, 
+.form input[type="password"]:after
 {
     content: "";
     display: block;
@@ -373,6 +381,9 @@ ul.tags  {
     margin-bottom: 20px;
 }
 
+.form input[type="checkbox"] {
+    margin: 30px 0 0;
+}
 .form ul {
     list-style: none;
     padding: 0;
@@ -382,15 +393,13 @@ ul.tags  {
    color: Red; 
 }   
  
-#submit {
+.form input[type="submit"] {
     color: #fff;
     display: block;
     background: #2D4653;
-    padding: 6px 0;
+    padding: 6px 8px;
     margin: 20px 0 0;
-    max-width: 60px;
     border: 0;
-    text-indent: 0;
 }
 /*
     SPECIFIC
