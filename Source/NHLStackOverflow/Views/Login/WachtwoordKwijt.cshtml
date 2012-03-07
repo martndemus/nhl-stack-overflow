@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Layouts/_Login.cshtml";
+    ViewBag.Title = "Wachtwoord vergeten - Question Jam";
+}
+
+<h2>Wachtwoord vergeten</h2>
+
+@using (Html.BeginForm())
+{
+   
+    <div class="form">
+            @Html.ValidationSummary(true)
+            <p>Er word een email gestuurd met instructies om je wachtwoord te resetten.</p>
+            @Html.TextBox("Email", (string)ViewBag.UserName, new { placeholder = "E-mail adres" })            
+            <input type="submit" value="Reset" id="submit">
+    </div>
+}

@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/Layouts/_Login.cshtml";
+    ViewBag.Title = "Log hier in - Question Jam";
+}
+
+<h2>Log hier in</h2>
+
+
+
+@using (Html.BeginForm())
+{
+   
+    <div class="form">
+            @Html.ValidationSummary(true)
+
+            @Html.TextBox("UserName", (string)ViewBag.UserName, new { placeholder = "Gebruikersnaam" })
+            @Html.Password("Password", "", new { placeholder = "Wachtwoord" })
+            <input type="submit" value="Log in" id="submit">
+            <ul>
+                <li>@Html.ActionLink("Wachtwoord vergeten?", "wachtwoordkwijt")
+                <li>@Html.ActionLink("Registreer", "index", "registreer")
+            </ul>
+    </div>
+}
