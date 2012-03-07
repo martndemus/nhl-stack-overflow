@@ -24,10 +24,6 @@ a:hover { color: #8CCCD9; }
 a:visited { color: #BF40BF; }
 a:hover:visited { color: #D98CD9; }
 
-:focus {
-    outline-color: #8CCCD9;
-}
-
 /*
     LAYOUT
 */
@@ -358,32 +354,30 @@ ul.tags  {
     margin: 20px 0 0;
 }
 
+.form input:focus {
+    outline: 0;
+}
+
 .form input[type="text"], 
 .form input[type="password"] {
     display: block;
-    margin: 20px auto 0;
-    width: 100%;
+    margin: 20px 3% 0;
+    width: 94%;
     padding: 5px 0;
     border: 0;
-    text-indent: 5px;
     border-bottom: 1px solid #243842;
 }
 
 
-.form input[type="text"]:after, 
-.form input[type="password"]:after
+.form input[type="text"] + hr, 
+.form input[type="password"] + hr
 {
-    content: "";
-    display: block;
     border: 1px solid #243842;
     border-top: 0;
     height: 5px;
-    margin-bottom: 20px;
+    margin-top: -5px;
 }
 
-.form input[type="checkbox"] {
-    margin: 30px 0 0;
-}
 .form ul {
     list-style: none;
     padding: 0;
@@ -395,12 +389,14 @@ ul.tags  {
  
 .form input[type="submit"] {
     color: #fff;
+    cursor: pointer;
     display: block;
     background: #2D4653;
     padding: 6px 8px;
     margin: 20px 0 0;
     border: 0;
 }
+
 /*
     SPECIFIC
 */
@@ -463,7 +459,7 @@ ul.tags  {
     #l-sidebar {
         display: block;
         width: 23%;
-        margin: 36px 0 0 77%;
+        margin: 0 0 0 77%;
     }
 
     .q-author {

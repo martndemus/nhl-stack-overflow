@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="ftp://mijnnhl.org" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="NHLStackOverflow" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="WebDeploy" publishMethod="FTP" replaceMatchingFiles="False" userName="mijnnhl5" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA+K57BTs7xU2ZA1xOYY98rQAAAAACAAAAAAAQZgAAAAEAACAAAAA8FgYM6l2kehIwefrdaAcnOQFGz/oHS+lgGbNTULkF0QAAAAAOgAAAAAIAACAAAACnbCk9KUk8TQYUSXx+TIm3KLwO4siyiNDNq+2XLb3K8yAAAAAqvjwsLSy3AWQXOqeUKuuKwM+XV/MFUuFclz5QVUS250AAAAAwWFAZdkEJ+GK+tfaPoZYDLjvd3MP6rXzpHekGs6q0UTMNntlxTe4j6cygQ2aZT8HXiPiom0FjKpSmDLHLBvwk" SelectedForPublish="True">
+    <file relUrl="Web.config" publishTime="03/07/2012 22:45:02" />
+    <file relUrl="Scripts/script.js" publishTime="03/07/2012 19:43:25" />
+    <file relUrl="bin/EntityFramework.dll" publishTime="03/04/2012 14:46:42" />
+    <file relUrl="bin/NHLStackOverflow.pdb" publishTime="03/07/2012 22:38:34" />
+    <file relUrl="Views/Login/WachtwoordKwijt.cshtml" publishTime="03/07/2012 21:12:30" />
+    <file relUrl="Scripts/modernizr.js" publishTime="03/04/2012 14:41:27" />
+    <file relUrl="packages.config" publishTime="03/07/2012 22:25:16" />
+    <file relUrl="Views/Login/Index.cshtml" publishTime="03/07/2012 21:04:08" />
+    <file relUrl="bin/EntityFramework.xml" publishTime="03/04/2012 14:46:42" />
+    <file relUrl="Views/Home/Index.cshtml" publishTime="03/07/2012 19:43:25" />
+    <file relUrl="Views/Web.config" publishTime="03/07/2012 22:45:02" />
+    <file relUrl="Views/Shared/_LogInPartial.cshtml" publishTime="03/07/2012 19:43:25" />
+    <file relUrl="bin/NHLStackOverflow.dll" publishTime="03/07/2012 22:38:34" />
+    <file relUrl="Styles/img/seen.png" publishTime="03/07/2012 19:43:25" />
+    <file relUrl="Styles/img/check.png" publishTime="03/07/2012 19:43:25" />
+    <file relUrl="Styles/logo.png" publishTime="03/07/2012 19:43:25" />
+    <file relUrl="Views/_ViewStart.cshtml" publishTime="03/07/2012 19:43:25" />
+    <file relUrl="Views/Layouts/_Main.cshtml" publishTime="03/07/2012 19:43:25" />
+    <file relUrl="Views/Shared/Error.cshtml" publishTime="03/04/2012 14:41:27" />
+    <file relUrl="Styles/style.css" publishTime="03/07/2012 21:24:35" />
+    <file relUrl="Global.asax" publishTime="03/04/2012 14:41:27" />
+    <file relUrl="bin/mysql.data.dll" publishTime="03/07/2012 22:25:16" />
+    <file relUrl="Views/Registreer/index.cshtml" publishTime="03/07/2012 21:12:55" />
+    <file relUrl="Styles/img/aplus.png" publishTime="03/07/2012 19:43:25" />
+    <file relUrl="Styles/dot.png" publishTime="03/07/2012 19:43:25" />
+    <file relUrl="Views/Layouts/_Login.cshtml" publishTime="03/07/2012 19:43:25" />
+  </publishProfile>
+</publishData>

@@ -14,9 +14,13 @@
             @Html.ValidationSummary()
 
             @Html.TextBox("UserName", "", new { placeholder = "Gebruikersnaam" })
+            <hr>
             @Html.Password("Password", "", new { placeholder = "Wachtwoord" })
+            <hr>
             @Html.Password("PassWord2", "", new { placeholder = "Nogmaals wachtwoord" })
+            <hr>
             @Html.TextBox("Email", "", new { placeholder = "E-mail" })
+            <hr>
             @Html.CheckBox("ConditionsAccepted", false) <span>Ik accepteer de (htmlLinkPls)voorwaarden.</span>
             <input type="submit" value="Registreer" id="submit">
                 
