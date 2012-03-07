@@ -373,10 +373,13 @@ ul.tags  {
     margin-bottom: 20px;
 }
 
-.validation-summary-errors ul {
+.form ul {
+    list-style: none;
+    padding: 0;
+}
+
+.validation-summary-errors {
    color: Red; 
-   list-style:none;
-   padding: 0;
 }   
  
 #submit {

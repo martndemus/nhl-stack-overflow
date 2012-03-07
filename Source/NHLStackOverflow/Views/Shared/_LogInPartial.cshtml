@@ -5,12 +5,12 @@
     <br />You are logged in :-D</text>
     
     <p>
-    @Html.ActionLink("Log off", "LogOff", "Account")
+    @Html.ActionLink("Log off", "logout", "login")
     </p>
 
 }
 else
 {
     // we are not logged in, show login button
-    @Html.ActionLink("Log in", "login", "account")
+    @Html.ActionLink("Log in", "index", "login")
 }
