@@ -133,6 +133,7 @@
   <ItemGroup>
     <Content Include="Views\Login\WachtwoordKwijt.cshtml" />
   </ItemGroup>
+  <ItemGroup>
     <Content Include="Views\Registreer\index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
