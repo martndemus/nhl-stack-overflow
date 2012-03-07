@@ -126,6 +126,10 @@
         var onFocus = function (target) {
             if (target.value === target.getAttribute('placeholder')) {
                 target.value = '';
+
+                // Change back to type password if it is a password field
+                if (target.hasAttribute('data-password'))
+                    target.type = 'password';
             }
         };
 
@@ -133,6 +137,10 @@
         var onBlur = function (target) {
             if (target.value === '') {
                 target.value = target.getAttribute('placeholder');
+
+                // Temp change to type text if it's a password field
+                if (target.hasAttribute('data-password'))
+                    target.type = 'text';
             }
         };
 
@@ -141,6 +149,9 @@
             // Skip if it has no placeholder
             if (!inputs[i].hasAttribute('placeholder'))
                 continue;
+
+            if (inputs[i].type == 'password')
+                inputs[i].setAttribute('data-password', 'true');
 
             // Do an initial onblur to set the placeholders
             onBlur(inputs[i]);
