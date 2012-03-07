@@ -169,7 +169,42 @@
                 }
             } (inputs[i]));
         }
-    }
+    },
+
+    formValidator: (function () {
+        // Find all forms
+        var form = document.querySelectorAll('.form'),
+            validators = {};
+
+        // If no form is present
+        if (!form)
+            return false;
+        
+        // Checks if a name is already in the validator object if not, adds it
+        var addName = function (name) {
+            if (!validators[name])
+                validators[name] = {};
+        };
+
+        var validator = {
+            addRegexp: function (name, validation) {
+                addName(name);
+                validators[name].regexp = validation;
+            },
+            addEqual: function (nameA, nameB) {
+                addName(nameA);
+                addName(nameB);
+                validators[nameA].equal = nameB;
+                validators[nameB].equal = nameA;
+            },
+            addChecked: function (name, state) {
+                addName(name);
+                validators[name].checked = state;
+            }
+        };
+
+        return validator;
+    } ())
 };
 
 

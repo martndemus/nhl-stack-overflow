@@ -58,5 +58,11 @@ namespace NHLStackOverflow.Controllers
             // if we got here the fields were incorrect. Reshow the form.
             return View();
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }
