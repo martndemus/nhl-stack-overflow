@@ -1,6 +1,4 @@
-﻿@model NHLStackOverflow.Models.User
-
-@{
+﻿@{
     Layout = "~/Views/Layouts/_Login.cshtml";
     ViewBag.Title = "Log hier in - Question Jam";
 }
@@ -11,11 +9,14 @@
 
 @using (Html.BeginForm())
 {
+   
     <div class="form">
-            @Html.TextBoxFor(m => m.UserName, new { placeholder="Gebruikersnaam" })
-            @Html.PasswordFor(m => m.Password, new { placeholder="Wachtwoord" })
-            <input type="submit" value="Log in" id="loginsubmit">
-                @Html.ValidationSummary(true, "Login failed")
+            @Html.ValidationSummary(true)
+
+            @Html.TextBox("UserName", "", new { placeholder = "Gebruikersnaam" })
+            @Html.Password("Password", "", new { placeholder = "Wachtwoord" })
+            <input type="submit" value="Log in" id="submit">
+                
             
     </div>
 }

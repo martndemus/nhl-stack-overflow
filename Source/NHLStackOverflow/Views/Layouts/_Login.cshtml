@@ -15,7 +15,14 @@
         <script src="@Href("~/Scripts/modernizr.js")" type="text/javascript"></script>
     </head>
     <body class="login">
-        <div class="l-nav">
+        <div class="l-nav desktop">
+            <nav>
+                <ul>
+                    <li>@Html.ActionLink("« Terug", "index", "home")</li>
+                </ul>
+            </nav>
+        </div>
+        <div class="l-nav mobile">
             <nav>
                 <ul>
                     <li>@Html.ActionLink("« Terug", "index", "home")</li>

@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using NHLStackOverflow.Models;
 using NHLStackOverflow.Classes;
+using NHLStackOverflow.FormDataModels;
 
 namespace NHLStackOverflow.Controllers
 {
@@ -21,7 +22,7 @@ namespace NHLStackOverflow.Controllers
         // POST: /Account/LogIn
 
         [HttpPost]
-        public ActionResult LogIn(User user, string returnUrl)
+        public ActionResult LogIn(Login user, string returnUrl)
         {
             // Check if both Username and Password are present
             if (user.Password != null && user.UserName != null)
@@ -43,7 +44,7 @@ namespace NHLStackOverflow.Controllers
                 else
                 {
                     // Display an error
-                    ModelState.AddModelError("", "The username or password didn't match. Please try again.");
+                    ModelState.AddModelError("", "Ongeldig gebruikersnaam of wachtwoord.");
                 }
             }
 
