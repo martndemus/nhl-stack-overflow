@@ -11,6 +11,8 @@ namespace NHLStackOverflow.Classes
     {
         public static string Hash(string password)
         {
+            if (password == "" || password == null)
+                return "";
             UTF8Encoding encoder = new UTF8Encoding();
             byte[] hash = encoder.GetBytes(password);
             SHA256 hasher = new SHA256Managed();
