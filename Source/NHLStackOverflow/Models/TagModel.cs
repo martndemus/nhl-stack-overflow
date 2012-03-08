@@ -18,6 +18,9 @@ namespace NHLStackOverflow.Models
         [MaxLength(500, ErrorMessage="The maximum lenght is 500 characters")]
         public string Description { get; set; }
 
+        [Required]
+        public int Count { get; set; }
+
         // Relations
         //public ICollection<QuestionTag> Tags { get; set; }
     }

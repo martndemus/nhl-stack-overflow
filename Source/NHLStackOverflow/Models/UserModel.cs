@@ -11,6 +11,7 @@ namespace NHLStackOverflow.Models
             this.Created_At = DateTime.Now.ToString();
             this.LastOnline = this.Created_At;
             this.Rank = 0;
+            this.Activated = 0;
         }
         // GUID
         public int UserID { get; set; }
@@ -31,6 +32,9 @@ namespace NHLStackOverflow.Models
         
         [Required]
         public int Rank { get; set; }
+
+        [Required]
+        public int Activated { get; set; } // 0 if inactive, 1 if activated
 
         [RegularExpression(@"^[A-Z][\sa-zA-Z]+[a-zA-Z]$")]
         public string Name { get; set; }

@@ -1,0 +1,12 @@
+﻿<ul>
+@foreach (var question in ViewBag.QuestionList)
+{
+    <li>
+    <h3><a href="vraag/@question.QuestionID" target="_blank">@question.Title</a></h3>
+    <p>
+    @question.Content
+    </p>   
+    </li>
+
+}
+</ul>

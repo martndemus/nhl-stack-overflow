@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Account activeren - Question Jam";
+    Layout = "~/Views/Layouts/_Login.cshtml";
+}
+
+<h2>Activeer je account</h2>
+
+@using (Html.BeginForm())
+{
+   
+    <div class="form">
+            @Html.ValidationSummary()
+
+            @Html.TextBox("UserName", "", new { placeholder = "Gebruikersnaam" })
+            <hr>
+            @Html.Password("Password", "", new { placeholder = "Wachtwoord" })
+            <hr>
+            <input type="submit" value="Activeer" id="submit" />    
+    </div>
+}
