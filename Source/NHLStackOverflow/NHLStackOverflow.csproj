@@ -153,7 +153,7 @@
     <Content Include="Views\Shared\_QuestionsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Vraag\Index.cshtml" />
+    <Content Include="Views\Vraag\View.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
