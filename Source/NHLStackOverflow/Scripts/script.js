@@ -126,6 +126,10 @@
         var onFocus = function (target) {
             if (target.value === target.getAttribute('placeholder')) {
                 target.value = '';
+
+                // Change back to type password if it is a password field
+                if (target.hasAttribute('data-password'))
+                    target.type = 'password';
             }
         };
 
@@ -133,6 +137,10 @@
         var onBlur = function (target) {
             if (target.value === '') {
                 target.value = target.getAttribute('placeholder');
+
+                // Temp change to type text if it's a password field
+                if (target.hasAttribute('data-password'))
+                    target.type = 'text';
             }
         };
 
@@ -141,6 +149,9 @@
             // Skip if it has no placeholder
             if (!inputs[i].hasAttribute('placeholder'))
                 continue;
+
+            if (inputs[i].type == 'password')
+                inputs[i].setAttribute('data-password', 'true');
 
             // Do an initial onblur to set the placeholders
             onBlur(inputs[i]);
@@ -158,7 +169,42 @@
                 }
             } (inputs[i]));
         }
-    }
+    },
+
+    formValidator: (function () {
+        // Find all forms
+        var form = document.querySelectorAll('.form'),
+            validators = {};
+
+        // If no form is present
+        if (!form)
+            return false;
+        
+        // Checks if a name is already in the validator object if not, adds it
+        var addName = function (name) {
+            if (!validators[name])
+                validators[name] = {};
+        };
+
+        var validator = {
+            addRegexp: function (name, validation) {
+                addName(name);
+                validators[name].regexp = validation;
+            },
+            addEqual: function (nameA, nameB) {
+                addName(nameA);
+                addName(nameB);
+                validators[nameA].equal = nameB;
+                validators[nameB].equal = nameA;
+            },
+            addChecked: function (name, state) {
+                addName(name);
+                validators[name].checked = state;
+            }
+        };
+
+        return validator;
+    } ())
 };
 
 

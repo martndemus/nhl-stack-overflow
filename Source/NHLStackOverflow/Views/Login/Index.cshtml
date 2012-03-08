@@ -14,7 +14,10 @@
             @Html.ValidationSummary(true)
 
             @Html.TextBox("UserName", (string)ViewBag.UserName, new { placeholder = "Gebruikersnaam" })
+            <hr>
             @Html.Password("Password", "", new { placeholder = "Wachtwoord" })
+            <hr>
+
             <input type="submit" value="Log in" id="submit">
             <ul>
                 <li>@Html.ActionLink("Wachtwoord vergeten?", "wachtwoordkwijt")

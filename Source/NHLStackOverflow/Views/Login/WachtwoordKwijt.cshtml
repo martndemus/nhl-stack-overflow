@@ -11,7 +11,8 @@
     <div class="form">
             @Html.ValidationSummary(true)
             <p>Er word een email gestuurd met instructies om je wachtwoord te resetten.</p>
-            @Html.TextBox("Email", (string)ViewBag.UserName, new { placeholder = "E-mail adres" })            
+            @Html.TextBox("Email", (string)ViewBag.UserName, new { placeholder = "E-mail adres" })
+            <hr>            
             <input type="submit" value="Reset" id="submit">
     </div>
 }

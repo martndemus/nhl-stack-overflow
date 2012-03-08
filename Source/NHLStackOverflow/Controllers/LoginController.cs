@@ -82,12 +82,10 @@ namespace NHLStackOverflow.Controllers
             return RedirectToAction("index", "home");
         }
 
-        //
-        // GET: /login/test
-
-        public ActionResult Test()
+        protected override void Dispose(bool disposing)
         {
-            return View();
+            db.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

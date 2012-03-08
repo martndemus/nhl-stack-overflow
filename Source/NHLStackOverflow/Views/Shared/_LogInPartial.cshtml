@@ -1,13 +1,6 @@
 ﻿@if (Request.IsAuthenticated)
 {
-    // we are logged in right now
-    <text>Hello <strong>@User.Identity.Name</strong>,
-    <br />You are logged in :-D</text>
-    
-    <p>
-    @Html.ActionLink("Log off", "logout", "login")
-    </p>
-
+    @Html.ActionLink(User.Identity.Name, "logout", "login")
 }
 else
 {
