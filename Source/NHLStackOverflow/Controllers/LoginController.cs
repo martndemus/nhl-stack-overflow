@@ -31,16 +31,21 @@ namespace NHLStackOverflow.Controllers
                 // Find a user with the given username in the database
                 var userPass = from memberUser in db.Users
                                where memberUser.UserName == user.UserName
-                               select memberUser.Password;
+                               select memberUser;
 
                 // If the user exists check if the password is correct
-                if (userPass.Count() == 1 && PasswordHasher.Hash(user.Password) == userPass.First())
+                if (userPass.Count() == 1 && PasswordHasher.Hash(user.Password) == userPass.First().Password)
                 {
-                    // User is logged in, set a cookie
-                    FormsAuthentication.SetAuthCookie(user.UserName, true);
+                    if (userPass.First().Activated == 1)
+                    {
+                        // User is logged in, set a cookie
+                        FormsAuthentication.SetAuthCookie(user.UserName, true);
 
-                    // Go to home page
-                    return RedirectToAction("index", "home");
+                        // Go to home page
+                        return RedirectToAction("index", "home");
+                    }
+                    else
+                        ModelState.AddModelError("", "This account hasn't been activated yet, please check your e-mail box.");
                 }
                 else
                 {

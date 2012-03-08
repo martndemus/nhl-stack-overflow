@@ -26,9 +26,9 @@ namespace NHLStackOverflow.Models
         {
             var users = new List<User>
             {
-                new User { UserName = "Piet25", Password = PasswordHasher.Hash("test"), Email = "test@testmail.com", Rank = 0 },
-                new User { UserName = "Klaas538", Password = PasswordHasher.Hash("admin"), Email = "test@testmail.com", Rank = 0 },
-                new User { UserName = "Kees1979", Password = PasswordHasher.Hash("abc"), Email = "test@testmail.com", Rank = 0 }
+                new User { UserName = "Piet25", Password = PasswordHasher.Hash("test"), Email = "test@testmail.com", Rank = 0, Activated = 1 },
+                new User { UserName = "Klaas538", Password = PasswordHasher.Hash("admin"), Email = "test@testmail.com", Rank = 0, Activated = 1 },
+                new User { UserName = "Kees1979", Password = PasswordHasher.Hash("abc"), Email = "test@testmail.com", Rank = 0 } // only person 
             };
 
             users.ForEach(s => context.Users.Add(s));
