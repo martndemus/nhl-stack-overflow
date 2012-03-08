@@ -46,21 +46,21 @@ namespace NHLStackOverflow.Models
 
             var tags = new List<Tag>
             {
-                new Tag { Name = "C#", Description = "KUTPROGRAMMMEEERRRTTAAALLL" },
-                new Tag { Name = "JavaScript", Description = "Teh Awsum" },
-                new Tag { Name = "Objective-C", Description = "Apple rules"},
-                new Tag { Name = "C++", Description = "plusser de plus"},
-                new Tag { Name = "Python", Description = "ssshhhaagasiash"},
-                new Tag { Name = "Ruby", Description = "Bling!"},
-                new Tag { Name = "Smalltalk", Description = "blablablablablabla"},
-                new Tag { Name = "ASP.NET", Description = "asp dot et net"},
-                new Tag { Name = "PHP", Description = "peeehaaaapeeee"},
-                new Tag { Name = "HTML", Description = "haaaateeeeeemel"},
-                new Tag { Name = "CSS", Description = "ceeeeses"},
-                new Tag { Name = "F#", Description = "wherearedene"},
-                new Tag { Name = "Visual Basic", Description = "Gay Sick"},
-                new Tag { Name = "Delphi", Description = "dolfijnflipper"},
-                new Tag { Name = "ActionScript", Description = "flasherdeflash"},
+                new Tag { Name = "C#", Description = "KUTPROGRAMMMEEERRRTTAAALLL", Count = 100 },
+                new Tag { Name = "JavaScript", Description = "Teh Awsum", Count = 1337 },
+                new Tag { Name = "Objective-C", Description = "Apple rules", Count = 10},
+                new Tag { Name = "C++", Description = "plusser de plus", Count = 9001},
+                new Tag { Name = "Python", Description = "ssshhhaagasiash", Count = 3},
+                new Tag { Name = "Ruby", Description = "Bling!", Count = 40},
+                new Tag { Name = "Smalltalk", Description = "blablablablablabla", Count = 20},
+                new Tag { Name = "ASP.NET", Description = "asp dot et net", Count = 666},
+                new Tag { Name = "PHP", Description = "peeehaaaapeeee", Count = 222},
+                new Tag { Name = "HTML", Description = "haaaateeeeeemel", Count = 901},
+                new Tag { Name = "CSS", Description = "ceeeeses", Count = 230},
+                new Tag { Name = "F#", Description = "wherearedene", Count = 777},
+                new Tag { Name = "Visual Basic", Description = "Gay Sick", Count = 1},
+                new Tag { Name = "Delphi", Description = "dolfijnflipper", Count = -5},
+                new Tag { Name = "ActionScript", Description = "flasherdeflash", Count = -9000},
             };
 
             tags.ForEach(s => context.Tags.Add(s) );
