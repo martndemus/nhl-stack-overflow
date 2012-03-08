@@ -19,6 +19,11 @@ namespace NHLStackOverflow.Controllers
                            select tags;
             ViewBag.TagList = TagsList;
 
+            var QuestionList = from questions in db.Questions
+                               orderby questions.Created_At descending
+                               select questions;
+            ViewBag.QuestionList = QuestionList;
+
             return View();
         }
 
