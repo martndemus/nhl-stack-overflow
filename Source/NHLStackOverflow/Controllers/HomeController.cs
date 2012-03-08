@@ -14,6 +14,7 @@ namespace NHLStackOverflow.Controllers
         public ViewResult Index()
         {
             db.Database.Initialize(true);
+
             var TagsList = from tags in db.Tags
                            orderby tags.Count descending
                            select tags;
