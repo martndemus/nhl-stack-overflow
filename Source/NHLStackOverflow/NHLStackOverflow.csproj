@@ -94,11 +94,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Styles\img\aplus.png" />
-    <Content Include="Styles\img\check.png" />
+    <Content Include="Styles\aplus.png" />
+    <Content Include="Styles\check.png" />
     <Content Include="Styles\dot.png" />
     <Content Include="Styles\logo.png" />
-    <Content Include="Styles\img\seen.png" />
+    <Content Include="Styles\seen.png" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\modernizr.js" />
     <Content Include="Scripts\script.js" />
@@ -157,7 +157,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3930</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
