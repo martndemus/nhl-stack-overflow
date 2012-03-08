@@ -13,25 +13,30 @@ namespace NHLStackOverflow.Controllers
         //
         // GET: /Question/
 
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    var TagsList = from tags in db.Tags
+        //                   orderby tags.Count descending
+        //                   select tags;
+        //    ViewBag.TagList = TagsList;
+
+        //    return View();
+        //}
+
+        //
+        // GET: /Question/detailNum
+        public ActionResult View(int id)
         {
+            var questionDetails = from questionDetail in db.Questions
+                                  where questionDetail.QuestionID == id
+                                  select questionDetail;
+
             var TagsList = from tags in db.Tags
                            orderby tags.Count descending
                            select tags;
             ViewBag.TagList = TagsList;
 
-            return View();
-        }
-
-        //
-        // GET: /Question/detailNum
-        public ActionResult Details()//int detailID)
-        {
-            int detailID = 2;
-            var questionDetails = from questionDetail in db.Questions
-                                  where questionDetail.QuestionID == detailID
-                                  select questionDetail;
-            ViewBag.QuestionDetail = questionDetails;
+            ViewBag.QuestionDetail = questionDetails.First();
             return View();
         }
 
