@@ -38,7 +38,7 @@ namespace NHLStackOverflow.tests.Models
             db.Dispose();
         }
 
-        [TestCategory("Model.Empty"), TestMethod]
+        [Description("Tests if the database refuses to store an empty message."), TestCategory("Model.Empty"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving a void option should throw an DbEntityValidationException exception")]
         public void EmptyMessage()
         {
@@ -46,7 +46,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Valid"), TestMethod]
+        [Description("Tests if options that should be valid are valid."), TestCategory("Model.Valid"), TestMethod]
         public void ValidOptions()
         {
             Option o = new Option { Name = "Opt", Value = "True" };
@@ -54,7 +54,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a missing value is not valid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving with only a key should throw an error, since there are more fields required")]
         public void InvalidOption1()
         {
@@ -64,7 +64,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a missing name is not valid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving with only a key should throw an error, since there are more fields required")]
         public void InvalidOption2()
         {

@@ -34,7 +34,7 @@ namespace NHLStackOverflow.tests.Models
             db.Dispose();
         }
 
-        [TestCategory("Model.Empty"), TestMethod]
+        [Description("Tests if the database refuses to store an empty read item."), TestCategory("Model.Empty"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving a void readModel should throw an DbEntityValidationException exception")]
         public void EmptyReadModel()
         {
@@ -43,7 +43,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Valid"), TestMethod]
+        [Description("Tests if read questions that should be valid are valid."), TestCategory("Model.Valid"), TestMethod]
         public void ValidRead()
         {
             Read r = new Read { UserId = 3, QuestionId = 5 };
@@ -51,7 +51,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a missing question id is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving an invalid readModel should throw an DbEntityValidationException exception")]
         public void InvalidRead1()
         {
@@ -60,7 +60,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a missing user id is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving an invalid readModel should throw an DbEntityValidationException exception")]
         public void InvalidRead2()
         {

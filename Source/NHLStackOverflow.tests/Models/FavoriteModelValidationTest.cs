@@ -36,7 +36,7 @@ namespace NHLStackOverflow.tests.Models
             db.Dispose();
         }
 
-        [TestCategory("Model.Empty"), TestMethod]
+        [Description("Tests if the database refuses to store an empty favorite."), TestCategory("Model.Empty"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving a void favorite should throw an DbEntityValidationException exception")]
         public void EmptyFavorite()
         {
@@ -46,7 +46,7 @@ namespace NHLStackOverflow.tests.Models
         }
 
         [TestCategory("Model.Defaults"), TestMethod]
-        [Description("")]
+        [Description("Tests if all the default values for a new favorite are correct.")]
         public void DefaultForNewFavorite()
         {
             Favorite f = new Favorite();
@@ -58,7 +58,7 @@ namespace NHLStackOverflow.tests.Models
             Assert.IsTrue(f.Created_At == DateTime.Now.ToString(), "Created_At should be initialized to DateTime.Now.ToString()");
         }
 
-        [TestCategory("Model.Valid"), TestMethod]
+        [Description("Tests if favorites that should be valid are valid."), TestCategory("Model.Valid"), TestMethod]
         public void ValidFavorites()
         {
             var validfovorites = new List<Favorite>
@@ -70,7 +70,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if it's invalid when the favorite has no question id. "), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid favorite should throw an DbEntityValidationException exception")]
         public void InvalidFavorite1()
         {
@@ -80,7 +80,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if it's invalid when the favorite has no user id."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid favorite should throw an DbEntityValidationException exception")]
         public void InvalidFavorite2()
         {

@@ -36,7 +36,7 @@ namespace NHLStackOverflow.tests.Models
             db.Dispose();
         }
 
-        [TestCategory("Model.Empty"), TestMethod]
+        [Description("Tests if the database refuses to store an empty badge."), TestCategory("Model.Empty"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving a void badge should throw an DbEntityValidationException exception")]
         public void EmptyBadge()
         {
@@ -46,7 +46,7 @@ namespace NHLStackOverflow.tests.Models
         }
 
         [TestCategory("Model.Defaults"), TestMethod]
-        [Description("")]
+        [Description("Tests if all the default values for a new badge are correct.")]
         public void DefaultsForNewBadge()
         {
             Badge b = new Badge();
@@ -58,7 +58,7 @@ namespace NHLStackOverflow.tests.Models
             Assert.IsTrue(b.Created_At == DateTime.Now.ToString(), "Created At should be initialized to DateTime.Now.ToString()");
         }
 
-        [TestCategory("Model.Valid"), TestMethod]
+        [Description("Tests if badges that should be valid are valid."), TestCategory("Model.Valid"), TestMethod]
         public void ValidBadges()
         {
             var validbadges = new List<Badge>
@@ -70,7 +70,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if an empty user name is not valid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid badges should throw an DbEntityValidationException exception")]
         public void InvalidBadge1()
         {
@@ -80,7 +80,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a missing name is not valid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid badges should throw an DbEntityValidationException exception")]
         public void InvalidBadge2()
         {
@@ -90,7 +90,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a missing user id is not valid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid badges should throw an DbEntityValidationException exception")]
         public void InvalidBadge3()
         {

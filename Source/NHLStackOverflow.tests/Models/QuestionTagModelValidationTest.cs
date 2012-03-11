@@ -38,7 +38,7 @@ namespace NHLStackOverflow.tests.Models
             db.Dispose();
         }
 
-        [TestCategory("Model.Empty"), TestMethod]
+        [Description("Tests if the database refuses to store an empty questiontag."), TestCategory("Model.Empty"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving a void tag should throw an DbEntityValidationException exception")]
         public void EmptyQuestionTag()
         {
@@ -47,7 +47,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Valid"), TestMethod]
+        [Description("Tests if questiontags that should be valid are valid."), TestCategory("Model.Valid"), TestMethod]
         public void ValidQuestionTag()
         {
             QuestionTag q = new QuestionTag { QuestionId = 1, TagId = 3 };
@@ -55,7 +55,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a missing tag id is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving an invalid tag should throw an DbEntityValidationException exception")]
         public void InvalidQuestionTag1()
         {
@@ -64,9 +64,9 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a missing question id is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving an invalid tag should throw an DbEntityValidationException exception")]
-        public void InvalidQuestionTag()
+        public void InvalidQuestionTag2()
         {
             QuestionTag q = new QuestionTag { TagId = 3 };
             db.QuestionTags.Add(q);

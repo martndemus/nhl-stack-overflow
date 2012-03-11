@@ -36,7 +36,7 @@ namespace NHLStackOverflow.tests.Models
             db.Dispose();
         }
 
-        [TestCategory("Model.Empty"), TestMethod]
+        [Description("Tests if the database refuses to store an empty answer."), TestCategory("Model.Empty"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving a void answer should throw an DbEntityValidationException exception")]
         public void EmptyAnswer()
         {   
@@ -45,7 +45,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Defaults"), TestMethod]
+        [Description("Tests if all the default values for a new answer are correct."), TestCategory("Model.Defaults"), TestMethod]
         public void DefaultsForNewAnswer()
         {
             Answer a = new Answer();
@@ -61,7 +61,7 @@ namespace NHLStackOverflow.tests.Models
             Assert.IsTrue(a.Created_At == DateTime.Now.ToString(), "Created At should be initialized to DateTime.Now.ToString()" );
         }
 
-        [TestCategory("Model.Valid"), TestMethod]
+        [Description("Tests if answers that should be valid are valid."), TestCategory("Model.Valid"), TestMethod]
         public void ValidAnswers()
         {
             var validanswers = new List<Answer>
@@ -74,7 +74,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if  it's invalid if the content is too short."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid answers should throw an DbEntityValidationException exception")]
         public void InvalidAnswer1()
         {
@@ -84,7 +84,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if it's invalid when the flag is out of range."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid answers should throw an DbEntityValidationException exception")]
         public void InvalidAnswer2()
         {

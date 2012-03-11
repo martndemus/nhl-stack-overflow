@@ -38,7 +38,7 @@ namespace NHLStackOverflow.tests.Models
             db.Dispose();
         }
 
-        [TestCategory("Model.Empty"), TestMethod]
+        [Description("Tests if the database refuses to store an empty question."), TestCategory("Model.Empty"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving a void question should throw an DbEntityValidationException exception")]
         public void EmptyQuestion()
         {
@@ -48,7 +48,7 @@ namespace NHLStackOverflow.tests.Models
         }
 
         [TestCategory("Model.Defaults"), TestMethod]
-        [Description("")]
+        [Description("Tests if all the default values for a new question are correct.")]
         public void DefaultsForNewQuestion()
         {
             Question q = new Question();
@@ -68,7 +68,7 @@ namespace NHLStackOverflow.tests.Models
             Assert.IsTrue(q.Created_At == DateTime.Now.ToString(), "Created At should be initialized to DateTime.Now.ToString()");
         }
 
-        [TestCategory("Model.Valid"), TestMethod]
+        [Description("Tests if questions that should be valid are valid."), TestCategory("Model.Valid"), TestMethod]
         public void ValidQuestions()
         {
             var validquestions = new List<Question>
@@ -83,7 +83,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a too short title is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid question should throw an DbEntityValidationException exception")]
         public void InvalidQuestion1()
         {
@@ -93,7 +93,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a title over 140 characters is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid question should throw an DbEntityValidationException exception")]
         public void InvalidQuestion2()
         {
@@ -103,7 +103,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if too short content is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid question should throw an DbEntityValidationException exception")]
         public void InvalidQuestion3()
         {
@@ -113,7 +113,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a flag out of range is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid question should throw an DbEntityValidationException exception")]
         public void InvalidQuestion4()
         {
@@ -123,7 +123,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if answered out of range is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid question should throw an DbEntityValidationException exception")]
         public void InvalidQuestion5()
         {

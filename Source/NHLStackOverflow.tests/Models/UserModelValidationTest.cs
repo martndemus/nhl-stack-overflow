@@ -1,8 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NHLStackOverflow.Models;
-using System.Collections.Generic;
 using NHLStackOverflow.Classes;
+using NHLStackOverflow.Models;
 
 namespace NHLStackOverflow.tests.Models
 {
@@ -37,7 +36,7 @@ namespace NHLStackOverflow.tests.Models
             db.Dispose();
         }
 
-        [TestCategory("Model.Empty"), TestMethod]
+        [Description("Tests if the database refuses to store an empty user."), TestCategory("Model.Empty"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving a void user should throw an DbEntityValidationException exception")]
         public void EmptyUser()
         {
@@ -45,7 +44,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Defaults"), TestMethod]
+        [Description("Tests if all the default values for a new user are correct."), TestCategory("Model.Defaults"), TestMethod]
         public void DefaultsForNewUser()
         {
             User u = new User();
@@ -72,7 +71,7 @@ namespace NHLStackOverflow.tests.Models
             Assert.IsNull(u.Languages, "Languages should be initialize to null");
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Test if a missing username is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUser1()
         {
@@ -82,7 +81,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Test if a missing password is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUser2()
         {
@@ -92,7 +91,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a leading space in a username is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserName1()
         {
@@ -102,7 +101,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a trailing space in a username is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserName2()
         {
@@ -112,7 +111,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a space in a username is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserName3()
         {
@@ -122,17 +121,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
-        [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
-        public void InvalidUserName4()
-        {
-            User u = new User { UserName = " Sjakie23", Password = PasswordHasher.Hash("test"), Email = "test@testmail.com" };
-
-            db.Users.Add(u);
-            db.SaveChanges();
-        }
-
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a leading underscore in a username is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserName5()
         {
@@ -142,7 +131,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a leading dash in a username is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserName6()
         {
@@ -152,7 +141,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if special characters in a username is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserName7()
         {
@@ -162,7 +151,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a username starting with a numerical is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserName8()
         {
@@ -172,7 +161,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if a username shorter then 5 characters is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserName9()
         {
@@ -182,7 +171,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if an unhashed password is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserPassword()
         {
@@ -192,7 +181,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if an missing email is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserEmail1()
         {
@@ -202,7 +191,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Test if an invalid email adress is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserEmail2()
         {
@@ -212,7 +201,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Test if an invalid email adress is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserEmail3()
         {
@@ -222,7 +211,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Test if an invalid email adress is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserEmail4()
         {
@@ -232,7 +221,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Test if an invalid website adress is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserWebsite1()
         {
@@ -242,7 +231,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Test if an invalid website adress is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserWebsite2()
         {
@@ -252,7 +241,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Test if an invalid location is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserLocation()
         {
@@ -262,7 +251,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Test if a lowercased name is invalid."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserRealName()
         {

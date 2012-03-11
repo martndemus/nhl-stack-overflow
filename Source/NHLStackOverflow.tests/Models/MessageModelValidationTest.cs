@@ -38,7 +38,7 @@ namespace NHLStackOverflow.tests.Models
             db.Dispose();
         }
 
-        [TestCategory("Model.Empty"), TestMethod]
+        [Description("Tests if the database refuses to store an empty message."), TestCategory("Model.Empty"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving a void message should throw an DbEntityValidationException exception")]
         public void EmptyMessage()
         {
@@ -46,7 +46,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Defaults"), TestMethod]
+        [Description("Tests if all the default values for a new message are correct."), TestCategory("Model.Defaults"), TestMethod]
         public void DefaultsForMessage()
         {
             Message testMessage = new Message();
@@ -54,7 +54,7 @@ namespace NHLStackOverflow.tests.Models
             Assert.IsTrue(testMessage.Created_At == DateTime.Now.ToString(), "De Datum zou gelijk moeten zijn aan de DateTime.Now.ToString()");
         }
 
-        [TestCategory("Model.Valid"), TestMethod]
+        [Description("Tests if messages that should be valid are valid."), TestCategory("Model.Valid"), TestMethod]
         public void ValidMessages()
         {
             var validmessages = new List<Message>
@@ -67,7 +67,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if it's invalid when the receiver id is missing."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid message should throw an DbEntityValidationException exception")]
         public void InvalidMessage1()
         {
@@ -77,7 +77,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if it's invalid when the sender id is missing."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid message should throw an DbEntityValidationException exception")]
         public void InvalidMessage2()
         {
@@ -87,7 +87,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if it's invalid when the title is too short."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid message should throw an DbEntityValidationException exception")]
         public void InvalidMessage3()
         {
@@ -97,7 +97,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if it's invalid when the content for a message is too short"), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid message should throw an DbEntityValidationException exception")]
         public void InvalidMessage4()
         {
@@ -107,7 +107,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if it's invalid when the title of the message is over 140 characters long."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid message should throw an DbEntityValidationException exception")]
         public void InvalidMessage5()
         {

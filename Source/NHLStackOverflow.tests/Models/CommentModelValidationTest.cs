@@ -36,7 +36,7 @@ namespace NHLStackOverflow.tests.Models
             db.Dispose();
         }
 
-        [TestCategory("Model.Empty"), TestMethod]
+        [Description("Tests if the database refuses to store an empty comment."), TestCategory("Model.Empty"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving a void comment should throw an DbEntityValidationException exception")]
         public void EmptyComment()
         {
@@ -46,7 +46,7 @@ namespace NHLStackOverflow.tests.Models
         }
 
         [TestCategory("Model.Defaults"), TestMethod]
-        [Description("")]
+        [Description("Tests if all the default values for a new comment are correct.")]
         public void DefaultsForNewComment()
         {
             Comment c = new Comment();
@@ -60,7 +60,7 @@ namespace NHLStackOverflow.tests.Models
             Assert.IsTrue(c.Created_At == DateTime.Now.ToString(), "Created At should be initialized to DateTime.Now.ToString()");
         }
 
-        [TestCategory("Model.Valid"), TestMethod]
+        [Description("Tests if comments that should be valid are valid."), TestCategory("Model.Valid"), TestMethod]
         public void ValidComment()
         {
             var validcomments = new List<Comment>
@@ -73,7 +73,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if it's invalid when the comment has both a question and answer id."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid comment should throw an DbEntityValidationException exception")]
         public void Invalidcomment1()
         {
@@ -83,7 +83,7 @@ namespace NHLStackOverflow.tests.Models
             db.SaveChanges();
         }
 
-        [TestCategory("Model.Invalid"), TestMethod]
+        [Description("Tests if it's invalid when the content is less then 10 characters long."), TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid comment should throw an DbEntityValidationException exception")]
         public void Invalidcomment2()
         {
