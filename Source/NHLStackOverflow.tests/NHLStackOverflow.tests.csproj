@@ -83,6 +83,7 @@
     <Compile Include="Models\QuestionModelValidationTest.cs" />
     <Compile Include="Models\QuestionTagModelValidationTest.cs" />
     <Compile Include="Models\ReadModelValidationTest.cs" />
+    <Compile Include="Models\TagModelValidationTest.cs" />
     <Compile Include="Models\UserMetaModelValidationTest.cs" />
     <Compile Include="Models\UserModelValidationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

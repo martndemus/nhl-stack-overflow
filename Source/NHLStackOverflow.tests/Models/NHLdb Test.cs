@@ -15,6 +15,7 @@ namespace NHLStackOverflow.tests.Test_References
         public void TestInitialize()
         {
             this.db = new NHLdb();
+            db.Database.Initialize(true);
         }
 
         [TestCleanup]
@@ -23,13 +24,13 @@ namespace NHLStackOverflow.tests.Test_References
             this.db.Dispose();
         }
 
-        [TestMethod]
+        [TestCategory("Model.General"), TestMethod]
         public void DB_initializes()
         {
             Assert.IsNotNull(db, "Database context failed to initialize");
         }
 
-        [TestMethod]
+        [TestCategory("Model.General"), TestMethod]
         public void ModelsArePresent()
         {
             Assert.IsNotNull(db.Answers, "Answer model does not exist");

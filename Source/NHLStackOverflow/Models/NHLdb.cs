@@ -68,9 +68,9 @@ namespace NHLStackOverflow.Models
 
             var read = new List<Read>
             {
-                new Read { UserId = 1, Question = 1},
-                new Read { UserId = 2, Question = 2},
-                new Read { UserId = 3, Question = 3}
+                new Read { UserId = 1, QuestionId = 1},
+                new Read { UserId = 2, QuestionId = 2},
+                new Read { UserId = 3, QuestionId = 3}
             };
 
             read.ForEach(s => context.Read.Add(s));

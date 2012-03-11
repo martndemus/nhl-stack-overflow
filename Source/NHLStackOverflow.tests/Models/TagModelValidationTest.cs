@@ -1,14 +1,10 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHLStackOverflow.Models;
 
 namespace NHLStackOverflow.tests.Models
 {
     [TestClass]
-    public class QuestionTagModelValidationTest
+    public class TagModelValidationTest
     {
         private static NHLdb db;
 
@@ -40,36 +36,45 @@ namespace NHLStackOverflow.tests.Models
 
         [TestCategory("Model.Empty"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving a void tag should throw an DbEntityValidationException exception")]
-        public void EmptyQuestionTag()
+        public void EmptyTagModel()
         {
             // Will throw an exception, because some required fields are null;      
-            db.QuestionTags.Add(new QuestionTag { });
+            db.Tags.Add(new Tag { });
             db.SaveChanges();
         }
 
         [TestCategory("Model.Valid"), TestMethod]
-        public void ValidQuestionTag()
+        public void ValidTag()
         {
-            QuestionTag q = new QuestionTag { QuestionId = 1, TagId = 3 };
-            db.QuestionTags.Add(q);
+            Tag t = new Tag { Name = "C#", Description = "Ewwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww", Count = 3234 };
+            db.Tags.Add(t);
             db.SaveChanges();
         }
 
         [TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving an invalid tag should throw an DbEntityValidationException exception")]
-        public void InvalidQuestionTag1()
+        public void InvalidTag1()
         {
-            QuestionTag q = new QuestionTag { QuestionId = 1 };
-            db.QuestionTags.Add(q);
+            Tag t = new Tag { Name = "C#", Description = "Too short", Count = 3234 };
+            db.Tags.Add(t);
             db.SaveChanges();
         }
 
         [TestCategory("Model.Invalid"), TestMethod]
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving an invalid tag should throw an DbEntityValidationException exception")]
-        public void InvalidQuestionTag()
+        public void InvalidTag2()
         {
-            QuestionTag q = new QuestionTag { TagId = 3 };
-            db.QuestionTags.Add(q);
+            Tag t = new Tag { Name = "", Description = "A short description of a tag", Count = 3234 };
+            db.Tags.Add(t);
+            db.SaveChanges();
+        }
+
+        [TestCategory("Model.Invalid"), TestMethod]
+        [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving an invalid tag should throw an DbEntityValidationException exception")]
+        public void InvalidTag3()
+        {
+            Tag t = new Tag { Name = "Ruby", Description = "A short description of a tag" };
+            db.Tags.Add(t);
             db.SaveChanges();
         }
     }

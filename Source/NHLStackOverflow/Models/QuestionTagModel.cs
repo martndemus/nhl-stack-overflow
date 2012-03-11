@@ -12,10 +12,5 @@ namespace NHLStackOverflow.Models
         public int QuestionId { get; set; }
         [Required]
         public int TagId { get; set; }
-
-        //[Required]
-        //public Question Question { get; set; }
-        //[Required]
-        //public Tag Tag { get; set; }
     }
 }

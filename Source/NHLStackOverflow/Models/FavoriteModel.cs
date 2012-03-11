@@ -1,14 +1,16 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace NHLStackOverflow.Models
 {
-    public class Favorite
+    public class Favorite : IValidatableObject
     {
         public Favorite()
         {
             this.Created_At = DateTime.Now.ToString();
         }
+
         // GUID
         [Required]
         public int FavoriteID { get; set; }
@@ -22,11 +24,13 @@ namespace NHLStackOverflow.Models
         public int UserId { get; set; }
         [Required]
         public int QuestionId { get; set; }
-        
 
-        //[Required]
-        //public User User { get; set; }
-        //[Required]
-        //public Question Post { get; set; }
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (UserId == 0 || QuestionId == 0)
+            {
+                yield return new ValidationResult("Missing relations to User && Question");
+            }
+        }
     }
 }

@@ -11,10 +11,6 @@ namespace NHLStackOverflow.Models
         [Required]
         public int UserId { get; set; }
         [Required]
-        public int Question { get; set; }
-        //[Required]
-        //public User User { get; set; }
-        //[Required]
-        //public Question Question { get; set; }
+        public int QuestionId { get; set; }
     }
 }

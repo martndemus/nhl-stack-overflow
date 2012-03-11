@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NHLStackOverflow.Models
 {
-    public class Comment
+    public class Comment : IValidatableObject
     {
         public Comment()
         {
@@ -17,7 +17,7 @@ namespace NHLStackOverflow.Models
 
         // Data
         [Required]
-        [MinLength(50)]
+        [MinLength(10)]
         public string Content { get; set; }
         public int Votes { get; set; }
 
@@ -31,11 +31,6 @@ namespace NHLStackOverflow.Models
         public int UserId { get; set; }
         public int QuestionId { get; set; }
         public int AnswerId { get; set; }
-
-        //[Required]
-        //public User User { get; set; }
-        //public Question Question { get; set; }
-        //public Answer Answer { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
