@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "KwijtVeranderen";
+    Layout = "~/Views/Layouts/_Login.cshtml";
+}
+
+<h2>Vul het nieuwe wachtwoord in.</h2>
+
+@using (Html.BeginForm())
+{
+   
+    <div class="form">
+            @Html.ValidationSummary(true)
+            @Html.Password("Password1", "", new { placeholder = "Wachtwoord" })
+            <hr>            
+            @Html.Password("Password2", "", new { placeholder = "Herhaal wachtwoord" })
+            <hr>
+            <input type="submit" value="Reset" id="submit">
+    </div>
+}

@@ -170,6 +170,18 @@
   <ItemGroup>
     <Content Include="Views\Vraag\View.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Login\KwijtVeranderen.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\PassLostHasher.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Login\WachtwoordVeranderd.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Registreer\Gelukt.cshtml" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

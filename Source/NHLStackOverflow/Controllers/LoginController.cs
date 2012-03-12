@@ -23,7 +23,7 @@ namespace NHLStackOverflow.Controllers
         // POST: /Login/
 
         [HttpPost]
-        public ActionResult Index(Login user, string returnUrl)
+        public ActionResult Index(Login user)
         {
             // Check if both Username and Password are present
             if (user.Password != null && user.UserName != null)
@@ -71,10 +71,65 @@ namespace NHLStackOverflow.Controllers
         // POST: /login/wachtwoordkwijt
 
         [HttpPost]
-        public ActionResult WachtwoordKwijt(User user)
+        public ActionResult WachtwoordKwijt(PassLostEmail user)
         {
             // Todo wachtwoordkwijt mailer maken
+            var passLostPerson = from userPassLost in db.Users
+                                 where userPassLost.Email == user.Email && userPassLost.Activated == 1 
+                                 && userPassLost.PassLost == null
+                                 select userPassLost;
+            if (passLostPerson.Count() != 1)
+                ModelState.AddModelError("", "Er is geen juiste user gevonden.");
 
+            if(ModelState.IsValid)
+            {
+                passLostPerson.First().PassLost = PassLostHasher.Hash(passLostPerson.First().Password + passLostPerson.First().Email);
+                db.SaveChanges();
+                // then mail the link correct link :<
+            }
+
+
+            return View();
+        }
+
+        //
+        // GET: /login/kwijtVeranderen
+        public ActionResult KwijtVeranderen(string id)
+        {
+            return View();
+        }
+
+        // 
+        // POST: /login/kwijtveranderen
+        [HttpPost]
+        public ActionResult KwijtVeranderen(string id, PassLost user)
+        {
+            if (user.Password1 != user.Password2)
+                ModelState.AddModelError("", "Het eerste en het tweede wachtwoord kwamen niet overeen.");
+
+            var kwijtUser = from userKwijt in db.Users
+                            where userKwijt.PassLost == id
+                            select userKwijt;
+            if (kwijtUser.Count() != 1)
+                ModelState.AddModelError("", "De parameter string komt niet overeen met een gebruiker.");
+
+            if (ModelState.IsValid)
+            {
+                kwijtUser.First().Password = PasswordHasher.Hash(user.Password1);
+                kwijtUser.First().PassLost = null;
+                db.SaveChanges();
+
+                // to a static page saying it has been changed
+                return RedirectToAction("wachtwoordveranderd", "Login");
+            }
+
+            return View();
+        }
+
+        // 
+        // GET: /login/wachtwoordveranderd
+        public ActionResult WachtwoordVeranderd()
+        {
             return View();
         }
 
