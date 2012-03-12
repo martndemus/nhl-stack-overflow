@@ -14,7 +14,7 @@
 
         <script src="@Href("~/Scripts/modernizr.js")" type="text/javascript"></script>
     </head>
-    <body>
+    <body class="user">
 
         @Html.Partial("_NavPartial")
 
@@ -23,7 +23,22 @@
         </header>
 
         <div id="l-main">
-            @RenderBody()
+            <section id="l-sidebar">
+                <div class="widget">
+                    <ul class="useropts">
+                        <li><a href="#">Profiel</a>
+                        <li><a href="#">Account Instelling</a>
+                        <li><a href="#">Statistieken</a>
+                        <li><a href="#">Beheer</a>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="l-content">
+                <section class="content">
+                    @RenderBody()
+                </section>
+            </section>
         </div>
 
         <footer id="l-footer">
