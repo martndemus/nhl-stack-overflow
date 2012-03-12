@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="Classes\PasswordHasher.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VraagController.cs" />
     <Compile Include="Controllers\RegistreerController.cs" />
@@ -172,6 +173,22 @@
     <Content Include="Views\Vraag\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Login\KwijtVeranderen.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\PassLostHasher.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Login\WachtwoordVeranderd.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Registreer\Gelukt.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tags\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Tags\Search.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

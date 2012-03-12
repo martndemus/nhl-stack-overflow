@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "search";
+    Layout = "~/Views/Layouts/_Main.cshtml";
+}
+
+<h2>search</h2>
+<ul>
+@foreach (var question in ViewBag.TagSearch)
+{
+    <li><h3>@question.Title</h3>
+    @question.Content
+    
+    </li>
+}
+</ul>

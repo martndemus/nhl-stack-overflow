@@ -50,6 +50,7 @@ namespace NHLStackOverflow.Controllers
                 user.Password = PasswordHasher.Hash(user.Password);
                 db.Users.Add(user);
                 db.SaveChanges();
+                return RedirectToAction("gelukt");
             }
             // if we got here the fields were incorrect. Reshow the form.
             return View();
@@ -83,6 +84,13 @@ namespace NHLStackOverflow.Controllers
                 db.SaveChanges();
             }
             // if we get here the fields were invalid. Return to the form
+            return View();
+        }
+
+        //
+        // GET: /Registreer/Gelukt
+        public ActionResult gelukt()
+        {
             return View();
         }
 

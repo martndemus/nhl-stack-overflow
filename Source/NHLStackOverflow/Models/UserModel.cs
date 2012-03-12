@@ -49,6 +49,9 @@ namespace NHLStackOverflow.Models
 
         public string Languages { get; set; }
 
+        // gets set if the person uses the passLost page
+        public string PassLost { get; set; }
+
         // Timestamps
         [Required]
         public string Created_At { get; set; }
