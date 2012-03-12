@@ -9,8 +9,8 @@ namespace NHLStackOverflow.Models
 
         // Relations
         [Required]
-        public int QuestionId { get; set; }
+        public int? QuestionId { get; set; }
         [Required]
-        public int TagId { get; set; }
+        public int? TagId { get; set; }
     }
 }

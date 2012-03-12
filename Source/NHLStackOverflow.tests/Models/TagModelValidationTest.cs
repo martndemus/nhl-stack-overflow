@@ -68,14 +68,5 @@ namespace NHLStackOverflow.tests.Models
             db.Tags.Add(t);
             db.SaveChanges();
         }
-
-        [Description("Tests if a missing count is invalid."), TestCategory("Model.Invalid"), TestMethod]
-        [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving an invalid tag should throw an DbEntityValidationException exception")]
-        public void InvalidTag3()
-        {
-            Tag t = new Tag { Name = "Ruby", Description = "A short description of a tag" };
-            db.Tags.Add(t);
-            db.SaveChanges();
-        }
     }
 }

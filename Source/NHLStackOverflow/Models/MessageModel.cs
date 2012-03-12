@@ -29,9 +29,9 @@ namespace NHLStackOverflow.Models
 
         // Relations
         [Required]
-        public int SenderId { get; set; }
+        public int? SenderId { get; set; }
         [Required]
-        public int ReceiverId { get; set; }
-        public int QuestionId { get; set; }
+        public int? ReceiverId { get; set; }
+        public int? QuestionId { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace NHLStackOverflow.Models
 {
-    public class Favorite : IValidatableObject
+    public class Favorite
     {
         public Favorite()
         {
@@ -21,16 +21,8 @@ namespace NHLStackOverflow.Models
 
         // Relations
         [Required]
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         [Required]
-        public int QuestionId { get; set; }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            if (UserId == 0 || QuestionId == 0)
-            {
-                yield return new ValidationResult("Missing relations to User && Question");
-            }
-        }
+        public int? QuestionId { get; set; }
     }
 }
