@@ -507,13 +507,19 @@
     }
 };
 
+var pjaxGetTitle = function (text) {
+    // TODO parse title tag from first line
+
+    return text;
+};
+
 var pjaxify = function (id) {
     id = id || 'content';
 
     var links = document.getElementById(id).getElementsByTagName('a');
 
     for (var i = 0; i < links.length; i++) {
-        λ.pjax.set(links[i], { container: 'content', postprocessor: pjaxify });
+        λ.pjax.set(links[i], { container: 'content', preprocessor: pjaxGetTitle, postprocessor: pjaxify });
     }
 };
 
@@ -525,7 +531,7 @@ var initpjax = function () {
 
     for (var i = 0; i < links.length; i++) {
         if (!(/login|user/).test(links[i].href)) {
-            λ.pjax.set(links[i], { container: 'content', postprocessor: pjaxify });
+            λ.pjax.set(links[i], { container: 'content', preprocessor: pjaxGetTitle, postprocessor: pjaxify });
         }
     }
 };
@@ -533,6 +539,9 @@ var initpjax = function () {
 var getSidebar = function () {
     var sidebar = document.getElementById('l-sidebar'),
         widgets = ['/widget/user/', '/widget/tags/'];
+
+    if (!sidebar || document.body.className === 'user')
+        return;
 
     for (var i = 0; i < widgets.length; i++) {
         λ.xhr({ url: widgets[i] }, function (err, res) {
@@ -551,6 +560,5 @@ var getSidebar = function () {
     getSidebar();
     λ.formPlaceHolders();
     initpjax();
-
 
 });
