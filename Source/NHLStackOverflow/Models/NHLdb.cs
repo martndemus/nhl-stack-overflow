@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Collections.Generic;
 using NHLStackOverflow.Classes;
+using System;
 
 namespace NHLStackOverflow.Models
 {
@@ -88,9 +89,9 @@ namespace NHLStackOverflow.Models
 
             var question = new List<Question>
             {
-                new Question { UserId = 1, Title = "Hello world!1", Content = "1Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?" },
-                new Question { UserId = 2, Title = "Hello world!2", Content = "2Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?" },
-                new Question { UserId = 3, Title = "Hello world!3", Content = "3Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?" }
+                new Question { UserId = 1, Title = "Hello world!1", Content = "1Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = "01-2-2012 14:02:00"},
+                new Question { UserId = 2, Title = "Hello world!2", Content = "2Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = "06-1-2012 14:00:00"},
+                new Question { UserId = 3, Title = "Hello world!3", Content = "3Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = "12-1-2012 14:10:00"}
             };
 
             question.ForEach(s => context.Questions.Add(s));

@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using NHLStackOverflow.Models;
+using NHLStackOverflow.Classes;
+using System;
 
 namespace NHLStackOverflow.Controllers
 { 
@@ -23,6 +25,11 @@ namespace NHLStackOverflow.Controllers
             var QuestionList = from questions in db.Questions
                                orderby questions.Created_At descending
                                select questions;
+            foreach (Question vraag in QuestionList)
+            {
+                vraag.Created_At = StringToDateTime.toSmootherTime(StringToDateTime.toDateTime(vraag.Created_At));
+            }
+ 
             ViewBag.QuestionList = QuestionList;
 
             return View();
