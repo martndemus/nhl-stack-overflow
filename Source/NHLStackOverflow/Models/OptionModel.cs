@@ -9,7 +9,6 @@ namespace NHLStackOverflow.Models
 
         // Data
         [Required]
-        [Key]
         public string Name { get; set; }
 
         [Required]

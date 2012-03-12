@@ -22,7 +22,7 @@ namespace NHLStackOverflow
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "home", action = "index", id = UrlParameter.Optional } // Parameter defaults
+                new { controller = "default", action = "index", id = UrlParameter.Optional } // Parameter defaults
             );
         }
 

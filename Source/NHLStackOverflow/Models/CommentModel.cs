@@ -29,8 +29,8 @@ namespace NHLStackOverflow.Models
         // Relations
         [Required]
         public int? UserId { get; set; }
-        public int? QuestionId { get; set; }
-        public int? AnswerId { get; set; }
+        public int QuestionId { get; set; }
+        public int AnswerId { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
