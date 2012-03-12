@@ -34,7 +34,7 @@ namespace NHLStackOverflow.Models
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (QuestionId != 0 && AnswerId != 0 || QuestionId == 0 && AnswerId == 0)
+            if (QuestionId != null && AnswerId != null || QuestionId == 0 && AnswerId == 0)
             {
                 yield return new ValidationResult("");
             }

@@ -1,0 +1,6 @@
+ASP vragen toegevoegd aan agenda
+
+MySql: Werkt niet geeft een error. Robert zal er nog even verder naar kijken.
+Mailer: Moet even naar gekeken. Moet een mogelijkheid volgens Robert
+url´s: Moeten eindigen om .aspx --> Zal Robert nog even naar moeten kijken, wist hier zo geen antwoord op
+Partial: Moeten we wel telkens opnieuw aanroepen.
