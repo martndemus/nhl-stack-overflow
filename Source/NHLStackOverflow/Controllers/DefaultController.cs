@@ -15,14 +15,10 @@ namespace NHLStackOverflow.Controllers
 
         public ViewResult Index()
         {
-            var TagsList = from tags in db.Tags
-                           orderby tags.Count descending
-                           select tags;
-            ViewBag.TagList = TagsList;
-
             var QuestionList = from questions in db.Questions
                                orderby questions.Created_At descending
                                select questions;
+
             foreach (Question vraag in QuestionList)
             {
                 vraag.Created_At = StringToDateTime.toSmootherTime(StringToDateTime.toDateTime(vraag.Created_At));

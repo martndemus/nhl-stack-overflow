@@ -507,8 +507,10 @@
     }
 };
 
-var pjaxify = function () {
-    var links = document.getElementById('content').getElementsByTagName('a');
+var pjaxify = function (id) {
+    id = id || 'content';
+
+    var links = document.getElementById(id).getElementsByTagName('a');
 
     for (var i = 0; i < links.length; i++) {
         λ.pjax.set(links[i], { container: 'content', postprocessor: pjaxify });
@@ -528,8 +530,27 @@ var initpjax = function () {
     }
 };
 
-λ.onDocReady.addCallback(function () {
-    λ.formPlaceHolders();
+var getSidebar = function () {
+    var sidebar = document.getElementById('l-sidebar'),
+        widgets = ['/widget/user/', '/widget/tags/'];
 
+    for (var i = 0; i < widgets.length; i++) {
+        λ.xhr({ url: widgets[i] }, function (err, res) {
+            if (err) {
+                return;
+            }
+
+            sidebar.innerHTML += res;
+
+            pjaxify('l-sidebar');
+        });
+    }
+};
+
+λ.onDocReady.addCallback(function () {
+    getSidebar();
+    λ.formPlaceHolders();
     initpjax();
+
+
 });

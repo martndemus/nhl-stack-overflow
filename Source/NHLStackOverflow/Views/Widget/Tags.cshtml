@@ -1,0 +1,13 @@
+﻿@{
+    Layout = null;
+}
+<div class="widget">
+    <h3>Populaire Tags</h3>
+    <ul class="tags">
+        @foreach (var tag in ViewBag.TagList)
+        {
+            <li>@Html.ActionLink((string)tag.Name, "search", "tags", new { id = tag.TagID }, new { target = "blank" }) x @tag.Count</li>
+        }
+    </ul>                         
+</div>
+<ul class="tags">

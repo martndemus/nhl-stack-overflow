@@ -89,6 +89,7 @@
     <Compile Include="Controllers\VraagController.cs" />
     <Compile Include="Controllers\RegistreerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\WidgetController.cs" />
     <Compile Include="FormDataModels\AccountActivation.cs" />
     <Compile Include="FormDataModels\Login.cs" />
     <Compile Include="Global.asax.cs">
@@ -196,6 +197,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_NavPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Widget\User.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Widget\Tags.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
