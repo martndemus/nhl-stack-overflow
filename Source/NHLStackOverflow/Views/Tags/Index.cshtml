@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layouts/_Main.cshtml";
+}
+
+<h2>Index</h2>
+<ul>
+@foreach (var tag in ViewBag.TagList)
+{
+    <li><h3>@Html.ActionLink((string)tag.Name, "Search", "Tags", new {id = tag.TagID}, new {target = "blank"}) x @tag.Count</h3>
+    @tag.Description
+    
+    </li>
+}
+</ul>
