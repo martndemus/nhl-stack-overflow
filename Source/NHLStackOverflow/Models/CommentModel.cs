@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NHLStackOverflow.Models
 {
-    public class Comment : IValidatableObject
+    public class Comment //: IValidatableObject
     {
         public Comment()
         {
@@ -32,12 +32,12 @@ namespace NHLStackOverflow.Models
         public int QuestionId { get; set; }
         public int AnswerId { get; set; }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            if (QuestionId != null && AnswerId != null || QuestionId == 0 && AnswerId == 0)
-            {
-                yield return new ValidationResult("");
-            }
-        }
+        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        //{
+        //    if ((QuestionId != null && AnswerId != null) || (QuestionId == 0 && AnswerId == 0))
+        //    {
+        //        yield return new ValidationResult("");
+        //    }
+        //}
     }
 }

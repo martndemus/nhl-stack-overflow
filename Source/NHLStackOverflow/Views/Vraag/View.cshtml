@@ -1,6 +1,13 @@
 ﻿@{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Layouts/_Main.cshtml";
+    if (Request.Headers["X-PJAX"] == null)
+    {
+        Layout = "~/Views/Layouts/_Main.cshtml";
+    }
+    else
+    {
+        Layout = null;
+    }
 }
 
 <h2>@ViewBag.QuestionDetail.Title</h2>

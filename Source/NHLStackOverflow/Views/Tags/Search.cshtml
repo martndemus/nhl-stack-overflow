@@ -1,6 +1,11 @@
 ﻿@{
     ViewBag.Title = "search";
-    Layout = "~/Views/Layouts/_Main.cshtml";
+    
+    if (Request.Headers["X-PJAX"] == null) {
+        Layout = "~/Views/Layouts/_Main.cshtml";
+    } else {
+        Layout = null;
+    }
 }
 
 <h2>search</h2>
@@ -8,8 +13,7 @@
 @foreach (var question in ViewBag.TagSearch)
 {
     <li><h3>@question.Title</h3>
-    @question.Content
-    
+        @question.Content
     </li>
 }
 </ul>
