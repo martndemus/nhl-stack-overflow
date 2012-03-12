@@ -15,31 +15,8 @@
         <script src="@Href("~/Scripts/modernizr.js")" type="text/javascript"></script>
     </head>
     <body>
-        <div class="l-nav desktop">
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a>
-                    <li><a href="#">Vraag</a>
-                    <li><a href="#">Tags</a>
-                </ul>
 
-                <ul class="right">
-                    <li><input id="search" placeholder="Zoek">
-                    <li>@Html.Partial("_LogInPartial")
-                </ul>
-            </nav>
-        </div>
-        <div class="l-nav mobile">
-            <nav>
-                <ul>
-                    <li><a class="active" href="#">Home</a>
-                    <li><a href="#">Vraag</a>
-                    <li><a href="#">Tags</a>
-                    <li><input id="search" placeholder="Zoek">
-                    <li>@Html.Partial("_LogInPartial")
-                </ul>
-            </nav>
-        </div>
+        @Html.Partial("_NavPartial")
 
         <header id="logo">
             <h1>Question Jam</h1>

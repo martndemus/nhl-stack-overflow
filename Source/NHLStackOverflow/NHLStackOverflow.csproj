@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="Classes\PasswordHasher.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VraagController.cs" />
     <Compile Include="Controllers\RegistreerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -169,6 +170,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Vraag\View.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Layouts\_User.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
