@@ -4,6 +4,11 @@ namespace NHLStackOverflow.Models
 {
     public class Tag
     {
+        public Tag()
+        {
+            this.Count = 1;
+        }
+
         // GUID
         public int TagID { get; set; }
 
@@ -19,6 +24,6 @@ namespace NHLStackOverflow.Models
         public string Description { get; set; }
 
         [Required]
-        public int Count { get; set; }
+        public int? Count { get; set; }
     }
 }
