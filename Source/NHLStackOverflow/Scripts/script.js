@@ -516,10 +516,15 @@ var pjaxify = function () {
 };
 
 var initpjax = function () {
+    if ((/login|user/).test(location.href))
+        return;
+
     var links = document.getElementsByTagName('a');
 
     for (var i = 0; i < links.length; i++) {
-        λ.pjax.set(links[i], { container: 'content', postprocessor: pjaxify });
+        if (!(/login|user/).test(links[i].href)) {
+            λ.pjax.set(links[i], { container: 'content', postprocessor: pjaxify });
+        }
     }
 };
 
