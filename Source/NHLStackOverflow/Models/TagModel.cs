@@ -14,14 +14,11 @@ namespace NHLStackOverflow.Models
 
         [Required]
         // still needs being sanitized
-        [MinLength(2, ErrorMessage="The minimum lenght is 2 characters")]
+        [MinLength(10, ErrorMessage="The minimum lenght is 10 characters")]
         [MaxLength(500, ErrorMessage="The maximum lenght is 500 characters")]
         public string Description { get; set; }
 
         [Required]
         public int Count { get; set; }
-
-        // Relations
-        //public ICollection<QuestionTag> Tags { get; set; }
     }
 }

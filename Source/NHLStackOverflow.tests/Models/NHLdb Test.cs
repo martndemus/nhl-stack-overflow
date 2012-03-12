@@ -15,6 +15,7 @@ namespace NHLStackOverflow.tests.Test_References
         public void TestInitialize()
         {
             this.db = new NHLdb();
+            db.Database.Initialize(true);
         }
 
         [TestCleanup]
@@ -23,13 +24,13 @@ namespace NHLStackOverflow.tests.Test_References
             this.db.Dispose();
         }
 
-        [TestMethod]
+        [Description("Tests if the database initializes correctly."), TestCategory("Model.General"), TestMethod]
         public void DB_initializes()
         {
             Assert.IsNotNull(db, "Database context failed to initialize");
         }
 
-        [TestMethod]
+        [Description("Tests if models are represented in the database."), TestCategory("Model.General"), TestMethod]
         public void ModelsArePresent()
         {
             Assert.IsNotNull(db.Answers, "Answer model does not exist");
@@ -37,10 +38,12 @@ namespace NHLStackOverflow.tests.Test_References
             Assert.IsNotNull(db.Comments, "Comments model does not exist");
             Assert.IsNotNull(db.Favorites, "Favorites model does not exist");
             Assert.IsNotNull(db.Messages, "Messages model does not exist");
+            Assert.IsNotNull(db.Options, "Users model does not exist");
             Assert.IsNotNull(db.Questions, "Questions model does not exist");
             Assert.IsNotNull(db.QuestionTags, "QuestionTags model does not exist");
             Assert.IsNotNull(db.Read, "Read model does not exist");
             Assert.IsNotNull(db.Tags, "Tags model does not exist");
+            Assert.IsNotNull(db.UserMeta, "Users model does not exist");
             Assert.IsNotNull(db.Users, "Users model does not exist");
         }
     }

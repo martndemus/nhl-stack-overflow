@@ -19,7 +19,7 @@ namespace NHLStackOverflow.Models
         [MaxLength(140)]
         public string Title { get; set; }
         [Required]
-        [MinLength(50)]
+        [MinLength(10)]
         public string Content { get; set; }
 
         // Timestamps
@@ -33,11 +33,5 @@ namespace NHLStackOverflow.Models
         [Required]
         public int ReceiverId { get; set; }
         public int QuestionId { get; set; }
-        
-        //[Required]
-        //public User Sender { get; set; }
-        //[Required]
-        //public User Receiver { get; set; }
-        //public Question Post { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace NHLStackOverflow.Models
 
         // Data
         [Required]
-        [MinLength(140)]
+        [MinLength(140, ErrorMessage="De inhoud van een antwoord moet minstens 140 karakters lang zijn.")]
         public string Content { get; set; }
 
         public int Votes { get; set; }
@@ -34,10 +34,5 @@ namespace NHLStackOverflow.Models
         public int UserId { get; set; }
         [Required]
         public int QuestionId { get; set; }
-
-        //[Required]
-        //public User User { get; set; }
-        //[Required]
-        //public Question Question { get; set; }
     }
 }

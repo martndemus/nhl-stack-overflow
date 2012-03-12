@@ -23,7 +23,7 @@ namespace NHLStackOverflow.Models
         public string UserName { get; set; }
 
         [Required(ErrorMessage="Een wachtwoord is verplicht.")]
-        [RegularExpression(@"^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+\/=]+$")] // Must consist of Base64 characters
+        [RegularExpression(@"^[a-zA-Z0-9+\/=]{86}==$")] // Must consist of Base64 characters
         public string Password { get; set; }
 
         [Required(ErrorMessage="Een e-mail is verplicht.")]

@@ -48,6 +48,13 @@ a:hover:visited { color: #D98CD9; }
     display: none;
 }
 
+.user #l-sidebar {
+    float:left;
+}
+
+.user #l-content {
+    float:right;
+}
 /*
     NAVIGATION
 */
@@ -398,6 +405,20 @@ ul.tags  {
 }
 
 /*
+    USER OPTION WIDGET
+*/
+.useropts li 
+{
+    font-size: 1.3em;
+    line-height: 30px;
+    border-bottom: 1px solid #DEE8ED;
+}
+
+.useropts a {
+    text-decoration: none;
+}
+
+/*
     SPECIFIC
 */
 
@@ -455,11 +476,17 @@ ul.tags  {
         float:left;
         width: 75%;
     }
+    
+
 
     #l-sidebar {
         display: block;
         width: 23%;
         margin: 0 0 0 77%;
+    }
+    
+    .user  #l-sidebar {
+       margin: 0; 
     }
 
     .q-author {

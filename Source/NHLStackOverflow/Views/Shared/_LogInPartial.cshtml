@@ -1,6 +1,6 @@
 ﻿@if (Request.IsAuthenticated)
 {
-    @Html.ActionLink(User.Identity.Name, "logout", "login")
+    @Html.ActionLink(User.Identity.Name, "index", "user")
 }
 else
 {

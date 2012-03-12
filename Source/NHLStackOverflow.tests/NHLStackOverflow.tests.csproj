@@ -83,6 +83,7 @@
     <Compile Include="Models\QuestionModelValidationTest.cs" />
     <Compile Include="Models\QuestionTagModelValidationTest.cs" />
     <Compile Include="Models\ReadModelValidationTest.cs" />
+    <Compile Include="Models\TagModelValidationTest.cs" />
     <Compile Include="Models\UserMetaModelValidationTest.cs" />
     <Compile Include="Models\UserModelValidationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +97,10 @@
       <Project>{D0A54808-A543-42FF-B63E-459F0F0C904F}</Project>
       <Name>NHLStackOverflow</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

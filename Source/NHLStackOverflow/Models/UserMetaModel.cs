@@ -4,28 +4,15 @@ namespace NHLStackOverflow.Models
 {
     public class UserMeta
     {
-        public UserMeta()
-        {
-            AantalAnswers = 0;
-            AantalBestAnswers = 0;
-            AantalQuestions = 0;
-            TotalVotes = 0;
-            AantalTags = 0;
-        }
-
         // guid
         public int UserMetaID { get; set; }
 
-        [Required]
-        public int AantalQuestions { get; set; }
-        [Required]
-        public int AantalBestAnswers { get; set; }
-        [Required]
-        public int TotalVotes { get; set; }
-        [Required]
-        public int AantalAnswers { get; set; }
-        [Required]
-        public int AantalTags { get; set; }
+        // Data
+        public int Questions { get; set; }
+        public int BestAnswers { get; set; }
+        public int Votes { get; set; }
+        public int Answers { get; set; }
+        public int Tags { get; set; }
 
         // Relations
         [Required]

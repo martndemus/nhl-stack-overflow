@@ -47,20 +47,20 @@ namespace NHLStackOverflow.Models
             var tags = new List<Tag>
             {
                 new Tag { Name = "C#", Description = "KUTPROGRAMMMEEERRRTTAAALLL", Count = 100 },
-                new Tag { Name = "JavaScript", Description = "Teh Awsum", Count = 1337 },
-                new Tag { Name = "Objective-C", Description = "Apple rules", Count = 10},
-                new Tag { Name = "C++", Description = "plusser de plus", Count = 9001},
-                new Tag { Name = "Python", Description = "ssshhhaagasiash", Count = 3},
-                new Tag { Name = "Ruby", Description = "Bling!", Count = 40},
-                new Tag { Name = "Smalltalk", Description = "blablablablablabla", Count = 20},
-                new Tag { Name = "ASP.NET", Description = "asp dot et net", Count = 666},
-                new Tag { Name = "PHP", Description = "peeehaaaapeeee", Count = 222},
-                new Tag { Name = "HTML", Description = "haaaateeeeeemel", Count = 901},
-                new Tag { Name = "CSS", Description = "ceeeeses", Count = 230},
-                new Tag { Name = "F#", Description = "wherearedene", Count = 777},
-                new Tag { Name = "Visual Basic", Description = "Gay Sick", Count = 1},
-                new Tag { Name = "Delphi", Description = "dolfijnflipper", Count = -5},
-                new Tag { Name = "ActionScript", Description = "flasherdeflash", Count = -9000},
+                new Tag { Name = "JavaScript", Description = "Teh Awsum123", Count = 1337 },
+                new Tag { Name = "Objective-C", Description = "Apple rules12342134", Count = 10},
+                new Tag { Name = "C++", Description = "plusser de plus12341234", Count = 9001},
+                new Tag { Name = "Python", Description = "ssshhhaagasiash12341234", Count = 3},
+                new Tag { Name = "Ruby", Description = "Bling!13412341234", Count = 40},
+                new Tag { Name = "Smalltalk", Description = "blablablablablabla112341235werfqwef", Count = 20},
+                new Tag { Name = "ASP.NET", Description = "asp dot et netasdfasdfasdf", Count = 666},
+                new Tag { Name = "PHP", Description = "peeehaaaapeeeeadfasdf", Count = 222},
+                new Tag { Name = "HTML", Description = "haaaateeeeeemelasdfasdf", Count = 901},
+                new Tag { Name = "CSS", Description = "ceeeeseasdfasdfs", Count = 230},
+                new Tag { Name = "F#", Description = "wherearedeneaadf", Count = 777},
+                new Tag { Name = "Visual Basic", Description = "Gay Sickadfasdf", Count = 1},
+                new Tag { Name = "Delphi", Description = "dolfijnflipperadfasdf", Count = -5},
+                new Tag { Name = "ActionScript", Description = "flasherdeflashasdfasdfa", Count = -9000},
             };
 
             tags.ForEach(s => context.Tags.Add(s) );
@@ -68,9 +68,9 @@ namespace NHLStackOverflow.Models
 
             var read = new List<Read>
             {
-                new Read { UserId = 1, Question = 1},
-                new Read { UserId = 2, Question = 2},
-                new Read { UserId = 3, Question = 3}
+                new Read { UserId = 1, QuestionId = 1},
+                new Read { UserId = 2, QuestionId = 2},
+                new Read { UserId = 3, QuestionId = 3}
             };
 
             read.ForEach(s => context.Read.Add(s));
@@ -128,9 +128,9 @@ namespace NHLStackOverflow.Models
 
             var comment = new List<Comment>
             {
-                new Comment { UserId = 1, QuestionId = 1, AnswerId = 1, Content = "1Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D"},
-                new Comment { UserId = 2, QuestionId = 2, AnswerId = 2, Content = "2Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D"},
-                new Comment { UserId = 3, QuestionId = 3, AnswerId = 3, Content = "3Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D"}
+                new Comment { UserId = 1, QuestionId = 1, Content = "1Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D"},
+                new Comment { UserId = 2, QuestionId = 2, Content = "2Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D"},
+                new Comment { UserId = 3, QuestionId = 3, Content = "3Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D"}
             };
 
             comment.ForEach(s => context.Comments.Add(s));

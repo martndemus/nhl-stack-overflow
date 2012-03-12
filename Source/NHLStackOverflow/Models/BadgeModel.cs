@@ -25,8 +25,5 @@ namespace NHLStackOverflow.Models
         // Relations
         [Required]
         public int UserId { get; set; }
-
-        //[Required]
-        //public User User { get; set; }
     }
 }

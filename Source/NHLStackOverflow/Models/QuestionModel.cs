@@ -25,7 +25,10 @@ namespace NHLStackOverflow.Models
 
         public int Votes { get; set; }
         public int Views { get; set; }
+
+        [Range(0,1)]
         public int Answered { get; set; }
+        [Range(0,1)]
         public int Flag { get; set; }
 
         // Timestamps
@@ -34,13 +37,7 @@ namespace NHLStackOverflow.Models
         public string LastEdited { get; set; }
 
         // Relations
-
         [Required]
         public int UserId { get; set; }
-        //[Required]
-        //public User User { get; set; }
-        //public ICollection<Answer> Answers { get; set; }
-        //public ICollection<Comment> Comments { get; set; }
-        //public ICollection<QuestionTag> Tags { get; set; }
     }
 }
