@@ -1,12 +1,34 @@
-﻿<ul>
+﻿
 @foreach (var question in ViewBag.QuestionList)
 {
-    <li>
-    <h3>@Html.ActionLink((string)question.Title, "view", "vraag", new { id = question.QuestionID }, new { target = "_blank" })</h3>
-    <p>
-    @question.Content
-    </p>   
-    </li>
+    <article class="question">
+    
+        <h3>@Html.ActionLink((string)question.Title, "view", "vraag", new { id = question.QuestionID }, new { target = "_blank" })</h3>
+        <p>
+            @question.Content
+        </p> 
+        <p class="stats">
+            <span title="Stemmen">
+                <img src="../../Styles/check.png" alt="Stemmen"/>@question.Votes
+            </span>
+            <span title="Antwoorden">
+                <img src="../../Styles/aplus.png" alt="Antwoorden"/>@question.Answered
+            </span>
+            <span title="Bekeken">
+                <img src="../../Styles/seen.png" alt="Bekeken"/>@question.Views
+            </span>
+            <time>
+                <b>@question.Created_At</b> geleden
+            </time>
+            door
+            <b><a href="#333">Eddie Sprietsma</a></b>
+        </p>
+        <p class="tags">
+            <a href="#222">C#</a>
+            <a href="#222">Inheritance</a>
+            <a href="#222">Polymorphism</a>
+        </p>
+    </article>  
+    
 
 }
-</ul>

@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\PasswordHasher.cs" />
+    <Compile Include="Classes\StringToDateTime.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VraagController.cs" />
     <Compile Include="Controllers\RegistreerController.cs" />
