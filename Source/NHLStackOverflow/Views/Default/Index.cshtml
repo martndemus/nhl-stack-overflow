@@ -1,12 +1,15 @@
 ﻿@{
+    ViewBag.Title = "Question Jam";
+    
     if (Request.Headers["X-PJAX"] == null) {
         Layout = "~/Views/Layouts/_Main.cshtml";
+        ViewBag.TitleTag = null;
     } else {
+        ViewBag.TitleTag = "{{" + ViewBag.Title + "}}";
         Layout = null;
-    }
-    
-    ViewBag.Title = "Question Jam";
+    }   
 }
+@ViewBag.TitleTag
 
 <h2>Nieuwste Vragen</h2>
 

@@ -508,7 +508,10 @@
 };
 
 var pjaxGetTitle = function (text) {
-    // TODO parse title tag from first line
+    text = text.replace(/{{([^}]*)}}/i, function (str, sub) {
+        document.title = sub;
+        return "";
+    });
 
     return text;
 };

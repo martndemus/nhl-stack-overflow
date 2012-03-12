@@ -1,12 +1,14 @@
 ﻿@{
     ViewBag.Title = "search";
-    
     if (Request.Headers["X-PJAX"] == null) {
         Layout = "~/Views/Layouts/_Main.cshtml";
+        ViewBag.TitleTag = null;
     } else {
+        ViewBag.TitleTag = "{{" + ViewBag.Title + "}}";
         Layout = null;
-    }
+    } 
 }
+@ViewBag.TitleTag
 
 <h2>search</h2>
 <ul>
