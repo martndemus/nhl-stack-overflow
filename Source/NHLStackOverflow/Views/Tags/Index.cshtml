@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Question Jam - Tags";
     if (Request.Headers["X-PJAX"] == null) {
         Layout = "~/Views/Layouts/_Main.cshtml";
         ViewBag.TitleTag = null;
@@ -10,13 +10,13 @@
 }
 @ViewBag.TitleTag
 
-<h2>Index</h2>
-<ul>
+<h2>Tags</h2>
+<div class="tagoverview">
 @foreach (var tag in ViewBag.TagList)
 {
-    <li><h3>@Html.ActionLink((string)tag.Name, "Search", "Tags", new { id = tag.TagID }, new { target = "blank" }) x @tag.Count</h3>
-    @tag.Description
-    
-    </li>
+    <div class="tag">
+        <p class="tags">@Html.ActionLink((string)tag.Name, "Search", "Tags", new { id = tag.TagID }, new { target = "blank" }) x @tag.Count</p>
+        <p>@tag.Description
+    </div>
 }
-</ul>
+</div>

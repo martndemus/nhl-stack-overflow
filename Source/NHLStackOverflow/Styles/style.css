@@ -458,6 +458,20 @@ ul.tags  {
     float:right !Important;
 }
 
+/*
+    TAG OVERVIEW
+*/
+
+.tagoverview {
+    border-top: 1px solid #243842;
+}
+
+.tag 
+{
+    display: inline-block;
+    border-bottom: 1px solid #DEE8ED;
+    width: 100%;
+}
 /* CLEARFIXING IT ALL */
 
 #l-main:after,  
@@ -475,7 +489,10 @@ ul.tags  {
 */
 
 @media screen and (min-width: 480px) {
-
+    .tag {
+        width: 49.9%;
+        margin-right:-4px;
+    }
 }
 
 @media screen and (min-width: 800px) {
