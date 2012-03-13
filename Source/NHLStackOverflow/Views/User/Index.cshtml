@@ -3,4 +3,34 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Profiel</h2>
+@if (ViewBag.User.UserName == User.Identity.Name)
+{
+    // check if we are logged in as that person then show some magics
+    using (Html.BeginForm())
+    {
+   
+    <div class="form">
+            @Html.ValidationSummary()
+
+            @Html.TextBox("Name", (string)ViewBag.User.Name, new { placeholder = "Naam" })
+            <hr>
+            @Html.TextBox("Birthday", (string)ViewBag.User.Birthday, new { placeholder = "Geboortedatum" })
+            <hr>
+            @Html.TextBox("Website", (string)ViewBag.User.Website, new { placeholder = "Website" })
+            <hr>
+            @Html.TextBox("Location", (string)ViewBag.User.Location, new { placeholder = "Plaats" })
+            <hr>
+            @Html.TextBox("Languages", (string)ViewBag.User.Languages, new { placeholder = "Programmeertalen" })
+            <hr>
+
+            <input type="submit" value="Bewaar veranderingen" id="submit">
+    </div>
+    }
+}
+else
+{
+    // we are not logged in as that person so show some other stuff
+    <span>Error you are not allowed to view this page</span>
+    
+}

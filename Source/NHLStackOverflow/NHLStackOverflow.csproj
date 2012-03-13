@@ -90,8 +90,9 @@
     <Compile Include="Controllers\RegistreerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\WidgetController.cs" />
-    <Compile Include="FormDataModels\AccountActivation.cs" />
-    <Compile Include="FormDataModels\Login.cs" />
+    <Compile Include="Models\FormDataModels\Account.cs" />
+    <Compile Include="Models\FormDataModels\AccountActivation.cs" />
+    <Compile Include="Models\FormDataModels\Login.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
