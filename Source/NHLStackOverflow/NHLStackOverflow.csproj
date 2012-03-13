@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="Classes\PasswordHasher.cs" />
     <Compile Include="Classes\StringToDateTime.cs" />
+    <Compile Include="Classes\TagsIDs.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
