@@ -27,7 +27,7 @@ namespace NHLStackOverflow.Models
         {
             var users = new List<User>
             {
-                new User { UserName = "Piet25", Password = PasswordHasher.Hash("test"), Email = "test1@testmail.com", Rank = 0, Activated = 1 },
+                new User { UserName = "Piet25", Password = PasswordHasher.Hash("test"), Email = "test1@testmail.com", Rank = 3, Activated = 1 }, // admin allowed to view all!
                 new User { UserName = "Klaas538", Password = PasswordHasher.Hash("admin"), Email = "test2@testmail.com", Rank = 0, Activated = 1 },
                 new User { UserName = "Kees1979", Password = PasswordHasher.Hash("abc"), Email = "test3@testmail.com", Rank = 0, Activated = 1, PassLost = "BCLob11SgwNtcanBG3ZmayFehZfpBz67rIrNuPNO8xTHU4JJHZD1EKpSfXDnouNJeyK572UGaBpaSau+xjRfSw" } // only person 
             };
@@ -100,7 +100,8 @@ namespace NHLStackOverflow.Models
             {
                 new Question { UserId = 1, Title = "Hello world!1", Content = "1Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2002, 2, 14, 8, 5, 10)) },
                 new Question { UserId = 2, Title = "Hello world!2", Content = "2Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2004, 2, 13, 8, 5, 10)) },
-                new Question { UserId = 3, Title = "Hello world!3", Content = "3Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(1996, 1, 10, 8, 5, 10)) }
+                new Question { UserId = 3, Title = "Hello world!3", Content = "3Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(1996, 1, 10, 8, 5, 10)) },
+                new Question { UserId = 3, Title = "Hello world!4", Content = "This is a flagged question! 3Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = "12-1-2012 14:10:00", Flag = 1}
             };
 
             question.ForEach(s => context.Questions.Add(s));
