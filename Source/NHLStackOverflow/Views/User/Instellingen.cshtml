@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Gebruikerspage - Question Jam";
+    Layout = "~/Views/Layouts/_User.cshtml";
+}
+
+<h2>Account Instelling</h2>
+<hr />
+<h3>Veranderd wachtwoord</h3>
+@using (Html.BeginForm())
+{
+   
+<div class="form">
+        @Html.ValidationSummary()
+
+        @Html.Password("NowPassword", "", new { placeholder = "Huidige wachtwoord" })
+        <hr>
+        @Html.Password("Password1", "", new { placeholder = "Nieuwe wachtwoord" })
+        <hr>
+        @Html.Password("Password2", "", new { placeholder = "Herhaal nieuwe wachtwoord" })
+        <hr>
+        <span>@ViewBag.Message</span>
+        <input type="submit" value="Verander wachtwoord" id="submit">
+</div>
+}
+<br />
+<h3>Verander email</h3>
+@using (Html.BeginForm())
+{
+   
+<div class="form">
+        @Html.ValidationSummary()
+        @Html.TextBox("Email", "", new { placeholder = "Nieuw email adress" })
+        <hr>
+        <span>@ViewBag.MessageDuex</span>
+        <input type="submit" value="Verander email" id="submit">
+</div>
+}
+<p></p>

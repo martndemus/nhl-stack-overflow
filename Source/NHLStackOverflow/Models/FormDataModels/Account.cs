@@ -17,4 +17,17 @@ namespace NHLStackOverflow.Models.FormDataModels
 
         public string Languages { get; set; }
     }
+
+    public class PassEmail
+    {
+        public string NowPassword { get; set; }
+
+        public string Password1 { get; set; }
+
+        public string Password2 { get; set; }
+
+        [RegularExpression(@"^[0-9A-Za-z._%+-]+@[0-9A-Za-z.-]+\.[A-Za-z]{2,64}$", ErrorMessage="Het nieuwe email-adres is onjuist.")]
+        public string Email { get; set; }
+
+    }
 }

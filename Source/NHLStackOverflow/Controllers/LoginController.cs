@@ -42,10 +42,10 @@ namespace NHLStackOverflow.Controllers
                         FormsAuthentication.SetAuthCookie(user.UserName, true);
 
                         // Go to home page
-                        return RedirectToAction("index", "home");
+                        return RedirectToAction("index", "default");
                     }
                     else
-                        ModelState.AddModelError("", "This account hasn't been activated yet, please check your e-mail box.");
+                        ModelState.AddModelError("", "Dit account is nog niet geactiveerd. Controleer uw inbox aub.");
                 }
                 else
                 {
@@ -139,7 +139,7 @@ namespace NHLStackOverflow.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("index", "home");
+            return RedirectToAction("index", "default");
         }
 
         protected override void Dispose(bool disposing)
