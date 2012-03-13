@@ -45,7 +45,7 @@ namespace NHLStackOverflow.Controllers
                         return RedirectToAction("index", "default");
                     }
                     else
-                        ModelState.AddModelError("", "This account hasn't been activated yet, please check your e-mail box.");
+                        ModelState.AddModelError("", "Dit account is nog niet geactiveerd. Controleer uw inbox aub.");
                 }
                 else
                 {

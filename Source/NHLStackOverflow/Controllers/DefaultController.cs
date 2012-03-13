@@ -1,8 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using NHLStackOverflow.Models;
 using NHLStackOverflow.Classes;
-using System;
+using NHLStackOverflow.Models;
 
 namespace NHLStackOverflow.Controllers
 { 

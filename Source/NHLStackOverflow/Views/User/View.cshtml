@@ -1,0 +1,41 @@
+﻿@model NHLStackOverflow.Models.User
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Layouts/_Main.cshtml";
+}
+
+<h2>Profiel: @Model.UserName</h2>
+@if (Request.IsAuthenticated)
+{
+    if (Model.Birthday != null)
+    {
+    <span>Verjaardag: @Model.Birthday</span><br />
+    }
+    <span>Lid sinds: @Model.Created_At</span><br />
+    if (Model.Languages != null)
+                {
+        <span>Programmeertalen: @Model.Languages</span><br />
+                }
+                if (Model.LastOnline != null)
+                {
+        <span>Voor het laatst online: @Model.LastOnline</span><br />
+                }
+                if (Model.Location != null)
+                {
+        <span>Verjaardag: @Model.Location</span><br />
+                }
+                if (Model.Name != null)
+                {
+        <span>Naam: @Model.Name</span><br />
+                }
+                if (Model.Website != null)
+                {
+        <span>Website: @Model.Website</span><br />
+                }
+}
+else
+{
+    <span>U dient te zijn ingelogd om een profiel te kunnen bekijken.</span>
+
+}
