@@ -1,24 +1,24 @@
 ﻿var λ = {
-    xhr: function(req, callback) {
+    xhr: function (req, callback) {
         'use strict';
 
         /*
-         *  This module/function simplyfies a few things around the XMLHttpRequest.
-         *  It takes the following object as req(uest)
-         *
-         *  {
-         *      method: 'GET',                          // Default = 'GET'
-         *      url:  http://someurl.com/script         // Url to retrieve.
-         *      header: { "headername" : content }      // Object with name value pairs of headers
-         *      data:  < some data >                    // Data to send with method = 'post'
-         *  }
-         *
-         *  If a callback function is specified, it will execute that function when the full
-         *  request result has been loaded. It will supply the arguments error and response
-         *  to the callback.
-         *
-         *  The function returns the XMLHttpRequest request object.
-         */
+        *  This module/function simplyfies a few things around the XMLHttpRequest.
+        *  It takes the following object as req(uest)
+        *
+        *  {
+        *      method: 'GET',                          // Default = 'GET'
+        *      url:  http://someurl.com/script         // Url to retrieve.
+        *      header: { "headername" : content }      // Object with name value pairs of headers
+        *      data:  < some data >                    // Data to send with method = 'post'
+        *  }
+        *
+        *  If a callback function is specified, it will execute that function when the full
+        *  request result has been loaded. It will supply the arguments error and response
+        *  to the callback.
+        *
+        *  The function returns the XMLHttpRequest request object.
+        */
         var xhr,
             name;
 
@@ -43,7 +43,7 @@
 
         // Fire callback when the request is complete
         if (callback) {
-            xhr.addEventListener( 'readystatechange', function (e) {
+            xhr.addEventListener('readystatechange', function (e) {
                 if (xhr.readyState === 4) {
                     // When everything went fine
                     if (xhr.status === 200) {
@@ -70,16 +70,16 @@
     },
 
     /*!
-     * pjax => pushState + ajax
-     * Marten Schilstra <info@martndemus.nl>
-     *
-     * Based upon:
-     * jquery.pjax by Chris Wanstrath
-     * https://github.com/defunkt/jquery-pjax
-     *
-     * Dependancy:
-     * - XMLHttpRequest module (xhr.js)
-     */
+    * pjax => pushState + ajax
+    * Marten Schilstra <info@martndemus.nl>
+    *
+    * Based upon:
+    * jquery.pjax by Chris Wanstrath
+    * https://github.com/defunkt/jquery-pjax
+    *
+    * Dependancy:
+    * - XMLHttpRequest module (xhr.js)
+    */
 
     pjax: (function () {
         'use strict';
@@ -181,11 +181,16 @@
             * Note that target option is required on this method!
             */
             get: function (options) {
-                var xhr;
+                var xhr,
+                    container = document.getElementById(options.container);
 
                 // Disable the use of pushState if the browser does not support it.
                 if (!this.support)
                     options.changeState = false;
+
+                // If container does not exist, redirect
+                if (!container)
+                    window.location = options.target;
 
                 // Call an external function to set the defaults for the options object
                 options = setOptionDefaults(options);
@@ -221,7 +226,8 @@
                     history[options.typeState](state, '', state.url);
                 }
 
-                var container = document.getElementById(options.container);
+                               
+
                 // Insert the response into the container
                 container.innerHTML = response;
 
