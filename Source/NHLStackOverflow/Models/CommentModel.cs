@@ -20,6 +20,7 @@ namespace NHLStackOverflow.Models
         [MinLength(10)]
         public string Content { get; set; }
         public int Votes { get; set; }
+        public int Flag { get; set; } // can be set by people to mark it as a bad comment
 
         // TimeStamps
         [Required]
