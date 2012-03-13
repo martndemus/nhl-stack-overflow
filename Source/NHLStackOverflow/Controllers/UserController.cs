@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-using System.Security.Principal;
+using NHLStackOverflow.Classes;
 using NHLStackOverflow.Models;
 using NHLStackOverflow.Models.FormDataModels;
-using NHLStackOverflow.Classes;
 
 namespace NHLStackOverflow.Controllers
 {
