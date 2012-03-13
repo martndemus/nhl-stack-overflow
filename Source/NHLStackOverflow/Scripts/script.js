@@ -507,6 +507,22 @@
     }
 };
 
+var mobileNav = function () {
+    var mobMenu = document.getElementById("tapmenu"),
+        button = mobMenu.children[0].children[0],
+        nav = mobMenu.children[0].children[1];
+
+    button.addEventListener('click', function () {
+        if (nav.style.display === 'none') {
+            nav.style.display = 'block';
+            button.innerHTML = 'Menu sluiten';
+        } else {
+            nav.style.display = 'none';
+            button.innerHTML = 'Druk hier voor het menu';
+        }
+    });
+};
+
 var pjaxGetTitle = function (text) {
     text = text.replace(/{{([^}]*)}}/i, function (str, sub) {
         document.title = sub;
@@ -563,5 +579,5 @@ var getSidebar = function () {
     getSidebar();
     λ.formPlaceHolders();
     initpjax();
-
+    mobileNav();
 });

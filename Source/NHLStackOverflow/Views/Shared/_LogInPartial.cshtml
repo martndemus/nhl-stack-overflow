@@ -1,9 +1,9 @@
 ﻿@if (Request.IsAuthenticated)
 {
-    @Html.ActionLink(User.Identity.Name, "index", "user")
+    <li>@Html.ActionLink(User.Identity.Name, "index", "user")</li>
+    <li>@Html.ActionLink("Log uit", "logout", "login")</li>
 }
-else
+else 
 {
-    // we are not logged in, show login button
-    @Html.ActionLink("Log in", "index", "login")
+    <li>@Html.ActionLink("Log in", "index", "login")</li>
 }

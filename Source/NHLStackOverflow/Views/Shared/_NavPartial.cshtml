@@ -2,24 +2,30 @@
     <nav>
         <ul>
             <li>@Html.ActionLink("Home", "Index", "default")
-            <li><a href="#">Vraag</a>
+            <li><a href="#">Gebruikers</a>
             <li>@Html.ActionLink("Tags", "Index", "Tags")
+            <li><a href="#">Badges</a>
+            <li><a href="#">Stel een vraag</a>
         </ul>
 
         <ul class="right">
             <li><input id="search" placeholder="Zoek">
-            <li>@Html.Partial("_LogInPartial")
+            @Html.Partial("_LogInPartial")
         </ul>
     </nav>
 </div>
-<div class="l-nav mobile">
+
+<div id="tapmenu" class="l-nav mobile">
     <nav>
+        <span id="menubutton">Druk hier voor het menu</span>
         <ul>
             <li>@Html.ActionLink("Home", "Index", "default")
-            <li><a href="#">Vraag</a>
+            <li><a href="#">Gebruikers</a>
             <li>@Html.ActionLink("Tags", "Index", "Tags")
+            <li><a href="#">Badges</a>
+            <li><a href="#">Stel een vraag</a>
             <li><input id="search" placeholder="Zoek">
-            <li>@Html.Partial("_LogInPartial")
+            @Html.Partial("_LogInPartial")
         </ul>
     </nav>
 </div>
