@@ -27,12 +27,6 @@ namespace NHLStackOverflow.Controllers
         // GET: /Tags/search/int TagID
         public ActionResult Search(int id)
         {
-            // for the partial
-            var TagsList = from tags in db.Tags
-                           orderby tags.Count descending
-                           select tags;
-            ViewBag.TagList = TagsList;
-
             var TagsSearched = from questionView in db.Questions
                                join c in db.QuestionTags on questionView.QuestionID equals c.QuestionId
                                where c.TagId == id

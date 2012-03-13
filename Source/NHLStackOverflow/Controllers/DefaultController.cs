@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using NHLStackOverflow.Classes;
 using NHLStackOverflow.Models;
+using System;
+using System.Collections.Generic;
 
 namespace NHLStackOverflow.Controllers
 { 
@@ -17,14 +19,24 @@ namespace NHLStackOverflow.Controllers
             var QuestionList = from questions in db.Questions
                                orderby questions.Created_At descending
                                select questions;
-
+            List<TagsIDs> abc = new List<TagsIDs>();
             foreach (Question vraag in QuestionList)
             {
-                vraag.Created_At = StringToDateTime.toSmootherTime(StringToDateTime.toDateTime(vraag.Created_At));
+                var TagList = from tagsQuestion in db.Tags
+                              join c in db.QuestionTags on tagsQuestion.TagID equals c.TagId
+                              where c.QuestionId == vraag.QuestionID
+                              select tagsQuestion;
+                foreach (Tag i in TagList)
+                    abc.Add(new TagsIDs(i, vraag.QuestionID));
             }
- 
+            ViewBag.TagsList = abc;
             ViewBag.QuestionList = QuestionList;
+            // from tagsQuestion in db.Tags
+            // onner
+            //join c in db.QuestionTags on questionView.QuestionID equals c.QuestionId
+            //where c.TagId == id
 
+            //ViewBag.Tagslist = Taglist;
             return View();
         }
 

@@ -18,15 +18,20 @@
                 <img src="../../Styles/seen.png" alt="Bekeken"/>@question.Views
             </span>
             <time>
-                <b>@question.Created_At</b> geleden
+                <b>@NHLStackOverflow.Classes.StringToDateTime.ConvertToUnixTimestamp(question.Created_At)</b> geleden
             </time>
             door
             <b><a href="#333">Eddie Sprietsma</a></b>
         </p>
         <p class="tags">
-            <a href="#222">C#</a>
-            <a href="#222">Inheritance</a>
-            <a href="#222">Polymorphism</a>
+              @foreach (var tag in ViewBag.TagsList)
+              {
+                  if (tag.QuestionTaggyID == question.QuestionID)
+                  {
+                    @Html.ActionLink((string)tag.Tag.Name, "search", "tags", new { id = tag.Tag.TagID }, new { target = "blank" })  
+                  }
+                  @Environment.NewLine
+              }
         </p>
     </article>  
     

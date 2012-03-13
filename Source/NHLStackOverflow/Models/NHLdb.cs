@@ -80,8 +80,17 @@ namespace NHLStackOverflow.Models
             var questiontag = new List<QuestionTag>
             {
                 new QuestionTag { QuestionId = 1, TagId = 1},
+                new QuestionTag { QuestionId = 1, TagId = 4},
+                new QuestionTag { QuestionId = 1, TagId = 5},
+                new QuestionTag { QuestionId = 1, TagId = 7},
                 new QuestionTag { QuestionId = 2, TagId = 2},
-                new QuestionTag { QuestionId = 3, TagId = 3}
+                new QuestionTag { QuestionId = 2, TagId = 3},
+                new QuestionTag { QuestionId = 2, TagId = 8},
+                new QuestionTag { QuestionId = 2, TagId = 10},
+                new QuestionTag { QuestionId = 3, TagId = 6},
+                new QuestionTag { QuestionId = 3, TagId = 9},
+                new QuestionTag { QuestionId = 3, TagId = 11},
+                new QuestionTag { QuestionId = 3, TagId = 12}
             };
 
             questiontag.ForEach(s => context.QuestionTags.Add(s));
@@ -89,9 +98,9 @@ namespace NHLStackOverflow.Models
 
             var question = new List<Question>
             {
-                new Question { UserId = 1, Title = "Hello world!1", Content = "1Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = "01-2-2012 14:02:00"},
-                new Question { UserId = 2, Title = "Hello world!2", Content = "2Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = "06-1-2012 14:00:00"},
-                new Question { UserId = 3, Title = "Hello world!3", Content = "3Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = "12-1-2012 14:10:00"}
+                new Question { UserId = 1, Title = "Hello world!1", Content = "1Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2002, 2, 14, 8, 5, 10)) },
+                new Question { UserId = 2, Title = "Hello world!2", Content = "2Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2004, 2, 13, 8, 5, 10)) },
+                new Question { UserId = 3, Title = "Hello world!3", Content = "3Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(1996, 1, 10, 8, 5, 10)) }
             };
 
             question.ForEach(s => context.Questions.Add(s));
