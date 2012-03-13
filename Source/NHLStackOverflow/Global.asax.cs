@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using NHLStackOverflow.Models;
+using System.Configuration;
+using System.Web.Configuration;
 
 namespace NHLStackOverflow
 {
@@ -26,10 +28,36 @@ namespace NHLStackOverflow
             );
         }
 
+        private static void ToggleWebEncrypt()
+        {
+            // Open the Web.config file.
+            Configuration config = WebConfigurationManager.
+                OpenWebConfiguration("~");
+
+            // Get the connectionStrings section.
+            ConnectionStringsSection section =
+                config.GetSection("connectionStrings")
+                as ConnectionStringsSection;
+
+            // Toggle encryption.
+            if (section.SectionInformation.IsProtected)
+            {
+                section.SectionInformation.UnprotectSection();
+            }
+            else
+            {
+                section.SectionInformation.ProtectSection(
+                    "DataProtectionConfigurationProvider");
+            }
+
+            // Save changes to the Web.config file.
+            config.Save();
+        }
+
         protected void Application_Start()
         {
             Database.SetInitializer(new NHLdbInitializer());
-
+            ToggleWebEncrypt();
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);
