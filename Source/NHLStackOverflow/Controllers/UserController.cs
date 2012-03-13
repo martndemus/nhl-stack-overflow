@@ -97,5 +97,16 @@ namespace NHLStackOverflow.Controllers
             return View();
         }
 
+        //
+        // GET: user/view/UserID
+        public ActionResult View(int id)
+        {
+            var userInfo = from user in db.Users
+                       where user.UserID == id
+                       select user;
+            return View(userInfo.First());
+
+        }
+
     }
 }
