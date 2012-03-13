@@ -84,6 +84,9 @@
     pjax: (function () {
         'use strict';
 
+        // Object that is used for storing processing functions
+        var procs = {};
+
         /*
         * Pjax is a combination of ajax and pushState working together. It works
         * really well with most MVC like server side frameworks. This enables you
@@ -132,7 +135,7 @@
             *    // as argument, called before the content is inserted into the dom.
             *    // Whatever the function returns is going to be used instead of the
             *    // responseText.
-            *    preprocessor: myPreprocessFunction,
+            *    preproc: myPreprocessFunction,
             *
             *    // Default true, set to false to not use pushState at all.
             *    changeState: true,
@@ -204,7 +207,9 @@
                     url: options.url,
                     pjax: options.target,
                     container: options.container,
-                    scrollY: window.scrollY
+                    scrollY: window.scrollY,
+                    preproc: options.preproc,
+                    postproc: options.postproc
                 };
 
                 // Create the xhr
@@ -218,15 +223,13 @@
                     return false;
 
                 // feed the response throug the preprocessor if present.
-                if (options.preprocessor)
-                    response = options.preprocessor(response);
+                if (options.preproc)
+                    response = procs[options.preproc](response);
 
                 // Do the push/replaceState
                 if (options.changeState === true) {
                     history[options.typeState](state, '', state.url);
                 }
-
-                               
 
                 // Insert the response into the container
                 container.innerHTML = response;
@@ -236,8 +239,8 @@
                     window.scroll(0, options.scrollY);
 
                 // Do the postprocessor if there is one
-                if (options.postprocessor)
-                    options.postprocessor();
+                if (options.postproc)
+                    procs[options.postproc]();
             });
 
                 // If the xhr is succesfully made, then return true
@@ -252,7 +255,15 @@
             */
             support: (function () {
                 return !!(window.history && history.pushState && history.replaceState);
-            } ())
+            } ()),
+
+
+            /*
+            *  Adds a processing function to the processing object for reference.
+            */
+            registerProc: function (name, fn) {
+                procs[name] = fn;
+            }
         };
 
         /*
@@ -277,7 +288,9 @@
                     container: state.container,
                     target: state.pjax,
                     changeState: false,
-                    scrollY: state.scrollY
+                    scrollY: state.scrollY,
+                    preproc: state.preproc,
+                    postproc: state.postproc
                 });
             }
 
@@ -514,8 +527,12 @@
 };
 
 var mobileNav = function () {
-    var mobMenu = document.getElementById("tapmenu"),
-        button = mobMenu.children[0].children[0],
+    var mobMenu = document.getElementById("tapmenu");
+
+    if (!mobMenu)
+        return;
+
+    var button = mobMenu.children[0].children[0],
         nav = mobMenu.children[0].children[1];
 
     button.addEventListener('click', function () {
@@ -539,24 +556,28 @@ var pjaxGetTitle = function (text) {
 };
 
 var pjaxify = function (id) {
-    id = id || 'content';
+    id = id || 'content';    
 
     var links = document.getElementById(id).getElementsByTagName('a');
 
     for (var i = 0; i < links.length; i++) {
-        λ.pjax.set(links[i], { container: 'content', preprocessor: pjaxGetTitle, postprocessor: pjaxify });
+        λ.pjax.set(links[i], { container: 'content', preproc: 'pjaxGetTitle', postproc: 'pjaxify' });
     }
 };
 
+
 var initpjax = function () {
-    if ((/login|user/).test(location.href))
+    if ((/login/).test(location.href))
         return;
+
+    λ.pjax.registerProc('pjaxify', pjaxify);
+    λ.pjax.registerProc('pjaxGetTitle', pjaxGetTitle);
 
     var links = document.getElementsByTagName('a');
 
     for (var i = 0; i < links.length; i++) {
-        if (!(/login|user/).test(links[i].href)) {
-            λ.pjax.set(links[i], { container: 'content', preprocessor: pjaxGetTitle, postprocessor: pjaxify });
+        if (!(/login/).test(links[i].href)) {
+            λ.pjax.set(links[i], { container: 'content', preproc: 'pjaxGetTitle', postproc: 'pjaxify' });
         }
     }
 };
@@ -567,6 +588,10 @@ var getSidebar = function () {
 
     if (!sidebar || document.body.className === 'user')
         return;
+
+    if ((/user/).test(location.href)) {
+        widgets = ['widget/account/'];
+    }
 
     for (var i = 0; i < widgets.length; i++) {
         λ.xhr({ url: widgets[i] }, function (err, res) {

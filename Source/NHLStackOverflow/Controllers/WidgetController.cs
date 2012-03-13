@@ -13,6 +13,11 @@ namespace NHLStackOverflow.Controllers
             return View();
         }
 
+        public ViewResult Account()
+        {
+            return View();
+        }
+
         public ViewResult Tags()
         {
             var TagsList = from tags in db.Tags

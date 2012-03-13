@@ -47,14 +47,6 @@ a:hover:visited { color: #D98CD9; }
 #l-sidebar {
     display: none;
 }
-
-.user #l-sidebar {
-    float:left;
-}
-
-.user #l-content {
-    float:right;
-}
 /*
     NAVIGATION
 */
@@ -508,18 +500,13 @@ ul.tags  {
     .l-nav.desktop {
         display: block;
     }
-
-
+    
     #l-sidebar {
         display: block;
         width: 23%;
         margin: 0 0 0 77%;
     }
     
-    .user  #l-sidebar {
-       margin: 0; 
-    }
-
     .q-author {
         display: inline;
     }
