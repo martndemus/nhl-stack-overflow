@@ -139,10 +139,10 @@ namespace NHLStackOverflow.Models
 
             var comment = new List<Comment>
             {
-                new Comment { UserId = 1, QuestionId = 1, Content = "1Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D"},
-                new Comment { UserId = 2, QuestionId = 2, Content = "2Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D"},
-                new Comment { UserId = 3, QuestionId = 3, Content = "3Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D"},
-                new Comment { UserId = 1, QuestionId = 1, Content = "1Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D", Flag = 1}
+                new Comment { UserId = 1, QuestionId = 1, Content = "1Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2010, 2, 14, 8, 5, 10))},
+                new Comment { UserId = 2, QuestionId = 2, Content = "2Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2009, 2, 14, 8, 5, 10))},
+                new Comment { UserId = 3, QuestionId = 3, Content = "3Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2011, 2, 14, 8, 5, 10))},
+                new Comment { UserId = 3, QuestionId = 1, Content = "4Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D", Flag = 1, Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 14, 12, 5, 10))}
 
             };
 

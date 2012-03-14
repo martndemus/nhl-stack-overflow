@@ -33,19 +33,43 @@
                 <b>@Html.ActionLink((string)ViewBag.QuestionUser.UserName, "view", "user", new { id = ViewBag.QuestionUser.UserID }, new { target = "_blank" })</b>  
                 
             
-    @*    </p>
+        </p>
         <p class="tags">
                 @foreach (var tag in ViewBag.Helper)
                 {
-                    if (tag.QuestionTaggyID == question.QuestionID)
-                    {
-                    @Html.ActionLink((string)tag.Tag.Name, "search", "tags", new { id = tag.Tag.TagID }, new { target = "blank" })  
-                    }
+                    @Html.ActionLink((string)tag.Tag.Name, "search", "tags", new { id = tag.Tag.TagID }, new { target = "blank" })
                     @Environment.NewLine
                 }
-        </p>*@
+        </p>
     </aside>
+    <ul class="comments">
+        @foreach (var comment in ViewBag.CommentsList)
+        {
+            if (comment.QuestionId == ViewBag.QuestionDetail.QuestionID)
+            {
+                <li>
+                    @comment.Content
+                <time>
+                    <b>@NHLStackOverflow.Classes.StringToDateTime.ConvertToUnixTimestamp(comment.Created_At)</b> geleden
+                </time>
+                door
+
+                @foreach (var user in ViewBag.UserCommentList)
+                {
+                if (user.UserID == comment.UserId)
+                    {
+                        <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { target = "_blank" })</b>  
+                    }
+                }
+                </li>
+            }
+        }
+        <li class="respond">
+            <input type="text" placeholder="Reageer"/>
+        </li>
+    </ul>
 </article>
+<h2>Er zijn (x) aantal antwoorden</h2>
 
 
 
