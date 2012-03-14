@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Stel een vraag - Question Jam";
+    Layout = "~/Views/Layouts/_Main.cshtml";
+}
+
+<h2>Stel een vraag:</h2>
+@if (ViewBag.SearchResults != null)
+{
+    <span>Misshien is je vraag al reeds gesteld:</span>
+    <ul>
+    @foreach (var question in ViewBag.SearchResults)
+    {
+        <li>@Html.ActionLink((string)question.Title, "view", "vraag", new { id = question.QuestionID }, new { target = "hoi" })</li>
+    }
+    </ul>
+}
+@using (Html.BeginForm((string)ViewBag.ActionName, (string)ViewBag.ControllerName))
+{
+        <div class="form">
+            @Html.ValidationSummary()
+
+            @Html.TextBox("vraag", "", new { placeholder = "Je vraag" })
+            <hr>
+            <input type="submit" value="Volgende" id="submit" />    
+    </div>
+
+}

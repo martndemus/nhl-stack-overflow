@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using NHLStackOverflow.Classes;
 using NHLStackOverflow.Models;
 
 namespace NHLStackOverflow.Controllers
@@ -11,34 +10,56 @@ namespace NHLStackOverflow.Controllers
     {
         private NHLdb db = new NHLdb();
         //
-        // GET: /Question/
-
-        //public ActionResult Index()
-        //{
-        //    var TagsList = from tags in db.Tags
-        //                   orderby tags.Count descending
-        //                   select tags;
-        //    ViewBag.TagList = TagsList;
-
-        //    return View();
-        //}
-
-        //
-        // GET: /Question/detailNum
+        // GET: Vraag/View/detailNum
         public ActionResult View(int id)
         {
             var questionDetails = from questionDetail in db.Questions
                                   where questionDetail.QuestionID == id
                                   select questionDetail;
-
-            var TagsList = from tags in db.Tags
-                           orderby tags.Count descending
-                           select tags;
-            ViewBag.TagList = TagsList;
-
             ViewBag.QuestionDetail = questionDetails.First();
             return View();
         }
 
+        //
+        // GET: /Vraag/StelEen
+        public ActionResult StelEen()
+        {
+            ViewBag.ActionName = "steleen";
+            ViewBag.ControllerName = "vraag";
+            return View();
+        }
+
+        //
+        // POST: /Vraag/StelEen
+        [HttpPost]
+        public ActionResult StelEen(string vraag)
+        {
+            // For cleaing up the spaces
+            char[] toTrim = new char[7] { '?', '.', ',', '!', ':', ':', '/' };
+            string vraagTrimmed = vraag.Trim(toTrim);
+            vraagTrimmed = vraagTrimmed.ToLower();
+
+            List<Question> questionResultList = new List<Question>();
+            // check the database for an existing somewhat simalair question
+            string[] toSearch = StringFilter.Trim(vraagTrimmed);
+            foreach (string a in toSearch)
+            {
+                var questionsFound = from question in db.Questions
+                                     where question.Title.Contains(a)
+                                     select question;
+                foreach (Question abc in questionsFound)
+                    questionResultList.Add(abc);
+            }
+
+            ViewBag.SearchResults = from question in questionResultList
+                                      group question by question.QuestionID into qsorted
+                                      orderby qsorted.Count() descending
+                                      select qsorted.First() ;
+
+            ViewBag.ActionName = "steleen2";
+            ViewBag.ControllerName = "vraag";
+
+            return View();
+        }
     }
 }
