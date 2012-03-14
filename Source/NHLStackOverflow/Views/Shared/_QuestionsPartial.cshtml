@@ -21,10 +21,17 @@
                 <b>@NHLStackOverflow.Classes.StringToDateTime.ConvertToUnixTimestamp(question.Created_At)</b> geleden
             </time>
             door
-            <b><a href="#333">Eddie Sprietsma</a></b>
+            @foreach (var user in ViewBag.usersList)
+            {
+                if (user.UserID == question.UserId)
+                {
+                <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { target = "_blank" })</b>  
+                }
+            }
+            
         </p>
         <p class="tags">
-              @foreach (var tag in ViewBag.TagsList)
+              @foreach (var tag in ViewBag.Helper)
               {
                   if (tag.QuestionTaggyID == question.QuestionID)
                   {

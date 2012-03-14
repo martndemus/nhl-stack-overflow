@@ -30,13 +30,18 @@ namespace NHLStackOverflow.Controllers
             var questionDetails = from questionDetail in db.Questions
                                   where questionDetail.QuestionID == id
                                   select questionDetail;
+            ViewBag.QuestionDetail = questionDetails.First();
 
             var TagsList = from tags in db.Tags
                            orderby tags.Count descending
                            select tags;
             ViewBag.TagList = TagsList;
 
-            ViewBag.QuestionDetail = questionDetails.First();
+            var useringlist = from users in db.Users
+                           where users.UserID == id
+                           select users;
+            ViewBag.QuestionUser = useringlist.First();
+
             return View();
         }
 

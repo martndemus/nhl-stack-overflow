@@ -19,6 +19,7 @@ namespace NHLStackOverflow.Controllers
             var QuestionList = from questions in db.Questions
                                orderby questions.Created_At descending
                                select questions;
+            List<User> usersList = new List<User>();
             List<TagsIDs> abc = new List<TagsIDs>();
             foreach (Question vraag in QuestionList)
             {
@@ -26,17 +27,21 @@ namespace NHLStackOverflow.Controllers
                               join c in db.QuestionTags on tagsQuestion.TagID equals c.TagId
                               where c.QuestionId == vraag.QuestionID
                               select tagsQuestion;
+
                 foreach (Tag i in TagList)
                     abc.Add(new TagsIDs(i, vraag.QuestionID));
-            }
-            ViewBag.TagsList = abc;
-            ViewBag.QuestionList = QuestionList;
-            // from tagsQuestion in db.Tags
-            // onner
-            //join c in db.QuestionTags on questionView.QuestionID equals c.QuestionId
-            //where c.TagId == id
+                
+                var UserList = from users in db.Users
+                               where users.UserID == vraag.UserId
+                               select users;
+                if(!usersList.Contains(UserList.First()))
+                    usersList.Add(UserList.First());
 
-            //ViewBag.Tagslist = Taglist;
+            }
+
+            ViewBag.Helper = abc;
+            ViewBag.UsersList = usersList;
+            ViewBag.QuestionList = QuestionList;
             return View();
         }
 

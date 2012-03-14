@@ -24,6 +24,10 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -122,9 +126,6 @@
     <Content Include="Scripts\modernizr.js" />
     <Content Include="Scripts\script.js" />
     <Content Include="Styles\style.css" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Layouts\_Main.cshtml" />
@@ -207,6 +208,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\Admin.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

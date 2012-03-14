@@ -42,7 +42,7 @@ namespace NHLStackOverflow
             // Toggle encryption.
             if (section.SectionInformation.IsProtected)
             {
-                section.SectionInformation.UnprotectSection();
+                //section.SectionInformation.UnprotectSection();
             }
             else
             {
