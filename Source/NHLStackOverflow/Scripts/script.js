@@ -224,7 +224,7 @@
 
                 // feed the response throug the preprocessor if present.
                 if (options.preproc)
-                    response = procs[options.preproc](response);
+                    response = procs[options.preproc](response, options);
 
                 // Do the push/replaceState
                 if (options.changeState === true) {
@@ -546,7 +546,14 @@ var mobileNav = function () {
     });
 };
 
-var pjaxGetTitle = function (text) {
+var pjaxPreProc = function (text, options) {
+
+    // Check if we need to flip the sidebar over to the userpage one or the default one.
+    if ((/user/).test(location.href) && !(/user/).test(options.target) || !(/user/).test(location.href) && (/user/).test(options.target)) {
+        getSidebar(true);
+    }
+
+    // Replace the title with the title in the document
     text = text.replace(/{{([^}]*)}}/i, function (str, sub) {
         document.title = sub;
         return "";
@@ -561,7 +568,7 @@ var pjaxify = function (id) {
     var links = document.getElementById(id).getElementsByTagName('a');
 
     for (var i = 0; i < links.length; i++) {
-        λ.pjax.set(links[i], { container: 'content', preproc: 'pjaxGetTitle', postproc: 'pjaxify' });
+        λ.pjax.set(links[i], { container: 'content', preproc: 'pjaxPreProc', postproc: 'pjaxify' });
     }
 };
 
@@ -571,27 +578,38 @@ var initpjax = function () {
         return;
 
     λ.pjax.registerProc('pjaxify', pjaxify);
-    λ.pjax.registerProc('pjaxGetTitle', pjaxGetTitle);
+    λ.pjax.registerProc('pjaxPreProc', pjaxPreProc);
 
     var links = document.getElementsByTagName('a');
 
     for (var i = 0; i < links.length; i++) {
         if (!(/login/).test(links[i].href)) {
-            λ.pjax.set(links[i], { container: 'content', preproc: 'pjaxGetTitle', postproc: 'pjaxify' });
+            λ.pjax.set(links[i], { container: 'content', preproc: 'pjaxPreProc', postproc: 'pjaxify' });
         }
     }
 };
 
-var getSidebar = function () {
-    var sidebar = document.getElementById('l-sidebar'),
-        widgets = ['/widget/user/', '/widget/tags/'];
+var getSidebar = function (hack) {
+    var sidebar = document.getElementById('l-sidebar');
+
 
     if (!sidebar || document.body.className === 'user')
         return;
 
-    if ((/user/).test(location.href)) {
+    if (hack) {
         widgets = ['widget/account/'];
     }
+    if (hack && (/user/).test(location.href)) {
+        widgets = ['/widget/user/', '/widget/tags/'];
+    }
+    else if (!hack && (/user/).test(location.href)) {
+        widgets = ['widget/account/'];
+    }
+    else if (!hack) {
+        widgets = ['/widget/user/', '/widget/tags/'];
+    }
+    
+    sidebar.innerHTML = '';
 
     for (var i = 0; i < widgets.length; i++) {
         λ.xhr({ url: widgets[i] }, function (err, res) {
