@@ -1,8 +1,13 @@
 ﻿@{
     ViewBag.Title = "Gebruikerspage - Question Jam";
-    Layout = "~/Views/Layouts/_User.cshtml";
+    if (Request.Headers["X-PJAX"] == null) {
+        Layout = "~/Views/Layouts/_User.cshtml";
+        ViewBag.TitleTag = null;
+    } else {
+        ViewBag.TitleTag = "{{" + ViewBag.Title + "}}";
+        Layout = null;
+    } 
 }
-
 <h2>Account Instelling</h2>
 <hr />
 <h3>Veranderd wachtwoord</h3>

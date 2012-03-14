@@ -42,7 +42,7 @@ namespace NHLStackOverflow
             // Toggle encryption.
             if (section.SectionInformation.IsProtected)
             {
-                section.SectionInformation.UnprotectSection();
+                //section.SectionInformation.UnprotectSection();
             }
             else
             {
@@ -57,7 +57,7 @@ namespace NHLStackOverflow
         protected void Application_Start()
         {
             Database.SetInitializer(new NHLdbInitializer());
-            ToggleWebEncrypt();
+            //ToggleWebEncrypt();
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);

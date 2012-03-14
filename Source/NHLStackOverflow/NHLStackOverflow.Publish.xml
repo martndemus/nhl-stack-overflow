@@ -1,80 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
   <publishProfile publishUrl="ftp://mijnnhl.org" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="NHLStackOverflow" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="WebDeploy" publishMethod="FTP" replaceMatchingFiles="False" userName="mijnnhl5" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA+K57BTs7xU2ZA1xOYY98rQAAAAACAAAAAAAQZgAAAAEAACAAAAA8FgYM6l2kehIwefrdaAcnOQFGz/oHS+lgGbNTULkF0QAAAAAOgAAAAAIAACAAAACnbCk9KUk8TQYUSXx+TIm3KLwO4siyiNDNq+2XLb3K8yAAAAAqvjwsLSy3AWQXOqeUKuuKwM+XV/MFUuFclz5QVUS250AAAAAwWFAZdkEJ+GK+tfaPoZYDLjvd3MP6rXzpHekGs6q0UTMNntlxTe4j6cygQ2aZT8HXiPiom0FjKpSmDLHLBvwk" SelectedForPublish="True">
-    <file relUrl="Views/Login/WachtwoordVeranderd.cshtml" publishTime="03/12/2012 15:55:25" />
+    <file relUrl="Views/Login/WachtwoordVeranderd.cshtml" publishTime="03/13/2012 12:22:30" />
     <file relUrl="Views/Registreer/index.cshtml" publishTime="03/12/2012 15:55:18" />
-    <file relUrl="packages.config" publishTime="03/12/2012 15:55:18" />
-    <file relUrl="Models/CommentModel.cs" publishTime="03/12/2012 16:06:22" />
-    <file relUrl="Models/TagModel.cs" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="Views/Tags/Index.cshtml" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="Classes/PasswordHasher.cs" publishTime="03/12/2012 15:55:18" />
-    <file relUrl="Views/Login/KwijtVeranderen.cshtml" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="bin/NHLStackOverflow.dll" publishTime="03/12/2012 20:44:17" />
-    <file relUrl="bin/MySql.Data.Entity.dll" publishTime="03/05/2012 14:19:10" />
-    <file relUrl="Scripts/script.js" publishTime="03/12/2012 15:55:18" />
-    <file relUrl="Models/BadgeModel.cs" publishTime="03/12/2012 15:55:25" />
+    <file relUrl="Views/Tags/Index.cshtml" publishTime="03/13/2012 20:29:07" />
+    <file relUrl="Views/Login/KwijtVeranderen.cshtml" publishTime="03/13/2012 12:22:30" />
+    <file relUrl="Scripts/script.js" publishTime="03/14/2012 08:46:22" />
+    <file relUrl="Views/Shared/_NavPartial.cshtml" publishTime="03/13/2012 20:29:07" />
     <file relUrl="Styles/check.png" publishTime="03/12/2012 15:55:18" />
-    <file relUrl="Models/AnswerModel.cs" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="Views/Layouts/_Main.cshtml" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="Web.config" publishTime="03/12/2012 20:46:43" />
+    <file relUrl="Views/Layouts/_Main.cshtml" publishTime="03/13/2012 12:22:30" />
+    <file relUrl="Views/Default/Index.cshtml" publishTime="03/13/2012 12:22:30" />
+    <file relUrl="Web.config" publishTime="03/14/2012 09:45:11" />
     <file relUrl="Views/Login/Index.cshtml" publishTime="03/12/2012 15:55:18" />
-    <file relUrl="Views/Shared/_LogInPartial.cshtml" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="Views/Shared/_QuestionsPartial.cshtml" publishTime="03/12/2012 15:55:29" />
-    <file relUrl="FormDataModels/AccountActivation.cs" publishTime="03/12/2012 15:55:18" />
-    <file relUrl="Classes/PassLostHasher.cs" publishTime="03/12/2012 15:55:25" />
+    <file relUrl="Views/Shared/_LogInPartial.cshtml" publishTime="03/13/2012 20:29:07" />
+    <file relUrl="Views/Widget/Account.cshtml" publishTime="03/14/2012 08:46:22" />
     <file relUrl="Scripts/modernizr.js" publishTime="03/04/2012 14:41:27" />
-    <file relUrl="Controllers/UserController.cs" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="MvcDiagnostics.aspx" publishTime="03/12/2012 15:55:18" />
-    <file relUrl="Views/Registreer/Gelukt.cshtml" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="Views/Vraag/View.cshtml" publishTime="03/12/2012 15:55:18" />
-    <file relUrl="Controllers/AccountController.cs" publishTime="03/12/2012 15:55:18" />
-    <file relUrl="Views/Account/LogIn.cshtml" publishTime="03/12/2012 15:55:18" />
+    <file relUrl="Views/Widget/Tags.cshtml" publishTime="03/13/2012 12:22:30" />
+    <file relUrl="Views/Registreer/Gelukt.cshtml" publishTime="03/13/2012 12:22:30" />
+    <file relUrl="Views/Vraag/View.cshtml" publishTime="03/13/2012 12:22:30" />
     <file relUrl="bin/EntityFramework.xml" publishTime="03/12/2012 20:39:17" />
-    <file relUrl="FormDataModels/Registration.cs" publishTime="03/12/2012 15:55:18" />
-    <file relUrl="Global.asax.cs" publishTime="03/12/2012 20:44:05" />
-    <file relUrl="Views/Shared/_TagsPartial.cshtml" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="Classes/StringToDateTime.cs" publishTime="03/12/2012 15:55:29" />
-    <file relUrl="Views/Tags/Search.cshtml" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="NHLStackOverflow.csproj" publishTime="03/12/2012 20:42:22" />
-    <file relUrl="Views/Layouts/_Login.cshtml" publishTime="03/12/2012 15:55:18" />
-    <file relUrl="Models/FavoriteModel.cs" publishTime="03/12/2012 15:55:25" />
+    <file relUrl="Views/Shared/_TagsPartial.cshtml" publishTime="03/13/2012 12:22:30" />
+    <file relUrl="Views/Tags/Search.cshtml" publishTime="03/13/2012 12:22:30" />
+    <file relUrl="Views/User/Instellingen.cshtml" publishTime="03/14/2012 08:46:22" />
+    <file relUrl="packages.config" publishTime="03/13/2012 12:22:30" />
+    <file relUrl="Views/Layouts/_Login.cshtml" publishTime="03/13/2012 12:22:30" />
+    <file relUrl="Views/User/Admin.cshtml" publishTime="03/14/2012 08:46:22" />
     <file relUrl="Views/Login/WachtwoordKwijt.cshtml" publishTime="03/12/2012 15:55:18" />
-    <file relUrl="Views/User/Index.cshtml" publishTime="03/12/2012 15:55:26" />
-    <file relUrl="Views/Layouts/_User.cshtml" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="Models/OptionModel.cs" publishTime="03/12/2012 20:26:51" />
-    <file relUrl="Models/ReadModel.cs" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="Controllers/HomeController.cs" publishTime="03/12/2012 20:34:06" />
+    <file relUrl="Views/User/Index.cshtml" publishTime="03/14/2012 08:46:22" />
+    <file relUrl="Views/Layouts/_User.cshtml" publishTime="03/14/2012 08:46:22" />
     <file relUrl="Views/Shared/Error.cshtml" publishTime="03/04/2012 14:41:27" />
-    <file relUrl="FormDataModels/Login.cs" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="Web.Release.config" publishTime="03/12/2012 16:13:10" />
-    <file relUrl="Models/NHLdb.cs" publishTime="03/12/2012 15:55:29" />
-    <file relUrl="Views/Shared/_NavPartial.cshtml" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="NHLStackOverflow.Publish.xml" publishTime="03/12/2012 20:45:11" />
-    <file relUrl="Models/UserMetaModel.cs" publishTime="03/12/2012 15:55:25" />
+    <file relUrl="Views/User/View.cshtml" publishTime="03/14/2012 08:46:22" />
+    <file relUrl="bin/NHLStackOverflow.dll" publishTime="03/14/2012 09:49:09" />
+    <file relUrl="Global.asax" publishTime="03/04/2012 14:41:27" />
     <file relUrl="Views/Web.config" publishTime="03/04/2012 14:41:27" />
-    <file relUrl="Models/QuestionModel.cs" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="Models/QuestionTagModel.cs" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="Controllers/LoginController.cs" publishTime="03/12/2012 15:55:25" />
+    <file relUrl="Views/Widget/User.cshtml" publishTime="03/13/2012 12:22:30" />
     <file relUrl="bin/EntityFramework.dll" publishTime="03/12/2012 20:39:17" />
+    <file relUrl="Styles/seen.png" publishTime="03/12/2012 15:55:18" />
     <file relUrl="bin/mysql.data.dll" publishTime="03/05/2012 14:19:08" />
     <file relUrl="Views/Registreer/activeren.cshtml" publishTime="03/12/2012 15:55:18" />
     <file relUrl="Styles/logo.png" publishTime="03/12/2012 15:55:18" />
     <file relUrl="Views/_ViewStart.cshtml" publishTime="03/12/2012 15:55:18" />
     <file relUrl="Styles/aplus.png" publishTime="03/12/2012 15:55:18" />
     <file relUrl="bin/MySql.Web.dll" publishTime="03/05/2012 14:19:08" />
-    <file relUrl="NHLStackOverflow.csproj.user" publishTime="03/12/2012 20:42:22" />
-    <file relUrl="Models/MessageModel.cs" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="Properties/AssemblyInfo.cs" publishTime="03/04/2012 14:41:27" />
-    <file relUrl="Styles/style.css" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="Controllers/RegistreerController.cs" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="Views/Vraag/Index.cshtml" publishTime="03/12/2012 15:55:18" />
-    <file relUrl="Controllers/VraagController.cs" publishTime="03/12/2012 15:55:18" />
+    <file relUrl="Styles/style.css" publishTime="03/14/2012 08:46:22" />
     <file relUrl="Styles/dot.png" publishTime="03/12/2012 15:55:18" />
-    <file relUrl="Web.Debug.config" publishTime="03/11/2012 12:23:14" />
-    <file relUrl="Models/UserModel.cs" publishTime="03/12/2012 15:55:25" />
-    <file relUrl="Views/Home/Index.cshtml" publishTime="03/12/2012 15:55:29" />
-    <file relUrl="Global.asax" publishTime="03/04/2012 14:41:27" />
-    <file relUrl="Styles/seen.png" publishTime="03/12/2012 15:55:18" />
-    <file relUrl="Controllers/TagsController.cs" publishTime="03/12/2012 15:55:25" />
+    <file relUrl="bin/MySql.Data.Entity.dll" publishTime="03/05/2012 14:19:10" />
+    <file relUrl="Views/Shared/_QuestionsPartial.cshtml" publishTime="03/13/2012 20:29:11" />
   </publishProfile>
 </publishData>
