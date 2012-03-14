@@ -16,7 +16,7 @@ namespace NHLStackOverflow.Controllers
         public ActionResult Delete(int id)
         {
             var deleteComment = from comment in db.Comments
-                          where comment.CommentID == id
+                          where comment.CommentID == id && comment.Flag == 1
                           select comment;
             if (deleteComment.Count() != 1)
                 ModelState.AddModelError("", "Er is iets mis gegaan. We hebben de comment niet kunnen vinden.");
