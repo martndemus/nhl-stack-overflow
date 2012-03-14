@@ -36,7 +36,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
     <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
     <PublishDatabaseSettings>
       <Objects>
@@ -88,6 +88,7 @@
     <Compile Include="Classes\PasswordHasher.cs" />
     <Compile Include="Classes\StringToDateTime.cs" />
     <Compile Include="Classes\TagsIDs.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -208,6 +209,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\Admin.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+	<Content Include="Views\Widget\Account.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />

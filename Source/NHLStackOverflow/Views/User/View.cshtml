@@ -1,8 +1,14 @@
 ﻿@model NHLStackOverflow.Models.User
 
 @{
-    ViewBag.Title = "View";
-    Layout = "~/Views/Layouts/_Main.cshtml";
+    ViewBag.Title = "Profiel - Question Jam";
+    if (Request.Headers["X-PJAX"] == null) {
+        Layout = "~/Views/Layouts/_User.cshtml";
+        ViewBag.TitleTag = null;
+    } else {
+        ViewBag.TitleTag = "{{" + ViewBag.Title + "}}";
+        Layout = null;
+    } 
 }
 
 <h2>Profiel: @Model.UserName</h2>

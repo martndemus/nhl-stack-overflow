@@ -43,7 +43,7 @@
 
         // Fire callback when the request is complete
         if (callback) {
-            xhr.addEventListener('readystatechange', function (e) {
+            xhr.onreadystatechange = function (e) {
                 if (xhr.readyState === 4) {
                     // When everything went fine
                     if (xhr.status === 200) {
@@ -57,7 +57,7 @@
                         }, xhr.responseText);
                     }
                 }
-            });
+            };
         }
 
         // Send request to server
@@ -547,12 +547,6 @@ var mobileNav = function () {
 };
 
 var pjaxPreProc = function (text, options) {
-
-    // Check if we need to flip the sidebar over to the userpage one or the default one.
-    if ((/user/).test(location.href) && !(/user/).test(options.target) || !(/user/).test(location.href) && (/user/).test(options.target)) {
-        getSidebar(true);
-    }
-
     // Replace the title with the title in the document
     text = text.replace(/{{([^}]*)}}/i, function (str, sub) {
         document.title = sub;
@@ -562,71 +556,3 @@ var pjaxPreProc = function (text, options) {
     return text;
 };
 
-var pjaxify = function (id) {
-    id = id || 'content';    
-
-    var links = document.getElementById(id).getElementsByTagName('a');
-
-    for (var i = 0; i < links.length; i++) {
-        λ.pjax.set(links[i], { container: 'content', preproc: 'pjaxPreProc', postproc: 'pjaxify' });
-    }
-};
-
-
-var initpjax = function () {
-    if ((/login/).test(location.href))
-        return;
-
-    λ.pjax.registerProc('pjaxify', pjaxify);
-    λ.pjax.registerProc('pjaxPreProc', pjaxPreProc);
-
-    var links = document.getElementsByTagName('a');
-
-    for (var i = 0; i < links.length; i++) {
-        if (!(/login/).test(links[i].href)) {
-            λ.pjax.set(links[i], { container: 'content', preproc: 'pjaxPreProc', postproc: 'pjaxify' });
-        }
-    }
-};
-
-var getSidebar = function (hack) {
-    var sidebar = document.getElementById('l-sidebar');
-
-
-    if (!sidebar || document.body.className === 'user')
-        return;
-
-    if (hack) {
-        widgets = ['widget/account/'];
-    }
-    if (hack && (/user/).test(location.href)) {
-        widgets = ['/widget/user/', '/widget/tags/'];
-    }
-    else if (!hack && (/user/).test(location.href)) {
-        widgets = ['widget/account/'];
-    }
-    else if (!hack) {
-        widgets = ['/widget/user/', '/widget/tags/'];
-    }
-    
-    sidebar.innerHTML = '';
-
-    for (var i = 0; i < widgets.length; i++) {
-        λ.xhr({ url: widgets[i] }, function (err, res) {
-            if (err) {
-                return;
-            }
-
-            sidebar.innerHTML += res;
-
-            pjaxify('l-sidebar');
-        });
-    }
-};
-
-λ.onDocReady.addCallback(function () {
-    getSidebar();
-    λ.formPlaceHolders();
-    initpjax();
-    mobileNav();
-});

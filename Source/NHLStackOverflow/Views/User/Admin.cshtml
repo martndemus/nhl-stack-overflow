@@ -1,6 +1,12 @@
 ﻿@{
     ViewBag.Title = "Beheer overview - Question Jam";
-    Layout = "~/Views/Layouts/_User.cshtml";
+    if (Request.Headers["X-PJAX"] == null) {
+        Layout = "~/Views/Layouts/_User.cshtml";
+        ViewBag.TitleTag = null;
+    } else {
+        ViewBag.TitleTag = "{{" + ViewBag.Title + "}}";
+        Layout = null;
+    } 
 }
 
 <h2>Beheer</h2>
@@ -12,7 +18,8 @@
         <ul>
         @foreach (var vraagje in ViewBag.badQuestionList)
         {
-            <li>@Html.ActionLink((string)vraagje.Title, "view", "vraag", new { id = vraagje.QuestionID }, new { target = "_blank" }):@vraagje.Content</li>
+            <li>@Html.ActionLink((string)vraagje.Title, "view", "vraag", new { id = vraagje.QuestionID }, new { target = "_blank" }):@vraagje.Content
+            <br /><b>Options:</b> delete, edit</li>
         }
         </ul>
     }
@@ -24,11 +31,12 @@
     <h3>Geflaggde antwoorden:</h3>
     if (ViewBag.badAwnserList != null)
     {
-        foreach (var awnser in ViewBag.badAwnserList)
+        <ul>
+        @foreach (var awnser in ViewBag.badAwnserList)
         {
-            // Yet to be made pages
-            //Html.ActionLink((string)vraagje.Title, "view", "vraag", new { id = vraagje.QuestionID }, new { target = "_blank" });
+            <li>@awnser.Content</li>
         }
+        </ul>
     }
     else 
     {
@@ -38,12 +46,13 @@
     <h3>Geflaggde comments:</h3>
     if (ViewBag.badCommentList != null)
     {
-        foreach (var comment in ViewBag.badCommentList)
+        <ul>
+        @foreach (var comment in ViewBag.badCommentList)
         {
-            // Yet to be made pages
-            // show something
-            //Html.ActionLink((string)vraagje.Title, "view", "vraag", new { id = vraagje.QuestionID }, new { target = "_blank" });
+            <li>@comment.Content<br /><b>Options:</b> @Html.ActionLink("delete", "delete", "comment", new { id = comment.CommentID }, ""), edit<!-- add delete button :< --></li>
+            
         }
+        </ul>
     }
     else
     {

@@ -24,14 +24,7 @@
 
         <div id="l-main">
             <section id="l-sidebar">
-                <div class="widget">
-                    <ul class="useropts">
-                        <li>@Html.ActionLink("Profiel", "Index", "user")
-                        <li>@Html.ActionLink("Account instellingen", "Instellingen", "user")
-                        <li><a href="#">Statistieken</a>
-                        <li>@Html.ActionLink("Beheer", "admin", "user")
-                    </ul>
-                </div>
+
             </section>
 
             <section id="l-content">
@@ -45,6 +38,7 @@
             &copy; 2012 Eddie Sprietsma, Marten Schilstra, Mathijs Jonker
         </footer>
                 
-        <script src="@Href("~/Scripts/script.js")" type="text/javascript"></script>
+        <script src="@Href("~/Scripts/lib.js")" type="text/javascript"></script>
+        <script src="@Href("~/Scripts/script-user.js")" type="text/javascript"></script>
     </body>
 </html>
