@@ -9,6 +9,7 @@
 html {
     background: #2D4653 url(dot.png);
     font-family: 'Liberation Sans', helvetica, arial, sans-serif;
+    overflow-y: scroll;
 }
 
 body {
@@ -47,6 +48,15 @@ a:hover:visited { color: #D98CD9; }
 #l-sidebar {
     display: none;
 }
+
+.user #l-sidebar {
+    float:left;
+}
+
+.user #l-content {
+    float:right;
+}
+
 /*
     NAVIGATION
 */
@@ -505,6 +515,10 @@ ul.tags  {
         display: block;
         width: 23%;
         margin: 0 0 0 77%;
+    }
+    
+    .user  #l-sidebar {
+       margin: 0; 
     }
     
     .q-author {
