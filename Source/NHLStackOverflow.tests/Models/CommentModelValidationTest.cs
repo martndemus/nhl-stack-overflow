@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHLStackOverflow.Models;
+using NHLStackOverflow.Classes;
 
 namespace NHLStackOverflow.tests.Models
 {
@@ -57,7 +58,7 @@ namespace NHLStackOverflow.tests.Models
             
             //Expected Default Values
             Assert.AreEqual(0, c.Votes, "Votes should be initialized to 0");
-            Assert.IsTrue(c.Created_At == DateTime.Now.ToString(), "Created At should be initialized to DateTime.Now.ToString()");
+            Assert.IsTrue(c.Created_At == StringToDateTime.ToUnixTimeStamp(DateTime.Now), "Created At should be initialized to DateTime.Now.ToString()");
         }
 
         [Description("Tests if comments that should be valid are valid."), TestCategory("Model.Valid"), TestMethod]
