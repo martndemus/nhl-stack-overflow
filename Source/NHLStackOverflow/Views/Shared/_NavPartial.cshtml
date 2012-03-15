@@ -5,7 +5,7 @@
             <li><a href="#">Gebruikers</a>
             <li>@Html.ActionLink("Tags", "Index", "tags")
             <li><a href="#">Badges</a>
-            <li><a href="#">Stel een vraag</a>
+            <li>@Html.ActionLink("Stel een vraag", "steleen", "vraag")
         </ul>
 
         <ul class="right">
@@ -23,7 +23,7 @@
             <li><a href="#">Gebruikers</a>
             <li>@Html.ActionLink("Tags", "Index", "tags")
             <li><a href="#">Badges</a>
-            <li><a href="#">Stel een vraag</a>
+            <li>@Html.ActionLink("Stel een vraag", "steleen", "vraag")
             <li><input id="search" placeholder="Zoek">
             @Html.Partial("_LogInPartial")
         </ul>
