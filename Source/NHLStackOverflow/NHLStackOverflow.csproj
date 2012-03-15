@@ -103,6 +103,7 @@
     <Compile Include="Models\BadgeModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\FavoriteModel.cs" />
+    <Compile Include="Models\FormDataModels\Vraag.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\NHLdb.cs" />
     <Compile Include="Models\OptionModel.cs" />
@@ -212,6 +213,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Vraag\StelEen.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Vraag\StelEen2.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
