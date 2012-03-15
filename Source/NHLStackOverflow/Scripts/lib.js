@@ -218,30 +218,30 @@
                     'header': options.headers
                 },
                 // Callback function on the xhr
-            function (error, response) {
-                if (error)
-                    return false;
+                function (error, response) {
+                    if (error)
+                        return false;
 
-                // feed the response throug the preprocessor if present.
-                if (options.preproc)
-                    response = procs[options.preproc](response, options);
+                    // feed the response throug the preprocessor if present.
+                    if (options.preproc)
+                        response = procs[options.preproc](response, options);
 
-                // Do the push/replaceState
-                if (options.changeState === true) {
-                    history[options.typeState](state, '', state.url);
-                }
+                    // Insert the response into the container
+                    container.innerHTML = response;
 
-                // Insert the response into the container
-                container.innerHTML = response;
+                    // Do the push/replaceState
+                    if (options.changeState === true) {
+                        history[options.typeState](state, '', state.url);
+                    }
 
-                // Set the scroll to the given position
-                if (options.scrollY)
-                    window.scroll(0, options.scrollY);
+                    // Set the scroll to the given position
+                    if (options.scrollY)
+                        window.scroll(0, options.scrollY);
 
-                // Do the postprocessor if there is one
-                if (options.postproc)
-                    procs[options.postproc]();
-            });
+                    // Do the postprocessor if there is one
+                    if (options.postproc)
+                        procs[options.postproc]();
+                });
 
                 // If the xhr is succesfully made, then return true
                 if (xhr)

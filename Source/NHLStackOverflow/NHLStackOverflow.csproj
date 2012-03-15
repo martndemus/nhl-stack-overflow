@@ -118,6 +118,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\lib.js" />
+    <Content Include="Scripts\script-login.js" />
+    <Content Include="Scripts\script-main.js" />
+    <Content Include="Scripts\script-user.js" />
     <Content Include="Styles\aplus.png" />
     <Content Include="Styles\check.png" />
     <Content Include="Styles\dot.png" />
@@ -208,10 +212,10 @@
     <Content Include="Views\User\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\User\Admin.cshtml" />
+    <Content Include="Views\User\Beheer.cshtml" />
   </ItemGroup>
   <ItemGroup>
-	<Content Include="Views\Widget\Account.cshtml" />
+    <Content Include="Views\Widget\Account.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />

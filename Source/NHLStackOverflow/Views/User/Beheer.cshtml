@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Beheer overview - Question Jam";
+    if (Request.Headers["X-PJAX"] == null)
+    {
+        Layout = "~/Views/Layouts/_User.cshtml";
+        ViewBag.TitleTag = null;
+    }
+    else
+    {
+        ViewBag.TitleTag = "{{" + ViewBag.Title + "}}";
+        Layout = null;
+    } 
+}
+
+<h2>Beheer</h2>
+@if (ViewBag.Allowed)
+{
+    <h3>Gemarkeerde vragen:</h3>
+    if (ViewBag.badQuestionList != null)
+    {
+        <ul>
+        @foreach (var vraagje in ViewBag.badQuestionList)
+        {
+            <li>@Html.ActionLink((string)vraagje.Title, "view", "vraag", new { id = vraagje.QuestionID }, new { target = "_blank" }):@vraagje.Content
+            <br /><b>Options:</b> delete, edit</li>
+        }
+        </ul>
+    }
+    else
+    {
+        <span>Er zijn geen geflaggde vragen</span>   
+    }
+    <hr />
+    <h3>Gemarkeerde antwoorden:</h3>
+    <table>
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Inhoud</td>
+                    <td colspan="2">Acties</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.badAwnserList != null)
+                {
+                    foreach (var answer in ViewBag.badAwnserList)
+                    {
+                        <tr>
+                            <td>@answer.AnswerID</td>
+                            <td>@answer.Content.Substring(0,95) ...</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                        <tr>
+                            <td colspan="4">Er zijn geen geflaggde antwoorden.</td>
+                        </tr>   
+                }
+            </tbody>
+    </table>
+    
+    <hr />
+    <h3>Gemarkeerde comments:</h3>
+    <table>
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Inhoud</td>
+                    <td colspan="2">Acties</td>
+                </tr>
+            </thead>
+                @if (ViewBag.badCommentList != null)
+                {
+                    foreach (var comment in ViewBag.badCommentList)
+                    {
+                        <tr>
+                            <td>@comment.CommentID</td>
+                            <td>@comment.Content.Substring(0, 95) ...</td>
+                            <td>@Html.ActionLink("verwijder", "delete", "comment", new { id = comment.CommentID }, "")</td>
+                            <td><a href="#">edit<!-- add delete button :< --></a></td>
+                        </tr>            
+                       }
+                    }
+                else
+                {
+                    <tr>
+                            <td colspan="4">Er zijn geen gemarkeerd comments.</td>
+                        </tr>
+                }
+    </table>
+    <hr />
+}
+else
+{
+    <span>Je hebt nog niet de rechten behaald om hier iets te doen.</span>
+}
