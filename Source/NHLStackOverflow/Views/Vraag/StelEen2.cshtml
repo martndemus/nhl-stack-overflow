@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Stel een vraag vervolg - Question Jam";
+    Layout = "~/Views/Layouts/_Main.cshtml";
+}
+
+<h2>Stel een vraag</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form">
+        @Html.ValidationSummary()
+        @if (ViewBag.LoggedIn == false)
+        {
+            <span>U bent niet ingelogd. Ga @Html.ActionLink("hierheen", "index", "login", new{target = "blank"}) om in te loggen aub.</span>
+        }
+        @Html.TextBox("Vraag", (string)ViewBag.Vraag, new{@readonly = true})
+        <hr />
+        @Html.TextBox("Tags", "", new{placeholder = "Tags"})
+        <hr />
+        @Html.TextArea("Content")
+
+        @if (ViewBag.MissingTagList != null)
+        {
+            <span>De volgende tag(s) zijn niet gevonden. Zou u een beschrijving van deze tag willen geven?</span>
+            <ul>
+                @for (int i = 0; i < ViewBag.MissingTagListCount; i++)
+                {
+                    <li>@ViewBag.MissingTagList[i]: @Html.TextBox("tag" + i, "", new { placeholder = "Tag beschrijving" })
+                    <hr /></li>
+                }
+            </ul>
+        }
+        <input type="submit" value="Volgende" id="submit" />    
+    </div>
+
+}

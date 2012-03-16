@@ -9,6 +9,10 @@ namespace NHLStackOverflow.Models
         public Question()
         {
             this.Created_At = StringToDateTime.ToUnixTimeStamp(DateTime.Now);
+            this.Views = 0;
+            this.Votes = 0;
+            this.Flag = 0;
+            this.Answered = 0;
         }
 
         // GUID
