@@ -85,6 +85,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\HTMLSanitizer.cs" />
+    <Compile Include="Classes\Markdown.cs" />
     <Compile Include="Classes\PasswordHasher.cs" />
     <Compile Include="Classes\StringFilter.cs" />
     <Compile Include="Classes\StringToDateTime.cs" />

@@ -15,12 +15,21 @@ namespace NHLStackOverflow.Controllers
         // GET: Vraag/View/detailNum
         public ActionResult View(int id)
         {
+
+            Markdown md = new Markdown();
+            HTMLSanitizer hs = new HTMLSanitizer();
+
             //questiondetails
             var questionDetails = from questionDetail in db.Questions
                                   where questionDetail.QuestionID == id
                                   select questionDetail;
 
             Question questionDetailView = questionDetails.First();
+
+            // Sanitize HTML + Transform content with MD
+            questionDetailView.Content = hs.SanitizeHTMLTags(questionDetailView.Content);
+            questionDetailView.Content = md.Transform(questionDetailView.Content);
+
             ViewBag.QuestionDetail = questionDetailView;
 
             //tags in sidebar
@@ -65,6 +74,9 @@ namespace NHLStackOverflow.Controllers
                 CommentingUsers.Add(userComment.First());
             }
             ViewBag.UserCommentList = CommentingUsers;
+
+            
+  
                               
             return View();
         }

@@ -13,9 +13,7 @@
 <h2>@ViewBag.QuestionDetail.Title</h2> 
 
 <article class="question">
-    <p>
-        @ViewBag.QuestionDetail.Content
-    </p>
+    @Html.Raw(ViewBag.QuestionDetail.Content)
     <aside class="q-meta">
         <p class="stats">
             <span title="Stemmen">
