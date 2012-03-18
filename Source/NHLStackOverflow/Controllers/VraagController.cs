@@ -27,7 +27,7 @@ namespace NHLStackOverflow.Controllers
             Question questionDetailView = questionDetails.First();
 
             // Sanitize HTML + Transform content with MD
-            questionDetailView.Content = hs.SanitizeHTMLTags(questionDetailView.Content);
+            questionDetailView.Content = hs.Sanitize(questionDetailView.Content);
             questionDetailView.Content = md.Transform(questionDetailView.Content);
 
             ViewBag.QuestionDetail = questionDetailView;
@@ -75,9 +75,6 @@ namespace NHLStackOverflow.Controllers
             }
             ViewBag.UserCommentList = CommentingUsers;
 
-            
-  
-                              
             return View();
         }
 
