@@ -80,6 +80,9 @@ namespace NHLStackOverflow.Controllers
             if (ModelState.IsValid) 
             {
                 // everything was valid. Change the persons state to activated.
+                int activatingUserID = passPerson.First().UserID;
+                UserMeta newUserMeta = new UserMeta() { UserId = activatingUserID };
+                db.UserMeta.Add(newUserMeta);
                 passPerson.First().Activated = 1;
                 db.SaveChanges();
             }

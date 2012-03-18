@@ -86,6 +86,11 @@ namespace NHLStackOverflow.Controllers
                 var userInfos = from userInfo in db.Users
                                 where userInfo.UserName == User.Identity.Name
                                 select userInfo;
+                var emailUsers = from emailUser in db.Users
+                                 where emailUser.Email == passEmail.Email
+                                 select emailUser;
+                if (emailUsers.Count() != 0)
+                    ModelState.AddModelError("", "Dit email adress is al opgenomen in de database.");
                 if (ModelState.IsValid)
                 {
                     userInfos.First().Email = passEmail.Email;
