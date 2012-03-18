@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Stel een vraag - Question Jam";
+    
+    if (Request.Headers["X-PJAX"] == null) {
+        Layout = "~/Views/Layouts/_Main.cshtml";
+        ViewBag.TitleTag = null;
+    } else {
+        ViewBag.TitleTag = "{{" + ViewBag.Title + "}}";
+        Layout = null;
+    }   
+}
+@ViewBag.TitleTag
+
+<h2>Stel een vraag:</h2>
+@using (Html.BeginForm((string)ViewBag.ActionName, (string)ViewBag.ControllerName))
+{
+    <div class="form">
+        @Html.ValidationSummary()
+        <h3>Voordat je een vraag gaat stellen:</h3>
+        <p>Als je een vraag stelt, zorg dan dat je zoveel mogelijk <em>relevante</em> informatie aanlevert, hoe meer details je aanlevert bij je vraag, des te beter kan een ander een antwoord geven op je vraag.</p>
+        <p>Zorg dat je code samples er toe doen, het dumpen van de code uit je project is <em>niet</em> gewenst.</p>        
+        <p>Zoek eerst eens op het internet naar het antwoord op je vraag, de kans is namelijk groot dat je niet de eerste bent die met hetzelfde probleem zit. Als je echt niets kunt vinden, vul dan hieronder het onderwerp van je vraag in, misschien dat wij wel het antwoord op je vraag al hebben.</p>
+        @Html.TextBox("vraag", "", new { placeholder = "Onderwerp van je vraag" })
+        <hr>
+        
+        @if (ViewBag.SearchResults != null)
+        {
+            <h3>Zit het antwoord op je vraag misschien hier bij?</h3>
+            <ul class="suggestedanswers">
+                @foreach (var question in ViewBag.SearchResults)
+                {
+                    <li>
+                        @if (question.Answered == 1)
+                        {
+                            <span class="votes answered">@question.Votes</span>
+                        }
+                        else
+                        {
+                            <span class="votes">@question.Votes</span>
+                        }
+                        @Html.ActionLink((string)question.Title, "view", "vraag", new { id = question.QuestionID }, new { target = "" })
+                    </li>
+                }
+            </ul>
+            <input type="submit" value="Het antwoord staat er niet bij" id="submit" />
+        }
+        else
+        {
+            <input type="submit" value="Zoek" id="submit" />  
+        }        
+    </div>
+}

@@ -71,9 +71,9 @@ namespace NHLStackOverflow.Controllers
 
         //
         // GET: /Vraag/StelEen
-        public ActionResult StelEen()
+        public ActionResult Check()
         {
-            ViewBag.ActionName = "steleen";
+            ViewBag.ActionName = "check";
             ViewBag.ControllerName = "vraag";
             return View();
         }
@@ -81,14 +81,14 @@ namespace NHLStackOverflow.Controllers
         //
         // POST: /Vraag/StelEen
         [HttpPost]
-        public ActionResult StelEen(string vraag)
+        public ActionResult Check(string vraag)
         {
             if (vraag == null)
                 ModelState.AddModelError("", "Vraag is leeg.");
             if (ModelState.IsValid)
             {
                 // For cleaing up the spaces
-                char[] toTrim = new char[7] { '?', '.', ',', '!', ':', ':', '/' };
+                char[] toTrim = new char[7] { '?', '.', ',', '!', ':', ';', '/' };
                 string vraagTrimmed = vraag.Trim(toTrim);
                 vraagTrimmed = vraagTrimmed.ToLower();
 
@@ -109,7 +109,7 @@ namespace NHLStackOverflow.Controllers
                                         orderby qsorted.Count() descending
                                         select qsorted.First();
 
-                ViewBag.ActionName = "steleen2";
+                ViewBag.ActionName = "nieuw";
                 ViewBag.ControllerName = "vraag";
             }
             return View();
@@ -117,7 +117,7 @@ namespace NHLStackOverflow.Controllers
 
         // 
         // GET: Vraag/StelEen2
-        public ActionResult StelEen2(string info)
+        public ActionResult Nieuw(string info)
         {
             ViewBag.Vraag = info;
             return View();
@@ -126,10 +126,12 @@ namespace NHLStackOverflow.Controllers
         //
         // POST: Vraag/StelEen2
         [HttpPost]
-        public ActionResult StelEen2(Vraag info)
+        public ActionResult Nieuw(Vraag info)
         {
             //
-            if (info.vraag == null || info.tags == null || info.content == null)
+            if (info.vraag == null)
+                ModelState.AddModelError("", "Ga terug en voer een titel voor je vraag in.");
+            else if (info.vraag != null && (info.tags == null || info.content == null))
                 ModelState.AddModelError("", "Vul alle velden in aub.");
             else
             {
