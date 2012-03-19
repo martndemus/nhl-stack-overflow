@@ -4,9 +4,6 @@
     <article class="question">
     
         <h3>@Html.ActionLink((string)question.Title, "view", "vraag", new { id = question.QuestionID }, new { target = "_blank" })</h3>
-        <p>
-            @question.Content
-        </p> 
         <p class="stats">
             <span title="Stemmen">
                 <img src="../../Styles/check.png" alt="Stemmen"/>@question.Votes
