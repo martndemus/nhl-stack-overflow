@@ -150,6 +150,7 @@ namespace NHLStackOverflow.Controllers
                 // Fields are met hmm let's see if we can find all the tags perhaps :D
                 List<string> tagsList = new List<string>(); // new generic list which will contain our tags which we aren't in the database
                 string[] tags = info.tags.Split(' '); // assume all tags are splitted by a space (beg)
+                List<string> foundTags = new List<string>();
                 foreach (string tag in tags)
                 {
                     var temp = from taggies in db.Tags
@@ -157,6 +158,8 @@ namespace NHLStackOverflow.Controllers
                                select taggies;
                     if (temp.Count() == 0) // if a tag is in the database the above query should find it. Else it is a new one :D
                         tagsList.Add(tag);
+                    else
+                        foundTags.Add(tag);
                 }
 
                 // get the user information
@@ -176,10 +179,18 @@ namespace NHLStackOverflow.Controllers
                     // also check if we have tags to add. If so. Let's add those first (so we can link stuff)
                     for (int i = 0; i < tagsList.Count(); i++)
                     {
-                        Tag newTag = new Tag() { Description = info.returnTagContent(i), Name = tagsList.ElementAt(i) };
+                        Tag newTag = new Tag() { Description = info.returnTagContent(i), Name = tagsList.ElementAt(i), Count = 1 };
                         userPosting.First().Tags += 1;
                         db.Tags.Add(newTag);
                     }
+                    foreach (string tagName in foundTags)
+                    {
+                        var tagAdd = from tagSelected in db.Tags
+                                     where tagSelected.Name.Contains(tagName)
+                                     select tagSelected;
+                        tagAdd.First().Count += 1;
+                    }
+
                     userPosting.First().Questions += 1;
                     UserMeta userInfo = userPosting.First();
                     Question newQuestion = new Question() { Title = info.vraag, UserId = userInfo.UserId, Content = info.content };
