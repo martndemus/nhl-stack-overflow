@@ -27,7 +27,7 @@ namespace NHLStackOverflow.Classes
     /// - StripTags: the sanitizer will strip out all HTML like tags.
     /// - UnescapeMarkDown: will unescape a few of the common by markdown used entities. 
     /// </summary>
-    class HTMLSanitizer
+    public class HTMLSanitizer
     {
         private static Regex rMDEqualsHR = new Regex("^[&#61;( )?]+", RegexOptions.Multiline);
         private static Regex rMDBlockQuotes = new Regex("^(&gt;( )?)+", RegexOptions.Multiline);

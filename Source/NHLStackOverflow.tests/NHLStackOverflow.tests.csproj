@@ -74,6 +74,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\HTMLSanitizerTest.cs" />
     <Compile Include="Models\AnswerModelValidationTest.cs" />
     <Compile Include="Models\BadgeModelValidationTest.cs" />
     <Compile Include="Models\CommentModelValidationTest.cs" />
@@ -99,7 +100,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Classes\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
