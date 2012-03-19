@@ -15,8 +15,8 @@ namespace NHLStackOverflow.Controllers
         // GET: Vraag/View/detailNum
         public ActionResult View(int id)
         {
-            Markdown md = new Markdown();
             HTMLSanitizer hs = new HTMLSanitizer();
+            Markdown md = new Markdown();
 
             //questiondetails
             var questionDetails = from questionDetail in db.Questions
@@ -26,18 +26,14 @@ namespace NHLStackOverflow.Controllers
             db.SaveChanges();
 
             Question questionDetailView = questionDetails.First();
-
-            // Sanitize HTML + Transform content with MD
+            
+            // Sanitize the post content and title
+            // Then process the content with Markdown
+            questionDetailView.Title = hs.EscapeHTMLentities(questionDetailView.Title);
             questionDetailView.Content = hs.Sanitize(questionDetailView.Content, HTMLSanitizerOption.UnescapeMarkDown);
             questionDetailView.Content = md.Transform(questionDetailView.Content);
 
             ViewBag.QuestionDetail = questionDetailView;
-
-            //tags in sidebar
-            var TagsList = from tags in db.Tags
-                           orderby tags.Count descending
-                           select tags;
-            ViewBag.TagList = TagsList;
 
             List<TagsIDs> abc = new List<TagsIDs>();
 
@@ -48,25 +44,34 @@ namespace NHLStackOverflow.Controllers
                           select tagsQuestion;
 
             foreach (Tag i in TagList)
+            {
                 abc.Add(new TagsIDs(i, id));
+
+                // Sanitize each tag its name
+                i.Name = hs.Sanitize(i.Name, HTMLSanitizerOption.StripTags);
+            }
+            
             ViewBag.Helper = abc;
 
             //user verificatie
             var useringlist = from users in db.Users
                               where users.UserID == questionDetailView.UserId
                               select users;
+
             ViewBag.QuestionUser = useringlist.First();
 
+            
             //comments
-
             var commentList = from comments in db.Comments
                               orderby comments.Created_At descending
                               where comments.QuestionId == id
                               select comments;
+
             List<Comment> commentUserView = new List<Comment>(commentList);
             ViewBag.CommentsList = commentList;
-            List<User> CommentingUsers = new List<User>();
 
+
+            List<User> CommentingUsers = new List<User>();
             foreach (Comment commentje in commentUserView)
             {
                 var userComment = from commentse in db.Users
@@ -74,6 +79,7 @@ namespace NHLStackOverflow.Controllers
                                   select commentse;
                 CommentingUsers.Add(userComment.First());
             }
+
             ViewBag.UserCommentList = CommentingUsers;
 
             var answerQuestion = from answers in db.Answers
@@ -82,25 +88,37 @@ namespace NHLStackOverflow.Controllers
                                  select answers;
             List<Answer> answerQuestionView = new List<Answer>(answerQuestion);
             ViewBag.AnswerQuestionList = answerQuestion;
-            ViewBag.AnswerQuestionCounting = answerQuestion.Count();
+
+            // Set the count to 'n' or 'geen' if there are no answers yet
+            ViewBag.AnswerQuestionCount = answerQuestion.Count() > 0 ? answerQuestion.Count().ToString() : "geen" ;
+
             List<User> AnsweringUsers = new List<User>();
             List<Comment> AnswerComments = new List<Comment>();
             List<User> qCommentUsers = new List<User>();
+            
             foreach (Answer answertje in answerQuestionView)
             {
                 var userAnswer = from answerse in db.Users
                                  where answerse.UserID == answertje.UserId
                                  select answerse;
+
                 AnsweringUsers.Add(userAnswer.First());
 
                 var answerCommentList = from qcomments in db.Comments
                                         orderby qcomments.Created_At descending
                                         where qcomments.AnswerId == answertje.AnswerID
                                         select qcomments;
+
                 if (answerCommentList.Count() > 0)
                 {
-                    foreach(Comment cba in answerCommentList)
+                    foreach (Comment cba in answerCommentList)
+                    {
+                        // Sanitize the content of the comment.
+                        cba.Content = hs.EscapeHTMLentities(cba.Content);
+
+                        // ????
                         AnswerComments.Add(cba);
+                    }
                 }
 
                 foreach (Comment qCommentje in answerCommentList)
@@ -108,8 +126,17 @@ namespace NHLStackOverflow.Controllers
                     var userQComment = from qcommentse in db.Users
                                        where qcommentse.UserID == qCommentje.UserId
                                        select qcommentse;
+
+                    
+                    // Sanitize the content of the comment.
+                    qCommentje.Content = hs.EscapeHTMLentities(qCommentje.Content);
+
                     qCommentUsers.Add(userQComment.First());
                 }
+
+                // Sanitize the content of the answer and process it with Markdown
+                answertje.Content = hs.Sanitize(answertje.Content, HTMLSanitizerOption.UnescapeMarkDown);
+                answertje.Content = md.Transform(answertje.Content);
             }
             ViewBag.UserAnswerList = AnsweringUsers;
             ViewBag.AnswerComments = AnswerComments;
@@ -250,6 +277,9 @@ namespace NHLStackOverflow.Controllers
         [HttpPost]
         public ActionResult Nieuw(Vraag info)
         {
+            HTMLSanitizer hs = new HTMLSanitizer();
+            Markdown md = new Markdown();
+
             bool firstTime = false;
             if (Request.UrlReferrer.LocalPath == "/vraag/check")
                 firstTime = true;
@@ -306,6 +336,7 @@ namespace NHLStackOverflow.Controllers
 
                     userPosting.First().Questions += 1;
                     UserMeta userInfo = userPosting.First();
+
                     Question newQuestion = new Question() { Title = info.vraag, UserId = userInfo.UserId, Content = info.content };
                     db.Questions.Add(newQuestion);
                     db.SaveChanges(); // to make sure that if there were new tags they are added propperly (so we can query the id's right)
@@ -325,6 +356,7 @@ namespace NHLStackOverflow.Controllers
                                         where tagIDje.Name.Contains(tagje)
                                         select tagIDje.TagID;
                         int postTag = tagIDPost.First();
+
                         QuestionTag newQuestTag = new QuestionTag() { QuestionId = justAskedQuestion.QuestionID, TagId = postTag };
                         db.QuestionTags.Add(newQuestTag);
                     }

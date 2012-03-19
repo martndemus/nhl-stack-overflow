@@ -23,8 +23,8 @@
         }
         @Html.TextBox("Vraag", (string)ViewBag.Vraag)
         <hr />
-        @Html.TextArea("Content", new { placeholder = "Stel hier je vraag" })
-        <p>Vragen worden opgemaakt met <a href="http://daringfireball.net/projects/markdown/syntax" rel="nofollow">markdown</a>.</p>
+        @Html.TextArea("Content", new { placeholder = "Stel hier je vraag", @class = "editor" })
+        <p>Vragen mogen worden opgemaakt met <a href="http://daringfireball.net/projects/markdown/syntax" rel="nofollow">Markdown</a>. HTML opmaak is niet toegestaan.</p>
         @Html.TextBox("Tags", "", new{placeholder = "Vul minimaal een tag in"})
         <hr />
         

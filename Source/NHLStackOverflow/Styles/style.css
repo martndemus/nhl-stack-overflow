@@ -287,11 +287,6 @@ a:hover:visited { color: #D98CD9; }
     border-bottom: 1px solid hsl(200, 30%, 70%);
 }
 
-.comments .respond {
-    border: 0;
-
-}
-
 /*
     SIDEBAR WIDGET
 */
@@ -448,6 +443,13 @@ ul.tags  {
     border: 0;
 }
 
+.add-comment {
+    width: 100%;
+    margin: 0;
+    border: 0;
+    outline: 0;
+
+}
 /*
     USER OPTION WIDGET
 */
@@ -517,6 +519,11 @@ ul.tags  {
     display: inline-block;
     border-bottom: 1px solid #DEE8ED;
     width: 100%;
+}
+
+.tag p {
+    padding: 0 10px;
+
 }
 /* CLEARFIXING IT ALL */
 

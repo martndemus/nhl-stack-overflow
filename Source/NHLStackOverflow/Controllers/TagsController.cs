@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+using NHLStackOverflow.Classes;
 using NHLStackOverflow.Models;
 
 namespace NHLStackOverflow.Controllers
@@ -15,9 +13,20 @@ namespace NHLStackOverflow.Controllers
         // Tag overview pls :D
         public ActionResult Index()
         {
+            HTMLSanitizer hs = new HTMLSanitizer();
+
             var TagsList = from tags in db.Tags
                            orderby tags.Count descending
                            select tags;
+
+            
+            foreach (var tag in TagsList)
+            {
+                // Escape the text in each tag
+                tag.Name = hs.EscapeHTMLentities(tag.Name);
+                tag.Description = hs.EscapeHTMLentities(tag.Description);
+            }
+
             ViewBag.TagList = TagsList;
 
             return View();

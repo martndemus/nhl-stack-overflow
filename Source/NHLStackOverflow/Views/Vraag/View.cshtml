@@ -13,34 +13,41 @@
 <h2>@ViewBag.QuestionDetail.Title</h2> 
 
 <article class="question">
-    @Html.Raw(ViewBag.QuestionDetail.Content)
+    
+    @Html.Raw(ViewBag.QuestionDetail.Content) 
+    
     <aside class="q-meta">
+
         <p class="stats">
             <span title="Stemmen">
                 <img src="../../Styles/check.png" alt="Stemmen"/>@ViewBag.QuestionDetail.Votes
             </span>
+
             <span title="Antwoorden">
                 <img src="../../Styles/aplus.png" alt="Antwoorden"/>@ViewBag.QuestionDetail.Answers
             </span>
+
             <span title="Bekeken">
                 <img src="../../Styles/seen.png" alt="Bekeken"/>@ViewBag.QuestionDetail.Views
             </span>
+
             <time>
                 <b>@NHLStackOverflow.Classes.StringToDateTime.ConvertToUnixTimestamp(ViewBag.QuestionDetail.Created_At)</b> geleden
             </time>
             door
-                <b>@Html.ActionLink((string)ViewBag.QuestionUser.UserName, "view", "user", new { id = ViewBag.QuestionUser.UserID }, new { target = "_blank" })</b>  
-                
-            
+                <b>@Html.ActionLink((string)ViewBag.QuestionUser.UserName, "view", "user", new { id = ViewBag.QuestionUser.UserID }, new { })</b>  
         </p>
+
         <p class="tags">
-                @foreach (var tag in ViewBag.Helper)
-                {
-                    @Html.ActionLink((string)tag.Tag.Name, "search", "tags", new { id = tag.Tag.TagID }, new { target = "blank" })
-                    @Environment.NewLine
-                }
+            @foreach (var tag in ViewBag.Helper)
+            {
+                @Html.ActionLink((string)tag.Tag.Name, "search", "tags", new { id = tag.Tag.TagID }, new { })
+                @Environment.NewLine
+            }
         </p>
+
     </aside>
+    
     <ul class="comments">
         @foreach (var comment in ViewBag.CommentsList)
         {
@@ -67,18 +74,18 @@
         <li class="respond">
         @using (Html.BeginForm())
         {
-            @Html.TextBox("questionComment", "", new { placeholder = "Reageer" });
+            @Html.TextBox("questionComment", "", new { placeholder = "Reageer", @class = "add-comment" });
         }
         </li>
     </ul>
 </article>
 @if (ViewBag.AnswerQuestionCounting == 1)
 {
-    <h2>Er is @ViewBag.AnswerQuestionCounting antwoord</h2>        
+    <h2>Er is @ViewBag.AnswerQuestionCount antwoord</h2>        
 }
 else
 {  
-    <h2>Er zijn @ViewBag.AnswerQuestionCounting antwoorden</h2>    
+    <h2>Er zijn @ViewBag.AnswerQuestionCount antwoorden</h2>    
 }
 
 @foreach (var answer in ViewBag.AnswerQuestionList)
@@ -98,7 +105,7 @@ else
                 {
                     if (usertje.UserID == answer.UserId)
                     {
-                        <b>@Html.ActionLink((string)usertje.UserName, "view", "user", new { id = usertje.UserID}, new { target = "_blank"})</b>   
+                        <b>@Html.ActionLink((string)usertje.UserName, "view", "user", new { id = usertje.UserID}, new { })</b>   
                         break;
                     }
                 }
@@ -120,7 +127,7 @@ else
                     {
                         if (user.UserID == acomment.UserId)
                         {
-                            <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { target = "_blank" })</b>  
+                            <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { })</b>  
                             break;
                         }
                     }
@@ -131,7 +138,7 @@ else
             @using (Html.BeginForm())
             {
                 string aID = Convert.ToString(answer.AnswerID);
-                @Html.TextBox("awnserComment", "", new { placeholder = "Reageer" });
+                @Html.TextBox("awnserComment", "", new { placeholder = "Reageer", @class = "add-comment" });
                 @Html.TextBox("awnserID", aID, new { type = "hidden" });
             }
         </li>
@@ -142,7 +149,11 @@ else
 
 @using (Html.BeginForm())
 {
-    @Html.TextBox("awnser", "", new { placeholder = "Schrijf een antwoord" });
+    <div class="form">
+        @Html.TextArea("awnser", "", new { placeholder = "Schrijf een antwoord", @class = "editor" })
+        <p>Antwoorden mogen worden opgemaakt met <a href="http://daringfireball.net/projects/markdown/syntax" rel="nofollow">Markdown</a>. HTML opmaak is niet toegestaan.</p>
+        <input type="submit" value="Antwoord" />
+    </div>
 }
 
 

@@ -56,7 +56,7 @@ namespace NHLStackOverflow
 
         protected void Application_Start()
         {
-            Database.SetInitializer(new NHLdbInitializer());
+            //Database.SetInitializer(new NHLdbInitializer());
             //ToggleWebEncrypt();
             AreaRegistration.RegisterAllAreas();
 
