@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using NHLStackOverflow.Classes;
 
 namespace NHLStackOverflow.Models
 {
@@ -8,7 +9,7 @@ namespace NHLStackOverflow.Models
         // Init default values
         public User()
         {
-            this.Created_At = DateTime.Now.ToString();
+            this.Created_At = StringToDateTime.ToUnixTimeStamp(DateTime.Now);
             this.LastOnline = this.Created_At;
             this.Rank = 0;
             this.Activated = 0;
@@ -23,7 +24,7 @@ namespace NHLStackOverflow.Models
         public string UserName { get; set; }
 
         [Required(ErrorMessage="Een wachtwoord is verplicht.")]
-        //[RegularExpression(@"^[a-zA-Z0-9+\/=]{86}==$")] // Must consist of Base64 characters
+        [RegularExpression(@"^[a-zA-Z0-9+\/=]+$", ErrorMessage="")] // Must consist of Base64 characters
         public string Password { get; set; }
 
         [Required(ErrorMessage="Een e-mail is verplicht.")]
@@ -54,8 +55,8 @@ namespace NHLStackOverflow.Models
 
         // Timestamps
         [Required]
-        public string Created_At { get; set; }
-        public string LastOnline { get; set; }
+        public double Created_At { get; set; }
+        public double LastOnline { get; set; }
     }
 
 }

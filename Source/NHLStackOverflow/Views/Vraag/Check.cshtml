@@ -30,7 +30,7 @@
                 @foreach (var question in ViewBag.SearchResults)
                 {
                     <li>
-                        @if (question.Answered == 1)
+                        @if (question.Answers == 1)
                         {
                             <span class="votes answered">@question.Votes</span>
                         }
