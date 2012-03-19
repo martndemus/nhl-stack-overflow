@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Stel een vraag - Question Jam";
+    
+    if (Request.Headers["X-PJAX"] == null) {
+        Layout = "~/Views/Layouts/_Main.cshtml";
+        ViewBag.TitleTag = null;
+    } else {
+        ViewBag.TitleTag = "{{" + ViewBag.Title + "}}";
+        Layout = null;
+    }   
+}
+@ViewBag.TitleTag
+
+<h2>Stel een vraag</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form">
+        @Html.ValidationSummary()
+        @if (ViewBag.LoggedIn == false)
+        {
+            <span>U bent niet ingelogd. Ga @Html.ActionLink("hierheen", "index", "login", new{target = "blank"}) om in te loggen aub.</span>
+        }
+        @Html.TextBox("Vraag", (string)ViewBag.Vraag)
+        <hr />
+        @Html.TextArea("Content", new { placeholder = "Stel hier je vraag" })
+        <p>Vragen worden opgemaakt met <a href="http://daringfireball.net/projects/markdown/syntax" rel="nofollow">markdown</a>.</p>
+        @Html.TextBox("Tags", "", new{placeholder = "Vul minimaal een tag in"})
+        <hr />
+        
+
+        @if (ViewBag.MissingTagList != null)
+        {
+            <h3>De volgende tag(s) zijn niet gevonden. Vul even een korte beschrijving van de tag(s) in.</h3>
+            <ul>
+                @for (int i = 0; i < ViewBag.MissingTagListCount; i++)
+                {
+                    <li>@Html.TextBox("tag" + i, "", new { placeholder = ViewBag.MissingTagList[i] })
+                    <hr></li>
+                }
+            </ul>
+        }
+        <input type="submit" value="Volgende" id="submit" />    
+    </div>
+
+}

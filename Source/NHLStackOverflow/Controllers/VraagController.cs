@@ -15,18 +15,77 @@ namespace NHLStackOverflow.Controllers
         // GET: Vraag/View/detailNum
         public ActionResult View(int id)
         {
+
+            Markdown md = new Markdown();
+            HTMLSanitizer hs = new HTMLSanitizer();
+
+            //questiondetails
             var questionDetails = from questionDetail in db.Questions
                                   where questionDetail.QuestionID == id
                                   select questionDetail;
-            ViewBag.QuestionDetail = questionDetails.First();
+
+            Question questionDetailView = questionDetails.First();
+
+            // Sanitize HTML + Transform content with MD
+            questionDetailView.Content = hs.SanitizeHTMLTags(questionDetailView.Content);
+            questionDetailView.Content = md.Transform(questionDetailView.Content);
+
+            ViewBag.QuestionDetail = questionDetailView;
+
+            //tags in sidebar
+            var TagsList = from tags in db.Tags
+                           orderby tags.Count descending
+                           select tags;
+            ViewBag.TagList = TagsList;
+
+            List<TagsIDs> abc = new List<TagsIDs>();
+
+            //tags in question
+            var TagList = from tagsQuestion in db.Tags
+                          join c in db.QuestionTags on tagsQuestion.TagID equals c.TagId
+                          where c.QuestionId == id
+                          select tagsQuestion;
+
+            foreach (Tag i in TagList)
+                abc.Add(new TagsIDs(i, id));
+            ViewBag.Helper = abc;
+
+            //user verificatie
+            var useringlist = from users in db.Users
+                              where users.UserID == questionDetailView.UserId
+                              select users;
+            ViewBag.QuestionUser = useringlist.First();
+
+            //comments
+
+            var commentList = from comments in db.Comments
+                              orderby comments.Created_At descending
+                              where comments.QuestionId == id
+                              select comments;
+            List<Comment> commentUserView = new List<Comment>(commentList);
+            ViewBag.CommentsList = commentList;
+            List<User> CommentingUsers = new List<User>();
+
+            foreach (Comment commentje in commentUserView)
+            {
+                var userComment = from commentse in db.Users
+                                  where commentse.UserID == commentje.UserId
+                                  select commentse;
+                CommentingUsers.Add(userComment.First());
+            }
+            ViewBag.UserCommentList = CommentingUsers;
+
+            
+  
+                              
             return View();
         }
 
         //
         // GET: /Vraag/StelEen
-        public ActionResult StelEen()
+        public ActionResult Check()
         {
-            ViewBag.ActionName = "steleen";
+            ViewBag.ActionName = "check";
             ViewBag.ControllerName = "vraag";
             return View();
         }
@@ -34,14 +93,14 @@ namespace NHLStackOverflow.Controllers
         //
         // POST: /Vraag/StelEen
         [HttpPost]
-        public ActionResult StelEen(string vraag)
+        public ActionResult Check(string vraag)
         {
             if (vraag == null)
                 ModelState.AddModelError("", "Vraag is leeg.");
             if (ModelState.IsValid)
             {
                 // For cleaing up the spaces
-                char[] toTrim = new char[7] { '?', '.', ',', '!', ':', ':', '/' };
+                char[] toTrim = new char[7] { '?', '.', ',', '!', ':', ';', '/' };
                 string vraagTrimmed = vraag.Trim(toTrim);
                 vraagTrimmed = vraagTrimmed.ToLower();
 
@@ -62,7 +121,7 @@ namespace NHLStackOverflow.Controllers
                                         orderby qsorted.Count() descending
                                         select qsorted.First();
 
-                ViewBag.ActionName = "steleen2";
+                ViewBag.ActionName = "nieuw";
                 ViewBag.ControllerName = "vraag";
             }
             return View();
@@ -70,7 +129,7 @@ namespace NHLStackOverflow.Controllers
 
         // 
         // GET: Vraag/StelEen2
-        public ActionResult StelEen2(string info)
+        public ActionResult Nieuw(string info)
         {
             ViewBag.Vraag = info;
             return View();
@@ -79,10 +138,12 @@ namespace NHLStackOverflow.Controllers
         //
         // POST: Vraag/StelEen2
         [HttpPost]
-        public ActionResult StelEen2(Vraag info)
+        public ActionResult Nieuw(Vraag info)
         {
             //
-            if (info.vraag == null || info.tags == null || info.content == null)
+            if (info.vraag == null)
+                ModelState.AddModelError("", "Ga terug en voer een titel voor je vraag in.");
+            else if (info.vraag != null && (info.tags == null || info.content == null))
                 ModelState.AddModelError("", "Vul alle velden in aub.");
             else
             {

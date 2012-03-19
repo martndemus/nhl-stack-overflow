@@ -115,7 +115,7 @@ namespace NHLStackOverflow.Controllers
 
         //
         // GET: User/Admin
-        public ActionResult Admin()
+        public ActionResult Beheer()
         {
             // Needed to check if we are allowed to see some bad stuff happening
             var userRanking = from userRank in db.Users
@@ -150,7 +150,6 @@ namespace NHLStackOverflow.Controllers
                                    select question;
                 ViewBag.badQuestionList = badQuestions;
             }
-
             return View();
         }
     }

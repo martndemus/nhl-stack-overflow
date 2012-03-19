@@ -98,10 +98,10 @@ namespace NHLStackOverflow.Models
 
             var question = new List<Question>
             {
-                new Question { UserId = 1, Title = "Hello world!1", Content = "1Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2002, 2, 14, 8, 5, 10)) },
+                new Question { UserId = 1, Title = "Hello world!1", Content = "1Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 2, 14, 8, 5, 10)) },
                 new Question { UserId = 2, Title = "Hello world!2", Content = "2Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2004, 2, 13, 8, 5, 10)) },
-                new Question { UserId = 3, Title = "Hello world!3", Content = "3Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(1996, 1, 10, 8, 5, 10)) },
-                new Question { UserId = 3, Title = "Hello world!4", Content = "This is a flagged question! 3Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(1996, 1, 10, 8, 5, 10)), Flag = 1}
+                new Question { UserId = 3, Title = "Hello world!3", Content = "3Lorem ipsum text here. So I didn't have to type this. <script>Because I a programmer which</script> are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(1996, 1, 10, 8, 5, 10)) },
+                new Question { UserId = 3, Title = "Hello world!4", Content = "This is a flagged question! 3Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(1950, 1, 10, 8, 5, 10)), Flag = 1}
             };
 
             question.ForEach(s => context.Questions.Add(s));
@@ -139,10 +139,10 @@ namespace NHLStackOverflow.Models
 
             var comment = new List<Comment>
             {
-                new Comment { UserId = 1, QuestionId = 1, Content = "1Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D"},
-                new Comment { UserId = 2, QuestionId = 2, Content = "2Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D"},
-                new Comment { UserId = 3, QuestionId = 3, Content = "3Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D"},
-                new Comment { UserId = 1, QuestionId = 1, Content = "1Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D", Flag = 1}
+                new Comment { UserId = 1, QuestionId = 1, Content = "1Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2010, 2, 14, 8, 5, 10))},
+                new Comment { UserId = 2, QuestionId = 2, Content = "2Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2009, 2, 14, 8, 5, 10))},
+                new Comment { UserId = 3, QuestionId = 3, Content = "3Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2011, 2, 14, 8, 5, 10))},
+                new Comment { UserId = 3, QuestionId = 1, Content = "4Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D", Flag = 1, Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 14, 12, 5, 10))}
 
             };
 

@@ -24,6 +24,10 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,7 +36,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
     <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
     <PublishDatabaseSettings>
       <Objects>
@@ -81,6 +85,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\HTMLSanitizer.cs" />
+    <Compile Include="Classes\Markdown.cs" />
     <Compile Include="Classes\PasswordHasher.cs" />
     <Compile Include="Classes\StringFilter.cs" />
     <Compile Include="Classes\StringToDateTime.cs" />
@@ -116,6 +122,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\lib.js" />
+    <Content Include="Scripts\script-login.js" />
+    <Content Include="Scripts\script-main.js" />
+    <Content Include="Scripts\script-user.js" />
     <Content Include="Styles\aplus.png" />
     <Content Include="Styles\check.png" />
     <Content Include="Styles\dot.png" />
@@ -206,13 +216,19 @@
     <Content Include="Views\User\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\User\Admin.cshtml" />
+    <Content Include="Views\User\Beheer.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Vraag\StelEen.cshtml" />
+    <Content Include="Views\Widget\Account.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Vraag\StelEen2.cshtml" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Vraag\Check.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Vraag\Nieuw.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />

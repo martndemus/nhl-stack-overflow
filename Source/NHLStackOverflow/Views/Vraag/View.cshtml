@@ -10,7 +10,65 @@
 }
 @ViewBag.TitleTag
 
-<h2>@ViewBag.QuestionDetail.Title</h2>
-<p>
-@ViewBag.QuestionDetail.Content
-</p>
+<h2>@ViewBag.QuestionDetail.Title</h2> 
+
+<article class="question">
+    @Html.Raw(ViewBag.QuestionDetail.Content)
+    <aside class="q-meta">
+        <p class="stats">
+            <span title="Stemmen">
+                <img src="../../Styles/check.png" alt="Stemmen"/>@ViewBag.QuestionDetail.Votes
+            </span>
+            <span title="Antwoorden">
+                <img src="../../Styles/aplus.png" alt="Antwoorden"/>@ViewBag.QuestionDetail.Answered
+            </span>
+            <span title="Bekeken">
+                <img src="../../Styles/seen.png" alt="Bekeken"/>@ViewBag.QuestionDetail.Views
+            </span>
+            <time>
+                <b>@NHLStackOverflow.Classes.StringToDateTime.ConvertToUnixTimestamp(ViewBag.QuestionDetail.Created_At)</b> geleden
+            </time>
+            door
+                <b>@Html.ActionLink((string)ViewBag.QuestionUser.UserName, "view", "user", new { id = ViewBag.QuestionUser.UserID }, new { target = "_blank" })</b>  
+                
+            
+        </p>
+        <p class="tags">
+                @foreach (var tag in ViewBag.Helper)
+                {
+                    @Html.ActionLink((string)tag.Tag.Name, "search", "tags", new { id = tag.Tag.TagID }, new { target = "blank" })
+                    @Environment.NewLine
+                }
+        </p>
+    </aside>
+    <ul class="comments">
+        @foreach (var comment in ViewBag.CommentsList)
+        {
+            if (comment.QuestionId == ViewBag.QuestionDetail.QuestionID)
+            {
+                <li>
+                    @comment.Content
+                <time>
+                    <b>@NHLStackOverflow.Classes.StringToDateTime.ConvertToUnixTimestamp(comment.Created_At)</b> geleden
+                </time>
+                door
+
+                @foreach (var user in ViewBag.UserCommentList)
+                {
+                if (user.UserID == comment.UserId)
+                    {
+                        <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { target = "_blank" })</b>  
+                    }
+                }
+                </li>
+            }
+        }
+        <li class="respond">
+            <input type="text" placeholder="Reageer"/>
+        </li>
+    </ul>
+</article>
+<h2>Er zijn (x) aantal antwoorden</h2>
+
+
+
