@@ -12,11 +12,29 @@ namespace NHLStackOverflow.Models.FormDataModels
         public string vraag { get; set; }
         [MinLength(140)]
         public string content { get; set; }
+
+        [MinLength(10, ErrorMessage = "The minimum lenght is 10 characters")]
+        [MaxLength(500, ErrorMessage = "The maximum lenght is 500 characters")]
         public string tag0 { get; set; }
+
+        [MinLength(10, ErrorMessage = "The minimum lenght is 10 characters")]
+        [MaxLength(500, ErrorMessage = "The maximum lenght is 500 characters")]
         public string tag1 { get; set; }
+
+        [MinLength(10, ErrorMessage = "The minimum lenght is 10 characters")]
+        [MaxLength(500, ErrorMessage = "The maximum lenght is 500 characters")]
         public string tag2 { get; set; }
+
+        [MinLength(10, ErrorMessage = "The minimum lenght is 10 characters")]
+        [MaxLength(500, ErrorMessage = "The maximum lenght is 500 characters")]
         public string tag3 { get; set; }
+
+        [MinLength(10, ErrorMessage = "The minimum lenght is 10 characters")]
+        [MaxLength(500, ErrorMessage = "The maximum lenght is 500 characters")]
         public string tag4 { get; set; }
+
+        [MinLength(10, ErrorMessage = "The minimum lenght is 10 characters")]
+        [MaxLength(500, ErrorMessage = "The maximum lenght is 500 characters")]
         public string tag5 { get; set; }
     }
 

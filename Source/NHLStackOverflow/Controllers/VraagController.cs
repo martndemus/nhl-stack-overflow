@@ -128,7 +128,7 @@ namespace NHLStackOverflow.Controllers
         }
 
         // 
-        // GET: Vraag/StelEen2
+        // GET: Vraag/Nieuw
         public ActionResult Nieuw(string info)
         {
             ViewBag.Vraag = info;
@@ -136,19 +136,22 @@ namespace NHLStackOverflow.Controllers
         }
 
         //
-        // POST: Vraag/StelEen2
+        // POST: Vraag/Nieuw
         [HttpPost]
         public ActionResult Nieuw(Vraag info)
         {
-            //
+            bool firstTime = false;
+            if (Request.UrlReferrer.LocalPath == "/vraag/check")
+                firstTime = true;
             if (info.vraag == null)
                 ModelState.AddModelError("", "Ga terug en voer een titel voor je vraag in.");
-            else if (info.vraag != null && (info.tags == null || info.content == null))
+            else if (info.vraag != null && (info.tags == null || info.content == null) && !firstTime)
                 ModelState.AddModelError("", "Vul alle velden in aub.");
-            else
+            else if (!firstTime)
             {
                 // Fields are met hmm let's see if we can find all the tags perhaps :D
                 List<string> tagsList = new List<string>(); // new generic list which will contain our tags which we aren't in the database
+                info.tags = info.tags.Trim(',', '!', '?', ':', ';', '.');
                 string[] tags = info.tags.Split(' '); // assume all tags are splitted by a space (beg)
                 List<string> foundTags = new List<string>();
                 foreach (string tag in tags)
