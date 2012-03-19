@@ -252,11 +252,13 @@ a:hover:visited { color: #D98CD9; }
     text-decoration: none;
 }
 
-
+.question pre {
+    padding: 10px;
+    line-height: 1.5;
+}
 
 .question pre, .question code {
     font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-    padding: 10px;
     background: #eaeaea;
     overflow-x: auto;
 }

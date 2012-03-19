@@ -214,9 +214,7 @@ namespace NHLStackOverflow.Classes
                 .Replace("<", "&lt;")
                 .Replace(">", "&gt;")
                 .Replace("\"", "&quot;")
-                .Replace("'", "&#x27;")
-                .Replace("/", "&#x2F")
-                .Replace("=", "&#61;");
+                .Replace("'", "&#x27;");
         }
 
         /// <summary>
