@@ -20,7 +20,7 @@
                 <img src="../../Styles/check.png" alt="Stemmen"/>@ViewBag.QuestionDetail.Votes
             </span>
             <span title="Antwoorden">
-                <img src="../../Styles/aplus.png" alt="Antwoorden"/>@ViewBag.QuestionDetail.Answered
+                <img src="../../Styles/aplus.png" alt="Antwoorden"/>@ViewBag.QuestionDetail.Answers
             </span>
             <span title="Bekeken">
                 <img src="../../Styles/seen.png" alt="Bekeken"/>@ViewBag.QuestionDetail.Views
@@ -58,13 +58,17 @@
                     if (user.UserID == comment.UserId)
                     {
                         <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { target = "_blank" })</b>  
+                        break;
                     }
                 }
                 </li>
             }
         }
         <li class="respond">
-            <input type="text" placeholder="Reageer"/>
+        @using (Html.BeginForm())
+        {
+            @Html.TextBox("questionComment", "", new { placeholder = "Reageer" });
+        }
         </li>
     </ul>
 </article>
@@ -117,18 +121,28 @@ else
                         if (user.UserID == acomment.UserId)
                         {
                             <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { target = "_blank" })</b>  
+                            break;
                         }
                     }
                     </li>
                 }
             }
         <li class="respond">
-            <input type="text" placeholder="Reageer"/>
+            @using (Html.BeginForm())
+            {
+                string aID = Convert.ToString(answer.AnswerID);
+                @Html.TextBox("awnserComment", "", new { placeholder = "Reageer" });
+                @Html.TextBox("awnserID", aID, new { type = "hidden" });
+            }
         </li>
     </ul>
     </article>
 }
 
 
+@using (Html.BeginForm())
+{
+    @Html.TextBox("awnser", "", new { placeholder = "Schrijf een antwoord" });
+}
 
 

@@ -12,7 +12,7 @@ namespace NHLStackOverflow.Models
             this.Views = 0;
             this.Votes = 0;
             this.Flag = 0;
-            this.Answered = 0;
+            this.Answers = 0;
         }
 
         // GUID
@@ -31,9 +31,8 @@ namespace NHLStackOverflow.Models
         public int Votes { get; set; }
         public int Views { get; set; }
 
-        [Range(0,1)]
-        public int Answered { get; set; }
-        [Range(0,1)]
+        public int Answers { get; set; }
+        [Range(0, 1)]
         public int Flag { get; set; }
 
         // Timestamps

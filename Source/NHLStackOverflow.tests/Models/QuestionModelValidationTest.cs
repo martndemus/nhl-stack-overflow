@@ -57,14 +57,14 @@ namespace NHLStackOverflow.tests.Models
             // Should not be null
             Assert.IsNotNull(q.Votes, "Votes should not be null");
             Assert.IsNotNull(q.Views, "Views should not be null");
-            Assert.IsNotNull(q.Answered, "Answered should not be null");
+            Assert.IsNotNull(q.Answers, "Answered should not be null");
             Assert.IsNotNull(q.Flag, "Flag should not be null");
             Assert.IsNotNull(q.Created_At, "Created_At should not be null");
 
             //Expected Default values
             Assert.AreEqual(0, q.Votes, "Votes should be initialized to 0");
             Assert.AreEqual(0, q.Views, "Views should be initialized to 0");
-            Assert.AreEqual(0, q.Answered, "Answered should be initialized to 0");
+            Assert.AreEqual(0, q.Answers, "Answered should be initialized to 0");
             Assert.AreEqual(0, q.Flag, "Flag should be initialized to 0;");
             Assert.IsTrue(q.Created_At == StringToDateTime.ToUnixTimeStamp(DateTime.Now), "Created At should be initialized to DateTime.Now.ToString()");
         }
@@ -76,7 +76,7 @@ namespace NHLStackOverflow.tests.Models
             {
                 new Question { UserId = 1, Title = "Hello world!1", Content = "1Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?" },
                 new Question { UserId = 2, Votes = 10, Title = "Hello world!2", Content = "2Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?" },
-                new Question { UserId = 3, Answered = 1, Title = "Hello world!3", Content = "3Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?" },
+                new Question { UserId = 3, Answers = 1, Title = "Hello world!3", Content = "3Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?" },
                 new Question { UserId = 2, Flag = 0, Title = "Hello world!2", Content = "2Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?" }
             };                
 
@@ -128,7 +128,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "Saving invalid question should throw an DbEntityValidationException exception")]
         public void InvalidQuestion5()
         {
-            Question q = new Question { UserId = 1, Answered = 3, Title = "Hello world12!", Content = "1Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?" };
+            Question q = new Question { UserId = 1, Answers = 3, Title = "Hello world12!", Content = "1Lorem ipsum text here. So I didn't have to type this. Because I a programmer which are lazies :D. Lorem impsum dor sil ammet. This is an question: Do you work?" };
 
             db.Questions.Add(q);
             db.SaveChanges();

@@ -15,7 +15,6 @@ namespace NHLStackOverflow.Controllers
         // GET: Vraag/View/detailNum
         public ActionResult View(int id)
         {
-
             Markdown md = new Markdown();
             HTMLSanitizer hs = new HTMLSanitizer();
 
@@ -23,6 +22,8 @@ namespace NHLStackOverflow.Controllers
             var questionDetails = from questionDetail in db.Questions
                                   where questionDetail.QuestionID == id
                                   select questionDetail;
+            questionDetails.First().Views += 1;
+            db.SaveChanges();
 
             Question questionDetailView = questionDetails.First();
 
@@ -117,6 +118,76 @@ namespace NHLStackOverflow.Controllers
             return View();
         }
 
+        //
+        // POST: /Vraag/View/QuestionID
+        [HttpPost]
+        public ActionResult View(int id, CommentAnswer input)
+        {
+            if (input.awnserComment != null)
+            {
+                // add a new awnser comment
+                if (!Request.IsAuthenticated)
+                    ModelState.AddModelError("", "U dient te zijn ingelogd om te reageren.");
+                if (ModelState.IsValid)
+                {
+                    var userAwnsering = from user in db.Users
+                                        where user.UserName == User.Identity.Name
+                                        select user;
+                    if (userAwnsering.Count() == 1)
+                    {
+                        Comment awnserComment = new Comment() { AnswerId = input.awnserID, Content = input.awnserComment, UserId = userAwnsering.First().UserID };
+                        db.Comments.Add(awnserComment);
+                        db.SaveChanges();
+                    }
+                    return RedirectToAction("view", "vraag", id);
+                }
+            }
+            else if (input.questionComment != null)
+            {
+                // add a new comment to the question
+                if (!Request.IsAuthenticated)
+                    ModelState.AddModelError("", "U dient te zijn ingelogd om te reageren.");
+                if (ModelState.IsValid)
+                {
+                    var userAwnsering = from user in db.Users
+                                        where user.UserName == User.Identity.Name
+                                        select user;
+                    if (userAwnsering.Count() == 1)
+                    {
+                        Comment questionComment = new Comment() { UserId = userAwnsering.First().UserID, QuestionId = id, Content = input.questionComment };
+                        db.Comments.Add(questionComment);
+                        db.SaveChanges();
+                    }
+                    return RedirectToAction("view", "vraag", id);
+                }
+            }
+            else if (input.awnser != null)
+            {
+               // Add a new awnser
+                // add a new comment to the question
+                if (!Request.IsAuthenticated)
+                    ModelState.AddModelError("", "U dient te zijn ingelogd om te reageren.");
+                if (ModelState.IsValid)
+                {
+                    var userAwnsering = from user in db.Users
+                                        where user.UserName == User.Identity.Name
+                                        select user;
+                    var thisQuestion = from questions in db.Questions
+                                       where questions.QuestionID == id
+                                       select questions;
+                    if (userAwnsering.Count() == 1 && thisQuestion.Count() == 1)
+                    {
+                        thisQuestion.First().Answers += 1;
+                        Answer questionAwnser = new Answer() { QuestionId = id, UserId = userAwnsering.First().UserID, Content = input.awnser };
+                        db.Answers.Add(questionAwnser);
+                        db.SaveChanges();
+                    }
+                    return RedirectToAction("view", "vraag", id);
+                }
+
+            }
+            return View(id);
+        }
         //
         // GET: /Vraag/StelEen
         public ActionResult Check()
