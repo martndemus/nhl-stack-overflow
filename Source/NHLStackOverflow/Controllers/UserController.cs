@@ -117,38 +117,45 @@ namespace NHLStackOverflow.Controllers
         // GET: User/Admin
         public ActionResult Beheer()
         {
-            // Needed to check if we are allowed to see some bad stuff happening
-            var userRanking = from userRank in db.Users
-                              where userRank.UserName == User.Identity.Name
-                              select userRank.Rank;
-            ViewBag.Allowed = false; // false if we aren't allowed to check this
-            if (userRanking.First() != 0)
-                ViewBag.Allowed = true; // True if we are allowed
+            if (User.Identity.IsAuthenticated)
+            {
+                // Needed to check if we are allowed to see some bad stuff happening
+                var userRanking = from userRank in db.Users
+                                  where userRank.UserName == User.Identity.Name
+                                  select userRank.Rank;
+                ViewBag.Allowed = false; // false if we aren't allowed to check this
+                if (userRanking.First() != 0)
+                    ViewBag.Allowed = true; // True if we are allowed
+                else
+                    return View();
+                if (userRanking.First() > 0)
+                {
+                    // Should be allowed to see the bad comments!
+                    var badCommets = from comment in db.Comments
+                                     where comment.Flag == 1
+                                     select comment;
+                    ViewBag.badCommentList = badCommets;
+                }
+                if (userRanking.First() > 1)
+                {
+                    // Allowed to see bad anwsers that are flagged
+                    var badAwnsers = from awnser in db.Answers
+                                     where awnser.Flag == 1
+                                     select awnser;
+                    ViewBag.badAwnserList = badAwnsers;
+                }
+                if (userRanking.First() > 2)
+                {
+                    // allowed to see em all, show evil questions aswell
+                    var badQuestions = from question in db.Questions
+                                       where question.Flag == 1
+                                       select question;
+                    ViewBag.badQuestionList = badQuestions;
+                }
+            }
             else
-                return View();
-            if (userRanking.First() > 0)
             {
-                // Should be allowed to see the bad comments!
-                var badCommets = from comment in db.Comments
-                                 where comment.Flag == 1
-                                 select comment;
-                ViewBag.badCommentList = badCommets;
-            }
-            if (userRanking.First() > 1)
-            {
-                // Allowed to see bad anwsers that are flagged
-                var badAwnsers = from awnser in db.Answers
-                                 where awnser.Flag == 1
-                                 select awnser;
-                ViewBag.badAwnserList = badAwnsers;
-            }
-            if (userRanking.First() > 2)
-            {
-                // allowed to see em all, show evil questions aswell
-                var badQuestions = from question in db.Questions
-                                   where question.Flag == 1
-                                   select question;
-                ViewBag.badQuestionList = badQuestions;
+                // Give some error bag somewhere :<
             }
             return View();
         }
