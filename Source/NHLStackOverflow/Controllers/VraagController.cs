@@ -28,7 +28,7 @@ namespace NHLStackOverflow.Controllers
             Question questionDetailView = questionDetails.First();
 
             // Sanitize HTML + Transform content with MD
-            questionDetailView.Content = hs.Sanitize(questionDetailView.Content);
+            questionDetailView.Content = hs.Sanitize(questionDetailView.Content, HTMLSanitizerOption.UnescapeMarkDown);
             questionDetailView.Content = md.Transform(questionDetailView.Content);
 
             ViewBag.QuestionDetail = questionDetailView;
@@ -133,6 +133,7 @@ namespace NHLStackOverflow.Controllers
                     var userAwnsering = from user in db.Users
                                         where user.UserName == User.Identity.Name
                                         select user;
+
                     if (userAwnsering.Count() == 1)
                     {
                         Comment awnserComment = new Comment() { AnswerId = input.awnserID, Content = input.awnserComment, UserId = userAwnsering.First().UserID };
@@ -200,6 +201,8 @@ namespace NHLStackOverflow.Controllers
         //
         // POST: /Vraag/StelEen
         [HttpPost]
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ValidateInput(false)] 
         public ActionResult Check(string vraag)
         {
             if (vraag == null)
