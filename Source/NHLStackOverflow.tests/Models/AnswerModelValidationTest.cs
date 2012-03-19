@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHLStackOverflow.Models;
+using NHLStackOverflow.Classes;
 
 namespace NHLStackOverflow.tests.Models
 {
@@ -58,7 +59,7 @@ namespace NHLStackOverflow.tests.Models
             // Expected Default values
             Assert.AreEqual(0, a.Flag, "Flag should be initialized to 0");
             Assert.AreEqual(0, a.Votes, "Votes should be initialized to 0");
-            Assert.IsTrue(a.Created_At == DateTime.Now.ToString(), "Created At should be initialized to DateTime.Now.ToString()" );
+            Assert.IsTrue(a.Created_At == StringToDateTime.ToUnixTimeStamp(DateTime.Now), "Created At should be initialized to DateTime.Now.ToString()");
         }
 
         [Description("Tests if answers that should be valid are valid."), TestCategory("Model.Valid"), TestMethod]

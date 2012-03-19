@@ -142,8 +142,10 @@ namespace NHLStackOverflow.Models
                 new Comment { UserId = 1, QuestionId = 1, Content = "1Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2010, 2, 14, 8, 5, 10))},
                 new Comment { UserId = 2, QuestionId = 2, Content = "2Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2009, 2, 14, 8, 5, 10))},
                 new Comment { UserId = 3, QuestionId = 3, Content = "3Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2011, 2, 14, 8, 5, 10))},
-                new Comment { UserId = 3, QuestionId = 1, Content = "4Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D", Flag = 1, Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 14, 12, 5, 10))}
-
+                new Comment { UserId = 3, QuestionId = 1, Content = "4Hello this is a comment on a question asked by a noob. The awnser is simple. Don't program pls :D", Flag = 1, Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 14, 12, 5, 10))},
+                new Comment { UserId = 1, AnswerId = 2, Content = "1Hello this is a AnswerComment on a question asked by a noob. The awnser is simple. Don't program pls :D", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2001, 3, 14, 12, 5, 10))},
+                new Comment { UserId = 2, AnswerId = 4, Content = "2Hello this is a AnswerComment on a question asked by a noob. The awnser is simple. Don't program pls :D", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2002, 3, 14, 12, 5, 10))},
+                new Comment { UserId = 3, AnswerId = 1, Content = "3Hello this is a AnswerComment on a question asked by a noob. The awnser is simple. Don't program pls :D", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2003, 3, 14, 12, 5, 10))}
             };
 
             comment.ForEach(s => context.Comments.Add(s));
@@ -161,10 +163,10 @@ namespace NHLStackOverflow.Models
 
             var answer = new List<Answer>
             {
-                new Answer { UserId = 1, QuestionId = 1, Content = "Hello, Here is my fabilous awnser to your somewhat silly question. I've never had problems with this kind of things. I always do the thingy first and afterwards I do the other thingy. Result: Profit. Kthxbai."},
-                new Answer { UserId = 2, QuestionId = 2, Content = "Hello, Here is my fabilous awnser to your somewhat silly question. I've never had problems with this kind of things. I always do the thingy first and afterwards I do the other thingy. Result: Profit. Kthxbai."},
-                new Answer { UserId = 2, QuestionId = 2, Content = "Evil! Hello, Here is my fabilous awnser to your somewhat silly question. I've never had problems with this kind of things. I always do the thingy first and afterwards I do the other thingy. Result: Profit. Kthxbai.", Flag = 1},
-                new Answer { UserId = 3, QuestionId = 3, Content = "Hello, Here is my fabilous awnser to your somewhat silly question. I've never had problems with this kind of things. I always do the thingy first and afterwards I do the other thingy. Result: Profit. Kthxbai."}
+                new Answer { UserId = 2, QuestionId = 1, Content = "Hello, Here is my fabilous awnser to your somewhat silly question. I've never had problems with this kind of things. I always do the thingy first and afterwards I do the other thingy. Result: Profit. Kthxbai.",Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2010, 2, 14, 8, 5, 10))},
+                new Answer { UserId = 1, QuestionId = 2, Content = "Hello, Here is my fabilous awnser to your somewhat silly question. I've never had problems with this kind of things. I always do the thingy first and afterwards I do the other thingy. Result: Profit. Kthxbai.",Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2009, 2, 14, 8, 5, 10))},
+                new Answer { UserId = 3, QuestionId = 2, Content = "Evil! Hello, Here is my fabilous awnser to your somewhat silly question. I've never had problems with this kind of things. I always do the thingy first and afterwards I do the other thingy. Result: Profit. Kthxbai.", Flag = 1, Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2011, 2, 14, 8, 5, 10))},
+                new Answer { UserId = 1, QuestionId = 3, Content = "Hello, Here is my fabilous awnser to your somewhat silly question. I've never had problems with this kind of things. I always do the thingy first and afterwards I do the other thingy. Result: Profit. Kthxbai.", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 15, 8, 5, 10))}
             };
 
             answer.ForEach(s => context.Answers.Add(s));

@@ -64,7 +64,46 @@ namespace NHLStackOverflow.Controllers
                 CommentingUsers.Add(userComment.First());
             }
             ViewBag.UserCommentList = CommentingUsers;
-                              
+
+            var answerQuestion = from answers in db.Answers
+                                 orderby answers.Created_At descending
+                                 where answers.QuestionId == id
+                                 select answers;
+            List<Answer> answerQuestionView = new List<Answer>(answerQuestion);
+            ViewBag.AnswerQuestionList = answerQuestion;
+            ViewBag.AnswerQuestionCounting = answerQuestion.Count();
+            List<User> AnsweringUsers = new List<User>();
+            List<Comment> AnswerComments = new List<Comment>();
+            List<User> qCommentUsers = new List<User>();
+            foreach (Answer answertje in answerQuestionView)
+            {
+                var userAnswer = from answerse in db.Users
+                                 where answerse.UserID == answertje.UserId
+                                 select answerse;
+                AnsweringUsers.Add(userAnswer.First());
+
+                var answerCommentList = from qcomments in db.Comments
+                                        orderby qcomments.Created_At descending
+                                        where qcomments.AnswerId == answertje.AnswerID
+                                        select qcomments;
+                if (answerCommentList.Count() > 0)
+                {
+                    foreach(Comment cba in answerCommentList)
+                        AnswerComments.Add(cba);
+                }
+
+                foreach (Comment qCommentje in answerCommentList)
+                {
+                    var userQComment = from qcommentse in db.Users
+                                       where qcommentse.UserID == qCommentje.UserId
+                                       select qcommentse;
+                    qCommentUsers.Add(userQComment.First());
+                }
+            }
+            ViewBag.UserAnswerList = AnsweringUsers;
+            ViewBag.AnswerComments = AnswerComments;
+            ViewBag.qCommentList = qCommentUsers;
+      
             return View();
         }
 
