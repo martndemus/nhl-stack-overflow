@@ -55,7 +55,7 @@
 
                 @foreach (var user in ViewBag.UserCommentList)
                 {
-                if (user.UserID == comment.UserId)
+                    if (user.UserID == comment.UserId)
                     {
                         <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { target = "_blank" })</b>  
                     }
@@ -68,7 +68,67 @@
         </li>
     </ul>
 </article>
-<h2>Er zijn (x) aantal antwoorden</h2>
+@if (ViewBag.AnswerQuestionCounting == 1)
+{
+    <h2>Er is @ViewBag.AnswerQuestionCounting antwoord</h2>        
+}
+else
+{  
+    <h2>Er zijn @ViewBag.AnswerQuestionCounting antwoorden</h2>    
+}
+
+@foreach (var answer in ViewBag.AnswerQuestionList)
+{
+    <article class="question">
+        <p>@answer.Content</p>
+        <aside class="q-meta">
+            <p class="stats">
+                <span title="Stemmen">
+                    <img src="../../Styles/check.png" alt="Stemmen" />@answer.Votes
+                </span>
+                <time>
+                    <b>@NHLStackOverflow.Classes.StringToDateTime.ConvertToUnixTimestamp(answer.Created_At)</b> geleden
+                </time>
+                door
+                @foreach (var usertje in ViewBag.UserAnswerList)
+                {
+                    if (usertje.UserID == answer.UserId)
+                    {
+                        <b>@Html.ActionLink((string)usertje.UserName, "view", "user", new { id = usertje.UserID}, new { target = "_blank"})</b>   
+                        break;
+                    }
+                }
+            </p>
+        </aside>
+         <ul class="comments">
+            @foreach (var acomment in ViewBag.AnswerComments)
+            {
+                if (acomment.AnswerId == answer.AnswerID)
+                {
+                    <li>
+                        @acomment.Content
+                    <time>
+                        <b>@NHLStackOverflow.Classes.StringToDateTime.ConvertToUnixTimestamp(acomment.Created_At)</b> geleden
+                    </time>
+                    door
+
+                    @foreach (var user in ViewBag.qCommentList)
+                    {
+                        if (user.UserID == acomment.UserId)
+                        {
+                            <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { target = "_blank" })</b>  
+                        }
+                    }
+                    </li>
+                }
+            }
+        <li class="respond">
+            <input type="text" placeholder="Reageer"/>
+        </li>
+    </ul>
+    </article>
+}
+
 
 
 
