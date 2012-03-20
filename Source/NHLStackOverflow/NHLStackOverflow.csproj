@@ -93,6 +93,7 @@
     <Compile Include="Classes\TagsIDs.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\ProfielController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VraagController.cs" />
@@ -232,6 +233,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Profiel\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

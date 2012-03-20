@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Question Jam - Tags";
+    ViewBag.Title = "Tags - Question Jam ";
     if (Request.Headers["X-PJAX"] == null) {
         Layout = "~/Views/Layouts/_Main.cshtml";
         ViewBag.TitleTag = null;
@@ -16,7 +16,7 @@
 {
     <div class="tag">
         <p class="tags">@Html.ActionLink((string)tag.Name, "Search", "Tags", new { id = tag.TagID }, new { }) x @tag.Count</p>
-        <p>@tag.Description
+        <p>@Html.Raw(tag.Description)
     </div>
 }
 </div>

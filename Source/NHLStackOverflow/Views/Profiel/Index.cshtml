@@ -1,21 +1,15 @@
-﻿@{
-    ViewBag.Title = "Tag: " + ViewBag.TagName + " - Question Jam";
+﻿@{    
+    ViewBag.Title = "Profiel: " + ViewBag.User.UserName + " - Question Jam";
+    
     if (Request.Headers["X-PJAX"] == null) {
         Layout = "~/Views/Layouts/_Main.cshtml";
         ViewBag.TitleTag = null;
     } else {
         ViewBag.TitleTag = "{{" + ViewBag.Title + "}}";
         Layout = null;
-    } 
+    }   
 }
 @ViewBag.TitleTag
 
-<h2>search</h2>
-<ul>
-@foreach (var question in ViewBag.TagSearch)
-{
-    <li><h3>@question.Title</h3>
-        @question.Content
-    </li>
-}
-</ul>
+<h2>Index</h2>
+@ViewBag.Username

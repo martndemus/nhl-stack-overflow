@@ -7,14 +7,13 @@
 
 @using (Html.BeginForm())
 {
-   
     <div class="form">
-            @Html.ValidationSummary()
+        @Html.ValidationSummary()
 
-            @Html.TextBox("UserName", "", new { placeholder = "Gebruikersnaam" })
-            <hr>
-            @Html.Password("Password", "", new { placeholder = "Wachtwoord" })
-            <hr>
-            <input type="submit" value="Activeer" id="submit" />    
+        @Html.TextBox("UserName", "", new { placeholder = "Gebruikersnaam" })
+        <hr>
+        @Html.Password("Password", "", new { placeholder = "Wachtwoord" })
+        <hr>
+        <input type="submit" value="Activeer" id="submit" />    
     </div>
 }

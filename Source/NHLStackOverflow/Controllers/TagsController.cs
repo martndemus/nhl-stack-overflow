@@ -36,10 +36,16 @@ namespace NHLStackOverflow.Controllers
         // GET: /Tags/search/int TagID
         public ActionResult Search(int id)
         {
+            // Get the name of the tag.
+            ViewBag.TagName = (from t in db.Tags
+                               where t.TagID == id
+                               select  t.Name).Single();
+
             var TagsSearched = from questionView in db.Questions
                                join c in db.QuestionTags on questionView.QuestionID equals c.QuestionId
                                where c.TagId == id
                                select questionView;
+
             ViewBag.TagSearch = TagsSearched;
             return View();
         }
