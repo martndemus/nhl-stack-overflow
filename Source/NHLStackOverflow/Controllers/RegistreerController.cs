@@ -1,16 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-using NHLStackOverflow.FormDataModels;
-using NHLStackOverflow.Models;
+using Mvc.Mailer;
 using NHLStackOverflow.Classes;
+using NHLStackOverflow.FormDataModels;
+using NHLStackOverflow.Mailers;
+using NHLStackOverflow.Models;
+using System;
 
 namespace NHLStackOverflow.Controllers
 {
     public class RegistreerController : Controller
     {
+        private IUserMailer _userMailer = new UserMailer();
+        public IUserMailer UserMailer
+        {
+            get { return _userMailer; }
+            set { _userMailer = value; }
+        }
         private NHLdb db = new NHLdb();
         //
         // GET: /Registreer/
@@ -47,10 +53,22 @@ namespace NHLStackOverflow.Controllers
             {
                 // everything is right
                 // hash the password
-                user.Password = PasswordHasher.Hash(user.Password);
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("gelukt");
+                try
+                {
+                    user.Password = PasswordHasher.Hash(user.Password);
+                    user.ActivationLink = PassLostHasher.Hash(user.Email);
+                    db.Users.Add(user);
+                    UserMailer.MailConfirm(user.ActivationLink, user.Email).Send(); // .MailConfirm("test")
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "Er is iets mis gegaan. Onze excuses. Probeer het opnieuw aub.");
+                }
+                if (ModelState.IsValid)
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("gelukt");
+                }
             }
             // if we got here the fields were incorrect. Reshow the form.
             return View();
@@ -59,7 +77,7 @@ namespace NHLStackOverflow.Controllers
 
         //
         // GET: /registreer/activate
-        public ActionResult activeren()
+        public ActionResult activeren(string id)
         {
             return View();
         }
@@ -67,11 +85,11 @@ namespace NHLStackOverflow.Controllers
         //
         // Post: /Registreer/activate
         [HttpPost]
-        public ActionResult activeren(AccountActivation user)
+        public ActionResult activeren(string id, AccountActivation user)
         {
             // query the database for the person with the name of the user that is trying to activated it.
             var passPerson = from userPass in db.Users
-                             where userPass.UserName == user.UserName && userPass.Activated == 0
+                             where userPass.UserName == user.UserName && userPass.Activated == 0 && userPass.ActivationLink == id
                              select userPass;
             if (passPerson.Count() != 1) // Check if there was such a username, else throw error
                 ModelState.AddModelError("", "De gebruikersnaam kwam niet overeen met de database.");
@@ -84,7 +102,9 @@ namespace NHLStackOverflow.Controllers
                 UserMeta newUserMeta = new UserMeta() { UserId = activatingUserID };
                 db.UserMeta.Add(newUserMeta);
                 passPerson.First().Activated = 1;
+                passPerson.First().ActivationLink = null;
                 db.SaveChanges();
+                return RedirectToAction("activerengelukt", "registreer");
             }
             // if we get here the fields were invalid. Return to the form
             return View();
@@ -93,6 +113,13 @@ namespace NHLStackOverflow.Controllers
         //
         // GET: /Registreer/Gelukt
         public ActionResult gelukt()
+        {
+            return View();
+        }
+
+        //
+        // GET: /Registreer/ActiverenGelukt
+        public ActionResult ActiverenGelukt()
         {
             return View();
         }

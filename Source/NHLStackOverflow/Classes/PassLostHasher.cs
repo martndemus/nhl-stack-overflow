@@ -17,12 +17,14 @@ namespace NHLStackOverflow.Classes
             byte[] hash = encoder.GetBytes(password);
             SHA512 hasher = new SHA512Managed();
 
-            // Hash the password 1000x with SHA512
+            // Hash the password with SHA512
             hash = hasher.ComputeHash(hash);
 
             // Return as BASE64 string
-            char[] toTrim = new char[6] { '/', '&', '\\', '+', '+', '=' };
-            return Convert.ToBase64String(hash).Trim(toTrim);
+            HTMLSanitizer hs = new HTMLSanitizer();
+            
+            string dummy = hs.UrlEncode(Convert.ToBase64String(hash));
+            return dummy.Replace('%', '1');
         }
 
 	}

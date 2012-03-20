@@ -36,6 +36,7 @@ namespace NHLStackOverflow.Models
 
         [Required]
         public int Activated { get; set; } // 0 if inactive, 1 if activated
+        public string ActivationLink { get; set; }
 
         [RegularExpression(@"^[A-Z][\sa-zA-Z]+[a-zA-Z]$")]
         public string Name { get; set; }
