@@ -30,8 +30,8 @@ namespace NHLStackOverflow.Models
                 new User { UserName = "Piet25", Password = PasswordHasher.Hash("test"), Email = "test1@testmail.com", Rank = 3, Activated = 1 }, // admin allowed to view all!
                 new User { UserName = "Klaas538", Password = PasswordHasher.Hash("admin"), Email = "test2@testmail.com", Rank = 0, Activated = 1 },
                 new User { UserName = "Kees1979", Password = PasswordHasher.Hash("abc"), Email = "test3@testmail.com", Rank = 0, Activated = 1, PassLost = "BCLob11SgwNtcanBG3ZmayFehZfpBz67rIrNuPNO8xTHU4JJHZD1EKpSfXDnouNJeyK572UGaBpaSau+xjRfSw" }, // only person 
-                //new User { UserName = "HiteshPatel", Password = PasswordHasher.Hash("Patel"), Email = "Patel@Hitesh.com", Rank = 1, Activated = 1 },  
-                //new User { UserName = "RajPAtel", Password = PasswordHasher.Hash("PAtel"), Email = "info@Raj.nl", Rank = 2, Activated = 1 },  
+                new User { UserName = "HiteshPatel", Password = PasswordHasher.Hash("Patel"), Email = "Patel@Hitesh.com", Rank = 1, Activated = 1 },  
+                new User { UserName = "RajPAtel", Password = PasswordHasher.Hash("PAtel"), Email = "info@Raj.nl", Rank = 2, Activated = 1 },  
                 //new User { UserName = "user1217685", Password = PasswordHasher.Hash("user"), Email = "info@user.com", Rank = 0, Activated = 1 },  
                 //new User { UserName = "Legycsapo", Password = PasswordHasher.Hash("Legy"), Email = "Legycsapo@gmail.com", Rank = 0, Activated = 1 },  
                 //new User { UserName = "swiecki", Password = PasswordHasher.Hash("swiecki"), Email = "swiecki@hotmail.com", Rank = 3, Activated = 1 },  
@@ -52,8 +52,8 @@ namespace NHLStackOverflow.Models
                 new UserMeta { UserId = 1 },
                 new UserMeta { UserId = 2 },
                 new UserMeta { UserId = 3 },
-                //new UserMeta { UserId = 4 },
-                //new UserMeta { UserId = 5 },
+                new UserMeta { UserId = 4 },
+                new UserMeta { UserId = 5 },
                 //new UserMeta { UserId = 6 },
                 //new UserMeta { UserId = 7 },
                 //new UserMeta { UserId = 8 },
@@ -106,12 +106,12 @@ namespace NHLStackOverflow.Models
 
             var question = new List<Question>
             {
-                new Question { UserId = 2, Title = "Hoe sluit ik een form met C#?", Content = "Hoi, \n\n Ik heb een windows form applicatie gemaakt. Alleen is het mij niet duidelijk hoe ik een form sluit door middel van code. \n\nZou iemand dit aan mij kunnen vertellen? Danku!", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 2, 13, 8, 5, 10)) },
-                new Question { UserId = 3, Title = "Hoe maak ik een form met ASP.NET in combinatie met MVC?", Content = "Ik maak gebruik van de razor syntax. Ik krijg alleen niet voor elkaar dat hij de validatie errors terug geeft. Ik van alles geprobeerd :-S.\n\nKan iemand mij hier mee helpen? Het zou wel erg fijn zijn.", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 19, 8, 5, 10)) },
-                new Question { UserId = 3, Title = "Mijn ASP.NET blijft steeds crashen met de UnitTests", Content = "Op het moment dat ik de null tests draai (die kijken of het object goed geinistaliseerd word (dus eigenlijk naar null)). Failen ze allemaal. Het word namelijk gelijk al op 0 gezet als standaard terwijl dit niet de bedoeling was. \n\nHoe kan ik dit verhelpen?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 1, 10, 8, 5, 10)), Flag = 1},
-                new Question { UserId = 1, Title = "Hoe voer ik goede HTML sanitize uit met ASP.NET", Content = "Ik maak gebruik van de razor syntax. Het is de bedoeling om alle HTML tags te escappen of iets anders zodat er niets mee gedaan kan worden door kwaadwillende.\n\nOp het moment worden er alleen de standaard dingen uit gehaald. Ik wil het alleen helemaal schoon hebben. \n\nHelp!", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 11, 8, 5, 10)) },
-                new Question { UserId = 1, Title = "Waarom maakt ASP.NET mijn code block verkeerd?", Content = "Ik ben begonnen met een leeg project en heb nu al bijna StackOverFlow na gemaakt voor het project voor school. Het is alleen zo dat de code element onder elkaar kruipen. \n\nWeet iemand hoe dit komt?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 8, 8, 5, 10)) },
-                new Question { UserId = 1, Title = "Advies over horizontaal scrollen met iOS", Content = "Ik heb een applicatie gemaakt voor iOS. Alleen ik wou graag wat advies over het horizontale scrollen. Ik heb geen idee hoe ik dit op een nette manier kan implementeren. Hoe zouden jullie zoiets doen?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 1, 8, 8, 5, 10)) },
+                new Question { UserId = 2, Title = "Hoe sluit ik een form met C#?", Content = "Hoi, \n\n Ik heb een windows form applicatie gemaakt. Alleen is het mij niet duidelijk hoe ik een form sluit door middel van code. \n\nZou iemand dit aan mij kunnen vertellen? Danku!", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 2, 13, 8, 5, 10)), Answers = 1, Views = 14 },
+                new Question { UserId = 3, Title = "Hoe maak ik een form met ASP.NET in combinatie met MVC?", Content = "Ik maak gebruik van de razor syntax. Ik krijg alleen niet voor elkaar dat hij de validatie errors terug geeft. Ik van alles geprobeerd :-S.\n\nKan iemand mij hier mee helpen? Het zou wel erg fijn zijn.", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 19, 8, 5, 10)), Answers = 1, Views = 21 },
+                new Question { UserId = 3, Title = "Mijn ASP.NET blijft steeds crashen met de UnitTests", Content = "Op het moment dat ik de null tests draai (die kijken of het object goed geinistaliseerd word (dus eigenlijk naar null)). Failen ze allemaal. Het word namelijk gelijk al op 0 gezet als standaard terwijl dit niet de bedoeling was. \n\nHoe kan ik dit verhelpen?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 1, 10, 8, 5, 10)), Flag = 1,Views = 31, Answers = 2 , Votes = 23},
+                new Question { UserId = 4, Title = "Hoe voer ik goede HTML sanitize uit met ASP.NET", Content = "Ik maak gebruik van de razor syntax. Het is de bedoeling om alle HTML tags te escappen of iets anders zodat er niets mee gedaan kan worden door kwaadwillende.\n\nOp het moment worden er alleen de standaard dingen uit gehaald. Ik wil het alleen helemaal schoon hebben. \n\nHelp!", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 11, 8, 5, 10)), Views = 31, Votes = 3, Answers = 1 },
+                new Question { UserId = 1, Title = "Waarom maakt ASP.NET mijn code block verkeerd?", Content = "Ik ben begonnen met een leeg project en heb nu al bijna StackOverFlow na gemaakt voor het project voor school. Het is alleen zo dat de code element onder elkaar kruipen. \n\nWeet iemand hoe dit komt?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 8, 8, 5, 10)), Views = 26 },
+                new Question { UserId = 1, Title = "Advies over horizontaal scrollen met iOS", Content = "Ik heb een applicatie gemaakt voor iOS. Alleen ik wou graag wat advies over het horizontale scrollen. Ik heb geen idee hoe ik dit op een nette manier kan implementeren. Hoe zouden jullie zoiets doen?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 1, 8, 8, 5, 10)), Views = 7 },
            };
 
             question.ForEach(s => context.Questions.Add(s));
@@ -167,9 +167,17 @@ namespace NHLStackOverflow.Models
 
             var comment = new List<Comment>
             {
-                new Comment { UserId = 1, QuestionId = 1, Content = "Is dat niet gewoon simpel weg this.Close();?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 19, 18, 5, 10))},
+                new Comment { UserId = 5, QuestionId = 1, Content = "Is dat niet gewoon simpel weg this.Close();?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 19, 18, 5, 10))},
                 new Comment { UserId = 2, QuestionId = 1, Content = "Owja dat zou best wel eens kunnen ja. Zal het even proberen danku!", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 19, 20, 5, 10))},
-                // Add more comments :<
+                new Comment { UserId = 2, AnswerId = 1, Content = "Ja dat werkte :D, danku! Nu kan ik weer verder met mijn lingo opdracht.", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 19, 21, 35, 10))},
+                new Comment { UserId = 3, AnswerId = 2, Content = "Ah volgens mij snap ik het. Zal het even proberen.", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 19, 21, 35, 10))},
+                new Comment { UserId = 3, AnswerId = 2, Content = "Het werkte. Danku!", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 19, 21, 40, 10))},
+                new Comment { UserId = 3, AnswerId = 3, Content = "Ach ja. Dat is ook zo. Stom van me. In iedergeval bedankt. Je hebt ons StackOverFlow project gered.", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 1, 10, 21, 40, 10))},
+                new Comment { UserId = 2, QuestionId = 3, Content = "Ja of door de tests ed. te herschrijven dat ze naar die null testen.", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 1, 10, 21, 40, 10))},
+                new Comment { UserId = 1, AnswerId = 4, Content = "Dat zou inderdaad nog netter zijn.", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 1, 10, 22, 40, 10))},
+                new Comment { UserId = 5, QuestionId = 4, Content = "Welke dingen heb je er nu dan al uit gehaald? En hoe?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 11, 22, 40, 10))},
+                new Comment { UserId = 4, AnswerId = 5, Content = "Maar je hebt ook nog bepaalde properties die je mee kunt geven aan tags. Hoe test ik daar dan op? En hoe blijven niet slechte dingen tussen <> tags beschermt?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 11, 14, 40, 10))},
+// Add more comments :<
             };
 
             comment.ForEach(s => context.Comments.Add(s));
@@ -187,9 +195,11 @@ namespace NHLStackOverflow.Models
 
             var answer = new List<Answer>
             {
-                //new Answer { UserId = 2, QuestionId = 1, Content = "Hello, Here is my fabilous awnser to your somewhat silly question. I've never had problems with this kind of things. I always do the thingy first and afterwards I do the other thingy. Result: Profit. Kthxbai.",Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2010, 2, 14, 8, 5, 10))},
-                //new Answer { UserId = 1, QuestionId = 2, Content = "Hello, Here is my fabilous awnser to your somewhat silly question. I've never had problems with this kind of things. I always do the thingy first and afterwards I do the other thingy. Result: Profit. Kthxbai.",Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2009, 2, 14, 8, 5, 10))},
-                //new Answer { UserId = 3, QuestionId = 2, Content = "Evil! Hello, Here is my fabilous awnser to your somewhat silly question. I've never had problems with this kind of things. I always do the thingy first and afterwards I do the other thingy. Result: Profit. Kthxbai.", Flag = 1, Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2011, 2, 14, 8, 5, 10))},
+                new Answer { UserId = 3, QuestionId = 1, Content = "Hoi,\n\nDe makkelijkste manier om zoiets te doen is simpelweg de huidige form te sluiten. Meestal als je in je form werkt (bijvoorbeeld onClick) en je doet dan this.close(); Dan zou het huidige open form moeten sluiten.\n\nLukt dat niet dan hoor ik het graag.",Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 19, 21, 5, 10))},
+                new Answer { UserId = 4, QuestionId = 2, Content = "Hmm\n\nMet MVC zal je eerst je form moeten starten. Dit doe je door middel van: @using (Html.BeginForm()){\n\n}. Daartussen zet je vervolgens @Html.ValidationSummary(true). Vervolgens kan je bijvoorbeeld een textbox maken door middel van: @Html.TextBox( <proppertyName> , <beginValue> }). \n\nHopelijk heb ik het zo duidelijk genoeg uitgelegd. Ik hoor het anders wel.",Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 19, 21, 5, 10)), Votes = 10},
+                new Answer { UserId = 1, QuestionId = 3, Content = "Hoi,  \n\nDit komt doordat int's altijd worden geinitialiseerd naar 0 in plaats van naar null. Een heel erg simpele oplossing hiervoor is om een ? bij de int te zetten dus: int? <property>. Hierdoor word de int geinitaliseerd naar null ;-).", Flag = 1, Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 1, 10, 20, 5, 10))},
+                new Answer { UserId = 4, QuestionId = 3, Content = "Wat ook een mogelijke optie is is het veranderen van de tests. Het is namelijk zo dat een database niet zero indexed is. Dus daarom zal er ook een getal hoger dan 0 aanwwezig moeten zijn. En daar zou je dan vervolgens ook op kunnen testen.", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 1, 10, 22, 5, 10))},
+                new Answer { UserId = 2, QuestionId = 4, Content = "Wat ik gedaan heb is kijken naar de sanitize die google gebruikt en aan de hand daarvan mijn eigen geschreven. De simpelste manier is door middel van een regular expression te zoeken naar een keyword tussen de <> tags en die er vervolgens uit te slopen", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 11, 14, 5, 10))},
                 //new Answer { UserId = 1, QuestionId = 3, Content = "Hello, Here is my fabilous awnser to your somewhat silly question. I've never had problems with this kind of things. I always do the thingy first and afterwards I do the other thingy. Result: Profit. Kthxbai.", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 15, 8, 5, 10))}
             };
 
