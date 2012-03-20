@@ -55,7 +55,7 @@ namespace NHLStackOverflow.tests.Models
             Assert.IsNotNull(u.Rank, "Rank should not be null");
 
             // Test if the expected default values are present.
-            Assert.IsTrue(u.Created_At == DateTime.Now.ToString(), "Created At should be initialized to DateTime.Now.ToString()");
+            Assert.IsTrue(u.Created_At == StringToDateTime.ToUnixTimeStamp(DateTime.Now), "Created At should be initialized to DateTime.Now.ToString()");
             Assert.IsTrue(u.LastOnline == u.Created_At, "Last Online should be initialized to be the same as Created At");
            
 

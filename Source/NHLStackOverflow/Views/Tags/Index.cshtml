@@ -15,7 +15,7 @@
 @foreach (var tag in ViewBag.TagList)
 {
     <div class="tag">
-        <p class="tags">@Html.ActionLink((string)tag.Name, "Search", "Tags", new { id = tag.TagID }, new { target = "blank" }) x @tag.Count</p>
+        <p class="tags">@Html.ActionLink((string)tag.Name, "Search", "Tags", new { id = tag.TagID }, new { }) x @tag.Count</p>
         <p>@tag.Description
     </div>
 }

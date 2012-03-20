@@ -2,14 +2,16 @@
 @foreach (var question in ViewBag.QuestionList)
 {
     <article class="question">
-    
         <h3>@Html.ActionLink((string)question.Title, "view", "vraag", new { id = question.QuestionID }, new { target = "_blank" })</h3>
+        <p>
+            @Html.Raw(question.Content)
+        </p>
         <p class="stats">
             <span title="Stemmen">
                 <img src="../../Styles/check.png" alt="Stemmen"/>@question.Votes
             </span>
             <span title="Antwoorden">
-                <img src="../../Styles/aplus.png" alt="Antwoorden"/>@question.Answered
+                <img src="../../Styles/aplus.png" alt="Antwoorden"/>@question.Answers
             </span>
             <span title="Bekeken">
                 <img src="../../Styles/seen.png" alt="Bekeken"/>@question.Views

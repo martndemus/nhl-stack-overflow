@@ -40,6 +40,19 @@ namespace NHLStackOverflow.Models.FormDataModels
         public string tag5 { get; set; }
     }
 
+    public class CommentAnswer
+    {
+        [MinLength(140, ErrorMessage = "De inhoud van een antwoord moet minstens 140 karakters lang zijn.")]
+        public string awnser { get; set; }
+        
+        [MinLength(10)]
+        public string awnserComment { get; set; }
+        [MinLength(10)]
+        public string questionComment { get; set; }
+
+        public int awnserID { get; set; }
+    }
+
     public static class tagsCount
     {
         /// <summary>

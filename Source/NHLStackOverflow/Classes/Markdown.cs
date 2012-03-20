@@ -1216,7 +1216,7 @@ namespace NHLStackOverflow.Classes
 	        // Ampersand-encoding based entirely on Nat Irons's Amputator MT plugin:
 	        // http://bumppo.net/projects/amputator/
 
-	        text = Regex.Replace (text, @"&(?!#?[xX]?(?:[0-9a-fA-F]+|\w+);)", "&amp;");
+	        //text = Regex.Replace (text, @"&(?!#?[xX]?(?:[0-9a-fA-F]+|\w+);)", "&amp;");
 
 	        // Encode naked <'s
 	        text = Regex.Replace (text, @"<(?![a-z/?\$!])", "&lt;", RegexOptions.IgnoreCase);

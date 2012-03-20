@@ -16,6 +16,8 @@ namespace NHLStackOverflow.Controllers
 
         public ViewResult Index()
         {
+            HTMLSanitizer hs = new HTMLSanitizer();
+
             var QuestionList = from questions in db.Questions
                                orderby questions.Created_At descending
                                select questions;
@@ -23,6 +25,14 @@ namespace NHLStackOverflow.Controllers
             List<TagsIDs> abc = new List<TagsIDs>();
             foreach (Question vraag in QuestionList)
             {
+                // Strip all HTML tags from the question content
+                vraag.Content = hs.Sanitize(vraag.Content, HTMLSanitizerOption.StripTags);
+
+                // Limit the content of a question on the front page to max 500 chars.
+                if (vraag.Content.Length > 500)
+                    vraag.Content = vraag.Content.Substring(0, 500) + " ...";
+
+                // Build a list of tags that this question is tagged with.
                 var TagList = from tagsQuestion in db.Tags
                               join c in db.QuestionTags on tagsQuestion.TagID equals c.TagId
                               where c.QuestionId == vraag.QuestionID
@@ -36,12 +46,12 @@ namespace NHLStackOverflow.Controllers
                                select users;
                 if(!usersList.Contains(UserList.First()))
                     usersList.Add(UserList.First());
-
             }
 
             ViewBag.Helper = abc;
             ViewBag.UsersList = usersList;
             ViewBag.QuestionList = QuestionList;
+
             return View();
         }
 

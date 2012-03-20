@@ -252,11 +252,13 @@ a:hover:visited { color: #D98CD9; }
     text-decoration: none;
 }
 
-
+.question pre {
+    padding: 10px 20px;
+    line-height: 1.5;
+}
 
 .question pre, .question code {
     font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-    padding: 10px;
     background: #eaeaea;
     overflow-x: auto;
 }
@@ -283,11 +285,6 @@ a:hover:visited { color: #D98CD9; }
 .comments li {
     padding: 2px 2%;
     border-bottom: 1px solid hsl(200, 30%, 70%);
-}
-
-.comments .respond {
-    border: 0;
-
 }
 
 /*
@@ -446,6 +443,13 @@ ul.tags  {
     border: 0;
 }
 
+.add-comment {
+    width: 100%;
+    margin: 0;
+    border: 0;
+    outline: 0;
+
+}
 /*
     USER OPTION WIDGET
 */
@@ -515,6 +519,11 @@ ul.tags  {
     display: inline-block;
     border-bottom: 1px solid #DEE8ED;
     width: 100%;
+}
+
+.tag p {
+    padding: 0 10px;
+
 }
 /* CLEARFIXING IT ALL */
 
