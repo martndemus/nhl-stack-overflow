@@ -4,11 +4,19 @@ using System.Web.Security;
 using NHLStackOverflow.Classes;
 using NHLStackOverflow.FormDataModels;
 using NHLStackOverflow.Models;
+using NHLStackOverflow.Mailers;
+using Mvc.Mailer;
 
 namespace NHLStackOverflow.Controllers
 {
     public class LoginController : Controller
     {
+        private IUserMailer _userMailer = new UserMailer();
+        public IUserMailer UserMailer
+        {
+            get { return _userMailer; }
+            set { _userMailer = value; }
+        }
         private NHLdb db = new NHLdb();
 
         //
@@ -83,9 +91,21 @@ namespace NHLStackOverflow.Controllers
 
             if(ModelState.IsValid)
             {
-                passLostPerson.First().PassLost = PassLostHasher.Hash(passLostPerson.First().Password + passLostPerson.First().Email);
-                db.SaveChanges();
-                // then mail the link correct link :<
+                try
+                {
+                    passLostPerson.First().PassLost = PassLostHasher.Hash(passLostPerson.First().Password + passLostPerson.First().Email);
+                    // generate a mail and send it.
+                    UserMailer.MailPassForgotten(passLostPerson.First().PassLost, passLostPerson.First().Email).Send();
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "Er is iets mis gegaan. Onze excuses voor het ongemak. Probeer het over enkele momenten overnieuw.");
+                }
+                if (ModelState.IsValid)
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("kwijtverstuurd");
+                }
             }
 
 
@@ -111,7 +131,7 @@ namespace NHLStackOverflow.Controllers
                             where userKwijt.PassLost == id
                             select userKwijt;
             if (kwijtUser.Count() != 1)
-                ModelState.AddModelError("", "De parameter string komt niet overeen met een gebruiker.");
+                ModelState.AddModelError("", "De meegegeven string komt niet overeen met een gebruiker.");
 
             if (ModelState.IsValid)
             {
@@ -129,6 +149,13 @@ namespace NHLStackOverflow.Controllers
         // 
         // GET: /login/wachtwoordveranderd
         public ActionResult WachtwoordVeranderd()
+        {
+            return View();
+        }
+
+        //
+        // GET: /login/kwijtverstuurd
+        public ActionResult KwijtVerstuurd()
         {
             return View();
         }

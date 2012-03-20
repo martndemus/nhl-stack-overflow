@@ -5,6 +5,7 @@ using NHLStackOverflow.Classes;
 using NHLStackOverflow.FormDataModels;
 using NHLStackOverflow.Mailers;
 using NHLStackOverflow.Models;
+using System;
 
 namespace NHLStackOverflow.Controllers
 {
@@ -52,12 +53,22 @@ namespace NHLStackOverflow.Controllers
             {
                 // everything is right
                 // hash the password
-                user.Password = PasswordHasher.Hash(user.Password);
-                user.ActivationLink = PassLostHasher.Hash(user.Email);
-                db.Users.Add(user);
-                db.SaveChanges();
-                UserMailer.MailConfirm(user.ActivationLink, user.Email).Send(); // .MailConfirm("test")
-                return RedirectToAction("gelukt");
+                try
+                {
+                    user.Password = PasswordHasher.Hash(user.Password);
+                    user.ActivationLink = PassLostHasher.Hash(user.Email);
+                    db.Users.Add(user);
+                    UserMailer.MailConfirm(user.ActivationLink, user.Email).Send(); // .MailConfirm("test")
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "Er is iets mis gegaan. Onze excuses. Probeer het opnieuw aub.");
+                }
+                if (ModelState.IsValid)
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("gelukt");
+                }
             }
             // if we got here the fields were incorrect. Reshow the form.
             return View();
@@ -93,7 +104,7 @@ namespace NHLStackOverflow.Controllers
                 passPerson.First().Activated = 1;
                 passPerson.First().ActivationLink = null;
                 db.SaveChanges();
-                return RedirectToAction("ActiverenGelukt");
+                return RedirectToAction("activerengelukt", "registreer");
             }
             // if we get here the fields were invalid. Return to the form
             return View();

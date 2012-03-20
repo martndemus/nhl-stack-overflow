@@ -6,6 +6,7 @@ namespace NHLStackOverflow.Mailers
     {
 
         MailMessage MailConfirm(string link, string email);
+        MailMessage MailPassForgotten(string link, string email);
 		
 		
 	}
