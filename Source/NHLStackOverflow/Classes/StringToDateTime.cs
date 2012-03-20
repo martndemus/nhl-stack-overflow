@@ -61,7 +61,7 @@ namespace NHLStackOverflow.Classes
             }
             if (delta < 172800) // 48 * 60 * 60
             {
-                return "gisteren";
+                return "één dag";
             }
             if (delta < 2592000) // 30 * 24 * 60 * 60
             {

@@ -90,6 +90,7 @@ namespace NHLStackOverflow.Controllers
             ViewBag.AnswerQuestionList = answerQuestion;
 
             // Set the count to 'n' or 'geen' if there are no answers yet
+            ViewBag.AnswerCount = answerQuestion.Count();
             ViewBag.AnswerQuestionCount = answerQuestion.Count() > 0 ? answerQuestion.Count().ToString() : "geen" ;
 
             List<User> AnsweringUsers = new List<User>();
@@ -112,13 +113,7 @@ namespace NHLStackOverflow.Controllers
                 if (answerCommentList.Count() > 0)
                 {
                     foreach (Comment cba in answerCommentList)
-                    {
-                        // Sanitize the content of the comment.
-                        cba.Content = hs.EscapeHTMLentities(cba.Content);
-
-                        // ????
                         AnswerComments.Add(cba);
-                    }
                 }
 
                 foreach (Comment qCommentje in answerCommentList)
@@ -126,11 +121,7 @@ namespace NHLStackOverflow.Controllers
                     var userQComment = from qcommentse in db.Users
                                        where qcommentse.UserID == qCommentje.UserId
                                        select qcommentse;
-
                     
-                    // Sanitize the content of the comment.
-                    qCommentje.Content = hs.EscapeHTMLentities(qCommentje.Content);
-
                     qCommentUsers.Add(userQComment.First());
                 }
 

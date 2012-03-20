@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = ViewBag.QuestionDetail.Title + " - Question Jam";
     if (Request.Headers["X-PJAX"] == null) {
         Layout = "~/Views/Layouts/_Main.cshtml";
         ViewBag.TitleTag = null;
@@ -79,7 +79,7 @@
         </li>
     </ul>
 </article>
-@if (ViewBag.AnswerQuestionCounting == 1)
+@if (ViewBag.AnswerCount == 1)
 {
     <h2>Er is @ViewBag.AnswerQuestionCount antwoord</h2>        
 }
@@ -91,7 +91,7 @@ else
 @foreach (var answer in ViewBag.AnswerQuestionList)
 {
     <article class="question">
-        <p>@answer.Content</p>
+        <p>@Html.Raw(answer.Content)</p>
         <aside class="q-meta">
             <p class="stats">
                 <span title="Stemmen">
@@ -134,15 +134,15 @@ else
                     </li>
                 }
             }
-        <li class="respond">
-            @using (Html.BeginForm())
-            {
-                string aID = Convert.ToString(answer.AnswerID);
-                @Html.TextBox("awnserComment", "", new { placeholder = "Reageer", @class = "add-comment" });
-                @Html.TextBox("awnserID", aID, new { type = "hidden" });
-            }
-        </li>
-    </ul>
+            <li class="respond">
+                @using (Html.BeginForm())
+                {
+                    string aID = Convert.ToString(answer.AnswerID);
+                    @Html.TextBox("awnserComment", "", new { placeholder = "Reageer", @class = "add-comment" });
+                    @Html.TextBox("awnserID", aID, new { type = "hidden" });
+                }
+            </li>
+        </ul>
     </article>
 }
 
