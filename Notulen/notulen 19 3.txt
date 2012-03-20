@@ -1,0 +1,10 @@
+5.	Voortgang
+-	Gaat (bijna) goed, het project begint nu vorm te krijgen.
+-	Users, inloggen (registreren) gaat nog niet goed, comments en answers niet goed zichtbaar op 
+
+mailer overmorgen
+admin system donderdag
+input validation (over-)morgen
+resource pagina's morgen/ overmorgen
+eddie unittests
+
