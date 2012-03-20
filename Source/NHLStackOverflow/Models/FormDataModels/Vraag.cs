@@ -9,6 +9,8 @@ namespace NHLStackOverflow.Models.FormDataModels
     public class Vraag
     {
         public string tags { get; set; }
+        [MinLength(10)]
+        [MaxLength(140)]
         public string vraag { get; set; }
         [MinLength(140)]
         public string content { get; set; }
