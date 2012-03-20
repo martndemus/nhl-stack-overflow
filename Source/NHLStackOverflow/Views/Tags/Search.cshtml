@@ -8,14 +8,69 @@
         Layout = null;
     } 
 }
-@ViewBag.TitleTag
 
-<h2>search</h2>
-<ul>
+<h2>@ViewBag.TagNames.Name</h2>
+<p>@ViewBag.TagNames.Description</p> 
+
+@if (ViewBag.TagNames.Count == 1)
+{
+    <h2>Er is @ViewBag.TagNames.Count vraag bij de tag: @ViewBag.TagNames.Name</h2>
+}
+else
+{
+    <h2>Er zijn @ViewBag.TagNames.Count vragen bij de tag: @ViewBag.TagNames.Name</h2>
+}
+
 @foreach (var question in ViewBag.TagSearch)
 {
-    <li><h3>@question.Title</h3>
+    <article class="question">
+        <h3>@Html.ActionLink((string)question.Title, "view", "vraag", new { id = question.QuestionID }, new { target = "_blank" })</h3>
+        <p>
+            @Html.Raw(question.Content)
+        </p>
+        <p class="stats">
+            <span title="Stemmen">
+                <img src="../../Styles/check.png" alt="Stemmen"/>@question.Votes
+            </span>
+            <span title="Antwoorden">
+                <img src="../../Styles/aplus.png" alt="Antwoorden"/>@question.Answers
+            </span>
+            <span title="Bekeken">
+                <img src="../../Styles/seen.png" alt="Bekeken"/>@question.Views
+            </span>
+            <time>
+                <b>@NHLStackOverflow.Classes.StringToDateTime.ConvertToUnixTimestamp(question.Created_At)</b> geleden
+            </time>
+            door
+@*            @foreach (var user in ViewBag.usersList)
+            {
+                if (user.UserID == question.UserId)
+                {
+                <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { target = "_blank" })</b>  
+                }
+            }*@
+            
+        </p>
+        <p class="tags">
+              @foreach (var tag in ViewBag.Helper)
+              {
+                  if (tag.QuestionTaggyID == question.QuestionID)
+                  {
+                    @Html.ActionLink((string)tag.Tag.Name, "search", "tags", new { id = tag.Tag.TagID }, new { target = "blank" })  
+                  }
+                  @Environment.NewLine
+              }
+        </p>
+    </article> 
+}
+
+
+@*<ul>
+@foreach (var question in ViewBag.TagSearch)
+{
+    <li>
+        <h3>@question.Title</h3>
         @question.Content
     </li>
 }
-</ul>
+</ul>*@
