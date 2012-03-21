@@ -8,6 +8,7 @@
         Layout = null;
     } 
 }
+@ViewBag.TitleTag
 
 <h2>@ViewBag.TagNames.Name</h2>
 <p>@ViewBag.TagNames.Description</p> 
@@ -42,13 +43,13 @@ else
                 <b>@NHLStackOverflow.Classes.StringToDateTime.ConvertToUnixTimestamp(question.Created_At)</b> geleden
             </time>
             door
-@*            @foreach (var user in ViewBag.usersList)
+            @foreach (var user in ViewBag.usersTags)
             {
                 if (user.UserID == question.UserId)
                 {
-                <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { target = "_blank" })</b>  
+                    <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { target = "_blank" })</b>  
                 }
-            }*@
+            }
             
         </p>
         <p class="tags">

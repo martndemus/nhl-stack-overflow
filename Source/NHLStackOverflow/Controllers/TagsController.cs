@@ -57,6 +57,7 @@ namespace NHLStackOverflow.Controllers
             ViewBag.TagNames = TagsNames.First();
 
             List<TagsIDs> abc = new List<TagsIDs>();
+            List<User> userTags = new List<User>();
 
             //tags in question
 
@@ -74,7 +75,16 @@ namespace NHLStackOverflow.Controllers
                     // Sanitize each tag its name
                     i.Name = hs.Sanitize(i.Name, HTMLSanitizerOption.StripTags);
                 }
+
+                var UsersList = from users in db.Users
+                               where users.UserID == t.UserId
+                               select users;
+                if (!userTags.Contains(UsersList.First()))
+                    userTags.Add(UsersList.First());
+
+                
             }
+            ViewBag.usersTags = userTags;
             ViewBag.Helper = abc;
 
             return View();

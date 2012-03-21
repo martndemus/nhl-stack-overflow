@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using NHLStackOverflow.Classes;
 
 namespace NHLStackOverflow.Models
 {
@@ -7,7 +8,7 @@ namespace NHLStackOverflow.Models
     {
         public Badge()
         {
-            this.Created_At = DateTime.Now.ToString();
+            this.Created_At = StringToDateTime.ToUnixTimeStamp(DateTime.Now);
         }
 
         // GUID
@@ -20,7 +21,7 @@ namespace NHLStackOverflow.Models
 
         // TimeStamps
         [Required]
-        public string Created_At { get; set; }
+        public double Created_At { get; set; }
 
         // Relations
         [Required]
