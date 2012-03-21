@@ -31,10 +31,14 @@ var getSidebar = function (hack) {
     var sidebar = document.getElementById('l-sidebar'),
         widgets = ['/widget/user/', '/widget/tags/'];
 
-    sidebar.innerHTML = '';
+    sidebar.innerHTML = '';    
+    λ.xhr({ url: '/widget/user/' }, function (err, res) {
+        if (err) {
+            return;
+        }
+        sidebar.innerHTML += res;
 
-    for (var i = 0; i < widgets.length; i++) {
-        λ.xhr({ url: widgets[i] }, function (err, res) {
+        λ.xhr({ url: '/widget/tags/' }, function (err, res) {
             if (err) {
                 return;
             }
@@ -42,7 +46,7 @@ var getSidebar = function (hack) {
 
             pjaxify('l-sidebar');
         });
-    }
+    });
 };
 
 λ.onDocReady.addCallback(function () {

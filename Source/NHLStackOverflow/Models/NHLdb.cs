@@ -27,11 +27,11 @@ namespace NHLStackOverflow.Models
         {
             var users = new List<User>
             {
-                new User { UserName = "Piet25", Password = PasswordHasher.Hash("test"), Email = "test1@testmail.com", Rank = 3, Activated = 1 }, // admin allowed to view all!
-                new User { UserName = "Klaas538", Password = PasswordHasher.Hash("admin"), Email = "test2@testmail.com", Rank = 0, Activated = 1 },
-                new User { UserName = "Kees1979", Password = PasswordHasher.Hash("abc"), Email = "test3@testmail.com", Rank = 0, Activated = 1, PassLost = "BCLob11SgwNtcanBG3ZmayFehZfpBz67rIrNuPNO8xTHU4JJHZD1EKpSfXDnouNJeyK572UGaBpaSau+xjRfSw" }, // only person 
-                new User { UserName = "HiteshPatel", Password = PasswordHasher.Hash("Patel"), Email = "Patel@Hitesh.com", Rank = 1, Activated = 1 },  
-                new User { UserName = "RajPAtel", Password = PasswordHasher.Hash("PAtel"), Email = "info@Raj.nl", Rank = 2, Activated = 1 },  
+                new User { UserName = "Piet25", Password = Cryptography.PasswordHash("test"), Email = "test1@testmail.com", Rank = 3, Activated = 1 }, // admin allowed to view all!
+                new User { UserName = "Klaas538", Password = Cryptography.PasswordHash("admin"), Email = "test2@testmail.com", Rank = 0, Activated = 1 },
+                new User { UserName = "Kees1979", Password = Cryptography.PasswordHash("abc"), Email = "test3@testmail.com", Rank = 0, Activated = 1, PassLost = "BCLob11SgwNtcanBG3ZmayFehZfpBz67rIrNuPNO8xTHU4JJHZD1EKpSfXDnouNJeyK572UGaBpaSau+xjRfSw" }, // only person 
+                new User { UserName = "HiteshPatel", Password = Cryptography.PasswordHash("Patel"), Email = "Patel@Hitesh.com", Rank = 1, Activated = 1 },  
+                new User { UserName = "RajPAtel", Password = Cryptography.PasswordHash("PAtel"), Email = "info@Raj.nl", Rank = 2, Activated = 1 },  
                 //new User { UserName = "user1217685", Password = PasswordHasher.Hash("user"), Email = "info@user.com", Rank = 0, Activated = 1 },  
                 //new User { UserName = "Legycsapo", Password = PasswordHasher.Hash("Legy"), Email = "Legycsapo@gmail.com", Rank = 0, Activated = 1 },  
                 //new User { UserName = "swiecki", Password = PasswordHasher.Hash("swiecki"), Email = "swiecki@hotmail.com", Rank = 3, Activated = 1 },  

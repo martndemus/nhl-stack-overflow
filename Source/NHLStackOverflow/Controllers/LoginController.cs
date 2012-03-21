@@ -42,7 +42,7 @@ namespace NHLStackOverflow.Controllers
                                select memberUser;
 
                 // If the user exists check if the password is correct
-                if (userPass.Count() == 1 && PasswordHasher.Hash(user.Password) == userPass.First().Password)
+                if (userPass.Count() == 1 && Cryptography.PasswordHash(user.Password) == userPass.First().Password)
                 {
                     if (userPass.First().Activated == 1)
                     {
@@ -93,7 +93,7 @@ namespace NHLStackOverflow.Controllers
             {
                 try
                 {
-                    passLostPerson.First().PassLost = PassLostHasher.Hash(passLostPerson.First().Password + passLostPerson.First().Email);
+                    passLostPerson.First().PassLost = Cryptography.UrlHash(passLostPerson.First().Password + passLostPerson.First().Email);
                     // generate a mail and send it.
                     UserMailer.MailPassForgotten(passLostPerson.First().PassLost, passLostPerson.First().Email).Send();
                 }
@@ -135,7 +135,7 @@ namespace NHLStackOverflow.Controllers
 
             if (ModelState.IsValid)
             {
-                kwijtUser.First().Password = PasswordHasher.Hash(user.Password1);
+                kwijtUser.First().Password = Cryptography.PasswordHash(user.Password1);
                 kwijtUser.First().PassLost = null;
                 db.SaveChanges();
 

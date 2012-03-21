@@ -55,8 +55,8 @@ namespace NHLStackOverflow.Controllers
                 // hash the password
                 try
                 {
-                    user.Password = PasswordHasher.Hash(user.Password);
-                    user.ActivationLink = PassLostHasher.Hash(user.Email);
+                    user.Password = Cryptography.PasswordHash(user.Password);
+                    user.ActivationLink = Cryptography.UrlHash(user.Email);
                     db.Users.Add(user);
                     UserMailer.MailConfirm(user.ActivationLink, user.Email).Send(); // .MailConfirm("test")
                 }
@@ -93,7 +93,7 @@ namespace NHLStackOverflow.Controllers
                              select userPass;
             if (passPerson.Count() != 1) // Check if there was such a username, else throw error
                 ModelState.AddModelError("", "De gebruikersnaam kwam niet overeen met de database.");
-            else if(passPerson.First().Password != PasswordHasher.Hash(user.Password) ) // check if the password did match, else throw error
+            else if(passPerson.First().Password != Cryptography.PasswordHash(user.Password) ) // check if the password did match, else throw error
                 ModelState.AddModelError("", "Het wachtwoord kwam niet overeen met de database.");
             if (ModelState.IsValid) 
             {

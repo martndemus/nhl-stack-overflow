@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using NHLStackOverflow.Models;
+using NHLStackOverflow.Classes;
 
 namespace NHLStackOverflow.Controllers
 {
@@ -10,11 +12,38 @@ namespace NHLStackOverflow.Controllers
 
         public ViewResult User()
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                // Find the user
+                var User = (from u in db.Users
+                            where u.UserName == HttpContext.User.Identity.Name
+                            select u).Single();
+
+                // Get the usermetadata
+                var Usermeta = (from um in db.UserMeta
+                                where um.UserId == User.UserID
+                                select um).Single();
+
+                // Get the amount of badges the user has
+                var BadgeCount = (from b in db.Badges
+                              where b.UserId == User.UserID
+                              select b).Count();
+
+                // Add user info to viewbag
+                ViewBag.User = User;
+                ViewBag.Usermeta = Usermeta;
+                ViewBag.BadgeCount = BadgeCount;
+
+                // Gravater url for user Avater
+                ViewBag.GravatarURL = String.Format("http://www.gravatar.com/avatar/{0}?s=86&d=mm&r=g", Cryptography.GravatarHash(User.Email));
+            }
+
             return View();
         }
 
         public ViewResult Account()
         {
+
             return View();
         }
 

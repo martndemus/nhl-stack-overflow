@@ -90,7 +90,6 @@
   <ItemGroup>
     <Compile Include="Classes\HTMLSanitizer.cs" />
     <Compile Include="Classes\Markdown.cs" />
-    <Compile Include="Classes\PasswordHasher.cs" />
     <Compile Include="Classes\StringFilter.cs" />
     <Compile Include="Classes\StringToDateTime.cs" />
     <Compile Include="Classes\TagsIDs.cs" />
@@ -188,7 +187,7 @@
     <Content Include="Views\Login\KwijtVeranderen.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\PassLostHasher.cs" />
+    <Compile Include="Classes\Cryptography.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Login\WachtwoordVeranderd.cshtml" />

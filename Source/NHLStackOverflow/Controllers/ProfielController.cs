@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NHLStackOverflow.Models;
+using NHLStackOverflow.Classes;
 
 namespace NHLStackOverflow.Controllers
 {
@@ -26,8 +27,14 @@ namespace NHLStackOverflow.Controllers
                             where um.UserId == User.UserID
                             select um).Single();
 
-            ViewBag.User     = User;
-            ViewBag.Usermeta = Usermeta;
+           
+
+            // Add user info to viewbag
+            ViewBag.User        = User;
+            ViewBag.Usermeta    = Usermeta;
+
+            // Gravater url for user Avater
+            ViewBag.GravatarURL = String.Format("http://www.gravatar.com/avatar/{0}?s=92&d=mm&r=g", Cryptography.GravatarHash(User.Email));
 
             return View();
         }

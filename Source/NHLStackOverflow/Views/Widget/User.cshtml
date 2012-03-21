@@ -6,19 +6,14 @@
     <div class="widget user-widget">
         <h3>Hallo @User.Identity.Name</h3>
                     
-        <img class="avater">
+        <img src="@ViewBag.GravatarURL" class="avater">
 
         <ul class="stats right">
-            <li><img src="../../Styles/check.png" alt="Stemmen">123
-            <li><img src="../../Styles/aplus.png" alt="Antwoorden">18
-            <li><img src="../../Styles/seen.png" alt="Bekeken">2
-        </ul>
-                    
-        <ul>
-            <li><a href="#">2 nieuwe berichten</a>
-            <li><a href="#">8 nieuwe reacties</a>
-            <li><a href="#">1 nieuw antwoord</a>
+            <li><img src="../../Styles/check.png" alt="Stemmen">@ViewBag.Usermeta.Votes
+            <li><img src="../../Styles/aplus.png" alt="Antwoorden">@ViewBag.Usermeta.Answers
+            <li><img src="../../Styles/seen.png" alt="Bekeken">@ViewBag.BadgeCount
         </ul>
 
+        <p>@Html.ActionLink("Mijn profiel", "Index", "profiel", new { username = ViewBag.User.UserName }, new { })</p>
     </div>
 }

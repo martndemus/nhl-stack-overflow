@@ -67,14 +67,14 @@ namespace NHLStackOverflow.Controllers
                 var userInfos = from userInfo in db.Users
                                 where userInfo.UserName == User.Identity.Name
                                 select userInfo;
-                if (userInfos.First().Password != PasswordHasher.Hash(passEmail.NowPassword))
+                if (userInfos.First().Password != Cryptography.PasswordHash(passEmail.NowPassword))
                     ModelState.AddModelError("", "Het wachtwoord komt nier overeen.");
                 if (passEmail.Password1 != passEmail.Password2 || passEmail.Password1 == null)
                     ModelState.AddModelError("", "Het eerste wachtwoord en de tweede kwamen niet overeen.");
                 if (ModelState.IsValid)
                 {
                     // Allowed for a password change
-                    userInfos.First().Password = PasswordHasher.Hash(passEmail.Password1);
+                    userInfos.First().Password = Cryptography.PasswordHash(passEmail.Password1);
                     db.SaveChanges();
                     ViewBag.Message = "Het wachtwoord is succesvol veranderd.";
                     return View();

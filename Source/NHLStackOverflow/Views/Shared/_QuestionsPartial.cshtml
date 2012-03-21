@@ -24,7 +24,7 @@
             {
                 if (user.UserID == question.UserId)
                 {
-                <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { target = "_blank" })</b>  
+                <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { })</b>  
                 }
             }
             
@@ -34,7 +34,7 @@
               {
                   if (tag.QuestionTaggyID == question.QuestionID)
                   {
-                    @Html.ActionLink((string)tag.Tag.Name, "search", "tags", new { id = tag.Tag.TagID }, new { target = "blank" })  
+                    @Html.ActionLink((string)tag.Tag.Name, "search", "tags", new { id = tag.Tag.TagID }, new { })  
                   }
                   @Environment.NewLine
               }

@@ -75,7 +75,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUser1()
         {
-            User u = new User { Password = PasswordHasher.Hash("test"), Email = "test@testmail.com" };
+            User u = new User { Password = Cryptography.PasswordHash("test"), Email = "test@testmail.com" };
 
             db.Users.Add(u);
             db.SaveChanges();
@@ -95,7 +95,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserName1()
         {
-            User u = new User { UserName = " Sjakie23", Password = PasswordHasher.Hash("test"), Email = "test@testmail.com" };
+            User u = new User { UserName = " Sjakie23", Password = Cryptography.PasswordHash("test"), Email = "test@testmail.com" };
 
             db.Users.Add(u);
             db.SaveChanges();
@@ -105,7 +105,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserName2()
         {
-            User u = new User { UserName = "Sjakie23 ", Password = PasswordHasher.Hash("test"), Email = "test@testmail.com" };
+            User u = new User { UserName = "Sjakie23 ", Password = Cryptography.PasswordHash("test"), Email = "test@testmail.com" };
 
             db.Users.Add(u);
             db.SaveChanges();
@@ -115,7 +115,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserName3()
         {
-            User u = new User { UserName = "Sja kie23", Password = PasswordHasher.Hash("test"), Email = "test@testmail.com" };
+            User u = new User { UserName = "Sja kie23", Password = Cryptography.PasswordHash("test"), Email = "test@testmail.com" };
 
             db.Users.Add(u);
             db.SaveChanges();
@@ -125,7 +125,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserName5()
         {
-            User u = new User { UserName = "_Sjakie23", Password = PasswordHasher.Hash("test"), Email = "test@testmail.com" };
+            User u = new User { UserName = "_Sjakie23", Password = Cryptography.PasswordHash("test"), Email = "test@testmail.com" };
 
             db.Users.Add(u);
             db.SaveChanges();
@@ -135,7 +135,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserName6()
         {
-            User u = new User { UserName = "-Sjakie23", Password = PasswordHasher.Hash("test"), Email = "test@testmail.com" };
+            User u = new User { UserName = "-Sjakie23", Password = Cryptography.PasswordHash("test"), Email = "test@testmail.com" };
 
             db.Users.Add(u);
             db.SaveChanges();
@@ -145,7 +145,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserName7()
         {
-            User u = new User { UserName = "$%$%^#$@#$@#$", Password = PasswordHasher.Hash("test"), Email = "test@testmail.com" };
+            User u = new User { UserName = "$%$%^#$@#$@#$", Password = Cryptography.PasswordHash("test"), Email = "test@testmail.com" };
 
             db.Users.Add(u);
             db.SaveChanges();
@@ -155,7 +155,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserName8()
         {
-            User u = new User { UserName = "1Sjakie23", Password = PasswordHasher.Hash("test"), Email = "test@testmail.com" };
+            User u = new User { UserName = "1Sjakie23", Password = Cryptography.PasswordHash("test"), Email = "test@testmail.com" };
 
             db.Users.Add(u);
             db.SaveChanges();
@@ -165,7 +165,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserName9()
         {
-            User u = new User { UserName = "Kort", Password = PasswordHasher.Hash("test"), Email = "test@testmail.com" };
+            User u = new User { UserName = "Kort", Password = Cryptography.PasswordHash("test"), Email = "test@testmail.com" };
 
             db.Users.Add(u);
             db.SaveChanges();
@@ -185,7 +185,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserEmail1()
         {
-            User u = new User { UserName = "Sjakie23", Password = PasswordHasher.Hash("test") };
+            User u = new User { UserName = "Sjakie23", Password = Cryptography.PasswordHash("test") };
 
             db.Users.Add(u);
             db.SaveChanges();
@@ -195,7 +195,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserEmail2()
         {
-            User u = new User { UserName = "Sjakie23", Password = PasswordHasher.Hash("test"), Email = "@testmail.com" };
+            User u = new User { UserName = "Sjakie23", Password = Cryptography.PasswordHash("test"), Email = "@testmail.com" };
 
             db.Users.Add(u);
             db.SaveChanges();
@@ -205,7 +205,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserEmail3()
         {
-            User u = new User { UserName = "Sjakie23", Password = PasswordHasher.Hash("test"), Email = "testmail.com" };
+            User u = new User { UserName = "Sjakie23", Password = Cryptography.PasswordHash("test"), Email = "testmail.com" };
 
             db.Users.Add(u);
             db.SaveChanges();
@@ -215,7 +215,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserEmail4()
         {
-            User u = new User { UserName = "Sjakie23", Password = PasswordHasher.Hash("test"), Email = "test@testmail" };
+            User u = new User { UserName = "Sjakie23", Password = Cryptography.PasswordHash("test"), Email = "test@testmail" };
 
             db.Users.Add(u);
             db.SaveChanges();
@@ -225,7 +225,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserWebsite1()
         {
-            User u = new User { Website = "www.google.com", UserName = "Sjakie23", Password = PasswordHasher.Hash("test"), Email = "test@testmail.com" };
+            User u = new User { Website = "www.google.com", UserName = "Sjakie23", Password = Cryptography.PasswordHash("test"), Email = "test@testmail.com" };
 
             db.Users.Add(u);
             db.SaveChanges();
@@ -235,7 +235,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserWebsite2()
         {
-            User u = new User { Website = "ftp://google.com", UserName = "Sjakie23", Password = PasswordHasher.Hash("test"), Email = "test@testmail.com" };
+            User u = new User { Website = "ftp://google.com", UserName = "Sjakie23", Password = Cryptography.PasswordHash("test"), Email = "test@testmail.com" };
 
             db.Users.Add(u);
             db.SaveChanges();
@@ -245,7 +245,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserLocation()
         {
-            User u = new User { Location = "leeuwarden", UserName = "Sjakie23", Password = PasswordHasher.Hash("test"), Email = "test@testmail.com" };
+            User u = new User { Location = "leeuwarden", UserName = "Sjakie23", Password = Cryptography.PasswordHash("test"), Email = "test@testmail.com" };
 
             db.Users.Add(u);
             db.SaveChanges();
@@ -255,7 +255,7 @@ namespace NHLStackOverflow.tests.Models
         [ExpectedException(typeof(System.Data.Entity.Validation.DbEntityValidationException), "All the following created user should not validate")]
         public void InvalidUserRealName()
         {
-            User u = new User { Name = "sjaak", UserName = "Sjakie23", Password = PasswordHasher.Hash("test"), Email = "test@testmail.com" };
+            User u = new User { Name = "sjaak", UserName = "Sjakie23", Password = Cryptography.PasswordHash("test"), Email = "test@testmail.com" };
 
             db.Users.Add(u);
             db.SaveChanges();
