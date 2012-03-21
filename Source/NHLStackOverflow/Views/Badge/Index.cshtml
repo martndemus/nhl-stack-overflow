@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Question Jam";
+    
+    if (Request.Headers["X-PJAX"] == null) {
+        Layout = "~/Views/Layouts/_Main.cshtml";
+        ViewBag.TitleTag = null;
+    } else {
+        ViewBag.TitleTag = "{{" + ViewBag.Title + "}}";
+        Layout = null;
+    }   
+}
+@ViewBag.TitleTag
+
+<h2>Badges</h2>
+@foreach (var badge in ViewBag.badgesList)
+{
+    <p>
+        @badge.Name
+    </p>
+}
+

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHLStackOverflow.Models;
+using NHLStackOverflow.Classes;
 
 namespace NHLStackOverflow.tests.Models
 {
@@ -55,7 +56,7 @@ namespace NHLStackOverflow.tests.Models
             Assert.IsNotNull(b.Created_At, "Created_At should not be null");
             
             //Expected Default values
-            Assert.IsTrue(b.Created_At == DateTime.Now.ToString(), "Created At should be initialized to DateTime.Now.ToString()");
+            Assert.IsTrue(b.Created_At == StringToDateTime.ToUnixTimeStamp(DateTime.Now), "Created At should be initialized to DateTime.Now.ToString()");
         }
 
         [Description("Tests if badges that should be valid are valid."), TestCategory("Model.Valid"), TestMethod]
