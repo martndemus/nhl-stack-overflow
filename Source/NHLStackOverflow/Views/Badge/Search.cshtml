@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Question Jam";
+    
+    if (Request.Headers["X-PJAX"] == null) {
+        Layout = "~/Views/Layouts/_Main.cshtml";
+        ViewBag.TitleTag = null;
+    } else {
+        ViewBag.TitleTag = "{{" + ViewBag.Title + "}}";
+        Layout = null;
+    }   
+}
+@ViewBag.TitleTag
+
+<h2>Badge: @ViewBag.badgesName.Name x @ViewBag.badgeCount</h2>
+
+@foreach (var user in ViewBag.badgesUsers)
+{
+    <p>
+        <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { })</b>
+         @foreach (var badge in ViewBag.badgesList)
+         {
+             if (badge.UserId == user.UserID)
+             {
+             <b> : @NHLStackOverflow.Classes.StringToDateTime.ConvertToUnixTimestamp(badge.Created_At) geleden</b> 
+             }
+         }
+    </p> 
+}
+

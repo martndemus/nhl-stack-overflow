@@ -12,10 +12,10 @@
 @ViewBag.TitleTag
 
 <h2>Badges</h2>
-@foreach (var badge in ViewBag.badgesList)
-{
+@foreach (var a in ViewBag.badgesList)
+{    
     <p>
-        @badge.Name
+        @Html.ActionLink((string)a.badge.Name, "search", "badge", new { id = a.badge.Name }, new { }) x @a.count
     </p>
 }
 
