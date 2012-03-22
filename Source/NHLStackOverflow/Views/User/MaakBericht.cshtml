@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "MaakBericht";
+    if (Request.Headers["X-PJAX"] == null)
+    {
+        Layout = "~/Views/Layouts/_User.cshtml";
+        ViewBag.TitleTag = null;
+    }
+    else
+    {
+        ViewBag.TitleTag = "{{" + ViewBag.Title + "}}";
+        Layout = null;
+    } 
+}
+
+<h2>MaakBericht</h2>
+@using (Html.BeginForm())
+{
+    <div class="form">
+    @Html.ValidationSummary()
+    @Html.TextBox("Title", "", new { placeholder = "Titel" })
+    <hr />
+    @Html.TextBox("SendTo", "", new { placeholder = "Versturen naar" })
+    <hr />
+    @Html.TextArea("Content", "", new { placeholder = "Inhoud" })
+    @ViewBag.Message
+    <input type="submit" value="Verstuur bericht" id="submit">
+    </div>
+}

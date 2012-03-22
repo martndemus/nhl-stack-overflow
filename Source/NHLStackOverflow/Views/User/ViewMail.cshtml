@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "ViewMail";
+    if (Request.Headers["X-PJAX"] == null)
+    {
+        Layout = "~/Views/Layouts/_User.cshtml";
+        ViewBag.TitleTag = null;
+    }
+    else
+    {
+        ViewBag.TitleTag = "{{" + ViewBag.Title + "}}";
+        Layout = null;
+    } 
+}
+
+<h2>ViewMail</h2>
+
+<h3>@ViewBag.Mail.Title</h3>
+<p>@ViewBag.Mail.Content</p>

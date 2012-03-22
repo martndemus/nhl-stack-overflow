@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Outbox";
+    if (Request.Headers["X-PJAX"] == null)
+    {
+        Layout = "~/Views/Layouts/_User.cshtml";
+        ViewBag.TitleTag = null;
+    }
+    else
+    {
+        ViewBag.TitleTag = "{{" + ViewBag.Title + "}}";
+        Layout = null;
+    } 
+}
+
+<h2>Outbox</h2>
+@if (ViewBag.MailsCount == 0)
+{
+<p>Er zijn verzonden mailtjes.</p>
+}
+else
+{
+    <ul>
+    @foreach (var mail in ViewBag.MailsIn)
+    {
+        <li><b>@Html.ActionLink((string)mail.Title, "viewmail", "user", new { id = mail.MessageID }, new { }) </b>: van @mail.SenderId verstuurd op @mail.Created_At</li>
+    }
+    </ul>
+
+}

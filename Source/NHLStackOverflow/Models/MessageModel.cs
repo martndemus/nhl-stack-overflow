@@ -8,6 +8,7 @@ namespace NHLStackOverflow.Models
         public Message()
         {
             this.Created_At = DateTime.Now.ToString();
+            this.Viewed = 0;
         }
         // GUID
         [Required]
@@ -27,6 +28,9 @@ namespace NHLStackOverflow.Models
         public string Created_At { get; set; }
         public string LastEdited { get; set; }
 
+        [Required]
+        [Range(0, 1)] // 0 = ongelezen, 1 = gelezen
+        public int Viewed { get; set; }
         // Relations
         [Required]
         public int? SenderId { get; set; }
