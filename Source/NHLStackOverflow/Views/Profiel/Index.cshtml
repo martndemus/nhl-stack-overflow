@@ -13,5 +13,36 @@
 
 <h2>@ViewBag.User.UserName</h2>
 <article class="question">
-    <img src="@ViewBag.GravatarURL" />
+    <img src="@Html.Raw(ViewBag.GravatarURL)" />
 </article>
+<ul>
+    <li>@ViewBag.User.UserName</li>
+</ul>
+
+<ul>
+@foreach (var b in ViewBag.Badges)
+{
+    <li>@b.Name</li>
+}
+</ul>
+
+<ul>
+@foreach (var qa in ViewBag.QuestionsAnswered)
+{
+    <li>@qa.Title</li>
+}
+</ul>
+
+<ul>
+@foreach (var q in ViewBag.Questions)
+{
+    <li>@q.Title</li>
+}
+</ul>
+
+<ul class="tags">
+@foreach (var t in ViewBag.Tags)
+{
+    <li>@Html.Raw(String.Format("{0} x {1}", Html.ActionLink((string)t.Key.Name, "search", "tags", new { }), t.Value))</li>
+}
+</ul>

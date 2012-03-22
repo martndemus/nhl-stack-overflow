@@ -6,7 +6,7 @@
     <ul class="tags">
         @foreach (var tag in ViewBag.TagList)
         {
-            <li>@Html.ActionLink((string)tag.Name, "search", "tags", new { id = tag.TagID }, new { target = "blank" }) x @tag.Count</li>
+            <li>@Html.ActionLink((string)tag.Name, "search", "tags", new { id = tag.TagID }, new {  }) x @tag.Count</li>
         }
     </ul>                         
 </div>

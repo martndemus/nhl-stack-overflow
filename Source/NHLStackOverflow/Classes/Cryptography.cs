@@ -14,7 +14,7 @@ namespace NHLStackOverflow.Classes
         static Cryptography()
         {
             shaHasher = new SHA512Managed();
-            md5Hasher = new MD5CryptoServiceProvider();
+            md5Hasher = MD5.Create();
             encoder = new UTF8Encoding();
         }
 
@@ -83,7 +83,7 @@ namespace NHLStackOverflow.Classes
             hash = md5Hasher.ComputeHash(hash);
 
             // Return as string.
-            return Convert.ToString(hash);
+            return ASCIIEncoding.ASCII.GetString(hash);
         }
 
         /// <summary>
