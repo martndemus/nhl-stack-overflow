@@ -159,5 +159,131 @@ namespace NHLStackOverflow.Controllers
             }
             return View();
         }
+
+        //
+        // GET: /user/inbox
+        public ActionResult Inbox()
+        {
+            // get the ID of our current user
+            if (User.Identity.IsAuthenticated) // check if we are logged in :D
+            {
+                // get info from our current user
+                var userViewing = from user in db.Users
+                                  where user.UserName == User.Identity.Name
+                                  select user;
+                if (userViewing.Count() == 1)
+                {
+                    // cast it to an int :D
+                    int userID = userViewing.First().UserID;
+                    // Get the mails send to this user
+                    var mailIn = from mails in db.Messages
+                                 where mails.ReceiverId == userID
+                                 select mails;
+
+                    // Give em back to the ViewBag
+                    ViewBag.MailsIn = mailIn;
+                    ViewBag.MailsCount = mailIn.Count();
+                }
+                else
+                    ModelState.AddModelError("", "Er is iets mis gegaan. We hebben geen correcte gebruiker gevonden.");
+            }
+            else // if not throw error
+                ModelState.AddModelError("", "U dient voor deze pagina te zijn ingelogd.");
+            return View();
+        }
+
+        //
+        // GET: /user/viewmai/mailID
+        public ActionResult ViewMail(int id)
+        {
+            // check if we are logged in
+            if (!User.Identity.IsAuthenticated)
+                ModelState.AddModelError("", "U dient in gelogd te zijn.");
+            else
+            {
+                // get the mail info
+                var mail = from mails in db.Messages
+                           where mails.MessageID == id
+                           select mails;
+                // check if the querry returned some mail
+                if (mail.Count() != 1)
+                    ModelState.AddModelError("", "We hebben geen mail gevonden.");
+                else
+                {
+                    // give it back to our ViewBag :D
+                    ViewBag.Mail = mail.First();
+
+                    // And set the flag to viewed ;-)
+                    mail.First().Viewed = 1;
+                    db.SaveChanges();
+                }
+            }
+            return View();
+        }
+
+        public ActionResult OutBox()
+        {
+            if (User.Identity.IsAuthenticated) // check if we are logged in :D
+            {
+                // get info from our current user
+                var userViewing = from user in db.Users
+                                  where user.UserName == User.Identity.Name
+                                  select user;
+                if (userViewing.Count() == 1)
+                {
+                    // cast it to an int :D
+                    int userID = userViewing.First().UserID;
+                    // Get the mails send to this user
+                    var mailIn = from mails in db.Messages
+                                 where mails.SenderId == userID
+                                 select mails;
+
+                    // Give em back to the ViewBag
+                    ViewBag.MailsIn = mailIn;
+                    ViewBag.MailsCount = mailIn.Count();
+                }
+                else
+                    ModelState.AddModelError("", "Er is iets mis gegaan. We hebben geen correcte gebruiker gevonden.");
+            }
+            else // if not throw error
+                ModelState.AddModelError("", "U dient voor deze pagina te zijn ingelogd.");
+            return View();
+        }
+
+        //
+        // GET: /user/maakbericht/
+        public ActionResult MaakBericht()
+        {
+            return View();
+        }
+
+        //
+        // POST: /user/maakbericht/
+        [HttpPost]
+        public ActionResult MaakBericht(Mail berichtje)
+        {
+            // Kijk of de persoon is ingelogd
+            if (!User.Identity.IsAuthenticated)
+                ModelState.AddModelError("", "Je moet ingelogd zijn om een berichtje te versturen.");
+            // get info of our current user
+            var userSending = from userSend in db.Users
+                              where userSend.UserName == User.Identity.Name
+                              select userSend;
+            // get info of the user to send to
+            var userTo = from toUser in db.Users
+                         where toUser.UserName == berichtje.SendTo
+                         select toUser;
+            if (userTo.Count() != 1 || berichtje.SendTo == null)
+                ModelState.AddModelError("", "De ingevoerde gebruiker bestaat niet.");
+
+            if (ModelState.IsValid)
+            {
+                Message newMessage = new Message() { SenderId = userSending.First().UserID, Title = berichtje.Title, ReceiverId = userTo.First().UserID, Content = berichtje.Content };
+                db.Messages.Add(newMessage);
+                db.SaveChanges();
+                ViewBag.Message = "Het berichtje is succesvol verstuurd.";
+            }
+            return View();
+        }
     }
 }
