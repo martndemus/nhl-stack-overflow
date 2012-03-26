@@ -13,7 +13,17 @@
             <li><img src="../../Styles/aplus.png" alt="Antwoorden">@ViewBag.Usermeta.Answers
             <li><img src="../../Styles/seen.png" alt="Bekeken">@ViewBag.BadgeCount
         </ul>
-
+        @if (ViewBag.UnreadMessages != 0)
+        {
+            if (ViewBag.UnreadMessages > 1)
+            {
+                <span>U heeft @ViewBag.UnreadMessages ongelezen berichten</span>
+            }
+            else
+            {
+                <span>U heeft 1 ongelezen bericht</span>
+            }
+        }
         <p>@Html.ActionLink("Mijn profiel", "Index", "profiel", new { username = ViewBag.User.UserName }, new { })</p>
     </div>
 }
