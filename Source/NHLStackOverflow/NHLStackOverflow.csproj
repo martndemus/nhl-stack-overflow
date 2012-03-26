@@ -50,7 +50,8 @@
       <HintPath>..\packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Mvc.Mailer">
+    <Reference Include="Mvc.Mailer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MvcMailer.1.1\lib\40\Mvc.Mailer.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
@@ -269,7 +270,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Badge\Search.cshtml" />
-</ItemGroup>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\Inbox.cshtml" />
   </ItemGroup>
