@@ -196,6 +196,11 @@ namespace NHLStackOverflow.Controllers
                                        select questions;
                     if (userAwnsering.Count() == 1 && thisQuestion.Count() == 1)
                     {
+                        int userID = userAwnsering.First().UserID;
+                        var userAwnseringMeta = (from usermeta in db.UserMeta
+                                                where usermeta.UserId == userID
+                                                select usermeta).Single();
+                        userAwnseringMeta.Answers += 1;
                         thisQuestion.First().Answers += 1;
                         Answer questionAwnser = new Answer() { QuestionId = id, UserId = userAwnsering.First().UserID, Content = input.awnser };
                         db.Answers.Add(questionAwnser);
@@ -366,6 +371,83 @@ namespace NHLStackOverflow.Controllers
                     ViewBag.MissingTagListCount = tagsList.Count();
                 }
 
+            }
+            return View();
+        }
+
+        //
+        // GET: /Vraag/Delete/ID
+        public ActionResult Delete(int id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                int userRank = (from user in db.Users
+                                where user.UserName == User.Identity.Name
+                                select user.Rank).Single();
+                if (userRank >= 3)
+                {
+                    // Allowed to delete a question
+                    var questionToDelete = (from vraag in db.Questions
+                                           where vraag.QuestionID == id
+                                           select vraag).Single();
+
+                    var userMetaPoster = (from userMeta in db.UserMeta
+                                          where userMeta.UserId == questionToDelete.UserId
+                                          select userMeta).Single();
+                    userMetaPoster.Questions -= 1;
+
+                    db.Questions.Remove(questionToDelete);
+                    var questionTagsDelete = from questionTag in db.QuestionTags
+                                             where questionTag.QuestionId == id
+                                             select questionTag;
+                    foreach (var vraagTag in questionTagsDelete)
+                    {
+                        var tags = from tagjes in db.Tags
+                                   where tagjes.TagID == vraagTag.TagId
+                                   select tagjes;
+                        foreach (var tag in tags)
+                        {
+                            tag.Count -= 1;
+                        }
+                        db.QuestionTags.Remove(vraagTag);
+                    }
+                    var antwoorden = from antwoord in db.Answers
+                                     where antwoord.QuestionId == id
+                                     select antwoord;
+                    foreach (var antwoordje in antwoorden)
+                    {
+                        var commentsOnAwnser = from comments in db.Comments
+                                               where comments.AnswerId == antwoordje.AnswerID
+                                               select comments;
+                        foreach (var deleteComment in commentsOnAwnser)
+                        {
+                            db.Comments.Remove(deleteComment);
+                        }
+                        var antwoordMeta = (from metaAntwoord in db.UserMeta
+                                            where metaAntwoord.UserId == antwoordje.UserId
+                                            select metaAntwoord).Single();
+                        antwoordMeta.Answers -= 1;
+                        db.Answers.Remove(antwoordje);
+                    }
+                    var questionComments = from deleteQuestionComment in db.Comments
+                                           where deleteQuestionComment.QuestionId == id
+                                           select deleteQuestionComment;
+                    foreach (var commentQuestion in questionComments)
+                    {
+                        db.Comments.Remove(commentQuestion);
+                    }
+                    db.SaveChanges();
+                    ViewBag.Message = "De vraag is succesvol verwijderd.";
+                }
+                else
+                {
+                    ViewBag.Message = "U mag geen vragen verwijderen.";
+                }
+
+            }
+            else
+            {
+                ViewBag.Message = "U bent niet ingelogd";
             }
             return View();
         }
