@@ -76,14 +76,19 @@ namespace NHLStackOverflow.Classes
             if (s == null)
                 s = string.Empty;
 
-            // Cast string to byte array
-            byte[] hash = encoder.GetBytes(s);
+            using (md5Hasher)
+            {
+                byte[] hash = md5Hasher.ComputeHash(Encoding.UTF8.GetBytes(s));
 
-            // Hash with md5
-            hash = md5Hasher.ComputeHash(hash);
+                StringBuilder sb = new StringBuilder();
 
+                foreach (byte b in hash)
+                    sb.Append(b.ToString("x2"));
+
+                s = sb.ToString();
+            }
             // Return as string.
-            return ASCIIEncoding.ASCII.GetString(hash);
+            return s;
         }
 
         /// <summary>
