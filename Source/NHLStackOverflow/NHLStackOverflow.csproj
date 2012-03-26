@@ -89,6 +89,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\AbstractBadge.cs" />
     <Compile Include="Classes\BadgeCount.cs" />
     <Compile Include="Classes\HTMLSanitizer.cs" />
     <Compile Include="Classes\Markdown.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Controllers\WidgetController.cs" />
     <Compile Include="Mailers\IUserMailer.cs" />
     <Compile Include="Mailers\UserMailer.cs" />
+    <Compile Include="Models\Badges\QuestionBadge.cs" />
     <Compile Include="Models\FormDataModels\Account.cs" />
     <Compile Include="Models\FormDataModels\AccountActivation.cs" />
     <Compile Include="Models\FormDataModels\Login.cs" />
