@@ -7,16 +7,26 @@
         ViewBag.TitleTag = "{{" + ViewBag.Title + "}}";
         Layout = null;
     } 
+    
+    int i = 0;
 }
 @ViewBag.TitleTag
 
 <h2>Tags</h2>
 <div class="tagoverview">
-@foreach (var tag in ViewBag.TagList)
+@foreach (var t in ViewBag.TagList)
 {
+    if (i % 2 == 0)
+    { @Html.Raw("<div>") }
+                         
     <div class="tag">
-        <p class="tags">@Html.ActionLink((string)tag.Name, "Search", "Tags", new { id = tag.TagID }, new { }) x @tag.Count</p>
-        <p>@Html.Raw(tag.Description)
+        <p class="tags">@Html.ActionLink((string)t.Name, "Search", "Tags", new { id = t.TagID }, new { }) x @t.Count</p>
+        <p>@Html.Raw(t.Description)
     </div>
+    
+    if (i % 2 != 0)
+    { @Html.Raw("</div>") }
+
+    if (i > -1) { i++; }
 }
 </div>
