@@ -15,28 +15,28 @@ namespace NHLStackOverflow.Models.FormDataModels
         [MinLength(140)]
         public string content { get; set; }
 
-        [MinLength(10, ErrorMessage = "The minimum lenght is 10 characters")]
-        [MaxLength(500, ErrorMessage = "The maximum lenght is 500 characters")]
+        [MinLength(10, ErrorMessage = "De minimale lengte is 10 karakters.")]
+        [MaxLength(500, ErrorMessage = "De maximale lengte is 500 karakters.")]
         public string tag0 { get; set; }
 
-        [MinLength(10, ErrorMessage = "The minimum lenght is 10 characters")]
-        [MaxLength(500, ErrorMessage = "The maximum lenght is 500 characters")]
+        [MinLength(10, ErrorMessage = "De minimale lengte is 10 karakters.")]
+        [MaxLength(500, ErrorMessage = "De maximale lengte is 500 karakters.")]
         public string tag1 { get; set; }
 
-        [MinLength(10, ErrorMessage = "The minimum lenght is 10 characters")]
-        [MaxLength(500, ErrorMessage = "The maximum lenght is 500 characters")]
+        [MinLength(10, ErrorMessage = "De minimale lengte is 10 karakters.")]
+        [MaxLength(500, ErrorMessage = "De maximale lengte is 500 karakters.")]
         public string tag2 { get; set; }
 
-        [MinLength(10, ErrorMessage = "The minimum lenght is 10 characters")]
-        [MaxLength(500, ErrorMessage = "The maximum lenght is 500 characters")]
+        [MinLength(10, ErrorMessage = "De minimale lengte is 10 karakters.")]
+        [MaxLength(500, ErrorMessage = "De maximale lengte is 500 karakters.")]
         public string tag3 { get; set; }
 
-        [MinLength(10, ErrorMessage = "The minimum lenght is 10 characters")]
-        [MaxLength(500, ErrorMessage = "The maximum lenght is 500 characters")]
+        [MinLength(10, ErrorMessage = "De minimale lengte is 10 karakters.")]
+        [MaxLength(500, ErrorMessage = "De maximale lengte is 500 karakters.")]
         public string tag4 { get; set; }
 
-        [MinLength(10, ErrorMessage = "The minimum lenght is 10 characters")]
-        [MaxLength(500, ErrorMessage = "The maximum lenght is 500 characters")]
+        [MinLength(10, ErrorMessage = "De minimale lengte is 10 karakters.")]
+        [MaxLength(500, ErrorMessage = "De maximale lengte is 500 karakters.")]
         public string tag5 { get; set; }
     }
 
@@ -44,10 +44,10 @@ namespace NHLStackOverflow.Models.FormDataModels
     {
         [MinLength(140, ErrorMessage = "De inhoud van een antwoord moet minstens 140 karakters lang zijn.")]
         public string awnser { get; set; }
-        
-        [MinLength(10)]
+
+        [MinLength(10, ErrorMessage = "De inhoud van een comment moet minstens 10 karakters lang zijn.")]
         public string awnserComment { get; set; }
-        [MinLength(10)]
+        [MinLength(10, ErrorMessage = "De inhoud van een comment moet minstens 10 karakters lang zijn.")]
         public string questionComment { get; set; }
 
         public int awnserID { get; set; }

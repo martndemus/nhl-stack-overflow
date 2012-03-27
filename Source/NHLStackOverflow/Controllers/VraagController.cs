@@ -25,7 +25,13 @@ namespace NHLStackOverflow.Controllers
                                   select questionDetail;
             questionDetails.First().Views += 1;
             db.SaveChanges();
-
+            // get the user rank
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.UserRank = (from user in db.Users
+                                    where user.UserName == User.Identity.Name
+                                    select user.Rank).Single();
+            }
             Question questionDetailView = questionDetails.First();
             
             // Sanitize the post content and title
@@ -246,6 +252,8 @@ namespace NHLStackOverflow.Controllers
         {
             if (vraag == null)
                 ModelState.AddModelError("", "Vraag is leeg.");
+            if (vraag.Length < 10 || vraag.Length > 140)
+                ModelState.AddModelError("", "De vraag moet minimaal 10 karakters lang zijn en maximaal 140 karakters lang zijn.");
             if (ModelState.IsValid)
             {
                 // For cleaing up the spaces
@@ -403,13 +411,14 @@ namespace NHLStackOverflow.Controllers
                 int userRank = (from user in db.Users
                                 where user.UserName == User.Identity.Name
                                 select user.Rank).Single();
-                if (userRank >= 3)
+                var questionDelete = (from vraag in db.Questions
+                                        where vraag.QuestionID == id
+                                        select vraag);
+                if (userRank >= 3 && questionDelete.Count() == 1)
                 {
                     // Allowed to delete a question
                     // so let's select the question
-                    var questionToDelete = (from vraag in db.Questions
-                                           where vraag.QuestionID == id
-                                           select vraag).Single();
+                    var questionToDelete = questionDelete.First();
                     // let's select the person who made this question
                     var userMetaPoster = (from userMeta in db.UserMeta
                                           where userMeta.UserId == questionToDelete.UserId
@@ -484,7 +493,7 @@ namespace NHLStackOverflow.Controllers
                 }
                 else
                 {
-                    ViewBag.Message = "U mag geen vragen verwijderen.";
+                    ViewBag.Message = "U mag geen vragen verwijderen of de vraag bestaat niet.";
                 }
 
             }
@@ -492,7 +501,10 @@ namespace NHLStackOverflow.Controllers
             {
                 ViewBag.Message = "U bent niet ingelogd";
             }
-            return View();
+            if (Request.UrlReferrer.AbsolutePath.Contains("vraag"))
+                return RedirectToAction("index", "default");
+            else
+                return Redirect(Request.UrlReferrer.AbsolutePath);
         }
     }
 }

@@ -31,7 +31,7 @@
         {
             <td>@vraagje.QuestionID</td>
             <td>@Html.ActionLink((string)vraagje.Title, "view", "vraag", new { id = vraagje.QuestionID }, new { target = "_blank" }):@vraagje.Content</td>
-            <td>@Html.ActionLink("[x]", "delete", "vraag", new { id = vraagje.QuestionID }, new { target = "_blank" })</td>
+            <td>@Html.ActionLink("[x]", "delete", "vraag", new { id = vraagje.QuestionID }, "")</td>
         }
         </tr>
     }
@@ -56,7 +56,7 @@
                 <tr>
                     <td>@answer.AnswerID</td>
                     <td>@answer.Content.Substring(0,95) ...</td>
-                    <td>[x]</td>
+                    <td>@Html.ActionLink("[x]", "delete", "answer", new { id = answer.AnswerID }, new { })</td>
                 </tr>
             }
         }
@@ -83,7 +83,7 @@
             {
                 <tr>
                     <td>@comment.CommentID</td>
-                    <td>@comment.Content.Substring(0, 95) ...</td>
+                    <td>@comment.Content</td>
                     <td>@Html.ActionLink("[x]", "delete", "comment", new { id = comment.CommentID }, "")</td>
                 </tr>            
                 }
