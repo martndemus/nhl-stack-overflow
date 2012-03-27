@@ -114,5 +114,17 @@ namespace NHLStackOverflow.Controllers
             return View();
         }
 
+        //
+        // GET: Profiel/Overzicht
+
+        public ActionResult Overzicht()
+        {
+
+
+            ViewBag.Users = db.Users;
+
+            return View();
+        }
+
     }
 }

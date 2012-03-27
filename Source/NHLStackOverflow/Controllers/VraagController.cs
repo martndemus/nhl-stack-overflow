@@ -213,7 +213,7 @@ namespace NHLStackOverflow.Controllers
                                                 where usermeta.UserId == userID
                                                 select usermeta).Single();
                         // add one to the amount of answers given
-                        userAwnseringMeta.Answers += 1
+                        userAwnseringMeta.Answers += 1;
 
                         int AwnserUserID = userAwnsering.First().UserID;
 

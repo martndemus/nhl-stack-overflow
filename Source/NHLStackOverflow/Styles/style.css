@@ -463,6 +463,10 @@ ul.tags  {
     text-decoration: none;
 }
 
+.userblock {
+    height: 2px;
+    background: #DEE8ED;
+}
 /* 
     SUGGESTED ANSWERS
 */
@@ -485,7 +489,32 @@ ul.tags  {
 
 .suggestedanswers .votes.answered {
     background: #40BF40;
-}/*
+}
+
+/*
+    USER
+*/
+
+.user-item {
+    display:inline-block;
+    width: 50%;
+    margin-right:-4px;
+}
+
+.user-item img 
+{
+    display: inline-block;
+    padding: 10px;
+}
+
+.user-item span 
+{
+    display:inline-block;
+    line-height: 84px;
+    
+    vertical-align: top;
+}
+/*
     SPECIFIC
 */
 

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "ViewMail";
+    ViewBag.Title = ViewBag.Mail.Title + " - Question Jam";
     if (Request.Headers["X-PJAX"] == null)
     {
         Layout = "~/Views/Layouts/_User.cshtml";
@@ -12,7 +12,7 @@
     } 
 }
 
-<h2>ViewMail</h2>
-
-<h3>@ViewBag.Mail.Title</h3>
-<p>@ViewBag.Mail.Content</p>
+<h2>@ViewBag.Mail.Title</h2>
+<div class="question">
+    <p>@ViewBag.Mail.Content</p>
+</div>

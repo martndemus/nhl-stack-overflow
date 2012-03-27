@@ -1,0 +1,33 @@
+﻿@{    
+    ViewBag.Title = "Overzicht van profielen - Question Jam";
+    
+    if (Request.Headers["X-PJAX"] == null) {
+        Layout = "~/Views/Layouts/_Main.cshtml";
+        ViewBag.TitleTag = null;
+    } else {
+        ViewBag.TitleTag = "{{" + ViewBag.Title + "}}";
+        Layout = null;
+    }
+
+    int i = 0;
+}
+@ViewBag.TitleTag
+
+<h2>Overzicht van profielen</h2>
+<div class="tagoverview">
+    @foreach (var u in ViewBag.Users)
+    {
+        if (i % 2 == 0)
+        { @Html.Raw("<div>") }
+                             
+        <div class="user-item">
+            <img src="@Html.Raw(String.Format("http://www.gravatar.com/avatar/{0}?s=64&d=mm&r=g", NHLStackOverflow.Classes.Cryptography.GravatarHash(u.Email)))" />
+            <span><b>@Html.ActionLink((string)u.UserName, "index", new { username = u.UserName }, new { })</b></span>
+        </div> 
+        
+        if (i % 2 != 0)
+        { @Html.Raw("</div>") }
+
+        if (i > -1) { i++; }       
+    }
+</div>

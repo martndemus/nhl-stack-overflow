@@ -16,23 +16,30 @@
 
 @if (ViewBag.MailsCount == 0)
 {
-<p>Er zijn geen mailtjes.</p>
+    <div class="question">
+        <p>Er zijn geen mailtjes.</p>
+    </div>
 }
 else
-{
-    <ul>
+{   
+    <div class="question">
     @foreach (var mail in ViewBag.MailsIn)
     {
-        if (mail.Viewed == 0)
-        {
-            <li><b>@Html.ActionLink((string)mail.Title, "viewmail", "user", new { id = mail.MessageID }, new { }) </b>: van @mail.SenderId verstuurd op @mail.Created_At</li>
-        }
-        else
-        {
-            <li>@Html.ActionLink((string)mail.Title, "viewmail", "user", new { id = mail.MessageID }, new { }) : van @mail.SenderId verstuurd op @mail.Created_At</li>
-        }
+        <p>
+            @if (mail.Viewed == 0)
+            {
+                <b>@Html.ActionLink((string)mail.Title, "viewmail", "user", new { id = mail.MessageID }, new { })</b>
+                <br /><span>van @mail.SenderId verstuurd op @mail.Created_At</span>
+               
+                 
+            }
+            else
+            {
+                @Html.ActionLink((string)mail.Title, "viewmail", "user", new { id = mail.MessageID }, new { })
+                <br /><span>van @mail.SenderId verstuurd op @mail.Created_At</span>
+            }
+        </p>
     }
-    </ul>
-
+    </div>
 }
 

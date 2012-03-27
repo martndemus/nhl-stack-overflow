@@ -17,11 +17,11 @@
         {
             if (ViewBag.UnreadMessages > 1)
             {
-                <span>U heeft @ViewBag.UnreadMessages ongelezen berichten</span>
+                <p>@Html.ActionLink((string)String.Format("U heeft {0} ongelezen berichten", @ViewBag.UnreadMessages), "inbox", "user")</p>
             }
             else
             {
-                <span>U heeft 1 ongelezen bericht</span>
+                <p>@Html.ActionLink("U heeft 1 ongelezen bericht", "inbox", "user")</p>
             }
         }
         <p>@Html.ActionLink("Mijn profiel", "Index", "profiel", new { username = ViewBag.User.UserName }, new { })</p>
