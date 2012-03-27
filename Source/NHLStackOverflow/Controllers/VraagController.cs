@@ -5,6 +5,7 @@ using NHLStackOverflow.Classes;
 using NHLStackOverflow.Models;
 using NHLStackOverflow.Models.FormDataModels;
 using System;
+using NHLStackOverflow.Models.Badges;
 
 namespace NHLStackOverflow.Controllers
 {
@@ -352,8 +353,9 @@ namespace NHLStackOverflow.Controllers
                         db.QuestionTags.Add(newQuestTag);
                     }
                     db.SaveChanges();
+                    if (BronzeQuestionBadge.badgeAchieve(userInfo.UserId))
+                        BronzeQuestionBadge.awardBadge(userInfo.UserId);
                     return RedirectToAction("view", "vraag", new { id = justAskedQuestion.QuestionID });
-
                     // Now add our question :D
                     // and on done, go to the page showing our question :D
                 }

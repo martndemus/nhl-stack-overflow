@@ -32,6 +32,7 @@ namespace NHLStackOverflow.Models
                 new User { UserName = "Kees1979", Password = Cryptography.PasswordHash("abc"), Email = "test3@testmail.com", Rank = 0, Activated = 1, PassLost = "BCLob11SgwNtcanBG3ZmayFehZfpBz67rIrNuPNO8xTHU4JJHZD1EKpSfXDnouNJeyK572UGaBpaSau+xjRfSw" }, // only person 
                 new User { UserName = "HiteshPatel", Password = Cryptography.PasswordHash("Patel"), Email = "Patel@Hitesh.com", Rank = 1, Activated = 1 },  
                 new User { UserName = "RajPAtel", Password = Cryptography.PasswordHash("PAtel"), Email = "info@Raj.nl", Rank = 2, Activated = 1 },  
+                new User { UserName = "Edtje", Password = Cryptography.PasswordHash("ed"), Email = "info@edje.nl", Rank = 2, Activated = 1 },  
                 //new User { UserName = "user1217685", Password = PasswordHasher.Hash("user"), Email = "info@user.com", Rank = 0, Activated = 1 },  
                 //new User { UserName = "Legycsapo", Password = PasswordHasher.Hash("Legy"), Email = "Legycsapo@gmail.com", Rank = 0, Activated = 1 },  
                 //new User { UserName = "swiecki", Password = PasswordHasher.Hash("swiecki"), Email = "swiecki@hotmail.com", Rank = 3, Activated = 1 },  
@@ -54,7 +55,7 @@ namespace NHLStackOverflow.Models
                 new UserMeta { UserId = 3 },
                 new UserMeta { UserId = 4 },
                 new UserMeta { UserId = 5 },
-                //new UserMeta { UserId = 6 },
+                new UserMeta { UserId = 6 },
                 //new UserMeta { UserId = 7 },
                 //new UserMeta { UserId = 8 },
                 //new UserMeta { UserId = 9 },
