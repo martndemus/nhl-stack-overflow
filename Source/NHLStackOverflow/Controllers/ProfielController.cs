@@ -106,6 +106,7 @@ namespace NHLStackOverflow.Controllers
             ViewBag.QuestionsAnswered = QuestionsAnswered;
             ViewBag.Tags              = UserTags;
             ViewBag.Badges            = Badges;
+            ViewBag.BadgeCount        = Badges.Count();
 
             // Gravater url for user Avater
             ViewBag.GravatarURL = String.Format("http://www.gravatar.com/avatar/{0}?s=92&d=mm&r=g", Cryptography.GravatarHash(User.Email));

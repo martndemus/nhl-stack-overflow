@@ -16,8 +16,9 @@
     <img class="left" src="@Html.Raw(ViewBag.GravatarURL)" />
 
     <ul class="stats">
-        <li> a</li>
-        <li>b</li>
+        <li>@ViewBag.UserMeta.Votes</li>
+        <li>@ViewBag.UserMeta.Answers</li>
+        <li>@ViewBag.BadgeCount</li>
     </ul>
 </article>
 <ul>
