@@ -167,7 +167,7 @@ namespace NHLStackOverflow.Models
 
             var comment = new List<Comment>
             {
-                new Comment { UserId = 5, QuestionId = 1, Content = "Is dat niet gewoon simpel weg this.Close();?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 19, 18, 5, 10))},
+                new Comment { UserId = 5, QuestionId = 1, Content = "Is dat niet gewoon simpel weg this.Close();?", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 19, 18, 5, 10)), Flag = 1},
                 new Comment { UserId = 2, QuestionId = 1, Content = "Owja dat zou best wel eens kunnen ja. Zal het even proberen danku!", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 19, 20, 5, 10))},
                 new Comment { UserId = 2, AnswerId = 1, Content = "Ja dat werkte :D, danku! Nu kan ik weer verder met mijn lingo opdracht.", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 19, 21, 35, 10))},
                 new Comment { UserId = 3, AnswerId = 2, Content = "Ah volgens mij snap ik het. Zal het even proberen.", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 3, 19, 21, 35, 10))},
