@@ -13,12 +13,13 @@
 
 <h2>@ViewBag.User.UserName</h2>
 <article class="question">
-    <img src="@Html.Raw(ViewBag.GravatarURL)" />
-</article>
-<ul>
-    <li>@ViewBag.User.UserName</li>
-</ul>
+    <img class="left" src="@Html.Raw(ViewBag.GravatarURL)" />
 
+    <ul class="stats">
+        <li> a</li>
+        <li>b</li>
+    </ul>
+</article>
 <ul>
 @foreach (var b in ViewBag.Badges)
 {

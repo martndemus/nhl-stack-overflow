@@ -501,6 +501,10 @@ ul.tags  {
     margin: 0 0 10px;
 }
 
+.left {
+    float: left !Important;
+}
+
 .right {
     float:right !Important;
 }
@@ -513,11 +517,16 @@ ul.tags  {
     border-top: 1px solid #243842;
 }
 
+.tagoverview > div {
+    border-bottom: 1px solid #DEE8ED;
+}
+
 .tag 
 {
     display: inline-block;
-    border-bottom: 1px solid #DEE8ED;
+    
     width: 100%;
+    vertical-align: top;
 }
 
 .tag p {

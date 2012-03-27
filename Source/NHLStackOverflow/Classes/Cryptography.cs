@@ -73,17 +73,20 @@ namespace NHLStackOverflow.Classes
         /// <returns>MD5 hashed string</returns>
         public static string MD5Hash(string s)
         {
-            if (s == null)
-                s = string.Empty;
+            // Convert the string to byte array.
+            byte[] hash = Encoding.UTF8.GetBytes(s);
+            // Make the input string empty
+            s = String.Empty;
 
-            // Cast string to byte array
-            byte[] hash = encoder.GetBytes(s);
-
-            // Hash with md5
+            // Computes the hash.
             hash = md5Hasher.ComputeHash(hash);
 
+            // Convert the bytes back into a string.
+            foreach (byte b in hash)
+                s += b.ToString("x2");
+
             // Return as string.
-            return ASCIIEncoding.ASCII.GetString(hash);
+            return s;
         }
 
         /// <summary>
