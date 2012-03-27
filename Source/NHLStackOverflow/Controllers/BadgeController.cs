@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using NHLStackOverflow.Models;
 using NHLStackOverflow.Classes;
@@ -44,7 +42,6 @@ namespace NHLStackOverflow.Controllers
                 test.Add(badgeUsers.First());
             }
             ViewBag.badgesUsers = test;
-
             return View();
         }
 

@@ -197,10 +197,17 @@ namespace NHLStackOverflow.Controllers
                                        select questions;
                     if (userAwnsering.Count() == 1 && thisQuestion.Count() == 1)
                     {
+                        int AwnserUserID = userAwnsering.First().UserID;
                         thisQuestion.First().Answers += 1;
-                        Answer questionAwnser = new Answer() { QuestionId = id, UserId = userAwnsering.First().UserID, Content = input.awnser };
+                        Answer questionAwnser = new Answer() { QuestionId = id, UserId = AwnserUserID, Content = input.awnser };
                         db.Answers.Add(questionAwnser);
+                        var awnseringMeta = (from user in db.UserMeta
+                                            where user.UserId == AwnserUserID
+                                            select user).Single();
+                        awnseringMeta.Answers += 1;
                         db.SaveChanges();
+                        if (AnswerBadge.badgeAchieve(AwnserUserID))
+                            AnswerBadge.awardBadge(AwnserUserID);
                     }
                     return RedirectToAction("view", "vraag", id);
                 }
@@ -332,6 +339,8 @@ namespace NHLStackOverflow.Controllers
                     Question newQuestion = new Question() { Title = info.vraag, UserId = userInfo.UserId, Content = info.content };
                     db.Questions.Add(newQuestion);
                     db.SaveChanges(); // to make sure that if there were new tags they are added propperly (so we can query the id's right)
+                    if (TagBadge.badgeAchieve(userInfo.UserId))
+                        TagBadge.awardBadge(userInfo.UserId);
 
                     // query back our last question
                     // should be the first of this list
@@ -353,8 +362,8 @@ namespace NHLStackOverflow.Controllers
                         db.QuestionTags.Add(newQuestTag);
                     }
                     db.SaveChanges();
-                    if (BronzeQuestionBadge.badgeAchieve(userInfo.UserId))
-                        BronzeQuestionBadge.awardBadge(userInfo.UserId);
+                    if (QuestionBadge.badgeAchieve(userInfo.UserId))
+                        QuestionBadge.awardBadge(userInfo.UserId);
                     return RedirectToAction("view", "vraag", new { id = justAskedQuestion.QuestionID });
                     // Now add our question :D
                     // and on done, go to the page showing our question :D

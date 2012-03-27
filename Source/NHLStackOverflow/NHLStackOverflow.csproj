@@ -108,7 +108,9 @@
     <Compile Include="Controllers\WidgetController.cs" />
     <Compile Include="Mailers\IUserMailer.cs" />
     <Compile Include="Mailers\UserMailer.cs" />
+    <Compile Include="Models\Badges\AnswerBadge.cs" />
     <Compile Include="Models\Badges\QuestionBadge.cs" />
+    <Compile Include="Models\Badges\TagBadge.cs" />
     <Compile Include="Models\FormDataModels\Account.cs" />
     <Compile Include="Models\FormDataModels\AccountActivation.cs" />
     <Compile Include="Models\FormDataModels\Login.cs" />
