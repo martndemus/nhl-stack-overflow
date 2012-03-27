@@ -72,9 +72,16 @@
             }
         }
         <li class="respond">
-        @using (Html.BeginForm())
+        @if (User.Identity.IsAuthenticated)
         {
-            @Html.TextBox("questionComment", "", new { placeholder = "Reageer", @class = "add-comment" });
+            using (Html.BeginForm())
+            {
+                @Html.TextBox("questionComment", "", new { placeholder = "Reageer", @class = "add-comment" });
+            }
+        }
+        else
+        {
+            <span>U moet ingelogd zijn om een reactie te kunnen geven.</span>
         }
         </li>
     </ul>
@@ -135,25 +142,38 @@ else
                 }
             }
             <li class="respond">
-                @using (Html.BeginForm())
+            @if (User.Identity.IsAuthenticated)
+            {
+                using (Html.BeginForm())
                 {
                     string aID = Convert.ToString(answer.AnswerID);
                     @Html.TextBox("awnserComment", "", new { placeholder = "Reageer", @class = "add-comment" });
                     @Html.TextBox("awnserID", aID, new { type = "hidden" });
                 }
+            }
+            else
+            {
+                <span>U dient te zijn ingelogd om een reactie te schrijven.</span>
+            }
             </li>
         </ul>
     </article>
 }
 
-
-@using (Html.BeginForm())
+@if (User.Identity.IsAuthenticated)
 {
+    using (Html.BeginForm())
+    {
     <div class="form">
         @Html.TextArea("awnser", "", new { placeholder = "Schrijf een antwoord", @class = "editor" })
         <p>Antwoorden mogen worden opgemaakt met <a href="http://daringfireball.net/projects/markdown/syntax" rel="nofollow">Markdown</a>. HTML opmaak is niet toegestaan.</p>
         <input type="submit" value="Antwoord" />
     </div>
+    }
+}
+else
+{
+    <span>U dient te zijn ingelogd om een antwoord te schrijven.</span>
 }
 
 

@@ -189,14 +189,24 @@ namespace NHLStackOverflow.Controllers
                     ModelState.AddModelError("", "U dient te zijn ingelogd om te reageren.");
                 if (ModelState.IsValid)
                 {
+                    // get the info off the user ansering
                     var userAwnsering = from user in db.Users
                                         where user.UserName == User.Identity.Name
                                         select user;
+                    // and about the question
                     var thisQuestion = from questions in db.Questions
                                        where questions.QuestionID == id
                                        select questions;
                     if (userAwnsering.Count() == 1 && thisQuestion.Count() == 1)
                     {
+                        // cast the userID to an int to use it again
+                        int userID = userAwnsering.First().UserID;
+                        // get the usermeta
+                        var userAwnseringMeta = (from usermeta in db.UserMeta
+                                                where usermeta.UserId == userID
+                                                select usermeta).Single();
+                        // add one to the amount of answers given
+                        userAwnseringMeta.Answers += 1;
                         thisQuestion.First().Answers += 1;
                         Answer questionAwnser = new Answer() { QuestionId = id, UserId = userAwnsering.First().UserID, Content = input.awnser };
                         db.Answers.Add(questionAwnser);
@@ -368,6 +378,107 @@ namespace NHLStackOverflow.Controllers
                     ViewBag.MissingTagListCount = tagsList.Count();
                 }
 
+            }
+            return View();
+        }
+
+        //
+        // GET: /Vraag/Delete/ID
+        public ActionResult Delete(int id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                int userRank = (from user in db.Users
+                                where user.UserName == User.Identity.Name
+                                select user.Rank).Single();
+                if (userRank >= 3)
+                {
+                    // Allowed to delete a question
+                    // so let's select the question
+                    var questionToDelete = (from vraag in db.Questions
+                                           where vraag.QuestionID == id
+                                           select vraag).Single();
+                    // let's select the person who made this question
+                    var userMetaPoster = (from userMeta in db.UserMeta
+                                          where userMeta.UserId == questionToDelete.UserId
+                                          select userMeta).Single();
+                    // lower the amount of questions asked by this person with one
+                    userMetaPoster.Questions -= 1;
+                    // delete the question
+                    db.Questions.Remove(questionToDelete);
+                    // get all the question tags which were linked with this question
+                    var questionTagsDelete = from questionTag in db.QuestionTags
+                                             where questionTag.QuestionId == id
+                                             select questionTag;
+                    // loop through them
+                    foreach (var vraagTag in questionTagsDelete)
+                    {
+                        // get the tag of this question
+                        var tags = (from tagjes in db.Tags
+                                   where tagjes.TagID == vraagTag.TagId
+                                   select tagjes).Single();
+                        // lower the amount of questions in this tag with one
+                        tags.Count -= 1;
+                        // remove this QuestionTag
+                        db.QuestionTags.Remove(vraagTag);
+                    }
+                    // get all the awnsers given to this question
+                    var antwoorden = from antwoord in db.Answers
+                                     where antwoord.QuestionId == id
+                                     select antwoord;
+                    // Loopt through them
+                    foreach (var antwoordje in antwoorden)
+                    {
+                        // get all the comments on this awnser
+                        var commentsOnAwnser = from comments in db.Comments
+                                               where comments.AnswerId == antwoordje.AnswerID
+                                               select comments;
+                        // delete each comment
+                        foreach (var deleteComment in commentsOnAwnser)
+                        {
+                            db.Comments.Remove(deleteComment);
+                        }
+                        // get the stuff of the person who made this awnser
+                        var antwoordMeta = (from metaAntwoord in db.UserMeta
+                                            where metaAntwoord.UserId == antwoordje.UserId
+                                            select metaAntwoord).Single();
+                        // lower the amount of awnser of this person with one
+                        antwoordMeta.Answers -= 1;
+                        // remove the awnser
+                        db.Answers.Remove(antwoordje);
+                    }
+                    // Get all the comments on this question
+                    var questionComments = from deleteQuestionComment in db.Comments
+                                           where deleteQuestionComment.QuestionId == id
+                                           select deleteQuestionComment;
+                    // Remove each one of them
+                    foreach (var commentQuestion in questionComments)
+                    {
+                        db.Comments.Remove(commentQuestion);
+                    }
+                    // get the other stuff of the user who is deleting
+                    var userDeleting = (from usertje in db.Users
+                                       where usertje.UserName == User.Identity.Name
+                                       select usertje).Single();
+                    // send a message to notify the delete
+                    Message newMessage = new Message() { Title = "Een vraag van u is verwijderd", Created_At = DateTime.Now.ToString(), Content = "De volgende vraag is verwijderd:" 
+                        + questionToDelete.Title + ". \n\nIndien u vragen heeft over het verwijderen van dit bericht kunt u een reactie op dit bericht versturen. \n\nDit bericht is verwijderd door: " 
+                        + userDeleting.UserName + " \n\nWe wensen u nog een fijne dag.", ReceiverId = questionToDelete.UserId, SenderId = userDeleting.UserID };
+                    // save the changes
+                    db.Messages.Add(newMessage);
+                    db.SaveChanges();
+                    // show a succes message
+                    ViewBag.Message = "De vraag is succesvol verwijderd.";
+                }
+                else
+                {
+                    ViewBag.Message = "U mag geen vragen verwijderen.";
+                }
+
+            }
+            else
+            {
+                ViewBag.Message = "U bent niet ingelogd";
             }
             return View();
         }

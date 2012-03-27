@@ -221,34 +221,6 @@ namespace NHLStackOverflow.Controllers
             return View();
         }
 
-        public ActionResult OutBox()
-        {
-            if (User.Identity.IsAuthenticated) // check if we are logged in :D
-            {
-                // get info from our current user
-                var userViewing = from user in db.Users
-                                  where user.UserName == User.Identity.Name
-                                  select user;
-                if (userViewing.Count() == 1)
-                {
-                    // cast it to an int :D
-                    int userID = userViewing.First().UserID;
-                    // Get the mails send to this user
-                    var mailIn = from mails in db.Messages
-                                 where mails.SenderId == userID
-                                 select mails;
-
-                    // Give em back to the ViewBag
-                    ViewBag.MailsIn = mailIn;
-                    ViewBag.MailsCount = mailIn.Count();
-                }
-                else
-                    ModelState.AddModelError("", "Er is iets mis gegaan. We hebben geen correcte gebruiker gevonden.");
-            }
-            else // if not throw error
-                ModelState.AddModelError("", "U dient voor deze pagina te zijn ingelogd.");
-            return View();
-        }
 
         //
         // GET: /user/maakbericht/
@@ -267,7 +239,7 @@ namespace NHLStackOverflow.Controllers
                 ModelState.AddModelError("", "Je moet ingelogd zijn om een berichtje te versturen.");
             // get info of our current user
             var userSending = from userSend in db.Users
-                              where userSend.UserName == User.Identity.Name
+                              where userSend.UserName.ToLower() == User.Identity.Name.ToLower()
                               select userSend;
             // get info of the user to send to
             var userTo = from toUser in db.Users

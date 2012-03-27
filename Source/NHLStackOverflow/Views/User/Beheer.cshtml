@@ -31,7 +31,7 @@
         {
             <td>@vraagje.QuestionID</td>
             <td>@Html.ActionLink((string)vraagje.Title, "view", "vraag", new { id = vraagje.QuestionID }, new { target = "_blank" }):@vraagje.Content</td>
-            <td>[x]</td>
+            <td>@Html.ActionLink("[x]", "delete", "vraag", new { id = vraagje.QuestionID }, new { target = "_blank" })</td>
         }
         </tr>
     }

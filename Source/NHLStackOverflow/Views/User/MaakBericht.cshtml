@@ -17,9 +17,9 @@
 {
     <div class="form">
     @Html.ValidationSummary()
-    @Html.TextBox("Title", "", new { placeholder = "Titel" })
-    <hr />
     @Html.TextBox("SendTo", "", new { placeholder = "Versturen naar" })
+    <hr />
+    @Html.TextBox("Title", "", new { placeholder = "Titel" })
     <hr />
     @Html.TextArea("Content", "", new { placeholder = "Inhoud" })
     @ViewBag.Message

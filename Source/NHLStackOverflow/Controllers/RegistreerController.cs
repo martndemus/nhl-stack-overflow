@@ -44,7 +44,7 @@ namespace NHLStackOverflow.Controllers
                 ModelState.AddModelError("", "Het e-mail adress is al gebruikt.");
             // check if the username is being used
             var userName = from NameUser in db.Users
-                           where user.UserName == NameUser.UserName
+                           where user.UserName.ToLower() == NameUser.UserName.ToLower()
                            select NameUser.UserName;
             if (userName.Count() != 0) // username is being used so show an error
                 ModelState.AddModelError("", "Deze username is al gebruikt.");
@@ -58,7 +58,8 @@ namespace NHLStackOverflow.Controllers
                     user.Password = Cryptography.PasswordHash(user.Password);
                     user.ActivationLink = Cryptography.UrlHash(user.Email);
                     db.Users.Add(user);
-                    UserMailer.MailConfirm(user.ActivationLink, user.Email).Send(); // .MailConfirm("test")
+                    // try catch is for this part. We need to check if we can send this email if not show an error
+                    UserMailer.MailConfirm(user.ActivationLink, user.Email).Send(); 
                 }
                 catch
                 {
