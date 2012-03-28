@@ -52,6 +52,7 @@
         @if (User.Identity.IsAuthenticated)
         {
             @Html.ActionLink("Vote", "voteup", "vraag", new { id = ViewBag.QuestionDetail.QuestionID }, "")
+            @Html.ActionLink("Flag", "FlagVraag", "vraag", new { id = ViewBag.QuestionDetail.QuestionID }, "")
         }
     </aside>
     
@@ -78,6 +79,10 @@
                 @if (ViewBag.UserRank >= 1)
                 {
                     @Html.ActionLink("Delete comment", "delete", "comment", new { id = comment.CommentID }, "")
+                }
+                @if(User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Flag", "FlagComment", "comment", new { id = comment.CommentID }, "")
                 }
                 </li>
             }
@@ -135,6 +140,7 @@ else
             @if (User.Identity.IsAuthenticated)
             {
                 @Html.ActionLink("Vote", "VoteUp", "answer", new { id = answer.AnswerID }, "")
+                @Html.ActionLink("Flag", "FlagAnswer", "answer", new { id = answer.AnswerID }, "")
             }
         </aside>
          <ul class="comments">
@@ -160,6 +166,10 @@ else
                     @if (ViewBag.UserRank >= 1)
                     {
                         @Html.ActionLink("Delete comment", "delete", "comment", new { id = acomment.CommentID }, "")
+                    }
+                    @if(User.Identity.IsAuthenticated)
+                    {
+                        @Html.ActionLink("Flag", "FlagComment", "comment", new { id = acomment.CommentID }, "")
                     }
 
                     </li>

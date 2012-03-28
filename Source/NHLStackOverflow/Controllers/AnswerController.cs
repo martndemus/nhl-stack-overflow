@@ -26,14 +26,30 @@ namespace NHLStackOverflow.Controllers
                 // delete this awnser
                 var AwnserToDelete = AnswerDelete.First();
                 db.Answers.Remove(AwnserToDelete);
-                
+                var answerVotes = from answerVote in db.Votes
+                                  where answerVote.AnswerID == id
+                                  select answerVote;
+                foreach (var vote in answerVotes)
+                    db.Votes.Remove(vote);
+                var flags = from flag in db.Flags
+                            where flag.AnswerID == id
+                            select flag;
+                foreach (var flag in flags)
+                    db.Flags.Remove(flag);
                 // get the comments
                 var commentsAwnsers = from comment in db.Comments
                                       where comment.AnswerId == id
                                       select comment;
                 // and delete em
                 foreach (var comment in commentsAwnsers)
+                {
                     db.Comments.Remove(comment);
+                    var CommentFlag = from flag in db.Flags
+                                      where flag.CommentID == comment.CommentID
+                                      select flag;
+                    foreach (var comFlag in CommentFlag)
+                        db.Flags.Remove(comFlag);
+                }
                 // lower the amount of answers given by this person with one
                 var userMetaAwnser = (from user in db.UserMeta
                                      where user.UserId == AwnserToDelete.UserId
@@ -116,6 +132,52 @@ namespace NHLStackOverflow.Controllers
                 return RedirectToAction("index", "default");
             else
                 return Redirect(Request.UrlReferrer.AbsolutePath);
+        }
+
+        //
+        // GET: /answer/FlagAnswer/AnswerID
+        public ActionResult FlagAnswer(int id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var UserFlagging = from usr in db.Users
+                                   where usr.UserName == User.Identity.Name
+                                   select usr;
+                var AnswerFlagged = from answer in db.Answers
+                                    where answer.AnswerID == id
+                                    select answer;
+                if (UserFlagging.Count() == 1 && AnswerFlagged.Count() == 1)
+                {
+                    var user = UserFlagging.First();
+                    var answer = AnswerFlagged.First();
+                    var flagged = from flag in db.Flags
+                                  where flag.AnswerID == id && flag.UserID == user.UserID
+                                  select flag;
+                    if (flagged.Count() == 1)
+                    {
+                        // unflag
+                        db.Flags.Remove(flagged.First());
+                        db.SaveChanges();
+                        var totalFlags = from flags in db.Flags
+                                         where flags.AnswerID == id
+                                         select flags;
+                        if (totalFlags.Count() == 0)
+                        {
+                            // if there are no longer 
+                            answer.Flag = 0;
+                            db.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        // flag
+                        answer.Flag = 1;
+                        db.Flags.Add(new Flag() { AnswerID = answer.AnswerID, UserID = user.UserID });
+                        db.SaveChanges();
+                    }
+                }
+            }
+            return Redirect(Request.UrlReferrer.AbsolutePath);
         }
 
     }
