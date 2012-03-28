@@ -634,5 +634,43 @@ namespace NHLStackOverflow.Controllers
             else
                 return Redirect(Request.UrlReferrer.AbsolutePath);
         }
+
+        //
+        // GET: /vraag/unflag/QuestionID
+        // Bestemd om vanuit beheer een vraag totaal te unflaggen
+        public ActionResult Unflag(int id)
+        {
+            // get question
+            var QuestionFlagged = from vraag in db.Questions
+                                  where vraag.QuestionID == id && vraag.Flag == 1
+                                  select vraag;
+            // Check if we are logged in and we are unflagging a right question
+            if (User.Identity.IsAuthenticated && QuestionFlagged.Count() == 1)
+            {
+                // Cast question to single
+                var question = QuestionFlagged.First();
+                // get the stuff of our logged in user
+                var userUnflagging = (from user in db.Users
+                                      where user.UserName == User.Identity.Name
+                                      select user).Single();
+                // Check the rank
+                if (userUnflagging.Rank >= 3)
+                {
+                    // alowed to delete so delete all the stuff
+                    question.Flag = 0; // set the flag back to 0
+                    // Get all the flags of all the people
+                    var FlagQuestion = from flag in db.Flags
+                                       where flag.QuestionID == question.QuestionID
+                                       select flag;
+                    // Remove them all
+                    foreach (var flag in FlagQuestion)
+                        db.Flags.Remove(flag);
+                    // and save offcourse
+                    db.SaveChanges();
+                }
+            }
+            // and return us back to the admin page :D
+            return RedirectToAction("beheer", "user");
+        }
     }
 }

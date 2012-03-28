@@ -17,6 +17,17 @@ namespace NHLStackOverflow.Models.FormDataModels
         public string Languages { get; set; }
     }
 
+    public class CommentQuestion
+    {
+        public CommentQuestion(int commentID, int questionID)
+        {
+            this.CommentID = commentID;
+            this.QuestionID = questionID;
+        }
+        public int CommentID { get; set; }
+        public int QuestionID { get; set; }
+    }
+
     public class PassEmail
     {
         public string NowPassword { get; set; }

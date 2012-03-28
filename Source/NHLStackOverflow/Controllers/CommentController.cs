@@ -87,5 +87,43 @@ namespace NHLStackOverflow.Controllers
             return Redirect(Request.UrlReferrer.AbsolutePath);
         }
 
+        //
+        // GET: /comment/unflag/CommentID
+        // Bestemd om vanuit beheer een comment totaal te unflaggen
+        public ActionResult Unflag(int id)
+        {
+            // get question
+            var CommentFlagged = from comment in db.Comments
+                                 where comment.CommentID == id && comment.Flag == 1
+                                 select comment;
+            // Check if we are logged in and we are unflagging a right question
+            if (User.Identity.IsAuthenticated && CommentFlagged.Count() == 1)
+            {
+                // Cast question to single
+                var comment = CommentFlagged.First();
+                // get the stuff of our logged in user
+                var userUnflagging = (from user in db.Users
+                                      where user.UserName == User.Identity.Name
+                                      select user).Single();
+                // Check the rank
+                if (userUnflagging.Rank >= 3)
+                {
+                    // alowed to delete so delete all the stuff
+                    comment.Flag = 0; // set the flag back to 0
+                    // Get all the flags of all the people
+                    var FlagAnswer = from flag in db.Flags
+                                     where flag.CommentID == comment.CommentID
+                                     select flag;
+                    // Remove them all
+                    foreach (var flag in FlagAnswer)
+                        db.Flags.Remove(flag);
+                    // and save offcourse
+                    db.SaveChanges();
+                }
+            }
+            // and return us back to the admin page :D
+            return RedirectToAction("beheer", "user");
+        }
+
     }
 }

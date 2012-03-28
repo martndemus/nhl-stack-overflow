@@ -136,6 +136,23 @@ namespace NHLStackOverflow.Controllers
                     var badCommets = from comment in db.Comments
                                      where comment.Flag == 1
                                      select comment;
+                    // list with a commentID and a questionID
+                    List<CommentQuestion> QuestionCommentList = new List<CommentQuestion>();
+                    foreach (var comment in badCommets)
+                    {
+                        // get the questionID of a bad comment so we can link to that page
+                        var commentOnQuestion = from qcomment in db.Comments
+                                                where qcomment.CommentID == comment.CommentID
+                                                select qcomment.QuestionId;
+                        foreach (var qcomment in commentOnQuestion)
+                            QuestionCommentList.Add(new CommentQuestion(comment.CommentID, qcomment));
+                        var canswer = from answer in db.Answers
+                                      where answer.AnswerID == comment.CommentID
+                                      select answer.QuestionId;
+                        foreach(var acomment in canswer)
+                            QuestionCommentList.Add(new CommentQuestion(comment.CommentID, acomment));
+                    }
+                    ViewBag.QCList = QuestionCommentList;
                     ViewBag.badCommentList = badCommets;
                 }
                 if (userRanking.First() > 1)
