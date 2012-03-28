@@ -30,13 +30,13 @@
                 @foreach (var question in ViewBag.SearchResults)
                 {
                     <li>
-                        @if (question.Answers == 1)
+                        @if (question.Answers > 0)
                         {
-                            <span class="votes answered">@question.Votes</span>
+                            <span class="votes answered">@question.Answers</span>
                         }
                         else
                         {
-                            <span class="votes">@question.Votes</span>
+                            <span class="votes">@question.Answers</span>
                         }
                         @Html.ActionLink((string)question.Title, "view", "vraag", new { id = question.QuestionID }, new { target = "" })
                     </li>

@@ -41,7 +41,7 @@ namespace NHLStackOverflow.Controllers
                 ViewBag.UnreadMessages = MessageCount;
 
                 // Gravater url for user Avater
-                ViewBag.GravatarURL = String.Format("http://www.gravatar.com/avatar/{0}?s=86&d=mm&r=g", Cryptography.GravatarHash(User.Email));
+                ViewBag.GravatarURL = String.Format("http://www.gravatar.com/avatar/{0}?s=86&d=retro&r=g", Cryptography.GravatarHash(User.Email));
             }
 
             return View();
