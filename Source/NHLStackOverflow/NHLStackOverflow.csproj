@@ -112,6 +112,7 @@
     <Compile Include="Models\Badges\AnswerBadge.cs" />
     <Compile Include="Models\Badges\QuestionBadge.cs" />
     <Compile Include="Models\Badges\TagBadge.cs" />
+    <Compile Include="Models\FlagModel.cs" />
     <Compile Include="Models\FormDataModels\Account.cs" />
     <Compile Include="Models\FormDataModels\AccountActivation.cs" />
     <Compile Include="Models\FormDataModels\Login.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Models\TagModel.cs" />
     <Compile Include="Models\UserMetaModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\VoteUserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

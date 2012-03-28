@@ -19,6 +19,8 @@ namespace NHLStackOverflow.Models
         public DbSet<Tag> Tags { get; set; }
         public DbSet<UserMeta> UserMeta { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<VoteUser> Votes { get; set; }
+        public DbSet<Flag> Flags { get; set; }
     }
 
     public class NHLdbInitializer : DropCreateDatabaseAlways<NHLdb>
@@ -67,6 +69,15 @@ namespace NHLStackOverflow.Models
             };
 
             usermeta.ForEach(s => context.UserMeta.Add(s));
+            context.SaveChanges();
+
+            var votes = new List<VoteUser>
+            {
+                new VoteUser {UserID = 1, QuestionID = 2},
+                new VoteUser {UserID = 2, QuestionID = 2}
+
+            };
+            votes.ForEach(s => context.Votes.Add(s));
             context.SaveChanges();
 
             var tags = new List<Tag>

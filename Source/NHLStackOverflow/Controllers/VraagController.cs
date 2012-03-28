@@ -506,5 +506,68 @@ namespace NHLStackOverflow.Controllers
             else
                 return Redirect(Request.UrlReferrer.AbsolutePath);
         }
+
+        //
+        // GET: /vraag/VoteUp/QuestionID
+        public ActionResult VoteUp(int id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                // get user stuff
+                var userVoiting = from userVote in db.Users
+                                  where userVote.UserName == User.Identity.Name
+                                  select userVote;
+                var QuestionGettingVoted = from vraag in db.Questions
+                                           where vraag.QuestionID == id
+                                           select vraag;
+
+                if (userVoiting.Count() == 1 && QuestionGettingVoted.Count() == 1)
+                {
+                    var UserVoting = userVoiting.First();
+                    // check if this is a up vote or a second time vote (so downvote)
+                    var voteInfo = from vote in db.Votes
+                                   where vote.UserID == UserVoting.UserID && vote.QuestionID == id
+                                   select vote;
+                    if (voteInfo.Count() == 1)
+                    {
+                        // downvote :<
+                        db.Votes.Remove(voteInfo.First());
+                        QuestionGettingVoted.First().Votes -= 1;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        // upvote
+                        int QuestionID = QuestionGettingVoted.First().QuestionID;
+                        VoteUser newVote = new VoteUser() { QuestionID = QuestionID, UserID = UserVoting.UserID };
+                        QuestionGettingVoted.First().Votes += 1;
+                        db.Votes.Add(newVote);
+                        db.SaveChanges();
+                    }
+                }
+                else
+                    ModelState.AddModelError("", "Je account bestaat niet of de vraag bestaat niet.");
+            }
+            else
+                ModelState.AddModelError("", "Je moet ingelogd zijn om te stemmen.");
+
+            if (!Request.UrlReferrer.AbsolutePath.Contains("vraag"))
+                return RedirectToAction("index", "default");
+            else
+                return Redirect(Request.UrlReferrer.AbsolutePath);
+        }
+
+        public ActionResult FlagVraag(int id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+
+
+            }
+            if (!Request.UrlReferrer.AbsolutePath.Contains("vraag"))
+                return RedirectToAction("index", "default");
+            else
+                return Redirect(Request.UrlReferrer.AbsolutePath);
+        }
     }
 }

@@ -67,5 +67,51 @@ namespace NHLStackOverflow.Controllers
             return Redirect(Request.UrlReferrer.AbsolutePath);
         }
 
+        //
+        // GET: answer/voteup/answerID
+        public ActionResult VoteUp(int id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userVoiting = from userVote in db.Users
+                                  where userVote.UserName == User.Identity.Name
+                                  select userVote;
+                var AnswerGettingVoted = from Answers in db.Answers
+                                         where Answers.AnswerID == id
+                                         select Answers;
+
+                if (userVoiting.Count() == 1 && AnswerGettingVoted.Count() == 1)
+                {
+                    var UserVoting = userVoiting.First();
+                    // check if this is a up vote or a second time vote (so downvote)
+                    var voteInfo = from vote in db.Votes
+                                   where vote.UserID == UserVoting.UserID && vote.AnswerID == id
+                                   select vote;
+                    if (voteInfo.Count() == 1)
+                    {
+                        // downvote :<
+                        db.Votes.Remove(voteInfo.First());
+                        AnswerGettingVoted.First().Votes -= 1;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        // upvote
+                        int AnswerID = AnswerGettingVoted.First().AnswerID;
+                        VoteUser newVote = new VoteUser() { AnswerID = AnswerID, UserID = UserVoting.UserID };
+                        AnswerGettingVoted.First().Votes += 1;
+                        db.Votes.Add(newVote);
+                        db.SaveChanges();
+                    }
+                }
+                else
+                    ModelState.AddModelError("", "Je account bestaat niet of de vraag bestaat niet.");
+            }
+            if (!Request.UrlReferrer.AbsolutePath.Contains("vraag"))
+                return RedirectToAction("index", "default");
+            else
+                return Redirect(Request.UrlReferrer.AbsolutePath);
+        }
+
     }
 }

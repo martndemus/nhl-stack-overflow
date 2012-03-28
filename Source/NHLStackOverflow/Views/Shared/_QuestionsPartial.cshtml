@@ -39,6 +39,10 @@
                   @Environment.NewLine
               }
         </p>
+        @if (User.Identity.IsAuthenticated)
+        {
+            @Html.ActionLink("Vote", "voteup", "vraag", new { id = question.QuestionID }, "")
+        }
     </article>  
     
 

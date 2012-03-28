@@ -49,6 +49,10 @@
         {
             @Html.ActionLink("Delete vraag", "delete", "vraag", new { id = ViewBag.QuestionDetail.QuestionID }, "")
         }
+        @if (User.Identity.IsAuthenticated)
+        {
+            @Html.ActionLink("Vote", "voteup", "vraag", new { id = ViewBag.QuestionDetail.QuestionID }, "")
+        }
     </aside>
     
     <ul class="comments">
@@ -68,10 +72,10 @@
                     if (user.UserID == comment.UserId)
                     {
                         <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { target = "_blank" })</b>  
-                        break;
+                      break;
                     }
                 }
-                @if(ViewBag.UserRank >= 1)
+                @if (ViewBag.UserRank >= 1)
                 {
                     @Html.ActionLink("Delete comment", "delete", "comment", new { id = comment.CommentID }, "")
                 }
@@ -119,14 +123,18 @@ else
                 {
                     if (usertje.UserID == answer.UserId)
                     {
-                        <b>@Html.ActionLink((string)usertje.UserName, "view", "user", new { id = usertje.UserID}, new { })</b>   
-                        break;
+                        <b>@Html.ActionLink((string)usertje.UserName, "view", "user", new { id = usertje.UserID }, new { })</b>   
+                      break;
                     }
                 }
             </p>
             @if (ViewBag.UserRank >= 2)
             {
                 @Html.ActionLink("Delete antwoord", "delete", "answer", new { id = answer.AnswerID }, "")
+            }
+            @if (User.Identity.IsAuthenticated)
+            {
+                @Html.ActionLink("Vote", "VoteUp", "answer", new { id = answer.AnswerID }, "")
             }
         </aside>
          <ul class="comments">
