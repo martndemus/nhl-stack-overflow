@@ -12,12 +12,12 @@
     } 
 }
 
-<h2>Schrijf een bericht</h2>
-@using (Html.BeginForm())
+<h2>MaakBericht</h2>
+@using (Html.BeginForm("maakbericht", "user"))
 {
     <div class="form">
     @Html.ValidationSummary()
-    @Html.TextBox("SendTo", "", new { placeholder = "Versturen naar" })
+    @Html.TextBox("SendTo", (string)@ViewBag.MailTo, new { placeholder = "Versturen naar" })
     <hr />
     @Html.TextBox("Title", "", new { placeholder = "Titel" })
     <hr />

@@ -16,3 +16,4 @@
 <div class="question">
     <p>@ViewBag.Mail.Content</p>
 </div>
+<span>@Html.ActionLink("Reageer", "reply", "user", new { id = ViewBag.Mail.SenderId }, "") @Html.ActionLink("Verwijder bericht", "deletemail", "user", new { id = ViewBag.Mail.MessageID }, "")</span>

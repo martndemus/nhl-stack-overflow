@@ -3,15 +3,17 @@ using System.Web.Mvc;
 using NHLStackOverflow.Classes;
 using NHLStackOverflow.Models;
 using NHLStackOverflow.Models.FormDataModels;
+using System.Collections.Generic;
 
 namespace NHLStackOverflow.Controllers
 {
     public class UserController : Controller
     {
         private NHLdb db = new NHLdb();
+
+        #region UserStuff
         //
         // GET: /User/
-
         public ActionResult Index()
         {
             //string test = User.Identity.Name;
@@ -160,6 +162,9 @@ namespace NHLStackOverflow.Controllers
             return View();
         }
 
+        #endregion
+
+        #region MailStuff
         //
         // GET: /user/inbox
         public ActionResult Inbox()
@@ -174,13 +179,23 @@ namespace NHLStackOverflow.Controllers
                 if (userViewing.Count() == 1)
                 {
                     // cast it to an int :D
-                    int userID = userViewing.First().UserID;
+                    var user = userViewing.First();
                     // Get the mails send to this user
-                    var mailIn = from mails in db.Messages
-                                 where mails.ReceiverId == userID
-                                 select mails;
-
+                    var mailIn = (from mails in db.Messages
+                                 where mails.ReceiverId == user.UserID
+                                 orderby mails.MessageID descending
+                                 select mails);
+                    List<User> userList = new List<User>();
+                    foreach (var mail in mailIn)
+                    {
+                        // get the user the send the mail (user name)
+                        var userInfo = (from usertje in db.Users
+                                        where usertje.UserID == mail.SenderId
+                                        select usertje).Single();
+                        userList.Add(userInfo);
+                    }
                     // Give em back to the ViewBag
+                    ViewBag.UserList = userList;
                     ViewBag.MailsIn = mailIn;
                     ViewBag.MailsCount = mailIn.Count();
                 }
@@ -230,6 +245,23 @@ namespace NHLStackOverflow.Controllers
         }
 
         //
+        // GET: /user/reply/UserName 
+        // Dit om dus een pagina aan te maken waarbij je ene 
+        // berichtje stuurt naar deze persoon
+        public ActionResult Reply(int id)
+        {
+            // get the username that has the given id
+            var userName = from user in db.Users
+                           where user.UserID == id
+                           select user;
+            // check if we found one and if so give it back to the ViewBag so we have a filled in field
+            if (userName.Count() == 1)
+                ViewBag.MailTo = userName.First().UserName;
+
+            return View();
+        }
+
+        //
         // POST: /user/maakbericht/
         [HttpPost]
         public ActionResult MaakBericht(Mail berichtje)
@@ -253,9 +285,67 @@ namespace NHLStackOverflow.Controllers
                 Message newMessage = new Message() { SenderId = userSending.First().UserID, Title = berichtje.Title, ReceiverId = userTo.First().UserID, Content = berichtje.Content };
                 db.Messages.Add(newMessage);
                 db.SaveChanges();
-                ViewBag.Message = "Het berichtje is succesvol verstuurd.";
+                return RedirectToAction("inbox", "user");
             }
             return View();
         }
+
+        // 
+        // GET: /user/deletemail/MailID
+        public ActionResult deleteMail(int id)
+        {
+            // check if we are logged in
+            if (User.Identity.IsAuthenticated)
+            {
+                // check if we can find a matching mail
+                var mail = from message in db.Messages
+                           where message.MessageID == id
+                           select message;
+                if (mail.Count() == 1)
+                {
+                    // if so cast it to a single var
+                    var mailToDelete = mail.First();
+                    // check if the user deleting is the same as the user reciever
+                    var getUser = from user in db.Users
+                                  where user.UserID == mailToDelete.ReceiverId
+                                  select user;
+                    // if so delete it (6)
+                    if (getUser.Count() == 1)
+                    {
+                        // we are allowed so delete the message
+                        db.Messages.Remove(mailToDelete);
+                        db.SaveChanges();
+                    }
+                }
+            }
+            // this so we get back to the inbox
+            return RedirectToAction("inbox", "user");
+        }
+
+        //
+        // GET: /user/markeergelezen
+        public ActionResult MarkeerGelezen()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userID = from user in db.Users
+                             where user.UserName == User.Identity.Name
+                             select user.UserID;
+                if (userID.Count() == 1)
+                {
+                    int UserID = userID.First();
+                    var allMails = from mail in db.Messages
+                                   where mail.ReceiverId == UserID
+                                   select mail;
+                    foreach (var mail in allMails)
+                    {
+                        mail.Viewed = 1;
+                    }
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("inbox", "user");
+        }
+        #endregion // mailstuff
     }
 }
