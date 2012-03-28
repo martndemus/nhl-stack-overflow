@@ -23,21 +23,28 @@
 else
 {   
     <div class="question">
+    <span>@Html.ActionLink("Markeer alle als gelezen", "markeergelezen", "user")</span>
     @foreach (var mail in ViewBag.MailsIn)
     {
         <p>
             @if (mail.Viewed == 0)
             {
                 <b>@Html.ActionLink((string)mail.Title, "viewmail", "user", new { id = mail.MessageID }, new { })</b>
-                <br /><span>van @mail.SenderId verstuurd op @mail.Created_At</span>
-               
-                 
             }
             else
             {
                 @Html.ActionLink((string)mail.Title, "viewmail", "user", new { id = mail.MessageID }, new { })
-                <br /><span>van @mail.SenderId verstuurd op @mail.Created_At</span>
             }
+                <br /><span>van 
+                @foreach (var user in ViewBag.UserList)
+                {
+                    if (user.UserID == mail.SenderId)
+                    {
+                        <span>@Html.ActionLink((string)user.UserName, "Index", "profiel", new { UserName = user.UserName }, "")</span>   
+                    }
+                }    
+                verstuurd op @mail.Created_At</span>
+            @Html.ActionLink("delete", "deletemail", "user", new { id = mail.MessageID }, "")
         </p>
     }
     </div>
