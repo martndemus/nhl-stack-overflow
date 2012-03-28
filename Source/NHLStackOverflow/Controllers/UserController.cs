@@ -145,12 +145,18 @@ namespace NHLStackOverflow.Controllers
                                                 where qcomment.CommentID == comment.CommentID
                                                 select qcomment.QuestionId;
                         foreach (var qcomment in commentOnQuestion)
-                            QuestionCommentList.Add(new CommentQuestion(comment.CommentID, qcomment));
+                        {
+                            if (qcomment != 0)
+                                QuestionCommentList.Add(new CommentQuestion(comment.CommentID, qcomment));
+                        }
                         var canswer = from answer in db.Answers
-                                      where answer.AnswerID == comment.CommentID
+                                      where answer.AnswerID == comment.AnswerId
                                       select answer.QuestionId;
-                        foreach(var acomment in canswer)
-                            QuestionCommentList.Add(new CommentQuestion(comment.CommentID, acomment));
+                        foreach (var acomment in canswer)
+                        {
+                            if (acomment != 0)
+                                QuestionCommentList.Add(new CommentQuestion(comment.CommentID, acomment));
+                        }
                     }
                     ViewBag.QCList = QuestionCommentList;
                     ViewBag.badCommentList = badCommets;
