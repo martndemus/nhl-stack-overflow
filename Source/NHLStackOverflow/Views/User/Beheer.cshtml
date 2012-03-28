@@ -16,101 +16,75 @@
 <h2>Beheer</h2>
 @if (ViewBag.Allowed)
 {
-    <h3>Gemarkeerde vragen:</h3>
-    <table>
-        <thead>
-            <tr>
-                <td>ID</td>
-                <td colspan="2">Inhoud</td>
-            </tr>
-        </thead>
-    @if (ViewBag.badQuestionList != null)
-    {
-        <tr>
-        @foreach (var vraagje in ViewBag.badQuestionList)
+    <h3>Gerapporteerde vragen:</h3>
+    <ul class="raport">
+        @if (ViewBag.badQuestionList != null)
         {
-            <td>@vraagje.QuestionID</td>
-            <td>@Html.ActionLink((string)vraagje.Title, "view", "vraag", new { id = vraagje.QuestionID }, new { target = "_blank" }):@vraagje.Content</td>
-            <td>@Html.ActionLink("[x]", "delete", "vraag", new { id = vraagje.QuestionID }, "")</td>
-            <td>@Html.ActionLink("[√]", "Unflag", "vraag", new { id = vraagje.QuestionID }, "")</td>
+            foreach (var vraagje in ViewBag.badQuestionList)
+            {
+                <li>
+                    @Html.ActionLink((string)vraagje.Title, "view", "vraag", new { id = vraagje.QuestionID }, new { target = "_blank" })
+                    [@Html.ActionLink("Verwijder", "delete", "vraag", new { id = vraagje.QuestionID }, "")]
+                    [@Html.ActionLink("OK", "Unflag", "vraag", new { id = vraagje.QuestionID }, "")]
+                </li>
+            }
+            
         }
-        </tr>
-    }
-    else
-    {
-        <span>Er zijn geen geflaggde vragen</span>   
-    }
-    </table>
+        else
+        {
+            <li>Er zijn geen gerapporteerde vragen</li>
+        }
+    </ul>
     <hr />
-    <h3>Gemarkeerde antwoorden:</h3>
-    <table>
-        <thead>
-            <tr>
-                <td>ID</td>
-                <td colspan="2">Inhoud</td>
-            </tr>
-        </thead>
+    
+    <h3>Gerapporteerde antwoorden:</h3>
+    <ul class="raport">
         @if (ViewBag.badAwnserList != null)
         {
             foreach (var answer in ViewBag.badAwnserList)
             {
-                <tr>
-                    <td>@answer.AnswerID</td>
-                    <td>@Html.ActionLink((string)answer.Content.Substring(0, 95) + "...", "view", "vraag", new { id = answer.QuestionId }, new { })</td>
-                    <td>@Html.ActionLink("[x]", "delete", "answer", new { id = answer.AnswerID }, new { })</td>
-                    <td>@Html.ActionLink("[√]", "Unflag", "answer", new { id = answer.AnswerID }, "")</td>
-                </tr>
+                <li>
+                    @Html.ActionLink((string)answer.Content.Substring(0, 95) + "...", "view", "vraag", new { id = answer.QuestionId }, new { })
+                    [@Html.ActionLink("Verwijder", "delete", "answer", new { id = answer.AnswerID }, new { })]
+                    [@Html.ActionLink("OK", "Unflag", "answer", new { id = answer.AnswerID }, "")]
+                </li>
             }
         }
         else
         {
-            <tr>
-                <td colspan="4">Er zijn geen gemarkeerde antwoorden.</td>
-            </tr>   
+            <li>Er zijn geen gerapporteerde antwoorden.</li>
         }
-    </table>
-    
+    </ul>    
     <hr />
-    <h3>Gemarkeerde comments:</h3>
-    <table>
-        <thead>
-            <tr>
-                <td>ID</td>
-                <td colspan="2">Inhoud</td>
-            </tr>
-        </thead>
+    
+    <h3>Gerapporteerde comments:</h3>
+    <ul class="raport">
         @if (ViewBag.badCommentList != null)
-        {
+        {   
             foreach (var comment in ViewBag.badCommentList)
             {
-                <tr>
-                    <td>@comment.CommentID</td>
-                    <td> 
-                    @foreach(var qc in ViewBag.QCList)
+                <li>
+                    @foreach (var qc in ViewBag.QCList)
                     {
-                        if(comment.CommentID == qc.CommentID)
+                        if (comment.CommentID == qc.CommentID)
                         {
                             @Html.ActionLink((string)comment.Content, "view", "vraag", new { id = qc.QuestionID }, "")
                             break;
                         }
                     }
-                    </td>
-                    @*<td>@comment.Content</td>*@
-                    <td>@Html.ActionLink("[x]", "delete", "comment", new { id = comment.CommentID }, "")</td>
-                    <td>@Html.ActionLink("[√]", "Unflag", "comment", new { id = comment.CommentID }, "")</td>
-                </tr>            
-                }
+                    [@Html.ActionLink("Verwijder", "delete", "comment", new { id = comment.CommentID }, "")]
+                    [@Html.ActionLink("OK", "Unflag", "comment", new { id = comment.CommentID }, "")]
+                </li>            
             }
+        }
         else
         {
-            <tr>
-                <td colspan="4">Er zijn geen gemarkeerde comments.</td>
-            </tr>
+            <li>Er zijn geen gerapporteerde comments.</li>
         }
-    </table>
+    </ul>
     <hr />
 }
 else
 {
-    <span>Je hebt nog niet de rechten behaald om hier iets te doen.</span>
+    <p>Je hebt nog niet de rechten behaald om hier iets te doen.</p>
 }

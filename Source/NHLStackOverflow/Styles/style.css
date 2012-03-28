@@ -561,6 +561,11 @@ ul.tags  {
     margin-bottom: -1px;
 }
 
+.inboxmessage a 
+{
+    text-decoration: none;
+}
+
 .markreadbutton {
     color: #fff;
     background: hsl(200, 30%, 25%);
@@ -575,11 +580,25 @@ ul.tags  {
     text-decoration: none;
 }
 /*
-    SPECIFIC
+    Admin panel
 */
 
+.raport {
+    list-style:none;
+    padding: 0;
+}
 
+.raport li {
+    padding: 5px 10px;
+    border-top: 1px solid #243842;
+    border-bottom: 1px solid #243842;
+    margin-bottom: -1px;
+}
 
+.raport a 
+{
+    text-decoration: none;
+}
 /*
     HELPER CLASSES
 */
