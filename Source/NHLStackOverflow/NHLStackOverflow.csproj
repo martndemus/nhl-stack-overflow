@@ -110,8 +110,14 @@
     <Compile Include="Mailers\IUserMailer.cs" />
     <Compile Include="Mailers\UserMailer.cs" />
     <Compile Include="Models\Badges\AnswerBadge.cs" />
+    <Compile Include="Models\Badges\AnswerCreatorBadge.cs" />
+    <Compile Include="Models\Badges\AnswerLordBadge.cs" />
     <Compile Include="Models\Badges\QuestionBadge.cs" />
+    <Compile Include="Models\Badges\QuestionCreatorBadge.cs" />
+    <Compile Include="Models\Badges\QuestionLordBadge.cs" />
     <Compile Include="Models\Badges\TagBadge.cs" />
+    <Compile Include="Models\Badges\TagCreatorBadge.cs" />
+    <Compile Include="Models\Badges\TagLordBadge.cs" />
     <Compile Include="Models\FormDataModels\Account.cs" />
     <Compile Include="Models\FormDataModels\AccountActivation.cs" />
     <Compile Include="Models\FormDataModels\Login.cs" />

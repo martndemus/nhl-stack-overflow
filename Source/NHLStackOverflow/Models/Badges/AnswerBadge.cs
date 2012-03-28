@@ -37,7 +37,7 @@ namespace NHLStackOverflow.Models.Badges
 
             Badge newBadge = new Badge() { Name = badgeName, UserId = userID, Created_At = StringToDateTime.ToUnixTimeStamp(DateTime.Now) };
             db.Badges.Add(newBadge);
-            Message newMessage = new Message() { Content = "Hallo, \n U hebt een badge verdiend door uw eerste antwoord te geven. \n De Badgenaam is: 1e Antwoord, hoe mooi is dat wel niet", ReceiverId = userID, SenderId = userID, Title = "Je hebt de antwoordbadge verdient" };
+            Message newMessage = new Message() { Content = "Hallo, \n U hebt een badge verdiend door uw eerste antwoord te geven. \n De Badgenaam is: 1e Antwoord", ReceiverId = userID, SenderId = userID, Title = "Je hebt de antwoordbadge verdient" };
             db.Messages.Add(newMessage);
             db.SaveChanges();
 
