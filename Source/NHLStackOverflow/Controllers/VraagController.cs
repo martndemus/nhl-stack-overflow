@@ -220,13 +220,13 @@ namespace NHLStackOverflow.Controllers
                         thisQuestion.First().Answers += 1;
                         Answer questionAwnser = new Answer() { QuestionId = id, UserId = AwnserUserID, Content = input.awnser };
                         db.Answers.Add(questionAwnser);
-                        var awnseringMeta = (from user in db.UserMeta
-                                            where user.UserId == AwnserUserID
-                                            select user).Single();
-                        awnseringMeta.Answers += 1;
                         db.SaveChanges();
                         if (AnswerBadge.badgeAchieve(AwnserUserID))
                             AnswerBadge.awardBadge(AwnserUserID);
+                        if (AnswerCreatorBadge.badgeAchieve(AwnserUserID))
+                            AnswerCreatorBadge.awardBadge(AwnserUserID);
+                        if (AnswerLordBadge.badgeAchieve(AwnserUserID))
+                            AnswerLordBadge.awardBadge(AwnserUserID);
                     }
                     return RedirectToAction("view", "vraag", id);
                 }
@@ -313,6 +313,8 @@ namespace NHLStackOverflow.Controllers
                 List<string> tagsList = new List<string>(); // new generic list which will contain our tags which we aren't in the database
                 info.tags = info.tags.Trim(',', '!', '?', ':', ';', '.');
                 string[] tags = info.tags.Split(' '); // assume all tags are splitted by a space (beg)
+                if (tags.Count() > 5)
+                    ModelState.AddModelError("", " U mag niet meer dan 5 tags meegeven.");
                 List<string> foundTags = new List<string>();
                 foreach (string tag in tags)
                 {
@@ -340,10 +342,14 @@ namespace NHLStackOverflow.Controllers
                 {
                     // add the stuff since we are done :D
                     // also check if we have tags to add. If so. Let's add those first (so we can link stuff)
+                    int UserID = userPosting.First().UserId;
+                    var userPostingMeta = (from usermeta in db.UserMeta
+                                           where usermeta.UserId == UserID
+                                           select usermeta).Single();
                     for (int i = 0; i < tagsList.Count(); i++)
                     {
                         Tag newTag = new Tag() { Description = info.returnTagContent(i), Name = tagsList.ElementAt(i), Count = 1 };
-                        userPosting.First().Tags += 1;
+                        userPostingMeta.Tags += 1;
                         db.Tags.Add(newTag);
                     }
                     foreach (string tagName in foundTags)
@@ -362,6 +368,10 @@ namespace NHLStackOverflow.Controllers
                     db.SaveChanges(); // to make sure that if there were new tags they are added propperly (so we can query the id's right)
                     if (TagBadge.badgeAchieve(userInfo.UserId))
                         TagBadge.awardBadge(userInfo.UserId);
+                    if (TagCreatorBadge.badgeAchieve(userInfo.UserId))
+                        TagCreatorBadge.awardBadge(userInfo.UserId);
+                    if (TagLordBadge.badgeAchieve(userInfo.UserId))
+                        TagLordBadge.awardBadge(userInfo.UserId);
 
                     // query back our last question
                     // should be the first of this list
@@ -385,6 +395,10 @@ namespace NHLStackOverflow.Controllers
                     db.SaveChanges();
                     if (QuestionBadge.badgeAchieve(userInfo.UserId))
                         QuestionBadge.awardBadge(userInfo.UserId);
+                    if (QuestionCreatorBadge.badgeAchieve(userInfo.UserId))
+                        QuestionCreatorBadge.awardBadge(userInfo.UserId);
+                    if (QuestionLordBadge.badgeAchieve(userInfo.UserId))
+                        QuestionLordBadge.awardBadge(userInfo.UserId);
                     return RedirectToAction("view", "vraag", new { id = justAskedQuestion.QuestionID });
                     // Now add our question :D
                     // and on done, go to the page showing our question :D

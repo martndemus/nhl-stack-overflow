@@ -37,6 +37,7 @@ namespace NHLStackOverflow.Controllers
             foreach (var badgde in badgeList)
             {
                 var badgeUsers = from users in db.Users
+                                 orderby users.Created_At descending
                                  where users.UserID == badgde.UserId
                                  select users;
                 test.Add(badgeUsers.First());

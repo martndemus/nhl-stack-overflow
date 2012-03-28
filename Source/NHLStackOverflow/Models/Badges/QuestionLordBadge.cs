@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using NHLStackOverflow.Classes;
 
 namespace NHLStackOverflow.Models.Badges
 {
-    public static class TagBadge
+    public static class QuestionLordBadge
     {
         private static NHLdb db = new NHLdb();
-        const int badgeID = 3;
-        const string badgeName = "1e Tag";
-        const string badgeDescription = "Maak je eerste Tag aan";
-        const int RequiredAmmount = 19;
+        const int badgeID = 9;
+        public const string badgeName = "Vraag maar raak";
+        public const string badgeDescription = "Stel je 100e vraag";
+        const int RequiredAmmount = 100;
         public static bool badgeAchieve(int userID)
         {
             UserMeta userInfo = (from user in db.UserMeta
@@ -23,7 +25,7 @@ namespace NHLStackOverflow.Models.Badges
             //if (userInfo.Count() == 1)
             //    continue;
 
-            if (userInfo.Tags > 0 && userInfo.Tags <= RequiredAmmount && alreadyBadge.Count() == 0)
+            if (userInfo.Questions == RequiredAmmount && alreadyBadge.Count() == 0)
                 return true;
             else
                 return false;
@@ -37,10 +39,9 @@ namespace NHLStackOverflow.Models.Badges
 
             Badge newBadge = new Badge() { Name = badgeName, UserId = userID, Created_At = StringToDateTime.ToUnixTimeStamp(DateTime.Now) };
             db.Badges.Add(newBadge);
-            Message newMessage = new Message() { Content = "Hallo, \n U hebt een badge verdiend door uw eerste Tag aan te maken. \n De Badgenaam is: 1e Tag", ReceiverId = userID, SenderId = userID, Title = "Je hebt de tagbadge verdient" };
+            Message newMessage = new Message() { Content = "Hallo, \n U hebt een badge verdiend door uw 100e vraag te stellen. \n De Badgenaam is: Vraag maar raak", ReceiverId = userID, SenderId = userID, Title = "Je hebt de Vraag maar raak Badge verdient" };
             db.Messages.Add(newMessage);
             db.SaveChanges();
-
         }
     }
 }

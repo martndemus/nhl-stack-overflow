@@ -197,7 +197,10 @@ namespace NHLStackOverflow.Models
 
             var badge = new List<Badge>
             {
-
+                new Badge {UserId = 1, Name = "1e Antwoord", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 1, 10, 22, 40, 10))},
+                new Badge {UserId = 2, Name = "1e Antwoord", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 1, 10, 22, 40, 10))},
+                new Badge {UserId = 1, Name = "1e Vraag", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 1, 10, 22, 40, 10))},
+                new Badge {UserId = 2, Name = "1e Tag", Created_At = StringToDateTime.ToUnixTimeStamp(new DateTime(2012, 1, 10, 22, 40, 10))}
             };
 
             badge.ForEach(s => context.Badges.Add(s));
