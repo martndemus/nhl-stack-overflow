@@ -39,6 +39,7 @@
             @if (User.Identity.IsAuthenticated)
             {
                 @Html.ActionLink("+1", "voteup", "vraag", new { id = ViewBag.QuestionDetail.QuestionID }, "")
+                @Html.ActionLink("Rapporteer", "FlagVraag", "vraag", new { id = ViewBag.QuestionDetail.QuestionID }, "")
             } 
         </p>
 
@@ -54,8 +55,7 @@
             @Html.Raw("[")
             @Html.ActionLink("Verwijder vraag", "delete", "vraag", new { id = ViewBag.QuestionDetail.QuestionID }, "")
             @Html.Raw("]")
-        }
-        
+        }        
     </aside>
     
     <ul class="comments">
@@ -83,6 +83,10 @@
                     @Html.Raw("[")
                     @Html.ActionLink("Verwijder", "delete", "comment", new { id = comment.CommentID }, "")
                     @Html.Raw("]")
+                }
+                @if(User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Flag", "FlagComment", "comment", new { id = comment.CommentID }, "")
                 }
                 </li>
             }
@@ -139,9 +143,18 @@ else
             </p>
             @if (ViewBag.UserRank >= 2)
             {
+<<<<<<< HEAD
                 @Html.Raw("[")
                 @Html.ActionLink("Verwijder antwoord", "delete", "answer", new { id = answer.AnswerID }, "")
                 @Html.Raw("]")
+=======
+                @Html.ActionLink("Delete antwoord", "delete", "answer", new { id = answer.AnswerID }, "")
+            }
+            @if (User.Identity.IsAuthenticated)
+            {
+                @Html.ActionLink("Vote", "VoteUp", "answer", new { id = answer.AnswerID }, "")
+                @Html.ActionLink("Flag", "FlagAnswer", "answer", new { id = answer.AnswerID }, "")
+>>>>>>> b0ff2b4742415164440f5891b68808488ef563b7
             }
             
         </aside>
@@ -170,6 +183,10 @@ else
                         @Html.Raw("[")
                         @Html.ActionLink("Verwijder", "delete", "comment", new { id = acomment.CommentID }, "")
                         @Html.Raw("]")
+                    }
+                    @if(User.Identity.IsAuthenticated)
+                    {
+                        @Html.ActionLink("Flag", "FlagComment", "comment", new { id = acomment.CommentID }, "")
                     }
 
                     </li>

@@ -445,6 +445,17 @@ namespace NHLStackOverflow.Controllers
                     var questionTagsDelete = from questionTag in db.QuestionTags
                                              where questionTag.QuestionId == id
                                              select questionTag;
+                    var flags = from flag in db.Flags
+                                where flag.QuestionID == id
+                                select flag;
+                    foreach (var flag in flags)
+                        db.Flags.Remove(flag);
+
+                    var votes = from vote in db.Votes
+                                where vote.QuestionID == id
+                                select vote;
+                    foreach (var vote in votes)
+                        db.Votes.Remove(vote);
                     // loop through them
                     foreach (var vraagTag in questionTagsDelete)
                     {
@@ -468,9 +479,19 @@ namespace NHLStackOverflow.Controllers
                         var commentsOnAwnser = from comments in db.Comments
                                                where comments.AnswerId == antwoordje.AnswerID
                                                select comments;
+                        var answerVotes = from answerVote in db.Votes
+                                          where answerVote.AnswerID == antwoordje.AnswerID
+                                          select answerVote;
+                        foreach (var vote in answerVotes)
+                            db.Votes.Remove(vote);
                         // delete each comment
                         foreach (var deleteComment in commentsOnAwnser)
                         {
+                            var flagsComment = from flagCom in db.Flags
+                                               where flagCom.CommentID == deleteComment.CommentID
+                                               select flagCom;
+                            foreach (var flag in flagsComment)
+                                db.Flags.Remove(flag);
                             db.Comments.Remove(deleteComment);
                         }
                         // get the stuff of the person who made this awnser
@@ -489,6 +510,9 @@ namespace NHLStackOverflow.Controllers
                     // Remove each one of them
                     foreach (var commentQuestion in questionComments)
                     {
+                        var flagsQuestion = from flagque in db.Flags
+                                           where flagque.CommentID == commentQuestion.CommentID
+                                           select flagque;
                         db.Comments.Remove(commentQuestion);
                     }
                     // get the other stuff of the user who is deleting
@@ -580,17 +604,91 @@ namespace NHLStackOverflow.Controllers
                 return Redirect(Request.UrlReferrer.AbsolutePath);
         }
 
+        //
+        // GET: vraag/flagvraag/QuestionID
         public ActionResult FlagVraag(int id)
         {
             if (User.Identity.IsAuthenticated)
             {
-
-
+                var UserFlagging = from usr in db.Users
+                                   where usr.UserName == User.Identity.Name
+                                   select usr;
+                var questionGettingFlagged = from question in db.Questions
+                                             where question.QuestionID == id
+                                             select question;
+                if (UserFlagging.Count() == 1 && questionGettingFlagged.Count() == 1)
+                {
+                    var user = UserFlagging.First();
+                    var question = questionGettingFlagged.First();
+                    var flagged = from flag in db.Flags
+                                  where flag.QuestionID == id && flag.UserID == user.UserID
+                                  select flag;
+                    if (flagged.Count() == 1)
+                    {
+                        // unflag
+                        db.Flags.Remove(flagged.First());
+                        db.SaveChanges();
+                        var totalFlags = from flags in db.Flags
+                                         where flags.QuestionID == id
+                                         select flags;
+                        if (totalFlags.Count() == 0)
+                        {
+                            // if there are no longer 
+                            question.Flag = 0;
+                            db.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        // flag
+                        question.Flag = 1;
+                        db.Flags.Add(new Flag() { QuestionID = question.QuestionID, UserID = user.UserID });
+                        db.SaveChanges();
+                    }
+                }
             }
             if (!Request.UrlReferrer.AbsolutePath.Contains("vraag"))
                 return RedirectToAction("index", "default");
             else
                 return Redirect(Request.UrlReferrer.AbsolutePath);
+        }
+
+        //
+        // GET: /vraag/unflag/QuestionID
+        // Bestemd om vanuit beheer een vraag totaal te unflaggen
+        public ActionResult Unflag(int id)
+        {
+            // get question
+            var QuestionFlagged = from vraag in db.Questions
+                                  where vraag.QuestionID == id && vraag.Flag == 1
+                                  select vraag;
+            // Check if we are logged in and we are unflagging a right question
+            if (User.Identity.IsAuthenticated && QuestionFlagged.Count() == 1)
+            {
+                // Cast question to single
+                var question = QuestionFlagged.First();
+                // get the stuff of our logged in user
+                var userUnflagging = (from user in db.Users
+                                      where user.UserName == User.Identity.Name
+                                      select user).Single();
+                // Check the rank
+                if (userUnflagging.Rank >= 3)
+                {
+                    // alowed to delete so delete all the stuff
+                    question.Flag = 0; // set the flag back to 0
+                    // Get all the flags of all the people
+                    var FlagQuestion = from flag in db.Flags
+                                       where flag.QuestionID == question.QuestionID
+                                       select flag;
+                    // Remove them all
+                    foreach (var flag in FlagQuestion)
+                        db.Flags.Remove(flag);
+                    // and save offcourse
+                    db.SaveChanges();
+                }
+            }
+            // and return us back to the admin page :D
+            return RedirectToAction("beheer", "user");
         }
     }
 }

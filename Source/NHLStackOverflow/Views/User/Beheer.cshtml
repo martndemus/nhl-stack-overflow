@@ -32,6 +32,7 @@
             <td>@vraagje.QuestionID</td>
             <td>@Html.ActionLink((string)vraagje.Title, "view", "vraag", new { id = vraagje.QuestionID }, new { target = "_blank" }):@vraagje.Content</td>
             <td>@Html.ActionLink("[x]", "delete", "vraag", new { id = vraagje.QuestionID }, "")</td>
+            <td>@Html.ActionLink("[√]", "Unflag", "vraag", new { id = vraagje.QuestionID }, "")</td>
         }
         </tr>
     }
@@ -55,8 +56,9 @@
             {
                 <tr>
                     <td>@answer.AnswerID</td>
-                    <td>@answer.Content.Substring(0,95) ...</td>
+                    <td>@Html.ActionLink((string)answer.Content.Substring(0, 95) + "...", "view", "vraag", new { id = answer.QuestionId }, new { })</td>
                     <td>@Html.ActionLink("[x]", "delete", "answer", new { id = answer.AnswerID }, new { })</td>
+                    <td>@Html.ActionLink("[√]", "Unflag", "answer", new { id = answer.AnswerID }, "")</td>
                 </tr>
             }
         }
@@ -83,8 +85,19 @@
             {
                 <tr>
                     <td>@comment.CommentID</td>
-                    <td>@comment.Content</td>
+                    <td> 
+                    @foreach(var qc in ViewBag.QCList)
+                    {
+                        if(comment.CommentID == qc.CommentID)
+                        {
+                            @Html.ActionLink((string)comment.Content, "view", "vraag", new { id = qc.QuestionID }, "")
+                            break;
+                        }
+                    }
+                    </td>
+                    @*<td>@comment.Content</td>*@
                     <td>@Html.ActionLink("[x]", "delete", "comment", new { id = comment.CommentID }, "")</td>
+                    <td>@Html.ActionLink("[√]", "Unflag", "comment", new { id = comment.CommentID }, "")</td>
                 </tr>            
                 }
             }
