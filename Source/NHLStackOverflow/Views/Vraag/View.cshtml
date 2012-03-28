@@ -35,7 +35,11 @@
                 <b>@NHLStackOverflow.Classes.StringToDateTime.ConvertToUnixTimestamp(ViewBag.QuestionDetail.Created_At)</b> geleden
             </time>
             door
-                <b>@Html.ActionLink((string)ViewBag.QuestionUser.UserName, "view", "user", new { id = ViewBag.QuestionUser.UserID }, new { })</b>  
+                <b>@Html.ActionLink((string)ViewBag.QuestionUser.UserName, "view", "user", new { id = ViewBag.QuestionUser.UserID }, new { })</b> 
+            @if (User.Identity.IsAuthenticated)
+            {
+                @Html.ActionLink("+1", "voteup", "vraag", new { id = ViewBag.QuestionDetail.QuestionID }, "")
+            } 
         </p>
 
         <p class="tags">
@@ -47,12 +51,11 @@
         </p>
         @if (ViewBag.UserRank >= 3)
         {
-            @Html.ActionLink("Delete vraag", "delete", "vraag", new { id = ViewBag.QuestionDetail.QuestionID }, "")
+            @Html.Raw("[")
+            @Html.ActionLink("Verwijder vraag", "delete", "vraag", new { id = ViewBag.QuestionDetail.QuestionID }, "")
+            @Html.Raw("]")
         }
-        @if (User.Identity.IsAuthenticated)
-        {
-            @Html.ActionLink("Vote", "voteup", "vraag", new { id = ViewBag.QuestionDetail.QuestionID }, "")
-        }
+        
     </aside>
     
     <ul class="comments">
@@ -72,12 +75,14 @@
                     if (user.UserID == comment.UserId)
                     {
                         <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { target = "_blank" })</b>  
-                      break;
+                        break;
                     }
                 }
                 @if (ViewBag.UserRank >= 1)
                 {
-                    @Html.ActionLink("Delete comment", "delete", "comment", new { id = comment.CommentID }, "")
+                    @Html.Raw("[")
+                    @Html.ActionLink("Verwijder", "delete", "comment", new { id = comment.CommentID }, "")
+                    @Html.Raw("]")
                 }
                 </li>
             }
@@ -124,18 +129,21 @@ else
                     if (usertje.UserID == answer.UserId)
                     {
                         <b>@Html.ActionLink((string)usertje.UserName, "view", "user", new { id = usertje.UserID }, new { })</b>   
-                      break;
+                        break;
                     }
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("+1", "VoteUp", "answer", new { id = answer.AnswerID }, "")
                 }
             </p>
             @if (ViewBag.UserRank >= 2)
             {
-                @Html.ActionLink("Delete antwoord", "delete", "answer", new { id = answer.AnswerID }, "")
+                @Html.Raw("[")
+                @Html.ActionLink("Verwijder antwoord", "delete", "answer", new { id = answer.AnswerID }, "")
+                @Html.Raw("]")
             }
-            @if (User.Identity.IsAuthenticated)
-            {
-                @Html.ActionLink("Vote", "VoteUp", "answer", new { id = answer.AnswerID }, "")
-            }
+            
         </aside>
          <ul class="comments">
             @foreach (var acomment in ViewBag.AnswerComments)
@@ -154,12 +162,14 @@ else
                         if (user.UserID == acomment.UserId)
                         {
                             <b>@Html.ActionLink((string)user.UserName, "view", "user", new { id = user.UserID }, new { })</b>  
-                          break;
+                            break;
                         }
                     }
                     @if (ViewBag.UserRank >= 1)
                     {
-                        @Html.ActionLink("Delete comment", "delete", "comment", new { id = acomment.CommentID }, "")
+                        @Html.Raw("[")
+                        @Html.ActionLink("Verwijder", "delete", "comment", new { id = acomment.CommentID }, "")
+                        @Html.Raw("]")
                     }
 
                     </li>
