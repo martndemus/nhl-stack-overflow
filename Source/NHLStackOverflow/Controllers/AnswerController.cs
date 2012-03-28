@@ -88,20 +88,25 @@ namespace NHLStackOverflow.Controllers
                     var voteInfo = from vote in db.Votes
                                    where vote.UserID == UserVoting.UserID && vote.AnswerID == id
                                    select vote;
+                    var answer = AnswerGettingVoted.First();
+                    var userGettingVoted = (from user in db.UserMeta
+                                           where user.UserId == answer.UserId
+                                           select user).Single();
                     if (voteInfo.Count() == 1)
                     {
                         // downvote :<
                         db.Votes.Remove(voteInfo.First());
-                        AnswerGettingVoted.First().Votes -= 1;
+                        answer.Votes -= 1;
+                        userGettingVoted.Votes -= 1;
                         db.SaveChanges();
                     }
                     else
                     {
                         // upvote
-                        int AnswerID = AnswerGettingVoted.First().AnswerID;
-                        VoteUser newVote = new VoteUser() { AnswerID = AnswerID, UserID = UserVoting.UserID };
-                        AnswerGettingVoted.First().Votes += 1;
+                        VoteUser newVote = new VoteUser() { AnswerID = answer.AnswerID, UserID = UserVoting.UserID };
+                        answer.Votes += 1;
                         db.Votes.Add(newVote);
+                        userGettingVoted.Votes += 1;
                         db.SaveChanges();
                     }
                 }
