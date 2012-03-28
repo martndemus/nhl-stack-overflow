@@ -15,5 +15,12 @@
 <h2>@ViewBag.Mail.Title</h2>
 <div class="question">
     <p>@ViewBag.Mail.Content</p>
+    <p>
+        <b>@NHLStackOverflow.Classes.StringToDateTime.ConvertToUnixTimestamp((double)ViewBag.Mail.Created_At)</b> 
+        geleden door 
+        <b>@Html.ActionLink((string)ViewBag.User.UserName, "index", "profiel", new { username = ViewBag.User.UserName }, new { })</b> 
+    </p>
+    <p>[@Html.ActionLink("Reageer", "reply", "user", new { id = ViewBag.Mail.SenderId }, "")] [@Html.ActionLink("Verwijder", "deletemail", "user", new { id = ViewBag.Mail.MessageID }, "")]</p>
 </div>
-<span>@Html.ActionLink("Reageer", "reply", "user", new { id = ViewBag.Mail.SenderId }, "") @Html.ActionLink("Verwijder bericht", "deletemail", "user", new { id = ViewBag.Mail.MessageID }, "")</span>
+
+    

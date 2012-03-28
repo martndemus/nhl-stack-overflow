@@ -366,7 +366,7 @@ ul.tags  {
 #l-footer {
     text-align: right;
     margin-top: 10px;
-    padding: 0 20px 9001px 0;
+    padding: 0 20px 50px 0;
     color: #FFF;
 }
 
@@ -547,6 +547,32 @@ ul.tags  {
 }
 #userinfos .votes.answered {
     background: #40BF40;
+}
+
+/*
+    Mailbox
+*/
+
+.inboxmessage 
+{
+    padding: 5px 10px;
+    border-top: 1px solid #243842;
+    border-bottom: 1px solid #243842;
+    margin-bottom: -1px;
+}
+
+.markreadbutton {
+    color: #fff;
+    background: hsl(200, 30%, 25%);
+    border: 1px solid hsl(200, 30%, 30%);
+    line-height: 16px;
+    padding: 3px 4px;
+    text-decoration:none;
+}
+
+.markreadbutton a {
+    color: #fff;
+    text-decoration: none;
 }
 /*
     SPECIFIC

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NHLStackOverflow.Models;
+using NHLStackOverflow.Classes;
 
 namespace NHLStackOverflow.Controllers
 {
@@ -53,7 +54,7 @@ namespace NHLStackOverflow.Controllers
                     Title = "Uw antwoord is verwijderd op een vraag",
                     ReceiverId = AwnserToDelete.UserId,
                     SenderId = userDeleting.UserID,
-                    Created_At = DateTime.Now.ToString(),
+                    Created_At = StringToDateTime.ToUnixTimeStamp(DateTime.Now),
                     Content = "Uw antwoord op de vraag " + questionTitle + " is verwijderd door " + userDeleting.UserName + ". Indien u meer wilt weten over de rede " +
                         "kunt u reageren op dit bericht. Deze word dan verstuurd naar de persoon die hem verwijderd heeft. We wensen u nog een fijne dag."
                 };

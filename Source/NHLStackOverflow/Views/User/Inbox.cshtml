@@ -23,30 +23,33 @@
 else
 {   
     <div class="question">
-    <span>@Html.ActionLink("Markeer alle als gelezen", "markeergelezen", "user")</span>
-    @foreach (var mail in ViewBag.MailsIn)
-    {
-        <p>
-            @if (mail.Viewed == 0)
-            {
-                <b>@Html.ActionLink((string)mail.Title, "viewmail", "user", new { id = mail.MessageID }, new { })</b>
-            }
-            else
-            {
-                @Html.ActionLink((string)mail.Title, "viewmail", "user", new { id = mail.MessageID }, new { })
-            }
-                <br /><span>van 
-                @foreach (var user in ViewBag.UserList)
+        <span class="markreadbutton">@Html.ActionLink("Markeer alle berichten als gelezen", "markeergelezen", "user")</span>
+        @foreach (var mail in ViewBag.MailsIn)
+        {
+            <p class="inboxmessage">
+                @if (mail.Viewed == 0)
                 {
-                    if (user.UserID == mail.SenderId)
-                    {
-                        <span>@Html.ActionLink((string)user.UserName, "Index", "profiel", new { UserName = user.UserName }, "")</span>   
-                    }
-                }    
-                verstuurd op @mail.Created_At</span>
-            @Html.ActionLink("delete", "deletemail", "user", new { id = mail.MessageID }, "")
-        </p>
-    }
+                    <b>@Html.ActionLink((string)mail.Title, "viewmail", "user", new { id = mail.MessageID }, new { })</b>
+                }
+                else
+                {
+                    @Html.ActionLink((string)mail.Title, "viewmail", "user", new { id = mail.MessageID }, new { })
+                }
+                    <span>
+                    <b>@NHLStackOverflow.Classes.StringToDateTime.ConvertToUnixTimestamp((double)mail.Created_At)</b> geleden door
+                        @foreach (var user in ViewBag.UserList)
+                        {
+                            if (user.UserID == mail.SenderId)
+                            {
+                                <b>@Html.ActionLink((string)user.UserName, "Index", "profiel", new { UserName = user.UserName }, "")</b>   
+                            }
+                        }    
+                    </span>
+                    <span class="right">[@Html.ActionLink("Verwijder", "deletemail", "user", new { id = mail.MessageID }, "")]</span>
+                    
+            </p>
+        }
+
     </div>
 }
 

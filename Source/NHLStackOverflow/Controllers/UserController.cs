@@ -220,13 +220,24 @@ namespace NHLStackOverflow.Controllers
                 var mail = from mails in db.Messages
                            where mails.MessageID == id
                            select mails;
+
                 // check if the querry returned some mail
                 if (mail.Count() != 1)
                     ModelState.AddModelError("", "We hebben geen mail gevonden.");
                 else
                 {
+                    
+
                     // give it back to our ViewBag :D
-                    ViewBag.Mail = mail.First();
+                    var Mail = mail.First();
+                    ViewBag.Mail = Mail;
+
+                    // get the user the send the mail (user name)
+                    var userInfo = (from u in db.Users
+                                    where u.UserID == Mail.SenderId
+                                    select u).First();
+
+                    ViewBag.User = userInfo;
 
                     // And set the flag to viewed ;-)
                     mail.First().Viewed = 1;

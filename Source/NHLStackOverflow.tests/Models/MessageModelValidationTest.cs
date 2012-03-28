@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHLStackOverflow.Models;
+using NHLStackOverflow.Classes;
 
 namespace NHLStackOverflow.tests.Models
 {
@@ -51,7 +52,7 @@ namespace NHLStackOverflow.tests.Models
         {
             Message testMessage = new Message();
             Assert.IsNotNull(testMessage.Created_At, "Datum van aanmaken mag niet null zijn");
-            Assert.IsTrue(testMessage.Created_At == DateTime.Now.ToString(), "De Datum zou gelijk moeten zijn aan de DateTime.Now.ToString()");
+            Assert.IsTrue(testMessage.Created_At == StringToDateTime.ToUnixTimeStamp(DateTime.Now), "De Datum zou gelijk moeten zijn aan de DateTime.Now.ToString()");
         }
 
         [Description("Tests if messages that should be valid are valid."), TestCategory("Model.Valid"), TestMethod]

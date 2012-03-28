@@ -482,7 +482,11 @@ namespace NHLStackOverflow.Controllers
                                        where usertje.UserName == User.Identity.Name
                                        select usertje).Single();
                     // send a message to notify the delete
-                    Message newMessage = new Message() { Title = "Een vraag van u is verwijderd", Created_At = DateTime.Now.ToString(), Content = "De volgende vraag is verwijderd:" 
+                    Message newMessage = new Message()
+                    {
+                        Title = "Een vraag van u is verwijderd",
+                        Created_At = StringToDateTime.ToUnixTimeStamp(DateTime.Now),
+                        Content = "De volgende vraag is verwijderd:" 
                         + questionToDelete.Title + ". \n\nIndien u vragen heeft over het verwijderen van dit bericht kunt u een reactie op dit bericht versturen. \n\nDit bericht is verwijderd door: " 
                         + userDeleting.UserName + " \n\nWe wensen u nog een fijne dag.", ReceiverId = questionToDelete.UserId, SenderId = userDeleting.UserID };
                     // save the changes

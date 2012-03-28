@@ -58,7 +58,7 @@ namespace NHLStackOverflow.Controllers
             var TagsList = from tags in db.Tags
                            orderby tags.Count descending
                            select tags;
-            ViewBag.TagList = TagsList;
+            ViewBag.TagList = TagsList.Take(20);
 
             return View();
         }
