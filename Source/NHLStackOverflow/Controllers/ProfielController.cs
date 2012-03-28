@@ -28,10 +28,13 @@ namespace NHLStackOverflow.Controllers
                             select um).Single();
 
             // Get all questions asked by the user
+            List<Question> QuestionList = new List<Question>();
             var Questions = from q in db.Questions
                             orderby q.Created_At descending
                             where q.UserId == User.UserID
                             select q;
+
+            QuestionList.AddRange(Questions);
 
             // Get all answers by the user
             var Answers = from a in db.Answers
@@ -98,11 +101,12 @@ namespace NHLStackOverflow.Controllers
 
                 UserTags.Add(UserTag, qt.Count); 
             }
+
             
             // Add user info to viewbag
             ViewBag.User              = User;
             ViewBag.Usermeta          = Usermeta;
-            ViewBag.Questions         = Questions.Take(10);
+            ViewBag.Questions         = QuestionList;
             ViewBag.QuestionsAnswered = QuestionsAnswered;
             ViewBag.Tags              = UserTags;
             ViewBag.Badges            = Badges;

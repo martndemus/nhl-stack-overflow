@@ -1,10 +1,13 @@
 ﻿@{    
     ViewBag.Title = "Profiel: " + ViewBag.User.UserName + " - Question Jam";
-    
-    if (Request.Headers["X-PJAX"] == null) {
+
+    if (Request.Headers["X-PJAX"] == null)
+    {
         Layout = "~/Views/Layouts/_Main.cshtml";
         ViewBag.TitleTag = null;
-    } else {
+    }
+    else
+    {
         ViewBag.TitleTag = "{{" + ViewBag.Title + "}}";
         Layout = null;
     }   
@@ -13,38 +16,101 @@
 
 <h2>@ViewBag.User.UserName</h2>
 <article class="question">
-    <img class="left" src="@Html.Raw(ViewBag.GravatarURL)" />
+    <div>
+        <img src="@Html.Raw(ViewBag.GravatarURL)" />
 
-    <ul class="stats">
-        <li>@ViewBag.UserMeta.Votes</li>
-        <li>@ViewBag.UserMeta.Answers</li>
-        <li>@ViewBag.BadgeCount</li>
-    </ul>
+        <ul class="userstats">
+            <li><b>Stats</b></li>
+            <li>Stemmen: <span class="right">@ViewBag.UserMeta.Votes</span></li>
+            <li>Antwoorden: <span class="right">@ViewBag.UserMeta.Answers</li>
+            <li>Badges: <span class="right">@ViewBag.BadgeCount</span></li>
+            <li>Tags: <span class="right">@ViewBag.Tags.Count</span></li>
+        </ul>
+    </div>
+    <div id="userinfos">
+        <h3>Recent gestelde vragen</h3>
+        <ul>
+            @if (ViewBag.Questions.Count > 0)
+            {
+                foreach (var q in ViewBag.Questions)
+                {
+                    <li>
+                        @if (q.Answers > 0)
+                        {
+                            <span class="votes answered">@q.Answers</span>
+                        }
+                        else
+                        {
+                            <span class="votes">@q.Answers</span>
+                        }
+                        @Html.ActionLink((string)q.Title, "view", "vraag", new { id = q.QuestionID }, new { })
+                    </li>
+                }
+            }
+            else
+            {
+                <li>Deze gebruiker heeft nog geen vragen gesteld.</li>
+            }
+         </ul>
+
+        <h3>Recent beantwoorde vragen</h3>
+        <ul>
+            @if (ViewBag.QuestionsAnswered.Count > 0)
+            {
+                foreach (var qa in ViewBag.QuestionsAnswered)
+                {
+                    <li>
+                        @if (qa.Answers > 0)
+                        {
+                            <span class="votes answered">@qa.Answers</span>
+                        }
+                        else
+                        {
+                            <span class="votes">@qa.Answers</span>
+                        }
+                        @Html.ActionLink((string)qa.Title, "view", "vraag", new { id = qa.QuestionID }, new { })
+                    </li>
+                }
+            }
+            else
+            {
+                <li>Deze gebruiker heeft nog geen vragen beantwoord.</li>
+            }
+        </ul>
+
+        <h3>Tags</h3>
+        <ul class="tags">
+            @if (ViewBag.Tags.Count > 0)
+            {
+                foreach (var t in ViewBag.Tags)
+                {
+                    <li>@Html.Raw(String.Format("{0} x {1}", Html.ActionLink((string)t.Key.Name, "search", "tags", new { }), t.Value))</li>
+                }
+            }
+            else
+            {
+                <li>Deze gebruikers heeft nog geen tags.</li>
+            }
+        </ul>
+        <h3>Badges</h3>
+        <ul>
+            @if (ViewBag.BadgeCount > 0)
+            {
+                foreach (var b in ViewBag.Badges)
+                {
+                    <li>@b.Name</li>
+                }
+            }
+            else
+            {
+                <li>Deze gebruiker heeft nog geen badges verdiend.</li>
+            }
+        </ul>
+    </div>
 </article>
-<ul>
-@foreach (var b in ViewBag.Badges)
-{
-    <li>@b.Name</li>
-}
-</ul>
 
-<ul>
-@foreach (var qa in ViewBag.QuestionsAnswered)
-{
-    <li>@qa.Title</li>
-}
-</ul>
 
-<ul>
-@foreach (var q in ViewBag.Questions)
-{
-    <li>@q.Title</li>
-}
-</ul>
 
-<ul class="tags">
-@foreach (var t in ViewBag.Tags)
-{
-    <li>@Html.Raw(String.Format("{0} x {1}", Html.ActionLink((string)t.Key.Name, "search", "tags", new { }), t.Value))</li>
-}
-</ul>
+
+
+

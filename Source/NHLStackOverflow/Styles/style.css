@@ -514,6 +514,40 @@ ul.tags  {
     
     vertical-align: top;
 }
+
+.userstats 
+{
+    display: inline-block;
+    list-style: none;
+    margin: 0 0 0 10px;
+    padding: 0;
+    max-width: 150px;
+    width: 100%;
+    vertical-align: top;
+}
+
+#userinfos ul {
+    list-style: none;
+    padding: 0 0 0 20px;
+}
+#userinfos li {
+    margin: 0 0 5px;
+    line-height: 25px;
+    font-weight: bold;
+}
+
+#userinfos .votes 
+{
+    color: #FFF;
+    display: inline-block;
+    text-align: center;
+    height: 25px;
+    width: 30px;
+    background: #2D4653;
+}
+#userinfos .votes.answered {
+    background: #40BF40;
+}
 /*
     SPECIFIC
 */
