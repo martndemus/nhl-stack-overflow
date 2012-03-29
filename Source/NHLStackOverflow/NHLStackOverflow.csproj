@@ -121,6 +121,7 @@
     <Compile Include="Models\Badges\TagLordBadge.cs" />
     <Compile Include="Models\FormDataModels\Account.cs" />
     <Compile Include="Models\FormDataModels\AccountActivation.cs" />
+    <Compile Include="Models\FormDataModels\Badge.cs" />
     <Compile Include="Models\FormDataModels\Login.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

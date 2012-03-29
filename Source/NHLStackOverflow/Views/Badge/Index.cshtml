@@ -15,7 +15,15 @@
 @foreach (var a in ViewBag.badgesList)
 {    
     <p>
-        @Html.ActionLink((string)a.badge.Name, "search", "badge", new { id = a.badge.Name }, new { }) x @a.count
+        @Html.ActionLink((string)a.badge.Name, "search", "badge", new { id = a.badge.Name }, new { }) x @a.count <br />
+        @foreach (NHLStackOverflow.Models.FormDataModels.BadgeDe badge in ViewBag.BadgeDescription)
+        {
+            if (badge.BadgeID == a.badge.BadgeID)
+            {
+                <span>@badge.Description : @badge.Color</span>
+                break;
+            }
+        }
     </p>
 }
 
