@@ -15,21 +15,28 @@ namespace NHLStackOverflow.Mailers
 		
 		public virtual MailMessage MailConfirm(string link, string email)
 		{
-            var mailMessage = new MailMessage { Subject = "Account registratie bevestigen - Question Jamw", Body = link };
+            // create the variables which we give allong
+            var mailMessage = new MailMessage { Subject = "Account registratie bevestigen - Question Jam", Body = link };
 			
+            // add the email adress to the message
 			mailMessage.To.Add(email);
-			//ViewBag.Data = someObject;
-            ViewBag.WebLink = link;
+            ViewBag.WebLink = link; // add the link to it
+            // create the actual email
 			PopulateBody(mailMessage, viewName: "MailConfirm");
-
+            // and return this
 			return mailMessage;
 		}
 
         public virtual MailMessage MailPassForgotten(string link, string email)
         {
+            // create the variables which we give allong
             var mailMessage = new MailMessage { Subject = "Wachtwoord vergeten - Question Jam", Body = link };
+
+            // add the email adress to the message
             mailMessage.To.Add(email);
+            // give along the link
             ViewBag.Link = link;
+            // create the actual email
             PopulateBody(mailMessage, viewName: "MailPassForgotten");
 
             return mailMessage;

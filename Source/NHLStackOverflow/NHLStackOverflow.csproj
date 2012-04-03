@@ -89,7 +89,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\AbstractBadge.cs" />
     <Compile Include="Classes\BadgeCount.cs" />
     <Compile Include="Classes\HTMLSanitizer.cs" />
     <Compile Include="Classes\Markdown.cs" />

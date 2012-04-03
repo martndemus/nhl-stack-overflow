@@ -11,6 +11,7 @@ namespace NHLStackOverflow.Controllers
 {
     public class LoginController : Controller
     {
+        // the stuff needed to be able to send a real e-mail
         private IUserMailer _userMailer = new UserMailer();
         public IUserMailer UserMailer
         {
@@ -29,7 +30,6 @@ namespace NHLStackOverflow.Controllers
 
         //
         // POST: /Login/
-
         [HttpPost]
         public ActionResult Index(Login user)
         {
@@ -69,7 +69,6 @@ namespace NHLStackOverflow.Controllers
 
         //
         // GET: /login/wachtwoordkwijt
-
         public ActionResult WachtwoordKwijt()
         {
             return View();
@@ -77,20 +76,22 @@ namespace NHLStackOverflow.Controllers
 
         //
         // POST: /login/wachtwoordkwijt
-
         [HttpPost]
         public ActionResult WachtwoordKwijt(PassLostEmail user)
         {
-            // Todo wachtwoordkwijt mailer maken
+            // get this info of the user that has lost his password
             var passLostPerson = from userPassLost in db.Users
                                  where userPassLost.Email == user.Email && userPassLost.Activated == 1 
                                  && userPassLost.PassLost == null
                                  select userPassLost;
+            // if the didn't yield a result show an error
             if (passLostPerson.Count() != 1)
                 ModelState.AddModelError("", "Er is geen juiste user gevonden.");
 
+            // if this is valid
             if(ModelState.IsValid)
             {
+                // in a try catch so that if mailing failed we can try again
                 try
                 {
                     passLostPerson.First().PassLost = Cryptography.UrlHash(passLostPerson.First().Password + passLostPerson.First().Email);
@@ -101,6 +102,7 @@ namespace NHLStackOverflow.Controllers
                 {
                     ModelState.AddModelError("", "Er is iets mis gegaan. Onze excuses voor het ongemak. Probeer het over enkele momenten overnieuw.");
                 }
+                // if it all went right link us to the succes page and save the datebase changes
                 if (ModelState.IsValid)
                 {
                     db.SaveChanges();
@@ -124,17 +126,20 @@ namespace NHLStackOverflow.Controllers
         [HttpPost]
         public ActionResult KwijtVeranderen(string id, PassLost user)
         {
+            // check if the two passwords are equal
             if (user.Password1 != user.Password2)
                 ModelState.AddModelError("", "Het eerste en het tweede wachtwoord kwamen niet overeen.");
-
+            // get the info of the person that has lost his password
             var kwijtUser = from userKwijt in db.Users
                             where userKwijt.PassLost == id
                             select userKwijt;
+            // check if this yielded some result
             if (kwijtUser.Count() != 1)
                 ModelState.AddModelError("", "De meegegeven string komt niet overeen met een gebruiker.");
-
+            // if so continue
             if (ModelState.IsValid)
             {
+                // set the new password
                 kwijtUser.First().Password = Cryptography.PasswordHash(user.Password1);
                 kwijtUser.First().PassLost = null;
                 db.SaveChanges();
@@ -142,7 +147,7 @@ namespace NHLStackOverflow.Controllers
                 // to a static page saying it has been changed
                 return RedirectToAction("wachtwoordveranderd", "Login");
             }
-
+            // if we get here it wasn't valid
             return View();
         }
 
@@ -162,7 +167,6 @@ namespace NHLStackOverflow.Controllers
 
         //
         // GET: /login/logout
-
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();

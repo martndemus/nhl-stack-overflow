@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Tag: " + ViewBag.TagName + " - Question Jam";
+    ViewBag.Title = "Tag: " + ViewBag.TagNames.Name + " - Question Jam";
     if (Request.Headers["X-PJAX"] == null) {
         Layout = "~/Views/Layouts/_Main.cshtml";
         ViewBag.TitleTag = null;

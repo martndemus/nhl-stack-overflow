@@ -55,9 +55,11 @@ namespace NHLStackOverflow.Controllers
 
         public ViewResult Tags()
         {
+            // get a list of all the tags
             var TagsList = from tags in db.Tags
                            orderby tags.Count descending
                            select tags;
+            // and take the top 20 tags
             ViewBag.TagList = TagsList.Take(20);
 
             return View();

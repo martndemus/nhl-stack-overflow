@@ -31,9 +31,10 @@ namespace NHLStackOverflow.Controllers
         [HttpPost]
         public ActionResult Index(User user)
         {
-            // create a new user and fill in the required fields
+            // check if the conditions are checked
             if (Request.Form.Get("ConditionsAccepted") == "false" ) // check if the conditions has been checked
                 ModelState.AddModelError("", "De gebruikersvoorwaarden dienen te worden geacepteerd");
+            // check if the two passwords are equal
             if (Request.Form.Get("PassWord2") != user.Password) // check if password1 and password2 are the same, preventing password typos
                 ModelState.AddModelError("", "De ingevulde wachtwoorden komen niet overeen");
             // check if the email is being used 
@@ -53,6 +54,7 @@ namespace NHLStackOverflow.Controllers
             {
                 // everything is right
                 // hash the password
+                // in a try catch incase we are unable to send an mail
                 try
                 {
                     user.Password = Cryptography.PasswordHash(user.Password);
@@ -98,10 +100,12 @@ namespace NHLStackOverflow.Controllers
                 ModelState.AddModelError("", "Het wachtwoord kwam niet overeen met de database.");
             if (ModelState.IsValid) 
             {
-                // everything was valid. Change the persons state to activated.
+                // get the userID
                 int activatingUserID = passPerson.First().UserID;
+                // create a new userMeta for this user
                 UserMeta newUserMeta = new UserMeta() { UserId = activatingUserID };
                 db.UserMeta.Add(newUserMeta);
+                // everything was valid. Change the persons state to activated.
                 passPerson.First().Activated = 1;
                 passPerson.First().ActivationLink = null;
                 db.SaveChanges();

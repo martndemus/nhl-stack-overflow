@@ -30,12 +30,16 @@ namespace NHLStackOverflow.Controllers
 
         //
         // POST: /User/
+        // this is the main page of user when he submits more info about him
         [HttpPost]
         public ActionResult Index(Account newUserInfo)
         {
+            
+            // get the info of the user
             var userInfo = from user in db.Users
                            where user.UserName == User.Identity.Name
                            select user;
+            // if the submittings are valid add them
             if(ModelState.IsValid)
             {
                 userInfo.First().Location = newUserInfo.Location;
@@ -44,7 +48,7 @@ namespace NHLStackOverflow.Controllers
                 userInfo.First().Languages = newUserInfo.Languages;
                 db.SaveChanges();
             }
-
+            // give back the user 
             ViewBag.User = userInfo.First();
 
             return View();
@@ -63,44 +67,53 @@ namespace NHLStackOverflow.Controllers
         [HttpPost]
         public ActionResult Instellingen(PassEmail passEmail)
         {
+            // check if the sendings are the stuff for changing pass
             if (passEmail.NowPassword != null && passEmail.Email == null)
             {
                 // going to change the password
                 var userInfos = from userInfo in db.Users
                                 where userInfo.UserName == User.Identity.Name
                                 select userInfo;
+                // check if the submitted pass equals the real pass
                 if (userInfos.First().Password != Cryptography.PasswordHash(passEmail.NowPassword))
                     ModelState.AddModelError("", "Het wachtwoord komt nier overeen.");
+                // check if both new passwords are equal and not null
                 if (passEmail.Password1 != passEmail.Password2 || passEmail.Password1 == null)
                     ModelState.AddModelError("", "Het eerste wachtwoord en de tweede kwamen niet overeen.");
                 if (ModelState.IsValid)
                 {
-                    // Allowed for a password change
+                    // Allowed for a password change and passwords are right
                     userInfos.First().Password = Cryptography.PasswordHash(passEmail.Password1);
                     db.SaveChanges();
                     ViewBag.Message = "Het wachtwoord is succesvol veranderd.";
                     return View();
                 }
-            }
+            } // check if we are going to change the password
             else if (passEmail.Email != null && passEmail.NowPassword == null)
             {
                 // going to change the password
+
+                // get the info of the current user
                 var userInfos = from userInfo in db.Users
                                 where userInfo.UserName == User.Identity.Name
                                 select userInfo;
+                // check if this pass exists
                 var emailUsers = from emailUser in db.Users
                                  where emailUser.Email == passEmail.Email
                                  select emailUser;
+                // check if we got such email in the db (thus not allowing this new email)
                 if (emailUsers.Count() != 0)
                     ModelState.AddModelError("", "Dit email adress is al opgenomen in de database.");
                 if (ModelState.IsValid)
                 {
+                    // all proper so change it
                     userInfos.First().Email = passEmail.Email;
                     db.SaveChanges();
                     ViewBag.MessageDuex = "Het email is succesvol veranderd.";
                     return View();
                 }
             }
+            // got here nothing sumbitted or invalid
             return View();
         }
 
@@ -119,6 +132,7 @@ namespace NHLStackOverflow.Controllers
         // GET: User/Admin
         public ActionResult Beheer()
         {
+            // check if logged in
             if (User.Identity.IsAuthenticated)
             {
                 // Needed to check if we are allowed to see some bad stuff happening
@@ -144,43 +158,50 @@ namespace NHLStackOverflow.Controllers
                         var commentOnQuestion = from qcomment in db.Comments
                                                 where qcomment.CommentID == comment.CommentID
                                                 select qcomment.QuestionId;
+                        // get all the comments and add then to the list
                         foreach (var qcomment in commentOnQuestion)
                         {
+                            // check if not null (since this is not a valid one)
                             if (qcomment != 0)
                                 QuestionCommentList.Add(new CommentQuestion(comment.CommentID, qcomment));
                         }
+                        // get the answers comments
                         var canswer = from answer in db.Answers
                                       where answer.AnswerID == comment.AnswerId
                                       select answer.QuestionId;
+                        // add all the comments on answers which are bad
                         foreach (var acomment in canswer)
                         {
+                            // check if not null
                             if (acomment != 0)
                                 QuestionCommentList.Add(new CommentQuestion(comment.CommentID, acomment));
                         }
                     }
+
+                    // give em back to the viewbag
                     ViewBag.QCList = QuestionCommentList;
                     ViewBag.badCommentList = badCommets;
                 }
                 if (userRanking.First() > 1)
                 {
                     // Allowed to see bad anwsers that are flagged
+                    // so get them
                     var badAwnsers = from awnser in db.Answers
                                      where awnser.Flag == 1
                                      select awnser;
+                    // give these back
                     ViewBag.badAwnserList = badAwnsers;
                 }
                 if (userRanking.First() > 2)
                 {
-                    // allowed to see em all, show evil questions aswell
+                    // allowed to see em all, show give the questions aswell
                     var badQuestions = from question in db.Questions
                                        where question.Flag == 1
                                        select question;
+
+                    // give them back to the viewbag
                     ViewBag.badQuestionList = badQuestions;
                 }
-            }
-            else
-            {
-                // Give some error bag somewhere :<
             }
             return View();
         }
@@ -311,11 +332,13 @@ namespace NHLStackOverflow.Controllers
             var userTo = from toUser in db.Users
                          where toUser.UserName == berichtje.SendTo
                          select toUser;
+            // check if the user gave valid stuff back
             if (userTo.Count() != 1 || berichtje.SendTo == null)
                 ModelState.AddModelError("", "De ingevoerde gebruiker bestaat niet.");
 
             if (ModelState.IsValid)
             {
+                // if so create the message
                 Message newMessage = new Message() { SenderId = userSending.First().UserID, Title = berichtje.Title, ReceiverId = userTo.First().UserID, Content = berichtje.Content };
                 db.Messages.Add(newMessage);
                 db.SaveChanges();
@@ -360,17 +383,22 @@ namespace NHLStackOverflow.Controllers
         // GET: /user/markeergelezen
         public ActionResult MarkeerGelezen()
         {
+            // check if logged in
             if (User.Identity.IsAuthenticated)
             {
+                // get the userID of the person
                 var userID = from user in db.Users
                              where user.UserName == User.Identity.Name
                              select user.UserID;
                 if (userID.Count() == 1)
                 {
+                    // cast it to an int so we can compare
                     int UserID = userID.First();
+                    // get all the messages of this person
                     var allMails = from mail in db.Messages
                                    where mail.ReceiverId == UserID
                                    select mail;
+                    // mark them all as read
                     foreach (var mail in allMails)
                     {
                         mail.Viewed = 1;
@@ -378,6 +406,7 @@ namespace NHLStackOverflow.Controllers
                     db.SaveChanges();
                 }
             }
+            // go back to the inbox
             return RedirectToAction("inbox", "user");
         }
         #endregion // mailstuff

@@ -15,13 +15,13 @@ namespace NHLStackOverflow.Controllers
 
         public ActionResult Index()
         {
-
+            // get the list of badges and the amount of people that have such badage
             var badgeList = from badges in db.Badges
                             group badges by badges.Name into a
                             select new BadgeCount() { badge = a.FirstOrDefault(), count = a.Count() };
-
+            // give it to the viewbag
             ViewBag.badgesList = badgeList;
-
+            // a list which has a description of each badge
             var badgeDesList = new List<BadgeDe>{
                 new BadgeDe(1, "Stel je eerste vraag", "Bronze"),
                 new BadgeDe(2, "Geef je eerste antwoord", "Bronze"),
@@ -39,26 +39,31 @@ namespace NHLStackOverflow.Controllers
             return View();
         }
 
+        //
+        // GET: /badge/search/badgeID
         public ActionResult Search(string id)
         {
+            // get a list of people having this badge
             var badgeList = from badges in db.Badges
                             where badges.Name == id
                             select badges;
- 
+            // give the info back to the viewbag
             ViewBag.badgesList = badgeList;
             ViewBag.badgesName = badgeList.First();
             ViewBag.badgeCount = badgeList.Count();
-            List<User> test = new List<Models.User>();
+            // create a list of users having this badge
+            List<User> userList = new List<Models.User>();
+            // foreach badge that was found get the info of the person which has this badge
             foreach (var badgde in badgeList)
             {
                 var badgeUsers = from users in db.Users
                                  orderby users.Created_At descending
                                  where users.UserID == badgde.UserId
                                  select users;
-                test.Add(badgeUsers.First());
+                userList.Add(badgeUsers.First());
             }
-            ViewBag.badgesUsers = test;
-
+            ViewBag.badgesUsers = userList;
+            // a list which has a description of all the badges
             var badgeDesList = new List<BadgeDe>{
                 new BadgeDe(1, "Stel je eerste vraag", "Bronze"),
                 new BadgeDe(2, "Geef je eerste antwoord", "Bronze"),
@@ -70,7 +75,9 @@ namespace NHLStackOverflow.Controllers
                 new BadgeDe(8, "Stel je 20e vraag", "Zilver"),
                 new BadgeDe(9, "Stel je 100e vraag", "Goud")
             };
+            // select the bdage ID
             int idtje = badgeList.First().BadgeID;
+            // give back only the description of the badge that we need
             ViewBag.BadgeDescription = (from badgeDescript in badgeDesList
                                         where badgeDescript.BadgeID == idtje
                                         select badgeDescript.Description).First();

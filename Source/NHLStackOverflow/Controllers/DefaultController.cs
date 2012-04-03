@@ -22,7 +22,7 @@ namespace NHLStackOverflow.Controllers
                                orderby questions.Created_At descending
                                select questions;
             List<User> usersList = new List<User>();
-            List<TagsIDs> abc = new List<TagsIDs>();
+            List<TagsIDs> tagList = new List<TagsIDs>();
             foreach (Question vraag in QuestionList)
             {
                 // Strip all HTML tags from the question content
@@ -37,18 +37,20 @@ namespace NHLStackOverflow.Controllers
                               join c in db.QuestionTags on tagsQuestion.TagID equals c.TagId
                               where c.QuestionId == vraag.QuestionID
                               select tagsQuestion;
-
+                // create a list of all the tags linked to the question which has this tag
                 foreach (Tag i in TagList)
-                    abc.Add(new TagsIDs(i, vraag.QuestionID));
-                
+                    tagList.Add(new TagsIDs(i, vraag.QuestionID));
+                // get the user stuff (for displaying the username)
                 var UserList = from users in db.Users
                                where users.UserID == vraag.UserId
                                select users;
+                // check ifthe list already has this user if not add it
                 if(!usersList.Contains(UserList.First()))
                     usersList.Add(UserList.First());
             }
 
-            ViewBag.Helper = abc;
+            // give it all back to the viewbag
+            ViewBag.Helper = tagList;
             ViewBag.UsersList = usersList;
             ViewBag.QuestionList = QuestionList;
 
